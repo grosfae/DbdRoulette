@@ -11,7 +11,7 @@
 
     <Grid >
         <Grid.Background>
-            <ImageBrush ImageSource="/Resources/FonImage.png"/>
+            <SolidColorBrush Color="Black" Opacity="0.4"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>

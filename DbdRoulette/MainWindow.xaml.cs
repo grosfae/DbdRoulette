@@ -32,7 +32,7 @@ namespace DbdRoulette
         {
             InitializeComponent();
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
-            MainFrame.Navigate(new MenuPage());
+            MainFrame.Navigate(new KillerListPage());
         }
 
         private void MinButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -48,6 +48,30 @@ namespace DbdRoulette
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void CharactersBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            transform.BeginAnimation(ScaleTransform.ScaleYProperty,
+            new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.2),
+
+            });
+        }
+
+        private void CharactersBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            transform.BeginAnimation(ScaleTransform.ScaleYProperty,
+            new DoubleAnimation
+            {
+                From = 1,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.2),
+
+            });
         }
     }
 }

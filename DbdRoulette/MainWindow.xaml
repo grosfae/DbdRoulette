@@ -33,67 +33,89 @@
             <StackPanel Orientation="Horizontal" Background="#FF161D23" x:Name="Head">
                 <Image Source="/Resources/Logos.png" Width="70" Height="70" Margin="15 0 0 0"/>
                 <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Рулетки"/>
-                <Button Style="{StaticResource MenuButtonGradientRedBlue}" Width="150" Height="50" Content="Персонажи"/>
+                <ToggleButton x:Name="CharactersBtn" Style="{StaticResource MenuListBtn}" Width="150" Height="50" Content="Персонажи" Checked="CharactersBtn_Checked" Unchecked="CharactersBtn_Unchecked"/>
+                <Button Style="{StaticResource MenuButton}" Width="250" Height="50" Content="Объекты взаимодействия"/>
                 <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Локации"/>
-                <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Эффекты"/>
+                <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Дополнения"/>
             </StackPanel>
 
         </StackPanel>
-        <Grid VerticalAlignment="Top" Margin="0 70 0 0" Height="330" Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="3">
+        <Grid x:Name="GridPupup" VerticalAlignment="Top" Margin="0 70 0 0" Height="330" Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="3">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.7"/>
             </Grid.Background>
-
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Margin="50 10 0 0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Image Source="/Resources/CardImages/Character.png" Height="35" Width="35"/>
-                        <TextBlock Text="Убийцы и выжившие" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
-                    </StackPanel>
-                    <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
-                        <StackPanel >
-                            <Image Height="205" Source="/Resources/CardImages/Double.jpg"/>
-                            <Grid Height="50">
-                                <Rectangle Width="205" Height="56" Fill="#3881EF"/>
-                                <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="black" Opacity="0.3"/>
-                                <Button Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
-                            </Grid>
+            <Grid.RenderTransform>
+                <ScaleTransform x:Name="transform" ScaleY="0"/>
+            </Grid.RenderTransform>
+            <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Source="/Resources/CardImages/Character.png" Height="35" Width="35"/>
+                            <TextBlock Text="Убийцы и выжившие" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
                         </StackPanel>
-                    </Border>
-                </StackPanel>
-
-                <StackPanel Margin="50 10 0 0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Image Source="/Resources/CardImages/Perk.png" Height="35" Width="35"/>
-                        <TextBlock Text="Навыки персонажей" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
+                        <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
+                            <StackPanel >
+                                <Image Height="205" Source="/Resources/CardImages/Double.jpg"/>
+                                <Grid Height="50">
+                                    <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                    <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="black" Opacity="0.3"/>
+                                    <Button Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
-                    <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
-                        <StackPanel >
-                            <Image Height="205" Source="/Resources/CardImages/Perks.jpg"/>
-                            <Grid Height="50">
-                                <Rectangle Width="205" Height="56" Fill="#3881EF"/>
-                                <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
-                                <Button Content="Изучить" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
 
-                <StackPanel Margin="50 10 0 0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Image Source="/Resources/CardImages/Item.png" Height="35" Width="35"/>
-                        <TextBlock Text="Предметы и улучшения" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
-                    </StackPanel>
-                    <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
-                        <StackPanel >
-                            <Image Height="205" Source="/Resources/CardImages/Addons.jpg"/>
-                            <Grid Height="50">
-                                <Rectangle Width="205" Height="56" Fill="#3881EF"/>
-                                <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
-                                <Button Content="Узнать" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
-                            </Grid>
+                    <StackPanel Margin="50 0 0 0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Source="/Resources/CardImages/Perk.png" Height="35" Width="35"/>
+                            <TextBlock Text="Навыки персонажей" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
                         </StackPanel>
-                    </Border>
+                        <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
+                            <StackPanel >
+                                <Image Height="205" Source="/Resources/CardImages/Perks.jpg"/>
+                                <Grid Height="50">
+                                    <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                    <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
+                                    <Button Content="Изучить" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Margin="50 0 0 0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Source="/Resources/CardImages/Item.png" Height="35" Width="35"/>
+                            <TextBlock Text="Предметы и аддоны" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
+                        </StackPanel>
+                        <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
+                            <StackPanel >
+                                <Image Height="205" Source="/Resources/CardImages/Addons.jpg"/>
+                                <Grid Height="50">
+                                    <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                    <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
+                                    <Button Content="Узнать" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Margin="50 0 0 0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Source="/Resources/CardImages/Effect.png" Height="35" Width="35"/>
+                            <TextBlock Text="Индикатор эффектов" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
+                        </StackPanel>
+                        <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
+                            <StackPanel >
+                                <Image Height="205" Source="/Resources/CardImages/Effects.jpg"/>
+                                <Grid Height="50">
+                                    <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                    <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
+                                    <Button Content="Подробнее" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
             <Separator  Background="#FF3881EF" VerticalAlignment="Bottom" Margin="0 10 0 0">
@@ -130,7 +152,10 @@
                 </Image>
             </Border>
         </StackPanel>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1">
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" >
+            <Frame.Background>
+                <ImageBrush ImageSource="/Resources/Misc/RedForest.jpg"/>
+            </Frame.Background>
 
         </Frame>
     </Grid>
