@@ -3,288 +3,135 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DbdRoulette" 
+        xmlns:local="clr-namespace:DbdRoulette"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="600">
-    <Window.Resources>
-        <Style x:Key="Red_number" TargetType="CheckBox">
-            <Setter Property="Width" Value="74"/>
-            <Setter Property="Height" Value="200" />
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="200,200,0,0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type CheckBox}">
-                        <Grid>
-                            <Path x:Name="number_BG" Fill="#CCF4251A" StrokeThickness="1" Stroke="Yellow" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <Path.Data>
-                                    <PathGeometry>
-                                        <PathFigure IsClosed="True" StartPoint="0,0">
-                                            <LineSegment Point="63, 200"/>
-                                            <ArcSegment Size="200,200" SweepDirection="Clockwise" IsLargeArc="False" Point="0,200"/>
-                                        </PathFigure>
-                                    </PathGeometry>
-                                </Path.Data>
-                            </Path>
-                            <TextBlock Width="20" Height="30" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,160,0,0" Text="{TemplateBinding Content}" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontFamily="Microsoft YaHei">
-                                <TextBlock.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform Angle="-1.823"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </TextBlock.RenderTransform></TextBlock>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver"  Value="True">
-                                <Setter TargetName="number_BG" Property="Fill" Value="#7FFFFF00" />
-                            </Trigger>
-                            <Trigger Property="IsChecked"  Value="True">
-                                <Setter TargetName="number_BG" Property="Fill" Value="Red" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="Black_number" TargetType="CheckBox">
-            <Setter Property="Width"      Value="34"/>
-            <Setter Property="Height"     Value="200" />
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment"  Value="Top"/>
-            <Setter Property="Margin" Value="200,200,0,0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type CheckBox}">
-                        <Grid Width="34" Height="200">
-                            <Path x:Name="number_BG" Fill="#7F262121" StrokeThickness="1" Stroke="Yellow" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <Path.Data>
-                                    <PathGeometry>
-                                        <PathFigure IsClosed="True" StartPoint="0,0">
-                                            <LineSegment Point="33.78412311887996,197.12593189402651"/>
-                                            <ArcSegment Size="200,200" SweepDirection="Clockwise" IsLargeArc="False" Point="0,200"/>
-                                        </PathFigure>
-                                    </PathGeometry>
-                                </Path.Data>
-                            </Path>
-                            <Path x:Name="number_text" Fill="#FF28631F" StrokeThickness="1"  Stroke="Yellow" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <Path.Data>
-                                    <PathGeometry>
-                                        <PathFigure IsClosed="True" StartPoint="0,0" >
-                                            <LineSegment Point="25.338092339159957,147.84444892051985"/>
-                                            <ArcSegment Size="200,200" SweepDirection="Clockwise" IsLargeArc="False" Point="0,150"/>
-                                        </PathFigure>
-                                    </PathGeometry>
-                                </Path.Data>
-                            </Path>
-                            <TextBlock Width="20" Height="30" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,160,0,0" Text="{TemplateBinding Content}" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontFamily="Microsoft YaHei"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver"  Value="True">
-                                <Setter TargetName="number_BG" Property="Fill" Value="#7FFFFF00" />
-                            </Trigger>
-                            <Trigger Property="IsChecked"  Value="True">
-                                <Setter TargetName="number_BG" Property="Fill" Value="#FF090909" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        Title="DbdRoulette" Height="850" Width="1300"
+        
+        BorderThickness="1"
+        BorderBrush="#FF3881EF"
+        
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        
+        WindowStartupLocation="CenterScreen"
+        
+        Icon="Resources/Logo.png">
 
-    </Window.Resources>
-    
-    
-    <Grid>
-        <Button Height="30" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Content="SPIN" Click="SpinButton_Click"/>
-        <Grid x:Name="RouletteGrid"  Width="400" Height="400" RenderTransformOrigin="0.5,0.5" >
-            <Grid.RenderTransform>
-                <RotateTransform Angle="0" x:Name="transform"/>
-            </Grid.RenderTransform>
+    <Window.Clip>
+        <RectangleGeometry Rect="0, 0, 1300, 850"/>
+    </Window.Clip>
 
-            <CheckBox x:Name="Number10" Style="{StaticResource Black_number}"  Content="10"/>
-            <CheckBox x:Name="Number5" Style="{StaticResource Red_number}" Content="5">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="9.7297"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number24" Style="{StaticResource Black_number}" Content="24">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="19.459"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number16" Style="{StaticResource Red_number}" Content="16">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="29.1891"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number33" Style="{StaticResource Black_number}" Content="33">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="38.9188"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number1" Style="{StaticResource Red_number}" Content="1">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="48.6485"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number20" Style="{StaticResource Black_number}" Content="20">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="58.3782"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number14" Style="{StaticResource Red_number}" Content="14">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="68.1079"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number31" Style="{StaticResource Black_number}" Content="31">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="77.8376"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number9" Style="{StaticResource Red_number}" Content="9">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="87.5673"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number22" Style="{StaticResource Black_number}" Content="22">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="97.297"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number18" Style="{StaticResource Red_number}" Content="18">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="107.0267"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number29" Style="{StaticResource Black_number}" Content="29">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="116.7564"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number7" Style="{StaticResource Red_number}" Content="7">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="126.4861"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number28" Style="{StaticResource Black_number}" Content="28">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="136.2158"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number12" Style="{StaticResource Red_number}" Content="12">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="145.9455"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number35" Style="{StaticResource Black_number}" Content="35">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="155.6752"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number3" Style="{StaticResource Red_number}" Content="3">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="165.4049"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number26" Style="{StaticResource Black_number}" Content="26">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="175.1346"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number0" Style="{StaticResource Black_number}" Content="0" >
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="184.8643"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number32" Style="{StaticResource Red_number}" Content="32">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="194.594"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number15" Style="{StaticResource Black_number}" Content="15">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="204.3237"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number19" Style="{StaticResource Red_number}" Content="19">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="214.0534"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number4" Style="{StaticResource Black_number}" Content="4">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="223.7831"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number21" Style="{StaticResource Red_number}" Content="21">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="233.5128"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number2" Style="{StaticResource Black_number}" Content="2">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="243.2425"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number25" Style="{StaticResource Red_number}" Content="25">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="252.9722"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number17" Style="{StaticResource Black_number}" Content="17">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="262.7019"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number34" Style="{StaticResource Red_number}" Content="34">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="272.4316"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number6" Style="{StaticResource Black_number}" Content="6">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="282.1613"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number27" Style="{StaticResource Red_number}" Content="27">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="291.891"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number13" Style="{StaticResource Black_number}" Content="13">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="301.6207"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number36" Style="{StaticResource Red_number}" Content="36">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="311.3504"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number11" Style="{StaticResource Black_number}" Content="11">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="321.0801"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number30" Style="{StaticResource Red_number}" Content="30">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="330.8098"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number8" Style="{StaticResource Black_number}" Content="08">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="340.5395"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
-            <CheckBox x:Name="Number23" Style="{StaticResource Red_number}" Content="23">
-                <CheckBox.RenderTransform>
-                    <RotateTransform Angle="350.2692"/>
-                </CheckBox.RenderTransform>
-            </CheckBox>
+    <Grid Background="White" ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Background="#FF161D23" x:Name="Head">
+                <Image Source="/Resources/Logos.png" Width="70" Height="70" Margin="15 0 0 0"/>
+                <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Рулетки"/>
+                <Button Style="{StaticResource MenuButtonGradientRedBlue}" Width="150" Height="50" Content="Персонажи"/>
+                <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Локации"/>
+                <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Эффекты"/>
+            </StackPanel>
+
+        </StackPanel>
+        <Grid VerticalAlignment="Top" Margin="0 70 0 0" Height="330" Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="3">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.7"/>
+            </Grid.Background>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="50 10 0 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image Source="/Resources/CardImages/Character.png" Height="35" Width="35"/>
+                        <TextBlock Text="Убийцы и выжившие" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
+                    </StackPanel>
+                    <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
+                        <StackPanel >
+                            <Image Height="205" Source="/Resources/CardImages/Double.jpg"/>
+                            <Grid Height="50">
+                                <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="black" Opacity="0.3"/>
+                                <Button Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Margin="50 10 0 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image Source="/Resources/CardImages/Perk.png" Height="35" Width="35"/>
+                        <TextBlock Text="Навыки персонажей" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
+                    </StackPanel>
+                    <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
+                        <StackPanel >
+                            <Image Height="205" Source="/Resources/CardImages/Perks.jpg"/>
+                            <Grid Height="50">
+                                <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
+                                <Button Content="Изучить" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Margin="50 10 0 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image Source="/Resources/CardImages/Item.png" Height="35" Width="35"/>
+                        <TextBlock Text="Предметы и улучшения" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
+                    </StackPanel>
+                    <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
+                        <StackPanel >
+                            <Image Height="205" Source="/Resources/CardImages/Addons.jpg"/>
+                            <Grid Height="50">
+                                <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
+                                <Button Content="Узнать" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+            <Separator  Background="#FF3881EF" VerticalAlignment="Bottom" Margin="0 10 0 0">
+            </Separator>
         </Grid>
+
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 15 15 0" VerticalAlignment="Top">
+            <Border CornerRadius="15" Background="#FF3881EF" Height="35" Width="35">
+                <Image x:Name="MinButton" Height="20" Width="20"  MouseLeftButtonDown="MinButton_MouseLeftButtonDown" Cursor="Hand">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Resources/Header/NoneActiveBar.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinButton}" Value="True">
+                                    <Setter Property="Source" Value="Resources/Header/ActiveBar.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Border>
+            <Border CornerRadius="15" Background="#FF3881EF" Height="35" Width="35" Margin="15 0 0 0">
+                <Image x:Name="CloseButton" Height="20" Width="20"  MouseLeftButtonDown="CloseButton_MouseLeftButtonDown" Cursor="Hand">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Resources/Header/NoneActiveCross.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CloseButton}" Value="True">
+                                    <Setter Property="Source" Value="Resources/Header/ActiveCross.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Border>
+        </StackPanel>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1">
+
+        </Frame>
     </Grid>
 </Window>

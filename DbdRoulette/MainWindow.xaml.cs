@@ -1,6 +1,9 @@
-﻿using System;
+﻿using LiveCharts.Wpf;
+using LiveCharts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +16,10 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf.Charts.Base;
+using System.Windows.Interop;
+using DbdRoulette.Pages;
 
 namespace DbdRoulette
 {
@@ -24,52 +31,23 @@ namespace DbdRoulette
         public MainWindow()
         {
             InitializeComponent();
-            SetupList();
+            Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
+            MainFrame.Navigate(new MenuPage());
         }
 
-        private void SpinButton_Click(object sender, RoutedEventArgs e)
+        private void MinButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            StartAnimation();
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
-        private void SetupList()
+        private void CloseButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var list = new List<string>() {"Булат", "Динар", "Кирилл", "Никита", "Субудай"};
-            double Angle = 360 / list.Count;
-            double AngleBuff = Angle;
-            foreach (var people in list)
-            {
-                CheckBox checkBox = new CheckBox();
-                RotateTransform rotateTransform = new RotateTransform();
-                ScaleTransform scaleTransform = new ScaleTransform(); 
-                TransformGroup transformGroup = new TransformGroup();
-                scaleTransform.ScaleY = 1;
-                scaleTransform.ScaleX = 2;
-                rotateTransform.Angle = AngleBuff;
-
-                transformGroup.Children.Add(scaleTransform);
-                transformGroup.Children.Add(rotateTransform);
-                
-                checkBox.Content = people;
-                checkBox.RenderTransform = transformGroup;
-
-                checkBox.Style = FindResource("Red_number") as Style;
-                AngleBuff += Angle;
-                RouletteGrid.Children.Add(checkBox);
-            }
+            Application.Current.Shutdown();
         }
 
-        public void StartAnimation()
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            transform.BeginAnimation(RotateTransform.AngleProperty,
-            new DoubleAnimation
-            {
-                From = 0,
-                To = 1440,
-                Duration = TimeSpan.FromSeconds(10),
-                DecelerationRatio = 0.25           
-                
-            });
+            this.DragMove();
         }
     }
 }
