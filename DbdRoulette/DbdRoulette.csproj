@@ -90,6 +90,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\ApplicationContext.cs" />
+    <Compile Include="Components\Chapter.cs" />
+    <Compile Include="Components\ChapterType.cs" />
+    <Compile Include="Components\Killer.cs" />
+    <Compile Include="Components\KillerChapter.cs" />
     <Compile Include="Components\User.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -196,6 +200,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Misc\KillerImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Misc\SurvivorImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Misc\Gold.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Misc\Metal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Misc\RedMetal.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -23,6 +23,7 @@ namespace DbdRoulette.Pages
         public KillerListPage()
         {
             InitializeComponent();
+            LvCharacters.ItemsSource = App.DB.Killers.ToList();
         }
     }
 }

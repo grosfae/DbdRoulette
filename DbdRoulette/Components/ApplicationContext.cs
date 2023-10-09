@@ -13,5 +13,14 @@ namespace DbdRoulette.Components
         {
         }
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Killer> Killers { get; set; }
+
+        public DbSet<Chapter> Chapters { get; set; }
+
+        public DbSet<ChapterType> ChapterTypes { get; set; }
+
+        public DbSet<KillerChapter> KillerChapters { get; set; }
     }
+
 }
