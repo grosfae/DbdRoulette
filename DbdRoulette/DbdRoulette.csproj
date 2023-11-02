@@ -92,6 +92,7 @@
     <Compile Include="Components\ApplicationContext.cs" />
     <Compile Include="Components\Chapter.cs" />
     <Compile Include="Components\ChapterType.cs" />
+    <Compile Include="Components\Difficulty.cs" />
     <Compile Include="Components\Killer.cs" />
     <Compile Include="Components\KillerChapter.cs" />
     <Compile Include="Components\User.cs" />

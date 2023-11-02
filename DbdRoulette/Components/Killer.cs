@@ -20,12 +20,13 @@ namespace DbdRoulette.Components
 
         public int PieValue { get; set; }
 
-        public string Description { get; set; }
+        public int DifficultyId { get; set; }
 
         public string Lore { get; set; }
 
         public byte[] MainImage { get; set; }
 
+        public virtual Difficulty Difficulty { get; set; }
         public virtual ICollection<KillerChapter> KillerChapter { get; set; }
 
         public string DiaryLetter { get; set; }
