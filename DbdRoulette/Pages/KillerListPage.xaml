@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DbdRoulette.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1300"
+      d:DesignHeight="1300" d:DesignWidth="1300"
       Title="KillerListPage">
 
     <Grid>
@@ -20,28 +20,28 @@
                 </Grid.RowDefinitions>
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
-                        <TextBlock Style="{StaticResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
-                        <TextBlock Style="{StaticResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Персонажи" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Персонажи" Margin="15 0 0 0"/>
                     </StackPanel>
-                    <Button Style="{StaticResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0"/>
+                    <Button Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0"/>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="50 0 50 0">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel HorizontalAlignment="Left">
-                            <TextBlock Style="{StaticResource Header}" Text="Список персонажей" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
-                            <TextBlock Style="{StaticResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="У каждого персонажа есть захватывающая предыстория, связанная с уникальным набором способностей. Ознакомьтесь с полным списком убийц и выживших в Dead by Daylight." TextWrapping="Wrap" Width="400" Foreground="White" FontSize="20"/>
+                            <TextBlock Style="{DynamicResource Header}" Text="Список персонажей" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="У каждого персонажа есть захватывающая предыстория, связанная с уникальным набором способностей. Ознакомьтесь с полным списком убийц и выживших в Dead by Daylight." TextWrapping="Wrap" Width="400" Foreground="White" FontSize="20"/>
                             <Border Margin="0 20 0 0" BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left">
                                 <StackPanel Orientation="Horizontal" Height="60">
-                                    <RadioButton x:Name="RadioKiller" Style="{StaticResource RedRadio}" Content="Убийцы" Width="200"/>
-                                    <RadioButton x:Name="RadioSurvivor" Style="{StaticResource BlueRadio}" Content="Выжившие" Width="200"/>
+                                    <RadioButton x:Name="RadioKiller" Style="{DynamicResource RedRadio}" Content="Убийцы" Width="200"/>
+                                    <RadioButton x:Name="RadioSurvivor" Style="{DynamicResource BlueRadio}" Content="Выжившие" Width="200"/>
                                 </StackPanel>
                             </Border>
                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Left">
                                 <StackPanel>
-                                    <TextBlock Text="Отсортировать по" Foreground="White" FontSize="20" Style="{StaticResource Header}"/>
-                                    <ComboBox x:Name="CbSort" Style="{StaticResource CustomSortBox}" Width="250" Cursor="Hand" Height="40" SelectedIndex="0" ItemContainerStyle="{StaticResource CustomSortBoxItem}">
+                                    <TextBlock Text="Отсортировать по" Foreground="White" FontSize="20" Style="{DynamicResource Header}"/>
+                                    <ComboBox x:Name="CbSort" Style="{DynamicResource CustomSortBox}" Width="250" Cursor="Hand" Height="40" SelectedIndex="0" ItemContainerStyle="{StaticResource CustomSortBoxItem}">
                                         <ComboBoxItem>Самые новые</ComboBoxItem>
                                         <ComboBoxItem>Самые ранние</ComboBoxItem>
                                         <ComboBoxItem>Сложность - Легко</ComboBoxItem>
@@ -57,7 +57,7 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBox Margin="8 0 0 0" x:Name="TbSearch" Style="{StaticResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
+                                        <TextBox Margin="8 0 0 0" x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
                                         <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
                                     </Grid>
                                 </Border>
@@ -65,7 +65,7 @@
                         </StackPanel>
 
                         <Border Margin="40 0 0 0" Width="600">
-                            <Button Style="{StaticResource MovingAnglesButton}">
+                            <Button Style="{DynamicResource MovingAnglesButton}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="/Resources/Misc/KillerImage.jpg"/>
                                 </Button.Background>
@@ -81,7 +81,7 @@
                         </ListView.ItemsPanel>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid  Margin="5 0 5 20">
+                                <Grid  Margin="5 0 5 20" Cursor="">
                                     <Border>
                                         <Border.Effect>
                                             <DropShadowEffect Color="{Binding ShadowColor}" ShadowDepth="0" BlurRadius="16"/>
@@ -101,9 +101,10 @@
                                         </Polygon>
                                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 20 0">
                                             <TextBlock Text="{Binding Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" FontFamily="FontAwesome"/>
-                                            <TextBlock Text="{Binding KillerType}" FontSize="16" FontWeight="Medium" TextAlignment="Center" Style="{StaticResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
+                                            <TextBlock Text="{Binding KillerType}" FontSize="16" FontWeight="Medium" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
                                         </StackPanel>
                                     </Grid>
+                                    <TextBox Width="220" Panel.ZIndex="2" Style="{DynamicResource ListCardText}" Tag="{Binding Name}" Text="{Binding ShortLetter, Mode=OneWay}" Cursor="Hand"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

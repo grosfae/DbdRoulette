@@ -63,7 +63,7 @@ namespace DbdRoulette.Pages
 
         private void SetContext()
         {
-            var list = App.DB.Users.ToList();
+            var list = App.DB.User.ToList();
 
             var image = System.Drawing.Image.FromFile("C:\\Users\\grosf\\OneDrive\\Рабочий стол\\sd\\yan.png"); // or wherever it comes from
             var bitmap = new System.Drawing.Bitmap(image);

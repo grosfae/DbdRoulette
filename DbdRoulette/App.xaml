@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:DbdRoulette"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!--TextBlock Styles-->
         <Style TargetType="TextBlock" x:Key="Header">
             <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto Consended"/>
         </Style>
@@ -11,7 +12,86 @@
         <Style TargetType="TextBlock" x:Key="MiniText">
             <Setter Property="FontFamily" Value="/Resources/Fonts/#Raleway"/>
         </Style>
+        
+        <Style TargetType="TextBox" x:Key="ListCardText">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Raleway"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid Background="{TemplateBinding Background}" x:Name="MainGrid" Opacity="0">
+                            <Path  x:Name="TopAngle" Opacity="0"  Data="M0 0L43 0V2.52941H2.52941V43H0V0Z" Fill="#3881EF" VerticalAlignment="Top">
+                            </Path>
+                            <StackPanel Margin="8 0 8 0">
+                                <TextBlock Foreground="{TemplateBinding Foreground}" FontWeight="Bold" FontSize="18" FontFamily="{TemplateBinding FontFamily}" Text="{TemplateBinding Tag}" VerticalAlignment="Top" HorizontalAlignment="Center"  Margin="0 25 0 20"/>
+                                <TextBlock Text="{TemplateBinding Text}"  FontSize="16" Foreground="{TemplateBinding Foreground}"   FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="Center" TextWrapping="Wrap" Cursor="" />
+                            </StackPanel>
+                            <Path x:Name="BottomAngle" Opacity="0" Data="M43 43L-2.5034e-06 43L-2.28227e-06 40.4706L40.4706 40.4706L40.4706 -2.72452e-06L43 -2.5034e-06L43 43Z" Fill="#3881EF" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            </Path>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="TextBox.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="0.0" To="1" Duration="0:0:0.4"/>
 
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="0.0" To="1" Duration="0:0:0.4"/>
+                                        
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MainGrid" From="0.0" To="1" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="TextBox.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="1.0" To="0" Duration="0:0:0.2"/>
+
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="1.0" To="0" Duration="0:0:0.2"/>
+
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MainGrid" From="1" To="0" Duration="0:0:0.4"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Borders Styles-->
+        <Style TargetType="Border" x:Key="CardBorder">
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Border.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="#FF0066FF" 
+                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                    FillBehavior="HoldEnd"
+                                    Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="Border.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="Transparent" 
+                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                                    FillBehavior="HoldEnd"
+                                    Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--Buttons Styles-->
         <Style TargetType="Button" x:Key="MenuButton">
             <Setter Property="FontSize" Value="19"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -222,34 +302,6 @@
                             <ColorAnimation To="White" 
                                     Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" 
                                     FillBehavior="HoldEnd" 
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="Border" x:Key="CardBorder">
-            <Setter Property="BorderThickness" Value="2" />
-            <Setter Property="BorderBrush" Value="Transparent" />
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="Border.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="#FF0066FF" 
-                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-
-                <EventTrigger RoutedEvent="Border.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="Transparent" 
-                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
                                     Duration="0:0:0.2"/>
                         </Storyboard>
                     </BeginStoryboard>
@@ -730,9 +782,71 @@
         </Style>
 
 
+        <!--None HighLight ListViewItem-->
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Item.MouseOver.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.MouseOver.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="Transparent"/>
+        <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="Transparent"/>
+        <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Padding" Value="4,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <!--ScrollBar Style-->
-
         <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
         <SolidColorBrush x:Key="StandardBackgroundBrush" Color="Black" />
         <SolidColorBrush x:Key="HoverBorderBrush" Color="#DDD" />

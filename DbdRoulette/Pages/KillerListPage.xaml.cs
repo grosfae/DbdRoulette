@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace DbdRoulette.Pages
         public KillerListPage()
         {
             InitializeComponent();
-            LvCharacters.ItemsSource = App.DB.Killers.ToList();
+            LvCharacters.ItemsSource = App.DB.Killer.ToList();
         }
     }
 }

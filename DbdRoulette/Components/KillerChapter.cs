@@ -10,49 +10,12 @@ using System.Threading.Tasks;
 namespace DbdRoulette.Components
 {
     [Table("KillerChapter")]
-    public class KillerChapter : INotifyPropertyChanged
+    public class KillerChapter
     {
-
-        private int killerId;
-
-        private int chapterId;
-
-        public virtual Chapter Сhapter { get; set; }
-
-        public virtual Killer Killer { get; set; }
-
         public int Id { get; set; }
-
-        public int KillerId
-        {
-            get { return killerId; }
-            set
-            {
-                killerId = value;
-                OnPropertyChanged("KillerId");
-            }
-        }
-
-        public int ChapterId
-        {
-            get { return chapterId; }
-            set
-            {
-                chapterId = value;
-                OnPropertyChanged("ChapterId");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-
-        {
-
-            if (PropertyChanged != null)
-
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-
-        }
+        public int KillerId {get; set;}
+        public int ChapterId {get; set;}
+        public virtual Chapter Сhapter { get; set; }
+        public virtual Killer Killer { get; set; }
     }
 }

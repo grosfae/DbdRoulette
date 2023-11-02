@@ -12,15 +12,15 @@ namespace DbdRoulette.Components
         public ApplicationContext() : base("DefaultConnection")
         {
         }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
 
-        public DbSet<Killer> Killers { get; set; }
+        public DbSet<Killer> Killer { get; set; }
 
-        public DbSet<Chapter> Chapters { get; set; }
+        public DbSet<Chapter> Chapter { get; set; }
 
-        public DbSet<ChapterType> ChapterTypes { get; set; }
+        public DbSet<ChapterType> ChapterType { get; set; }
 
-        public DbSet<KillerChapter> KillerChapters { get; set; }
+        public DbSet<KillerChapter> KillerChapter { get; set; }
     }
 
 }

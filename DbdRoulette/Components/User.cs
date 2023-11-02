@@ -10,44 +10,11 @@ using System.Threading.Tasks;
 namespace DbdRoulette.Components
 {
     [Table("User")]
-    public class User : INotifyPropertyChanged
+    public class User
     {
-        private string name;
-
-        private int pieValue;
-
         public int Id { get; set; }
+        public string Name { get; set; }
+        public int PieValue { get; set; }
 
-        public string Name
-        {
-            get { return name; }
-            set 
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-
-        public int PieValue
-        {
-            get { return pieValue; }
-            set
-            {
-                pieValue = value;
-                OnPropertyChanged("PieValue");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-
-        {
-
-            if (PropertyChanged != null)
-
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-
-        }
     }
 }

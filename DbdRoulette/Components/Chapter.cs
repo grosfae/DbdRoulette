@@ -10,84 +10,16 @@ using System.Threading.Tasks;
 namespace DbdRoulette.Components
 {
     [Table("Chapter")]
-    public class Chapter : INotifyPropertyChanged
+    public class Chapter
     {
-        private string name;
-
-        private string dateRelease;
-
-        private string description;
-
-        private int chapterTypeId;
-
+        public int Id { get; set; }
+        public string Name {get; set; }
+        public string DateRelease {get; set; }
+        public string Description {get; set; }
+        public int ChapterTypeId {get; set; }
+        public byte[] MainImage {get; set; }
         public virtual ChapterType ChapterType { get; set; }
 
         public virtual ICollection<KillerChapter> KillerChapter { get; set; }
-
-        private byte[] mainImage;
-
-        public int Id { get; set; }
-
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-
-        public string DateRelease
-        {
-            get { return dateRelease; }
-            set
-            {
-                dateRelease = value;
-                OnPropertyChanged("DateRelease");
-            }
-        }
-
-        public string Description
-        {
-            get { return description; }
-            set
-            {
-                description = value;
-                OnPropertyChanged("Description");
-            }
-        }
-
-        public int ChapterTypeId
-        {
-            get { return chapterTypeId; }
-            set
-            {
-                chapterTypeId = value;
-                OnPropertyChanged("ChapterTypeId");
-            }
-        }
-
-        public byte[] MainImage
-        {
-            get { return mainImage; }
-            set
-            {
-                mainImage = value;
-                OnPropertyChanged("MainImage");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-
-        {
-
-            if (PropertyChanged != null)
-
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-
-        }
     }
 }

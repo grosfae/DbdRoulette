@@ -12,54 +12,43 @@ using System.Windows.Media.Imaging;
 namespace DbdRoulette.Components
 {
     [Table("Killer")]
-    public class Killer : INotifyPropertyChanged
+    public class Killer
     {
-        private string name;
+        public int Id { get; set; }
 
-        private int pieValue;
+        public string Name {get; set; }
 
-        private byte[] mainImage;
+        public int PieValue { get; set; }
+
+        public string Description { get; set; }
+
+        public string Lore { get; set; }
+
+        public byte[] MainImage { get; set; }
 
         public virtual ICollection<KillerChapter> KillerChapter { get; set; }
 
-        public int Id { get; set; }
-
-        public string Name
+        public string DiaryLetter { get; set; }
+        public string ShortLetter
         {
-            get { return name; }
-            set
+            get
             {
-                name = value;
-                OnPropertyChanged("Name");
+                if (DiaryLetter.Length >= 130)
+                {
+                    return $"{DiaryLetter.Substring(0, 130)}...";
+                }
+                else
+                {
+                    return $"{DiaryLetter}...";
+                }
             }
         }
-
-        public int PieValue
-        {
-            get { return pieValue; }
-            set
-            {
-                pieValue = value;
-                OnPropertyChanged("PieValue");
-            }
-        }
-
-        public byte[] MainImage
-        {
-            get { return mainImage; }
-            set
-            {
-                mainImage = value;
-                OnPropertyChanged("MainImage");
-            }
-        }
-
 
         public string ShadowColor
         {
             get
             {
-                var killerChapter = App.DB.KillerChapters.FirstOrDefault(x => x.KillerId == Id);
+                var killerChapter = App.DB.KillerChapter.FirstOrDefault(x => x.KillerId == Id);
                 if (killerChapter != null)
                 {
                     if (killerChapter.Сhapter.ChapterType.Id == 1)
@@ -91,7 +80,7 @@ namespace DbdRoulette.Components
         {
             get
             {
-                var killerChapter = App.DB.KillerChapters.FirstOrDefault(x => x.KillerId == Id);
+                var killerChapter = App.DB.KillerChapter.FirstOrDefault(x => x.KillerId == Id);
                 if (killerChapter != null)
                 {
                     if (killerChapter.Сhapter.ChapterType.Id == 1)
@@ -123,7 +112,7 @@ namespace DbdRoulette.Components
         {
             get
             {
-                var killerChapter = App.DB.KillerChapters.FirstOrDefault(x => x.KillerId == Id);
+                var killerChapter = App.DB.KillerChapter.FirstOrDefault(x => x.KillerId == Id);
                 if (killerChapter != null)
                 {
                     if (killerChapter.Сhapter.ChapterType.Id == 1)
@@ -155,7 +144,7 @@ namespace DbdRoulette.Components
         {
             get
             {
-                var killerChapter = App.DB.KillerChapters.FirstOrDefault(x => x.KillerId == Id);
+                var killerChapter = App.DB.KillerChapter.FirstOrDefault(x => x.KillerId == Id);
                 if (killerChapter != null)
                 {
                     return killerChapter.Сhapter.ChapterType.Name;
@@ -165,17 +154,6 @@ namespace DbdRoulette.Components
                     return null;
                 }
             }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-
-        {
-
-            if (PropertyChanged != null)
-
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-
         }
     }
 }

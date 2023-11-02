@@ -10,33 +10,11 @@ using System.Threading.Tasks;
 namespace DbdRoulette.Components
 {
     [Table("ChapterType")]
-    public class ChapterType : INotifyPropertyChanged
+    public class ChapterType
     {
-        private string name;
-
-        public virtual ICollection<Chapter> Chapter { get; set; }
         public int Id { get; set; }
+        public string Name {get; set; }
+        public virtual ICollection<Chapter> Chapter { get; set; }
 
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-
-        {
-
-            if (PropertyChanged != null)
-
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-
-        }
     }
 }

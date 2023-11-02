@@ -32,11 +32,11 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal" Background="#FF161D23" x:Name="Head">
                 <Image Source="/Resources/Logos.png" Width="70" Height="70" Margin="15 0 0 0"/>
-                <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Рулетки"/>
-                <ToggleButton x:Name="CharactersBtn" Style="{StaticResource MenuListBtn}" Width="150" Height="50" Content="Персонажи" Checked="CharactersBtn_Checked" Unchecked="CharactersBtn_Unchecked"/>
-                <Button Style="{StaticResource MenuButton}" Width="250" Height="50" Content="Объекты взаимодействия"/>
-                <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Локации"/>
-                <Button Style="{StaticResource MenuButton}" Width="150" Height="50" Content="Дополнения"/>
+                <Button Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Рулетки"/>
+                <ToggleButton x:Name="CharactersBtn" Style="{DynamicResource MenuListBtn}" Width="150" Height="50" Content="Персонажи" Checked="CharactersBtn_Checked" Unchecked="CharactersBtn_Unchecked"/>
+                <Button Style="{DynamicResource MenuButton}" Width="250" Height="50" Content="Объекты взаимодействия"/>
+                <Button Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Локации"/>
+                <Button Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Дополнения"/>
             </StackPanel>
 
         </StackPanel>
