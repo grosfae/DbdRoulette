@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,6 +54,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Data.SQLite, Version=1.0.118.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
@@ -63,6 +66,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.118.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -94,12 +98,17 @@
     <Compile Include="Components\ChapterType.cs" />
     <Compile Include="Components\Difficulty.cs" />
     <Compile Include="Components\Killer.cs" />
-    <Compile Include="Components\KillerChapter.cs" />
+    <Compile Include="Components\Perk.cs" />
+    <Compile Include="Components\Survivor.cs" />
     <Compile Include="Components\User.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\CharacterViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\KillerListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +123,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\CharacterViewPage.xaml.cs">
+      <DependentUpon>CharacterViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\KillerListPage.xaml.cs">
       <DependentUpon>KillerListPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +160,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\europeextendedc_bold.otf" />
+    <Resource Include="Resources\Fonts\Arkhip_font.ttf" />
     <Resource Include="Resources\Fonts\Molot.otf" />
     <Resource Include="Resources\Fonts\RobotoCondensed-Bold.ttf" />
     <Resource Include="Resources\Fonts\Agency FB Cyrillic.ttf" />
@@ -206,13 +220,43 @@
     <Resource Include="Resources\Misc\SurvivorImage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Misc\Gold.jpg" />
+    <Resource Include="Resources\MetalCuts\Gold.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Misc\Metal.jpg" />
+    <Resource Include="Resources\MetalCuts\Metal.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Misc\RedMetal.jpg" />
+    <Resource Include="Resources\MetalCuts\RedMetal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Misc\KillerIcon.png" />
+    <Resource Include="Resources\Misc\SurvIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Alb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DifficultyIcons\Easy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DifficultyIcons\Hard.png" />
+    <Resource Include="Resources\DifficultyIcons\Medium.png" />
+    <Resource Include="Resources\DifficultyIcons\VeryHard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Misc\BookIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\RandomBackgrounds\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Power.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AlbPerk.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -225,4 +269,8 @@
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -12,7 +12,7 @@
         <Grid.Background>
             <SolidColorBrush Color="Black" Opacity="0.4"/>
         </Grid.Background>
-        <ScrollViewer>
+        <ScrollViewer CanContentScroll="False">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="130"/>
@@ -24,10 +24,10 @@
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Персонажи" Margin="15 0 0 0"/>
                     </StackPanel>
-                    <Button Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0"/>
+                    <Button Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand"/>
                 </StackPanel>
-
-                <StackPanel Grid.Row="1" Margin="50 0 50 0">
+                                
+                <StackPanel Grid.Row="1" Margin="50 0 50 0" Panel.ZIndex="1">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel HorizontalAlignment="Left">
                             <TextBlock Style="{DynamicResource Header}" Text="Список персонажей" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
@@ -58,7 +58,7 @@
                         </StackPanel>
 
                         <Border Margin="40 0 0 0" Width="600">
-                            <Button Style="{DynamicResource MovingAnglesButton}">
+                            <Button Style="{DynamicResource MovingAnglesButton}" Foreground="#3881EF">
                                 <Button.Background>
                                     <ImageBrush x:Name="PresentImage" ImageSource="/Resources/Misc/KillerImage.jpg"/>
                                 </Button.Background>
@@ -69,38 +69,43 @@
                         </Border>
                     </StackPanel>
 
-                    <ListView x:Name="LvCharacters" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="0 40 0 0" Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=15}">
+                    <ListView x:Name="LvCharacters" Focusable="False" BorderThickness="0" Width="1180"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal" Width="1200"/>
+                                <WrapPanel Orientation="Horizontal" Width="1180"/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter/>
+                            </ControlTemplate>
+                        </ListView.Template>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid  Margin="5 0 5 20">
+                                <Grid Margin="0 0 6 20">
                                     <Border>
                                         <Border.Effect>
-                                            <DropShadowEffect Color="{Binding Killer.ShadowColor}" ShadowDepth="0" BlurRadius="16"/>
+                                            <DropShadowEffect Color="{Binding ShadowColor}" ShadowDepth="0" BlurRadius="16"/>
                                         </Border.Effect>
-                                        <Image Source="{Binding Killer.MainImage}" Height="220" Width="220"/>
+                                        <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
                                     </Border>
-                                    <TextBlock Text="{Binding Killer.Name}" Width="220" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource Header}" Foreground="White" HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding Name}" Width="220" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource Header}" Foreground="White">
                                         <TextBlock.Background>
                                             <SolidColorBrush Color="Black" Opacity="0.5"/>
                                         </TextBlock.Background>
                                     </TextBlock>
-                                    <Grid VerticalAlignment="Top" HorizontalAlignment="Right">
+                                    <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="">
                                         <Polygon Points="70,0, 90,30, 220,30, 220,0">
                                             <Polygon.Fill>
-                                                <ImageBrush ImageSource="{Binding Killer.BackgroundMetal}"/>
+                                                <ImageBrush ImageSource="{Binding BackgroundMetal}"/>
                                             </Polygon.Fill>
                                         </Polygon>
                                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 20 0">
-                                            <TextBlock Text="{Binding Killer.Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" FontFamily="FontAwesome"/>
-                                            <TextBlock Text="{Binding Killer.KillerType}" FontSize="16" FontWeight="Medium" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
+                                            <TextBlock Text="{Binding Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" FontFamily="FontAwesome"/>
+                                            <TextBlock Text="{Binding Сhapter.ChapterType.Name}" FontSize="16" FontWeight="Medium" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
                                         </StackPanel>
                                     </Grid>
-                                    <TextBox x:Name="TbSelectedCharacterBtn" Width="220" Panel.ZIndex="2" Style="{DynamicResource ListCardText}" Tag="{Binding Killer.Name}" Text="{Binding Killer.ShortLetter, Mode=OneWay}" Cursor="Hand" MouseLeftButtonDown="TbSelectedCharacterBtn_MouseLeftButtonDown"/>
+                                    <Button x:Name="TbSelectedCharacterBtn" Width="220"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="{Binding Name}" Content="{Binding ShortLetter, Mode=OneWay}" Cursor="Hand"  Click="TbSelectedCharacterBtn_Click"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

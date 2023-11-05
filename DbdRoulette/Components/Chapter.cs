@@ -19,7 +19,6 @@ namespace DbdRoulette.Components
         public int ChapterTypeId {get; set; }
         public byte[] MainImage {get; set; }
         public virtual ChapterType ChapterType { get; set; }
-
-        public virtual ICollection<KillerChapter> KillerChapter { get; set; }
+        public virtual ICollection<Killer> Killer { get; set; }
     }
 }

@@ -16,12 +16,15 @@ namespace DbdRoulette.Components
 
         public DbSet<Killer> Killer { get; set; }
 
+        public DbSet<Survivor> Survivor { get; set; }
+
         public DbSet<Chapter> Chapter { get; set; }
 
         public DbSet<ChapterType> ChapterType { get; set; }
 
-        public DbSet<KillerChapter> KillerChapter { get; set; }
         public DbSet<Difficulty> Difficulty { get; set; }
+
+        public DbSet<Perk> Perk { get; set; }
     }
 
 }

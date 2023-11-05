@@ -15,20 +15,16 @@ namespace DbdRoulette.Components
     public class Killer
     {
         public int Id { get; set; }
-
         public string Name {get; set; }
-
         public int PieValue { get; set; }
-
         public int DifficultyId { get; set; }
-
         public string Lore { get; set; }
-
+        public byte[] MainIcon { get; set; }
         public byte[] MainImage { get; set; }
-
+        public byte[] MainBackground { get; set; }
+        public int ChapterId { get; set; }
+        public virtual Chapter Сhapter { get; set; }
         public virtual Difficulty Difficulty { get; set; }
-        public virtual ICollection<KillerChapter> KillerChapter { get; set; }
-
         public string DiaryLetter { get; set; }
         public string ShortLetter
         {
@@ -49,31 +45,22 @@ namespace DbdRoulette.Components
         {
             get
             {
-                var killerChapter = App.DB.KillerChapter.FirstOrDefault(x => x.KillerId == Id);
-                if (killerChapter != null)
+                if (Сhapter.ChapterType.Id == 1)
                 {
-                    if (killerChapter.Сhapter.ChapterType.Id == 1)
-                    {
-                        return "#FFB5873C";
-                    }
-                    if (killerChapter.Сhapter.ChapterType.Id == 2)
-                    {
-                        return "#FF6C6358";
-                    }
-                    if (killerChapter.Сhapter.ChapterType.Id == 3)
-                    {
-                        return "#FFC50000";
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return "#FFB5873C";
+                }
+                if (Сhapter.ChapterType.Id == 2)
+                {
+                    return "#FF6C6358";
+                }
+                if (Сhapter.ChapterType.Id == 3)
+                {
+                    return "#FFC50000";
                 }
                 else
                 {
                     return null;
                 }
-
             }
         }
 
@@ -81,31 +68,22 @@ namespace DbdRoulette.Components
         {
             get
             {
-                var killerChapter = App.DB.KillerChapter.FirstOrDefault(x => x.KillerId == Id);
-                if (killerChapter != null)
+                if (Сhapter.ChapterType.Id == 1)
                 {
-                    if (killerChapter.Сhapter.ChapterType.Id == 1)
-                    {
-                        return "pack://application:,,,/DbdRoulette;component/Resources/Misc/Gold.jpg";
-                    }
-                    if (killerChapter.Сhapter.ChapterType.Id == 2)
-                    {
-                        return "pack://application:,,,/DbdRoulette;component/Resources/Misc/Metal.jpg";
-                    }
-                    if (killerChapter.Сhapter.ChapterType.Id == 3)
-                    {
-                        return "pack://application:,,,/DbdRoulette;component/Resources/Misc/RedMetal.jpg";
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/Gold.jpg";
+                }
+                if (Сhapter.ChapterType.Id == 2)
+                {
+                    return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/Metal.jpg";
+                }
+                if (Сhapter.ChapterType.Id == 3)
+                {
+                    return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/RedMetal.jpg";
                 }
                 else
                 {
                     return null;
                 }
-
             }
         }
         
@@ -113,42 +91,44 @@ namespace DbdRoulette.Components
         {
             get
             {
-                var killerChapter = App.DB.KillerChapter.FirstOrDefault(x => x.KillerId == Id);
-                if (killerChapter != null)
+                if (Сhapter.ChapterType.Id == 1)
                 {
-                    if (killerChapter.Сhapter.ChapterType.Id == 1)
-                    {
-                        return "";
-                    }
-                    if (killerChapter.Сhapter.ChapterType.Id == 2)
-                    {
-                        return "";
-                    }
-                    if (killerChapter.Сhapter.ChapterType.Id == 3)
-                    {
-                        return "";
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return "";
+                }
+                if (Сhapter.ChapterType.Id == 2)
+                {
+                    return "";
+                }
+                if (Сhapter.ChapterType.Id == 3)
+                {
+                    return "";
                 }
                 else
                 {
                     return null;
                 }
-
             }
 
         }
-        public string KillerType
+        public string DifficultyImage
         {
             get
             {
-                var killerChapter = App.DB.KillerChapter.FirstOrDefault(x => x.KillerId == Id);
-                if (killerChapter != null)
+                if (DifficultyId == 1)
                 {
-                    return killerChapter.Сhapter.ChapterType.Name;
+                    return "pack://application:,,,/DbdRoulette;component/Resources/DifficultyIcons/Easy.png";
+                }
+                if (DifficultyId == 2)
+                {
+                    return "pack://application:,,,/DbdRoulette;component/Resources/DifficultyIcons/Medium.png";
+                }
+                if (DifficultyId == 3)
+                {
+                    return "pack://application:,,,/DbdRoulette;component/Resources/DifficultyIcons/Hard.png";
+                }
+                if (DifficultyId == 4)
+                {
+                    return "pack://application:,,,/DbdRoulette;component/Resources/DifficultyIcons/VeryHard.png";
                 }
                 else
                 {
