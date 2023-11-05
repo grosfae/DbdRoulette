@@ -24,7 +24,7 @@ namespace DbdRoulette.Components
 
         public DbSet<Difficulty> Difficulty { get; set; }
 
-        public DbSet<Perk> Perk { get; set; }
+        
     }
 
 }
