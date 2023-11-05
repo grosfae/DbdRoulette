@@ -17,7 +17,7 @@
         ResizeMode="NoResize"
         
         WindowStartupLocation="CenterScreen"
-        
+        PreviewMouseUp="Window_PreviewMouseUp"
         Icon="Resources/Logo.png">
 
     <Window.Clip>
@@ -152,7 +152,7 @@
                 </Image>
             </Border>
         </StackPanel>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" >
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Focusable="False" Grid.Row="1" >
             <Frame.Background>
                 <ImageBrush ImageSource="/Resources/Misc/RedForest.jpg"/>
             </Frame.Background>

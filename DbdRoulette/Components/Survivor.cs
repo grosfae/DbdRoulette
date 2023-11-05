@@ -19,6 +19,7 @@ namespace DbdRoulette.Components
         public byte[] MainBackground { get; set; }
         public int ChapterId { get; set; }
         public virtual Chapter Сhapter { get; set; }
+        public virtual ICollection<SurvivorPerk> SurvivorPerk { get; set; }
         public string DiaryLetter { get; set; }
         public string ShortLetter
         {

@@ -24,7 +24,10 @@ namespace DbdRoulette.Components
 
         public DbSet<Difficulty> Difficulty { get; set; }
 
-        
+        public DbSet<Perk> Perk { get; set; }
+        public DbSet<PerkType> PerkType { get; set; }
+        public DbSet<SurvivorPerk> SurvivorPerk { get; set; }
+        public DbSet<KillerPerk> KillerPerk { get; set; }
     }
 
 }

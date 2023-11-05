@@ -49,7 +49,13 @@ namespace DbdRoulette
         {
             this.DragMove();
         }
-
+        private void Window_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.XButton1 || e.ChangedButton == MouseButton.XButton2)
+            {
+                e.Handled = true;
+            }
+        }
         private void CharactersBtn_Checked(object sender, RoutedEventArgs e)
         {
             transform.BeginAnimation(ScaleTransform.ScaleYProperty,

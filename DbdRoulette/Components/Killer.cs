@@ -25,6 +25,7 @@ namespace DbdRoulette.Components
         public int ChapterId { get; set; }
         public virtual Chapter Сhapter { get; set; }
         public virtual Difficulty Difficulty { get; set; }
+        public virtual ICollection<KillerPerk> KillerPerk { get; set; }
         public string DiaryLetter { get; set; }
         public string ShortLetter
         {

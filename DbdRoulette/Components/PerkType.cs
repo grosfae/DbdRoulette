@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DbdRoulette.Components
 {
-    [Table("Difficulty")]
-    public class Difficulty
+    [Table("PerkType")]
+    public class PerkType
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<Killer> Killer { get; set; }
+        public virtual ICollection<Perk> Perk { get; set; }
     }
 }

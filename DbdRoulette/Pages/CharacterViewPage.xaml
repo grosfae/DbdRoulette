@@ -121,33 +121,55 @@
                             <TextBlock x:Name="PowerAndPerksHeader" Style="{DynamicResource Header}" Text="СИЛА И НАВЫКИ" Foreground="White" FontSize="34"  HorizontalAlignment="Left" FontWeight="Bold" FontFamily="EuropeExtendedC"/>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
-                                    <RadioButton x:Name="RadioPower" Style="{DynamicResource PerksSelectionRadio}" Foreground="#FFAA1A18" Height="100" Width="100">
+                                    <RadioButton x:Name="RadioPower" GroupName="Perks" Style="{DynamicResource PerksSelectionRadio}" Foreground="#FFAA1A18" Height="100" Width="100" Margin="0 0 20 0">
                                         <RadioButton.Background>
                                             <ImageBrush ImageSource="/Resources/Power.png"/>
                                         </RadioButton.Background>
                                     </RadioButton>
-                                    
-                                    <RadioButton Style="{DynamicResource PerksSelectionRadio}" Foreground="#FFAA1A18" Height="100" Width="100" Margin="20 0 0 0">
-                                        <RadioButton.Background>
-                                            <ImageBrush ImageSource="/Resources/AlbPerk.png"/>
-                                        </RadioButton.Background>
-                                    </RadioButton>
-                                    <RadioButton Style="{DynamicResource PerksSelectionRadio}" Foreground="#FFAA1A18" Height="100" Width="100" Margin="20 0 0 0">
-                                        <RadioButton.Background>
-                                            <ImageBrush ImageSource="/Resources/AlbPerk.png"/>
-                                        </RadioButton.Background>
-                                    </RadioButton>
-                                    <RadioButton Style="{DynamicResource PerksSelectionRadio}" Foreground="#FFAA1A18" Height="100" Width="100" Margin="20 0 0 0">
-                                        <RadioButton.Background>
-                                            <ImageBrush ImageSource="/Resources/AlbPerk.png"/>
-                                        </RadioButton.Background>
-                                    </RadioButton>
+
+                                    <ListView x:Name="LvPerks" Focusable="False" BorderThickness="0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=3}" >
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.Template>
+                                            <ControlTemplate TargetType="ItemsControl">
+                                                <ItemsPresenter/>
+                                            </ControlTemplate>
+                                        </ListView.Template>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <RadioButton x:Name="RadioPerkBtn" GroupName="Perks" Style="{DynamicResource PerksSelectionRadio}" Foreground="{Binding Perk.PerkBorderColor}" Height="100" Width="100" Margin="0 0 20 0" Cursor="Hand" Checked="RadioPerkBtn_Checked">
+                                                    <RadioButton.Background>
+                                                        <ImageBrush ImageSource="{Binding Perk.MainIcon}"/>
+                                                    </RadioButton.Background>
+                                                </RadioButton>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+
+                                <StackPanel Margin="0 30 0 0" x:Name="PerkDetailsContainer">
+                                    <TextBlock x:Name="TbTypeHeader" Style="{DynamicResource Header}" Text="Тип выбора" FontSize="26"  HorizontalAlignment="Left" FontWeight="DemiBold" FontFamily="Arkhip">
+                                        <TextBlock.Foreground>
+                                            <SolidColorBrush Color="White" Opacity="0.4"/>
+                                        </TextBlock.Foreground>
+                                    </TextBlock>
+
+                                    <TextBlock x:Name="TbTitlePerk" Style="{DynamicResource Header}" Text="Название навыка" FontSize="26"  HorizontalAlignment="Left" FontWeight="Bold" FontFamily="Arkhip" Foreground="White" Margin="0 10 0 0"/>
+                                    <Rectangle x:Name="LineSep" Fill="#FFA31816" Width="80" Height="4" Margin="5 3 0 0" HorizontalAlignment="Left">
+                                        <Rectangle.RenderTransform>
+                                            <SkewTransform AngleX="-45"/>
+                                        </Rectangle.RenderTransform>
+                                    </Rectangle>
+                                    <TextBlock x:Name="TbPerkDescription" Style="{DynamicResource MiniText}" Text="Описание навыков" FontSize="16" HorizontalAlignment="Left" TextWrapping="Wrap" Width="570" FontWeight="Regular" Foreground="White" Margin="0 10 0 0" FontFamily="PT Sans"/>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <Button x:Name="PerkDemoBtn"  Style="{DynamicResource MovingAnglesButton}" Foreground="#FFC7211F" Height="348" Width="600">
+                        <Button x:Name="PerkDemoBtn"  Style="{DynamicResource MovingAnglesButton}" Foreground="#FFC7211F" VerticalAlignment="Top" Height="348" Width="600">
                             <Button.Background>
-                                <ImageBrush x:Name="PerksDemoImage" ImageSource="/Resources/Misc/KillerImage.jpg"/>
+                                <ImageBrush x:Name="PerksDemoImage"/>
                             </Button.Background>
                             <Button.BitmapEffect>
                                 <BlurBitmapEffect Radius="0" x:Name="BlurRad"/>
@@ -155,7 +177,7 @@
                         </Button>
 
                     </StackPanel>
-                    <Rectangle Height="150" Fill="#FFAA1A18">
+                    <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18">
                         <Rectangle.OpacityMask>
                             <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
                                 <GradientStop Color="Transparent" Offset="0.15"/>
