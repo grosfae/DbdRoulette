@@ -38,8 +38,9 @@
                 <Button Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Локации"/>
                 <Button Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Дополнения"/>
             </StackPanel>
-
         </StackPanel>
+        <Image x:Name="HeaderHauntedLine" Source="/Resources/HauntedTheme/DefaultLine.png" VerticalAlignment="Bottom" Visibility="Collapsed"/>
+        
         <Grid x:Name="GridPupup" VerticalAlignment="Top" Margin="0 70 0 0" Height="330" Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="3">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.7"/>
@@ -118,8 +119,7 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <Separator  Background="#FF3881EF" VerticalAlignment="Bottom" Margin="0 10 0 0">
-            </Separator>
+            <Separator  Background="#FF3881EF" VerticalAlignment="Bottom" Margin="0 10 0 0"/>
         </Grid>
 
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 15 15 0" VerticalAlignment="Top">
@@ -152,11 +152,21 @@
                 </Image>
             </Border>
         </StackPanel>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Focusable="False" Grid.Row="1" >
-            <Frame.Background>
-                <ImageBrush ImageSource="/Resources/Misc/RedForest.jpg"/>
-            </Frame.Background>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1" Panel.ZIndex="1" x:Name="PumpkinsGrid" Visibility="Collapsed">
+            <Image  Source="/Resources/HauntedTheme/PumpkinLeft.png" Height="100" Width="100" Margin="0 0 100 0" Stretch="Uniform" RenderOptions.BitmapScalingMode="Fant">
+                <Image.RenderTransform>
+                    <TranslateTransform x:Name="PumpLeft"/>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="/Resources/HauntedTheme/PumpkinRight.png" HorizontalAlignment="Right" Height="150" Width="150" Stretch="Uniform" RenderOptions.BitmapScalingMode="Fant">
+                <Image.RenderTransform>
+                    <TranslateTransform x:Name="PumpRight"/>
+                </Image.RenderTransform>
+            </Image>
+        </Grid>
 
-        </Frame>
+        <Image x:Name="GeneralBackground" Grid.Row="1" Source="/Resources/Misc/MainBackground.jpg" Stretch="UniformToFill"/>
+        
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="Transparent" Focusable="False" Grid.Row="1" />
     </Grid>
 </Window>

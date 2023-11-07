@@ -33,8 +33,38 @@ namespace DbdRoulette
             InitializeComponent();
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
             MainFrame.Navigate(new KillerListPage());
-        }
 
+            var ThemeCode = Properties.Settings.Default.ThemeCode;
+            if (ThemeCode == 2)
+            {
+                GeneralBackground.Source = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/HauntedTheme/KeyArt.jpg"));
+                PumpkinsGrid.Visibility = Visibility.Visible;
+                HeaderHauntedLine.Visibility = Visibility.Visible;
+                StartPumpkinAnimation();
+            }
+            
+        }
+        public void StartPumpkinAnimation()
+        {
+            PumpLeft.BeginAnimation(TranslateTransform.YProperty,
+            new DoubleAnimation
+            {
+                From = 0,
+                To = -15,
+                RepeatBehavior = RepeatBehavior.Forever,
+                Duration = TimeSpan.FromSeconds(5),
+                AutoReverse = true
+            });
+            PumpRight.BeginAnimation(TranslateTransform.YProperty,
+            new DoubleAnimation
+            {
+                From = 0,
+                To = 10,
+                RepeatBehavior = RepeatBehavior.Forever,
+                Duration = TimeSpan.FromSeconds(5),
+                AutoReverse = true
+            });
+        }
         private void MinButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;

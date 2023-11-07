@@ -211,9 +211,6 @@
     <Resource Include="Resources\CardImages\Effects.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Misc\RedForest.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Misc\SearchIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -236,9 +233,6 @@
     <Resource Include="Resources\Misc\SurvIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Alb.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Background.png" />
   </ItemGroup>
   <ItemGroup>
@@ -253,13 +247,35 @@
     <Resource Include="Resources\Misc\BookIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\RandomBackgrounds\" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Power.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\AlbPerk.png" />
+    <Resource Include="Resources\Misc\TerrorIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Misc\MoveIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Misc\HeightIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RandomBackgrounds\ListBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\HauntedTheme\PumpkinLeft.png" />
+    <Resource Include="Resources\HauntedTheme\PumpkinRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Misc\MainBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\HauntedTheme\KeyArt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\HauntedTheme\DefaultLine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\HauntedTheme\Line1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -19,27 +19,29 @@
             <Setter Property="BorderThickness" Value="2" />
             <Setter Property="BorderBrush" Value="Transparent" />
             <Style.Triggers>
-                <EventTrigger RoutedEvent="Border.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="#FF0066FF" 
-                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#FF0066FF" 
+                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="Transparent" 
+                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
 
-                <EventTrigger RoutedEvent="Border.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="Transparent" 
-                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
             </Style.Triggers>
         </Style>
         
@@ -229,35 +231,81 @@
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
-                <EventTrigger RoutedEvent="Button.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="White" 
-                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                            <ColorAnimation To="#FF3881EF" 
-                                    Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd" 
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="White" 
+                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                                <ColorAnimation To="#FF3881EF" 
+                Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd" 
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="Transparent" 
+                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                                <ColorAnimation To="White" 
+                Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd" 
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-                <EventTrigger RoutedEvent="Button.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="Transparent" 
-                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                            <ColorAnimation To="White" 
-                                    Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd" 
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
+        <Style TargetType="Button" x:Key="DefaultWhiteBtn">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Raleway"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontWeight" Value ="DemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#FF3881EF" 
+                                Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" 
+                                FillBehavior="HoldEnd" 
+                                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="White" 
+                                Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" 
+                                FillBehavior="HoldEnd" 
+                                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -282,37 +330,38 @@
                             </Path>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <EventTrigger RoutedEvent="Button.MouseEnter">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TopAngle"
-                                                             From="0.0" To="-5.0" Duration="0:0:0.2"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="TopAngle"
-                                                             From="0.0" To="-5.0" Duration="0:0:0.2"/>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TopAngle"
+                                                From="0.0" To="-5.0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="TopAngle"
+                                                From="0.0" To="-5.0" Duration="0:0:0.2"/>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="BottomAngle"
-                                                             From="0.0" To="5.0" Duration="0:0:0.2"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="BottomAngle"
-                                                             From="0.0" To="5.0" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="BottomAngle"
+                                                From="0.0" To="5.0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="BottomAngle"
+                                                From="0.0" To="5.0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TopAngle"
+                                                From="-5.0" To="0.0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="TopAngle"
+                                                From="-5.0" To="0.0" Duration="0:0:0.2"/>
 
-                            <EventTrigger RoutedEvent="Button.MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TopAngle"
-                                                             From="-5.0" To="0.0" Duration="0:0:0.2"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="TopAngle"
-                                                             From="-5.0" To="0.0" Duration="0:0:0.2"/>
-
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="BottomAngle"
-                                                             From="5.0" To="0.0" Duration="0:0:0.2"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="BottomAngle"
-                                                             From="5.0" To="0.0" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="BottomAngle"
+                                                From="5.0" To="0.0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="BottomAngle"
+                                                From="5.0" To="0.0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -417,35 +466,36 @@
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
-                <EventTrigger RoutedEvent="Button.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="White" 
-                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                            <ColorAnimation To="#FF3881EF" 
-                                    Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd" 
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-
-                <EventTrigger RoutedEvent="Button.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="#FF3881EF" 
-                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                            <ColorAnimation To="White" 
-                                    Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd" 
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="White" 
+                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                                <ColorAnimation To="#FF3881EF" 
+                Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd" 
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#FF3881EF" 
+                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                                <ColorAnimation To="White" 
+                Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd" 
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -469,29 +519,30 @@
                             </Path>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <EventTrigger RoutedEvent="Button.MouseEnter">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="0.0" To="1" Duration="0:0:0.4"/>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="0.0" To="1" Duration="0:0:0.4"/>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="0.0" To="1" Duration="0:0:0.4"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="0.0" To="1" Duration="0:0:0.4"/>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MainGrid" From="0.0" To="1" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MainGrid" From="0.0" To="1" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="1.0" To="0" Duration="0:0:0.2"/>
 
-                            <EventTrigger RoutedEvent="Button.MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="1.0" To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="1.0" To="0" Duration="0:0:0.2"/>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="1.0" To="0" Duration="0:0:0.2"/>
-
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MainGrid" From="1" To="0" Duration="0:0:0.4"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MainGrid" From="1" To="0" Duration="0:0:0.4"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -517,27 +568,28 @@
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
-                <EventTrigger RoutedEvent="ToggleButton.Checked">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="#FFB70303" 
-                                    Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-
-                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="Transparent" 
-                                    Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#FFB70303" 
+                Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="Transparent" 
+                Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -559,27 +611,29 @@
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
-                <EventTrigger RoutedEvent="ToggleButton.Checked">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="#FF1453B1" 
-                                    Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#FF1453B1" 
+                Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="Transparent" 
+                Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
 
-                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ColorAnimation To="Transparent" 
-                                    Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" 
-                                    FillBehavior="HoldEnd"
-                                    Duration="0:0:0.2"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
             </Style.Triggers>
         </Style>
         
@@ -604,45 +658,47 @@
                             </Path>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <EventTrigger RoutedEvent="RadioButton.Checked">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="0.0" To="1" Duration="0:0:0.2"/>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="0.0" To="1" Duration="0:0:0.2"/>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="0.0" To="1" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="0.0" To="1" Duration="0:0:0.2"/>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TopAngle" 
-                                                         From="0.0" To="-3.0" Duration="0:0:0.3"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="TopAngle"
-                                                         From="0.0" To="-3.0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TopAngle" 
+                         From="0.0" To="-3.0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="TopAngle"
+                         From="0.0" To="-3.0" Duration="0:0:0.3"/>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="BottomAngle"
-                                                         From="0.0" To="3.0" Duration="0:0:0.3"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="BottomAngle"
-                                                         From="0.0" To="3.0" Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="BottomAngle"
+                         From="0.0" To="3.0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="BottomAngle"
+                         From="0.0" To="3.0" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="1.0" To="0" Duration="0:0:0.2"/>
 
-                            <EventTrigger RoutedEvent="RadioButton.Unchecked">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TopAngle" From="1.0" To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="1.0" To="0" Duration="0:0:0.2"/>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BottomAngle" From="1.0" To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TopAngle"
+                         From="-3.0" To="0.0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="TopAngle"
+                         From="-3.0" To="0.0" Duration="0:0:0.3"/>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="TopAngle"
-                                                         From="-3.0" To="0.0" Duration="0:0:0.3"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="TopAngle"
-                                                         From="-3.0" To="0.0" Duration="0:0:0.3"/>
-
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="BottomAngle"
-                                                         From="3.0" To="0.0" Duration="0:0:0.3"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="BottomAngle"
-                                                         From="3.0" To="0.0" Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="BottomAngle"
+                         From="3.0" To="0.0" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.Y)" Storyboard.TargetName="BottomAngle"
+                         From="3.0" To="0.0" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -925,18 +981,9 @@
         <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
         <SolidColorBrush x:Key="NormalBrush" Color="#888" />
         <SolidColorBrush x:Key="NormalBorderBrush" Color="#888" />
-        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="#FF3881EF" Opacity="0.4" />
+        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="#FF3881EF" />
         <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="Black" />
 
-        <LinearGradientBrush x:Key="ListBoxBackgroundBrush" StartPoint="0,0" EndPoint="1,0.001">
-            <GradientBrush.GradientStops>
-                <GradientStopCollection>
-                    <GradientStop Color="White" Offset="0.0" />
-                    <GradientStop Color="White" Offset="0.6" />
-                    <GradientStop Color="#DDDDDD" Offset="1.2"/>
-                </GradientStopCollection>
-            </GradientBrush.GradientStops>
-        </LinearGradientBrush>
         <LinearGradientBrush x:Key="StandardBrush" StartPoint="0,0" EndPoint="0,1">
             <GradientBrush.GradientStops>
                 <GradientStopCollection>
@@ -1002,7 +1049,24 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Border CornerRadius="4" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0"  Width="8" Margin="3,0,0,0"/>
+                        <Border x:Name="ThumbBorder" CornerRadius="4" Background="{TemplateBinding Background}" Opacity="0.4" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0"  Width="8" Margin="0,0,0,0"/>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Border.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ThumbBorder" From="0.4" To="1" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="Border.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ThumbBorder" From="1" To="0.4" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -1022,7 +1086,7 @@
                         <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageUpCommand" />
                     </Track.DecreaseRepeatButton>
                     <Track.Thumb>
-                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="1,0,1,0" Background="{StaticResource HorizontalNormalBrush}" BorderBrush="{StaticResource HorizontalNormalBorderBrush}" />
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0,0,0,0" Background="{StaticResource HorizontalNormalBrush}" BorderBrush="{StaticResource HorizontalNormalBorderBrush}" />
                     </Track.Thumb>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageDownCommand" />
@@ -1064,7 +1128,7 @@
                     <Setter Property="Template" Value="{StaticResource HorizontalScrollBar}" />
                 </Trigger>
                 <Trigger Property="Orientation" Value="Vertical">
-                    <Setter Property="Width" Value="18"/>
+                    <Setter Property="Width" Value="10"/>
                     <Setter Property="Height" Value="Auto" />
                     <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
                 </Trigger>

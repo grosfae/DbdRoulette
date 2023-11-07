@@ -19,6 +19,9 @@ namespace DbdRoulette.Components
         public int PieValue { get; set; }
         public int DifficultyId { get; set; }
         public string Lore { get; set; }
+        public string MoveSpeed { get; set; }
+        public string TerrorRadius { get; set; }
+        public string Height { get; set; }
         public byte[] MainIcon { get; set; }
         public byte[] MainImage { get; set; }
         public byte[] MainBackground { get; set; }

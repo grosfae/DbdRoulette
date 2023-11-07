@@ -32,9 +32,17 @@ namespace DbdRoulette.Pages
             InitializeComponent();
             contextCharacter = obj;
             DataContext = contextCharacter;
-            
-            if(contextCharacter is Survivor)
+            var ThemeCode = Properties.Settings.Default.ThemeCode;
+            if (ThemeCode == 2)
+            { 
+                HauntedLine.Visibility = Visibility.Visible;
+            }
+
+            if (contextCharacter is Survivor)
             {
+
+                LvPerks.ItemsSource = (contextCharacter as Survivor).SurvivorPerk.ToList();
+                LvPerks.SelectedItem = (contextCharacter as Survivor).SurvivorPerk.FirstOrDefault();
                 ColorTitleGrid.Background = new SolidColorBrush(Color.FromRgb(45, 99, 161));
                 ColorPolyDarkStop.Color = Color.FromRgb(29, 67, 120);
                 ColorPolyLightStop.Color = Color.FromRgb(46, 98, 160);
@@ -43,16 +51,26 @@ namespace DbdRoulette.Pages
                 RoleTitle.Text = "Выживший";
 
                 StDifficulty.Visibility = Visibility.Collapsed;
+                TbDiaryLetter.Visibility = Visibility.Visible;
+                StTerrorRadius.Visibility = Visibility.Collapsed;
+                StMoveSpeed.Visibility = Visibility.Collapsed;
+                StHeight.Visibility = Visibility.Collapsed;
+
                 PowerAndPerksHeader.Text = "НАВЫКИ";
+
                 PerkDemoBtn.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
 
                 RadioPower.Visibility = Visibility.Collapsed;
                 LineSep.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
 
                 RecGradient.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+                RecGradientBottom.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+
+                LineSepChapter.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
             }
             else
             {
+                RadioPower.IsChecked = true;
                 LvPerks.ItemsSource = (contextCharacter as Killer).KillerPerk.ToList();
             }
             

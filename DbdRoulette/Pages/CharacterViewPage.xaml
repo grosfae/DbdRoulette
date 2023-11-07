@@ -5,13 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DbdRoulette.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1300" d:DesignWidth="1300"
+      d:DesignHeight="1700" d:DesignWidth="1300"
       Title="CharacterViewPage">
 
     <Grid>
-        <Grid.Background>
-            <SolidColorBrush Color="Black" Opacity="0.4"/>
-        </Grid.Background>
         <ScrollViewer CanContentScroll="False">
             <Grid>
                 <Grid.RowDefinitions>
@@ -58,7 +55,7 @@
                                         <TextBlock Text="{Binding Сhapter.ChapterType.Name}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
                                     </StackPanel>
                                 </Grid>
-                                <TextBlock Style="{DynamicResource Header}" Text="{Binding Name}" Width="540" TextWrapping="Wrap" Foreground="White" FontSize="34" Margin="30 10 0 0" HorizontalAlignment="Left" FontWeight="Bold" FontFamily="EuropeExtendedC"/>
+                                <TextBlock Text="{Binding Name}" Width="540" TextWrapping="Wrap" Foreground="White" FontSize="34" Margin="30 10 0 0" HorizontalAlignment="Left" FontWeight="Bold" FontFamily="EuropeExtendedC"/>
                                 <StackPanel Orientation="Horizontal" >
 
                                     <StackPanel>
@@ -97,7 +94,7 @@
                                         <StackPanel Orientation="Horizontal" Margin="30 10 0 0">
                                             <Grid Width="70" Height="70">
                                                 <Ellipse Fill="Black" Width="70" Height="70"/>
-                                                <Image Source="/Resources/Misc/BookIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="60" Height="55" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                                <Image Source="/Resources/Misc/BookIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="55" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
                                             </Grid>
                                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
                                                 <TextBlock Text="Глава" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource MiniText}" HorizontalAlignment="Left" FontFamily="Arkhip">
@@ -110,7 +107,57 @@
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding DiaryLetter}" TextWrapping="Wrap" Width="280" FontWeight="DemiBold" TextAlignment="Left" FontSize="16"  Style="{DynamicResource MiniText}" Foreground="White" HorizontalAlignment="Left" Margin="0 20 0 0"/>
+
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" x:Name="StTerrorRadius" Margin="10 20 0 0">
+                                            <Grid Width="70" Height="70">
+                                                <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                <Image Source="/Resources/Misc/TerrorIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Margin="0 0 0 4" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                <TextBlock Text="Террор" FontSize="20" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" FontFamily="Arkhip">
+                                                    <TextBlock.Foreground>
+                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                    </TextBlock.Foreground>
+                                                </TextBlock>
+                                                <TextBlock Text="{Binding TerrorRadius, StringFormat='{}{0} м'}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" FontFamily="Arkhip"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <StackPanel x:Name="StMoveSpeed" Orientation="Horizontal" Margin="10 10 0 0">
+                                            <Grid Width="70" Height="70">
+                                                <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                <Image Source="/Resources/Misc/MoveIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                <TextBlock Text="Скорость" FontSize="20" FontWeight="Bold" TextAlignment="Center"  HorizontalAlignment="Left" FontFamily="Arkhip">
+                                                    <TextBlock.Foreground>
+                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                    </TextBlock.Foreground>
+                                                </TextBlock>
+                                                <TextBlock Text="{Binding MoveSpeed, StringFormat='{}{0} м/с'}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" FontFamily="Arkhip"/>
+
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" x:Name="StHeight" Margin="10 10 0 0">
+                                            <Grid Width="70" Height="70">
+                                                <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                <Image Source="/Resources/Misc/HeightIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                <TextBlock Text="Рост" FontSize="20" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" FontFamily="Arkhip">
+                                                    <TextBlock.Foreground>
+                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                    </TextBlock.Foreground>
+                                                </TextBlock>
+                                                <TextBlock Text="{Binding Height}"  TextAlignment="Left" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" FontFamily="Arkhip"/>
+
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TbDiaryLetter" Visibility="Collapsed" Text="{Binding DiaryLetter}" TextWrapping="Wrap" Width="280" FontWeight="DemiBold" TextAlignment="Left" FontSize="16"  Style="{DynamicResource MiniText}" Foreground="White" HorizontalAlignment="Left" Margin="0 20 0 0"/>
+                                    </StackPanel>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -118,7 +165,7 @@
 
                     <StackPanel Margin="0 30 0 0" Orientation="Horizontal">
                         <StackPanel Width="590" Margin="45 0 0 0">
-                            <TextBlock x:Name="PowerAndPerksHeader" Style="{DynamicResource Header}" Text="СИЛА И НАВЫКИ" Foreground="White" FontSize="34"  HorizontalAlignment="Left" FontWeight="Bold" FontFamily="EuropeExtendedC"/>
+                            <TextBlock x:Name="PowerAndPerksHeader" Text="СИЛА И НАВЫКИ" Foreground="White" FontSize="34"  HorizontalAlignment="Left" FontWeight="Bold" FontFamily="EuropeExtendedC"/>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
                                     <RadioButton x:Name="RadioPower" GroupName="Perks" Style="{DynamicResource PerksSelectionRadio}" Foreground="#FFAA1A18" Height="100" Width="100" Margin="0 0 20 0">
@@ -151,19 +198,19 @@
                                 </StackPanel>
 
                                 <StackPanel Margin="0 30 0 0" x:Name="PerkDetailsContainer">
-                                    <TextBlock x:Name="TbTypeHeader" Style="{DynamicResource Header}" Text="Тип выбора" FontSize="26"  HorizontalAlignment="Left" FontWeight="DemiBold" FontFamily="Arkhip">
+                                    <TextBlock x:Name="TbTypeHeader" Text="Тип выбора" FontSize="26"  HorizontalAlignment="Left" FontWeight="DemiBold" FontFamily="Arkhip">
                                         <TextBlock.Foreground>
                                             <SolidColorBrush Color="White" Opacity="0.4"/>
                                         </TextBlock.Foreground>
                                     </TextBlock>
 
-                                    <TextBlock x:Name="TbTitlePerk" Style="{DynamicResource Header}" Text="Название навыка" FontSize="26"  HorizontalAlignment="Left" FontWeight="Bold" FontFamily="Arkhip" Foreground="White" Margin="0 10 0 0"/>
+                                    <TextBlock x:Name="TbTitlePerk" Text="Название навыка" FontSize="26"  HorizontalAlignment="Left" FontWeight="Bold" FontFamily="Arkhip" Foreground="White" Margin="0 10 0 0"/>
                                     <Rectangle x:Name="LineSep" Fill="#FFA31816" Width="80" Height="4" Margin="5 3 0 0" HorizontalAlignment="Left">
                                         <Rectangle.RenderTransform>
                                             <SkewTransform AngleX="-45"/>
                                         </Rectangle.RenderTransform>
                                     </Rectangle>
-                                    <TextBlock x:Name="TbPerkDescription" Style="{DynamicResource MiniText}" Text="Описание навыков" FontSize="16" HorizontalAlignment="Left" TextWrapping="Wrap" Width="570" FontWeight="Regular" Foreground="White" Margin="0 10 0 0" FontFamily="PT Sans"/>
+                                    <TextBlock x:Name="TbPerkDescription" Text="Описание навыков" FontSize="16" HorizontalAlignment="Left" TextWrapping="Wrap" Width="570" FontWeight="Regular" Foreground="White" Margin="0 10 0 0" FontFamily="PT Sans"/>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
@@ -185,6 +232,40 @@
                             </LinearGradientBrush>
                         </Rectangle.OpacityMask>
                     </Rectangle>
+
+                    <StackPanel Background="#FF121212">
+                        <StackPanel VerticalAlignment="Center" Margin="50 20 0 0">
+                            <TextBlock Text="История" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" FontFamily="Arkhip" Foreground="White"/>
+                            <TextBlock Text="{Binding Lore}" FontSize="16" Width="1200"  HorizontalAlignment="Left" FontFamily="PT Sans" Foreground="White" Margin="0 20 0 20" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Grid>
+                        <Rectangle x:Name="RecGradientBottom" Height="100" Fill="#FFAA1A18" VerticalAlignment="Top">
+                            <Rectangle.OpacityMask>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5, -0.5">
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="Transparent" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+
+                        <Image x:Name="HauntedLine" Source="/Resources/HauntedTheme/Line1.png" VerticalAlignment="Top" Margin="0 62 0 0" Panel.ZIndex="1" Visibility="Collapsed"/>
+                        <StackPanel Orientation="Horizontal" MinHeight="390" Margin="0 100 0 0" Background="#FF121212">
+                            <StackPanel Margin="0 0 0 0" Width="640">
+                                <TextBlock Text="{Binding Сhapter.Name}" Width="590" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" FontFamily="Arkhip" Foreground="White" Margin="50 20 0 0"/>
+                                <Rectangle x:Name="LineSepChapter" Fill="#FFA31816" Width="80" Height="4" Margin="55 3 0 0" HorizontalAlignment="Left">
+                                    <Rectangle.RenderTransform>
+                                        <SkewTransform AngleX="-45"/>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <TextBlock Text="{Binding Сhapter.Description}" Width="580" TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Left" FontFamily="PT Sans" Foreground="White" Margin="50 20 0 0"/>
+
+                                <Button Style="{DynamicResource DefaultWhiteBtn}" Height="50" Width="180" Content="Подробнее" HorizontalAlignment="Left" Margin="50 20 0 0" Cursor="Hand"/>
+                            </StackPanel>
+                            <Image Width="650" Stretch="Uniform" Source="{Binding Сhapter.MainImage}" VerticalAlignment="Top"/>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

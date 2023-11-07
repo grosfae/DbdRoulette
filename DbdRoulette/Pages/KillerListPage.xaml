@@ -9,9 +9,6 @@
       Title="KillerListPage">
 
     <Grid>
-        <Grid.Background>
-            <SolidColorBrush Color="Black" Opacity="0.4"/>
-        </Grid.Background>
         <ScrollViewer CanContentScroll="False">
             <Grid>
                 <Grid.RowDefinitions>
