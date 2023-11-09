@@ -27,7 +27,7 @@ namespace DbdRoulette.Pages
     public partial class CharacterViewPage : Page
     {
         object contextCharacter;
-
+        bool FirstPerkSelected = true;
         public CharacterViewPage(Object obj)
         {
             InitializeComponent();
@@ -150,9 +150,10 @@ namespace DbdRoulette.Pages
 
         private void RadioPerkBtn_Initialized(object sender, EventArgs e)
         {
-            if (contextCharacter is Survivor)
+            if (contextCharacter is Survivor && FirstPerkSelected == true)
             {
                 (sender as RadioButton).IsChecked = true;
+                FirstPerkSelected = false;
             }
         }
     }

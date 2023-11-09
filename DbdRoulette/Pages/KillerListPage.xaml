@@ -91,14 +91,14 @@
                                             <SolidColorBrush Color="Black" Opacity="0.5"/>
                                         </TextBlock.Background>
                                     </TextBlock>
-                                    <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="">
+                                    <Grid VerticalAlignment="Top" HorizontalAlignment="Right">
                                         <Polygon Points="70,0, 90,30, 220,30, 220,0">
                                             <Polygon.Fill>
                                                 <ImageBrush ImageSource="{Binding BackgroundMetal}"/>
                                             </Polygon.Fill>
                                         </Polygon>
                                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 20 0">
-                                            <TextBlock Text="{Binding Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" FontFamily="FontAwesome"/>
+                                            <TextBlock Text="{Binding Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" Style="{DynamicResource UnicodeText}"/>
                                             <TextBlock Text="{Binding Сhapter.ChapterType.Name}" FontSize="16" FontWeight="Medium" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
                                         </StackPanel>
                                     </Grid>

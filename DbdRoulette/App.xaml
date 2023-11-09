@@ -9,7 +9,20 @@
             <Setter Property="FontFamily" Value="/Resources/Fonts/#Roboto Consended"/>
         </Style>
 
+        <Style TargetType="TextBlock" x:Key="UnicodeText">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#FontAwesome"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="EuropeTitleFont">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#EuropeExtendedC"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="ArkhipText">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Arkhip"/>
+        </Style>
+        
         <Style TargetType="TextBlock" x:Key="LinkHeader">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Arkhip"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -34,7 +47,11 @@
         <Style TargetType="TextBlock" x:Key="MiniText">
             <Setter Property="FontFamily" Value="/Resources/Fonts/#Raleway"/>
         </Style>
-        
+
+        <Style TargetType="TextBlock" x:Key="PtSansText">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#PT Sans"/>
+        </Style>
+
 
         <!--Borders Styles-->
         <Style TargetType="Border" x:Key="CardBorder">
