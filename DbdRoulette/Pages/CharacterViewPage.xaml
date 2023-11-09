@@ -102,7 +102,7 @@
                                                         <SolidColorBrush Color="White" Opacity="0.4"/>
                                                     </TextBlock.Foreground>
                                                 </TextBlock>
-                                                <TextBlock Text="{Binding Сhapter.Name}" TextWrapping="Wrap" Width="200" TextAlignment="Left" FontSize="20" FontWeight="Bold" Style="{DynamicResource MiniText}" Foreground="White" HorizontalAlignment="Left" FontFamily="Arkhip"/>
+                                                <TextBlock Text="{Binding Сhapter.Name}" TextWrapping="Wrap" Width="200" TextAlignment="Left" FontSize="20" FontWeight="Bold" Style="{DynamicResource LinkHeader}" Foreground="White" HorizontalAlignment="Left" FontFamily="Arkhip"/>
 
                                             </StackPanel>
                                         </StackPanel>
@@ -168,9 +168,9 @@
                             <TextBlock x:Name="PowerAndPerksHeader" Text="СИЛА И НАВЫКИ" Foreground="White" FontSize="34"  HorizontalAlignment="Left" FontWeight="Bold" FontFamily="EuropeExtendedC"/>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
-                                    <RadioButton x:Name="RadioPower" GroupName="Perks" Style="{DynamicResource PerksSelectionRadio}" Foreground="#FFAA1A18" Height="100" Width="100" Margin="0 0 20 0">
+                                    <RadioButton x:Name="RadioPower" GroupName="Perks" Style="{DynamicResource PerksSelectionRadio}" Foreground="#FFAA1A18" Height="100" Width="100" Margin="0 0 20 0" Checked="RadioPower_Checked">
                                         <RadioButton.Background>
-                                            <ImageBrush ImageSource="/Resources/Power.png"/>
+                                            <ImageBrush ImageSource="{Binding Power.MainIcon}"/>
                                         </RadioButton.Background>
                                     </RadioButton>
 
@@ -187,7 +187,7 @@
                                         </ListView.Template>
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <RadioButton x:Name="RadioPerkBtn" GroupName="Perks" Style="{DynamicResource PerksSelectionRadio}" Foreground="{Binding Perk.PerkBorderColor}" Height="100" Width="100" Margin="0 0 20 0" Cursor="Hand" Checked="RadioPerkBtn_Checked">
+                                                <RadioButton x:Name="RadioPerkBtn" GroupName="Perks" Initialized="RadioPerkBtn_Initialized" Style="{DynamicResource PerksSelectionRadio}" Foreground="{Binding Perk.PerkBorderColor}" Height="100" Width="100" Margin="0 0 20 0" Cursor="Hand" Checked="RadioPerkBtn_Checked">
                                                     <RadioButton.Background>
                                                         <ImageBrush ImageSource="{Binding Perk.MainIcon}"/>
                                                     </RadioButton.Background>
@@ -260,8 +260,7 @@
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
                                 <TextBlock Text="{Binding Сhapter.Description}" Width="580" TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Left" FontFamily="PT Sans" Foreground="White" Margin="50 20 0 0"/>
-
-                                <Button Style="{DynamicResource DefaultWhiteBtn}" Height="50" Width="180" Content="Подробнее" HorizontalAlignment="Left" Margin="50 20 0 0" Cursor="Hand"/>
+                                <Button x:Name="ChapterViewBtn" Background="Transparent" Style="{DynamicResource ChapterRedBtn}" Height="50" Width="180" Content="Подробнее" HorizontalAlignment="Left" Margin="50 20 0 0" Cursor="Hand" Click="ChapterViewBtn_Click"/>
                             </StackPanel>
                             <Image Width="650" Stretch="Uniform" Source="{Binding Сhapter.MainImage}" VerticalAlignment="Top"/>
                         </StackPanel>

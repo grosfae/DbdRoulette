@@ -97,10 +97,12 @@
     <Compile Include="Components\Chapter.cs" />
     <Compile Include="Components\ChapterType.cs" />
     <Compile Include="Components\Difficulty.cs" />
+    <Compile Include="Components\Item.cs" />
     <Compile Include="Components\Killer.cs" />
     <Compile Include="Components\KillerPerk.cs" />
     <Compile Include="Components\Perk.cs" />
     <Compile Include="Components\PerkType.cs" />
+    <Compile Include="Components\Power.cs" />
     <Compile Include="Components\Survivor.cs" />
     <Compile Include="Components\SurvivorPerk.cs" />
     <Compile Include="Components\User.cs" />

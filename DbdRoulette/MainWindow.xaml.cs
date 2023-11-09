@@ -96,6 +96,7 @@ namespace DbdRoulette
                 Duration = TimeSpan.FromSeconds(0.2),
 
             });
+
         }
 
         private void CharactersBtn_Unchecked(object sender, RoutedEventArgs e)
@@ -108,6 +109,7 @@ namespace DbdRoulette
                 Duration = TimeSpan.FromSeconds(0.2),
 
             });
+
         }
     }
 }

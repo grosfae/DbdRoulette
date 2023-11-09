@@ -13,21 +13,17 @@ namespace DbdRoulette.Components
         {
         }
         public DbSet<User> User { get; set; }
-
         public DbSet<Killer> Killer { get; set; }
-
         public DbSet<Survivor> Survivor { get; set; }
-
         public DbSet<Chapter> Chapter { get; set; }
-
         public DbSet<ChapterType> ChapterType { get; set; }
-
         public DbSet<Difficulty> Difficulty { get; set; }
-
         public DbSet<Perk> Perk { get; set; }
         public DbSet<PerkType> PerkType { get; set; }
         public DbSet<SurvivorPerk> SurvivorPerk { get; set; }
         public DbSet<KillerPerk> KillerPerk { get; set; }
+        public DbSet<Power> Power { get; set; }
+        public DbSet<Item> Item { get; set; }
     }
 
 }

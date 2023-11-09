@@ -1,4 +1,5 @@
 ﻿using DbdRoulette.Components;
+using LiveCharts.Maps;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -42,7 +43,9 @@ namespace DbdRoulette.Pages
             {
 
                 LvPerks.ItemsSource = (contextCharacter as Survivor).SurvivorPerk.ToList();
-                LvPerks.SelectedItem = (contextCharacter as Survivor).SurvivorPerk.FirstOrDefault();
+                
+                
+                
                 ColorTitleGrid.Background = new SolidColorBrush(Color.FromRgb(45, 99, 161));
                 ColorPolyDarkStop.Color = Color.FromRgb(29, 67, 120);
                 ColorPolyLightStop.Color = Color.FromRgb(46, 98, 160);
@@ -67,6 +70,8 @@ namespace DbdRoulette.Pages
                 RecGradientBottom.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
 
                 LineSepChapter.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+
+                ChapterViewBtn.Style = this.FindResource("ChapterBlueBtn") as Style;
             }
             else
             {
@@ -93,7 +98,10 @@ namespace DbdRoulette.Pages
 
             if (contextCharacter is Survivor)
             {
-
+                var selectedItem = (sender as RadioButton).DataContext as SurvivorPerk;
+                PerksDemoImage.ImageSource = ImageConvert(selectedItem.Perk.DemoImage);
+                TbTitlePerk.Text = selectedItem.Perk.Name;
+                TbPerkDescription.Text = selectedItem.Perk.Description;
             }
             else
             {
@@ -124,6 +132,28 @@ namespace DbdRoulette.Pages
             }
             image.Freeze();
             return image;
+        }
+
+        private void RadioPower_Checked(object sender, RoutedEventArgs e)
+        {
+            var character = contextCharacter as Killer;
+            TbTypeHeader.Text = "Сила";
+            PerksDemoImage.ImageSource = ImageConvert(character.Power.DemoImage);
+            TbTitlePerk.Text = character.Power.Name;
+            TbPerkDescription.Text = character.Power.Description;
+        }
+
+        private void ChapterViewBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RadioPerkBtn_Initialized(object sender, EventArgs e)
+        {
+            if (contextCharacter is Survivor)
+            {
+                (sender as RadioButton).IsChecked = true;
+            }
         }
     }
 }

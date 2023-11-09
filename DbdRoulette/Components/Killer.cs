@@ -26,8 +26,10 @@ namespace DbdRoulette.Components
         public byte[] MainImage { get; set; }
         public byte[] MainBackground { get; set; }
         public int ChapterId { get; set; }
+        public int PowerId { get; set; }
         public virtual Chapter Сhapter { get; set; }
         public virtual Difficulty Difficulty { get; set; }
+        public virtual Power Power { get; set; }
         public virtual ICollection<KillerPerk> KillerPerk { get; set; }
         public string DiaryLetter { get; set; }
         public string ShortLetter
