@@ -33,6 +33,17 @@ namespace DbdRoulette.Pages
             InitializeComponent();
             contextCharacter = obj;
             DataContext = contextCharacter;
+
+            var animationOpacity = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(1.0),
+
+            };
+
+            GlobalStackPanel.BeginAnimation(StackPanel.OpacityProperty, animationOpacity);
+
             var ThemeCode = Properties.Settings.Default.ThemeCode;
             if (ThemeCode == 2)
             { 
@@ -48,7 +59,7 @@ namespace DbdRoulette.Pages
                 
                 ColorTitleGrid.Background = new SolidColorBrush(Color.FromRgb(45, 99, 161));
                 ColorPolyDarkStop.Color = Color.FromRgb(29, 67, 120);
-                ColorPolyLightStop.Color = Color.FromRgb(46, 98, 160);
+                ColorPolyLightStop.Color = Color.FromRgb(45, 99, 161);
 
                 RoleIcon.Source = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/Misc/SurvIcon.png"));
                 RoleTitle.Text = "Выживший";
@@ -61,7 +72,7 @@ namespace DbdRoulette.Pages
 
                 PowerAndPerksHeader.Text = "НАВЫКИ";
 
-                PerkDemoBtn.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                PerkDemoBtn.Foreground = new SolidColorBrush(Color.FromRgb(45, 99, 161));
 
                 RadioPower.Visibility = Visibility.Collapsed;
                 LineSep.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));

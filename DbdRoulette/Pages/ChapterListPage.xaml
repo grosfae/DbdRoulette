@@ -1,0 +1,108 @@
+﻿<Page x:Class="DbdRoulette.Pages.ChapterListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DbdRoulette.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1300" d:DesignWidth="1300"
+      Title="ChapterListPage">
+
+    <Grid>
+        <ScrollViewer CanContentScroll="False">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Персонажи" Margin="15 0 0 0"/>
+                    </StackPanel>
+                    <Button Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Margin="50 0 50 0" Panel.ZIndex="1">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Left">
+                            <TextBlock Style="{DynamicResource Header}" Text="Список персонажей" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="У каждого персонажа есть захватывающая предыстория, связанная с уникальным набором способностей. Ознакомьтесь с полным списком убийц и выживших в Dead by Daylight." TextWrapping="Wrap" Width="400" Foreground="White" FontSize="20"/>
+                            <Border Margin="0 20 0 0" BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal" Height="60">
+                                    <RadioButton x:Name="RadioKiller" Style="{DynamicResource RedRadio}" Content="Убийцы" Width="200" Checked="RadioKiller_Checked"/>
+                                    <RadioButton x:Name="RadioSurvivor" Style="{DynamicResource BlueRadio}" Content="Выжившие" Width="200" Checked="RadioSurvivor_Checked"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Left">
+                                <StackPanel>
+                                    <TextBlock Text="Отсортировать по" Foreground="White" FontSize="20" Style="{DynamicResource Header}"/>
+                                    <ComboBox x:Name="CbSort" SelectionChanged="CbSort_SelectionChanged" Style="{DynamicResource CustomSortBox}" Width="250" Cursor="Hand" Height="40"  ItemContainerStyle="{StaticResource CustomSortBoxItem}"/>
+                                </StackPanel>
+
+                                <Border VerticalAlignment="Bottom" Margin="30 0 0 0" Height="40" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
+                                    <Grid Width="250" HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="30"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Margin="8 0 0 0" TextChanged="TbSearch_TextChanged" x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
+                                        <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Border Margin="40 0 0 0" Width="600">
+                            <Button Style="{DynamicResource MovingAnglesButton}" Foreground="#3881EF">
+                                <Button.Background>
+                                    <ImageBrush x:Name="PresentImage" ImageSource="/Resources/Misc/KillerImage.jpg"/>
+                                </Button.Background>
+                                <Button.BitmapEffect>
+                                    <BlurBitmapEffect Radius="0" x:Name="BlurRad"/>
+                                </Button.BitmapEffect>
+                            </Button>
+                        </Border>
+                    </StackPanel>
+
+                    <ListView d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="LvSlider" Width="360" Height="205">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="46"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="46"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Grid.Column="0" Style="{DynamicResource ListviewArrowBtn}" HorizontalAlignment="Center"  Width="25" Height="25" FontSize="18" CommandTarget="{Binding ElementName=ScrollElem}" Command="{x:Static ScrollBar.PageLeftCommand}" VerticalAlignment="Center" Panel.ZIndex="1" Cursor="Hand">
+                                        <Path Data="M 410.312 454.729 151.767 244.996 410.312 35.271 381.693 0 79.688 244.996 381.693 490 Z" Fill="White" Stretch="Fill" Height="10" Width="6" Margin="0 0 2 0"/>
+                                    </Button>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Hidden" ScrollChanged="ScrollElem_ScrollChanged" VerticalScrollBarVisibility="Hidden" x:Name="ScrollElem" Grid.ColumnSpan="3" CanContentScroll="True">
+                                        <ItemsPresenter HorizontalAlignment="Center"/>
+                                    </ScrollViewer>
+
+                                    <Button x:Name="RightListBtn" Grid.Column="2" Style="{DynamicResource ListviewArrowBtn}" HorizontalAlignment="Center" Width="25" Height="25" FontSize="18" CommandTarget="{Binding ElementName=ScrollElem}" Command="{x:Static ScrollBar.PageRightCommand}" Cursor="Hand">
+                                        <Path Data="M 106.601 490 412.15 245.004 106.601 0 77.85 35.856 338.702 245.004 77.85 454.159 Z" Fill="White" Stretch="Fill" Height="10" Width="6" Margin="2 0 0 0"/>
+                                    </Button>
+                                </Grid>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding DemoImage}" Width="350" Height="250"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</Page>

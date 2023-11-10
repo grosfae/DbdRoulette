@@ -1,0 +1,47 @@
+﻿<Page x:Class="DbdRoulette.Pages.SliderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DbdRoulette.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1300" d:DesignWidth="1300"
+      Title="SliderPage">
+
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="MainImage" Width="500" Height="350"/>
+                    <ListView x:Name="LvPerks" Focusable="False" BorderThickness="0" Width="550" Background="White" d:ItemsSource="{d:SampleData ItemCount=14}" HorizontalAlignment="Center" Height="870" Margin="20 0 0 0">
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <ItemsPresenter/>
+                                </Grid>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="540" HorizontalAlignment="Center">
+                                    <Viewbox Height="150" Margin="0 5" HorizontalAlignment="Center" Cursor="">
+                                        <RadioButton x:Name="RadioPerkBtn" Checked="RadioPerkBtn_Checked" GroupName="Perks" Initialized="RadioPerkBtn_Initialized" Style="{DynamicResource PictureSelectRadio}" Content="{Binding Name}" Height="104" Width="280" Margin="0 0 20 0" Cursor="Hand">
+                                            <RadioButton.Background>
+                                                <ImageBrush ImageSource="{Binding DemoImage}"/>
+                                            </RadioButton.Background>
+                                            <RadioButton.RenderTransform>
+                                                <ScaleTransform x:Name="transform"/>
+                                            </RadioButton.RenderTransform>
+                                        </RadioButton>
+                                    </Viewbox>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

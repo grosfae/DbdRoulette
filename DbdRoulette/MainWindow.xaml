@@ -61,7 +61,7 @@
                                 <Grid Height="50">
                                     <Rectangle Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="black" Opacity="0.3"/>
-                                    <Button Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                                    <Button x:Name="CharacterListBtn" Click="CharacterListBtn_Click" Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
                                 </Grid>
                             </StackPanel>
                         </Border>

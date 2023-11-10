@@ -32,7 +32,7 @@ namespace DbdRoulette
         {
             InitializeComponent();
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
-            MainFrame.Navigate(new KillerListPage());
+            MainFrame.Navigate(new ChapterListPage());
 
             var ThemeCode = Properties.Settings.Default.ThemeCode;
             if (ThemeCode == 2)
@@ -110,6 +110,11 @@ namespace DbdRoulette
 
             });
 
+        }
+
+        private void CharacterListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new KillerListPage());
         }
     }
 }

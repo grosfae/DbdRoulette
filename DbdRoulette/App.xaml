@@ -381,6 +381,60 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Button" x:Key="ListviewArrowBtn">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FFC7211F"/>
+            <Setter Property="FontFamily" Value="Resources/Fonts/#FontAwesome"/>
+            <Setter Property="Background" Value="#FFC7211F"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="100" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="100" Margin="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2 0"/>
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#FF6B6B6B" 
+                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                                <ColorAnimation To="#FF6B6B6B" 
+                Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd" 
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#FFC7211F" 
+                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd"
+                Duration="0:0:0.2"/>
+                                <ColorAnimation To="#FFC7211F" 
+                Storyboard.TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" 
+                FillBehavior="HoldEnd" 
+                Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
 
         <Style TargetType="Button" x:Key="MovingAnglesButton">
             <Setter Property="BorderThickness" Value="0" />
@@ -777,6 +831,97 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style TargetType="RadioButton" x:Key="PictureSelectRadio">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+
+                        <Grid Background="Transparent" x:Name="MainGrid" Width="{TemplateBinding Width}" HorizontalAlignment="Center">
+
+                            <Grid.RenderTransform>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8" CenterX="160" CenterY="50"/>
+                            </Grid.RenderTransform>
+                            <Grid Panel.ZIndex="2" Width="136" Margin="50 0 0 0">
+                                <Rectangle x:Name="RecLeft" Fill="#FFB70303" Height="{TemplateBinding Height}" Width="40" HorizontalAlignment="Left" Margin="1 0 0 0">
+                                    <Rectangle.RenderTransform>
+                                        <ScaleTransform ScaleX="0" ScaleY="0" CenterY="50"/>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                                <Rectangle Fill="{TemplateBinding Background}" RenderOptions.BitmapScalingMode="Fant" Height="100" Width="130" Panel.ZIndex="3"/>
+                                <Rectangle x:Name="RecRight" Fill="#FFB70303" Height="{TemplateBinding Height}" Width="40" HorizontalAlignment="Right" Margin="0 0 1 0">
+                                    <Rectangle.RenderTransform>
+                                        <ScaleTransform ScaleX="0" ScaleY="0" CenterY="50"/>
+                                    </Rectangle.RenderTransform>
+                                </Rectangle>
+                            </Grid>
+                            <Grid x:Name="GridBack">
+                                <Grid.RenderTransform>
+                                    <ScaleTransform ScaleX="0" CenterX="300"/>
+                                </Grid.RenderTransform>
+                                <Grid Background="#FFB70303" Height="30" Width="{TemplateBinding Width}" HorizontalAlignment="Right">
+                                    <TextBlock x:Name="TbContent" Opacity="0" Text="{TemplateBinding Content}" Width="90" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="6" Foreground="White" FontFamily="/Resources/Fonts/#Arkhip" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                </Grid>
+                                <Polygon HorizontalAlignment="Right" Fill="#FF8E0000" Points="0 30 40 30 40 0 0 30" Panel.ZIndex="1" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TbContent" From="0.0" To="1" Duration="0:0:0.3"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="GridBack"  From="0.0" To="1.0" Duration="0:0:0.3"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="RecLeft"  From="0.0" To="1.0" Duration="0:0:0.2"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="RecLeft"  From="0.0" To="1.0" Duration="0:0:0.3"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="RecRight"  From="0.0" To="1.0" Duration="0:0:0.2"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="RecRight"  From="0.0" To="1.0" Duration="0:0:0.2"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="MainGrid"  From="0.8" To="1.0" Duration="0:0:0.3"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="MainGrid"  From="0.8" To="1.0" Duration="0:0:0.3"/>
+
+
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="TbContent" From="1.0" To="0" Duration="0:0:0.0"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="GridBack"  From="1.0" To="0.0" Duration="0:0:0.3"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="RecLeft"  From="1.0" To="0.0" Duration="0:0:0.2"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="RecLeft"  From="1.0" To="0.0" Duration="0:0:0.3"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="RecRight"  From="1.0" To="0.0" Duration="0:0:0.2"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="RecRight"  From="1.0" To="0.0" Duration="0:0:0.3"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="MainGrid"  From="1" To="0.8" Duration="0:0:0.4"/>
+
+                                            <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="MainGrid"  From="1" To="0.8" Duration="0:0:0.4"/>
+
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
 
         <!--TextBox PlaceHolder-->
         <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
