@@ -14,6 +14,9 @@ namespace DbdRoulette.Components
         public string Name { get; set; }
         public string Description { get; set; }
         public byte[] MainIcon { get; set; }
-        public virtual ICollection<Power> Power { get; set; }
+        public int RarityId { get; set; }
+        public virtual Rarity Rarity { get; set; }
+        public virtual ICollection<PowerItem> PowerItem { get; set; }
+
     }
 }

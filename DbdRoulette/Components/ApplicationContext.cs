@@ -24,6 +24,14 @@ namespace DbdRoulette.Components
         public DbSet<KillerPerk> KillerPerk { get; set; }
         public DbSet<Power> Power { get; set; }
         public DbSet<Item> Item { get; set; }
+        public DbSet<PowerItem> PowerItem { get; set; }
+        public DbSet<Map> Map { get; set; }
+        public DbSet<MapGallery> MapGallery { get; set; }
+        public DbSet<Rarity> Rarity { get; set; }
+        public DbSet<Charm> Charm { get; set; }
+        public DbSet<CharmType> CharmType { get; set; }
+        public DbSet<CharmCollection> CharmCollection { get; set; }
+        public DbSet<ChapterCharm> ChapterCharm { get; set; }
     }
 
 }

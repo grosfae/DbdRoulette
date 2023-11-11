@@ -85,24 +85,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Addons\ChapterBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Addons\ChapterBlock.xaml.cs">
+      <DependentUpon>ChapterBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\ApplicationContext.cs" />
     <Compile Include="Components\Chapter.cs" />
+    <Compile Include="Components\ChapterCharm.cs" />
     <Compile Include="Components\ChapterType.cs" />
+    <Compile Include="Components\Charm.cs" />
+    <Compile Include="Components\CharmCollection.cs" />
+    <Compile Include="Components\CharmType.cs" />
     <Compile Include="Components\Difficulty.cs" />
     <Compile Include="Components\Item.cs" />
     <Compile Include="Components\Killer.cs" />
     <Compile Include="Components\KillerPerk.cs" />
+    <Compile Include="Components\Map.cs" />
+    <Compile Include="Components\MapGallery.cs" />
     <Compile Include="Components\Perk.cs" />
     <Compile Include="Components\PerkType.cs" />
     <Compile Include="Components\Power.cs" />
+    <Compile Include="Components\PowerItem.cs" />
+    <Compile Include="Components\Rarity.cs" />
     <Compile Include="Components\Survivor.cs" />
     <Compile Include="Components\SurvivorPerk.cs" />
     <Compile Include="Components\User.cs" />
