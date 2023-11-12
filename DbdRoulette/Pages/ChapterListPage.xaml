@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:addons="clr-namespace:DbdRoulette.Addons"
       xmlns:local="clr-namespace:DbdRoulette.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="1300" d:DesignWidth="1300"
@@ -66,37 +67,20 @@
                         </Border>
                     </StackPanel>
 
-                    <ListView d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="LvSlider" Width="360" Height="205">
+                    <ListView d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="LvSlider" Width="1180" Margin="0 40 0 0" Focusable="False">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal"/>
+                                <WrapPanel Orientation="Horizontal" Width="1180"/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                         <ListView.Template>
                             <ControlTemplate TargetType="ItemsControl">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="46"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="46"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Button Grid.Column="0" Style="{DynamicResource ListviewArrowBtn}" HorizontalAlignment="Center"  Width="25" Height="25" FontSize="18" CommandTarget="{Binding ElementName=ScrollElem}" Command="{x:Static ScrollBar.PageLeftCommand}" VerticalAlignment="Center" Panel.ZIndex="1" Cursor="Hand">
-                                        <Path Data="M 410.312 454.729 151.767 244.996 410.312 35.271 381.693 0 79.688 244.996 381.693 490 Z" Fill="White" Stretch="Fill" Height="10" Width="6" Margin="0 0 2 0"/>
-                                    </Button>
-                                    <ScrollViewer HorizontalScrollBarVisibility="Hidden" ScrollChanged="ScrollElem_ScrollChanged" VerticalScrollBarVisibility="Hidden" x:Name="ScrollElem" Grid.ColumnSpan="3" CanContentScroll="True">
-                                        <ItemsPresenter HorizontalAlignment="Center"/>
-                                    </ScrollViewer>
-
-                                    <Button x:Name="RightListBtn" Grid.Column="2" Style="{DynamicResource ListviewArrowBtn}" HorizontalAlignment="Center" Width="25" Height="25" FontSize="18" CommandTarget="{Binding ElementName=ScrollElem}" Command="{x:Static ScrollBar.PageRightCommand}" Cursor="Hand">
-                                        <Path Data="M 106.601 490 412.15 245.004 106.601 0 77.85 35.856 338.702 245.004 77.85 454.159 Z" Fill="White" Stretch="Fill" Height="10" Width="6" Margin="2 0 0 0"/>
-                                    </Button>
-                                </Grid>
+                                <ItemsPresenter HorizontalAlignment="Center"/>
                             </ControlTemplate>
                         </ListView.Template>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding DemoImage}" Width="350" Height="250"/>
+                                <addons:ChapterBlock DataContext="{Binding}" />
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

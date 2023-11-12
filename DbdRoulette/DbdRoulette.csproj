@@ -101,15 +101,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\ApplicationContext.cs" />
+    <Compile Include="Components\BodyPart.cs" />
     <Compile Include="Components\Chapter.cs" />
     <Compile Include="Components\ChapterCharm.cs" />
     <Compile Include="Components\ChapterType.cs" />
     <Compile Include="Components\Charm.cs" />
-    <Compile Include="Components\CharmCollection.cs" />
     <Compile Include="Components\CharmType.cs" />
+    <Compile Include="Components\CosmeticOutfit.cs" />
+    <Compile Include="Components\CosmeticType.cs" />
     <Compile Include="Components\Difficulty.cs" />
     <Compile Include="Components\Item.cs" />
     <Compile Include="Components\Killer.cs" />
+    <Compile Include="Components\KillerCosmeticOutfit.cs" />
     <Compile Include="Components\KillerPerk.cs" />
     <Compile Include="Components\Map.cs" />
     <Compile Include="Components\MapGallery.cs" />
@@ -119,6 +122,7 @@
     <Compile Include="Components\PowerItem.cs" />
     <Compile Include="Components\Rarity.cs" />
     <Compile Include="Components\Survivor.cs" />
+    <Compile Include="Components\SurvivorCosmeticOutfit.cs" />
     <Compile Include="Components\SurvivorPerk.cs" />
     <Compile Include="Components\User.cs" />
     <Compile Include="MainWindow.xaml.cs">

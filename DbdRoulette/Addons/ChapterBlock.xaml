@@ -12,7 +12,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="LvSlider" Width="400" Height="255" Margin="-5 0">
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="LvSlider" Width="380" Height="255" Margin="-5 0">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
@@ -45,26 +45,27 @@
             </ListView.Template>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding DemoImage}" Width="390" Height="250"/>
+                    <Image Source="{Binding DemoImage}" Width="370" Height="250"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock Grid.Row="1" Background="#FF383838" Padding="15 10" Text="25.07.2023" Foreground="White" FontWeight="Bold" FontSize="16" Style="{DynamicResource Header}"/>
+        <TextBlock Grid.Row="1" Background="#FF383838" Padding="15 10" Text="{Binding DateRelease, StringFormat='dd.MM.yyyy'}" Foreground="White" FontWeight="Bold" FontSize="16" Style="{DynamicResource Header}"/>
 
-        <StackPanel Grid.Row="2" Background="#FF121212">
+        <StackPanel Grid.Row="2" Background="#FF121212" MinHeight="200">
             <StackPanel  Margin="10" x:Name="DescriptionBlock">
                 <TextBlock Text="{Binding Name}" Foreground="White" TextWrapping="Wrap" FontSize="26" Style="{DynamicResource Header}" FontStyle="Normal" Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}"/>
                 <TextBlock Text="Дополнение включает:" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="0 20 0 0"/>
-                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}">
+                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}" Visibility="{Binding KillerVisibility}">
                     <BulletDecorator.Bullet>
                         <Border Padding="5 0 0 0">
                             <Ellipse Fill="White" Height="7" Width="7"/>
                         </Border>
                     </BulletDecorator.Bullet>
-                    <TextBlock Text="{Binding Killer.Name,StringFormat='Новый Убийца: {0}'}" TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
+                    <TextBlock Text="{Binding KillerEnumerable,StringFormat='Новый Убийца: {0}'}" TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
                 </BulletDecorator>
-                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}">
+                
+                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}" Visibility="{Binding SurvivorVisibility}">
                     <BulletDecorator.Bullet>
                         <Border Padding="5 0 0 0">
                             <Ellipse Fill="White" Height="7" Width="7"/>
@@ -72,8 +73,8 @@
                     </BulletDecorator.Bullet>
                     <TextBlock Text="{Binding SurvivorsEnumerable}" TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
                 </BulletDecorator>
-                
-                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}">
+
+                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}" Visibility="{Binding MapVisibility}">
                     <BulletDecorator.Bullet>
                         <Border Padding="5 0 0 0">
                             <Ellipse Fill="White" Height="7" Width="7"/>
@@ -82,21 +83,22 @@
                     <TextBlock Text="{Binding Map.Name,StringFormat='Новая Локация: {0}'}" TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
                 </BulletDecorator>
 
-                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}">
+                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}" Visibility="{Binding ExclusiveVisibility}">
                     <BulletDecorator.Bullet>
                         <Border Padding="5 0 0 0">
                             <Ellipse Fill="White" Height="7" Width="7"/>
                         </Border>
                     </BulletDecorator.Bullet>
-                    <TextBlock Text="Эксклюзивный предмет для ...." TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
+                    <TextBlock Text="{Binding ExclusiveItem}" TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
                 </BulletDecorator>
-                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}">
+                
+                <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}" Visibility="{Binding CharmVisibility}">
                     <BulletDecorator.Bullet>
                         <Border Padding="5 0 0 0">
                             <Ellipse Fill="White" Height="7" Width="7"/>
                         </Border>
                     </BulletDecorator.Bullet>
-                    <TextBlock Text="{Binding Charm.Name, StringFormat='Эксклюзивный значок: {0}'}" TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
+                    <TextBlock Text="{Binding CharmName, StringFormat='Эксклюзивный амулет: {0}'}" TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
                 </BulletDecorator>
 
             </StackPanel>

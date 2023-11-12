@@ -32,6 +32,7 @@ namespace DbdRoulette.Components
         public virtual Power Power { get; set; }
         public virtual ICollection<KillerPerk> KillerPerk { get; set; }
         public string DiaryLetter { get; set; }
+        public virtual ICollection<KillerCosmeticOutfit> KillerCosmeticOutfit { get; set; }
         public string ShortLetter
         {
             get

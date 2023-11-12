@@ -21,6 +21,7 @@ namespace DbdRoulette.Components
         public virtual Chapter Сhapter { get; set; }
         public virtual ICollection<SurvivorPerk> SurvivorPerk { get; set; }
         public string DiaryLetter { get; set; }
+        public virtual ICollection<SurvivorCosmeticOutfit> SurvivorCosmeticOutfit { get; set; }
         public string ShortLetter
         {
             get

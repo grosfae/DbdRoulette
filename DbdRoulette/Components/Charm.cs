@@ -17,10 +17,10 @@ namespace DbdRoulette.Components
         public string UnlockCondition { get; set; }
         public int RarityId { get; set; }
         public virtual Rarity Rarity { get; set; }
-        public int CharmCollectionId { get; set; }
-        public virtual CharmCollection CharmCollection { get; set; }
+        public int CosmeticTypeId { get; set; }
+        public virtual CosmeticType CosmeticType { get; set; }
         public int CharmTypeId { get; set; }
         public virtual CharmType CharmType { get; set; }
-        public virtual ICollection<Chapter> Chapter { get; set; }
+        public virtual ICollection<ChapterCharm> ChapterCharm { get; set; }
     }
 }

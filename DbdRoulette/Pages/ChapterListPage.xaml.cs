@@ -26,7 +26,7 @@ namespace DbdRoulette.Pages
         public ChapterListPage()
         {
             InitializeComponent();
-            LvSlider.ItemsSource = App.DB.Perk.ToList();
+            LvSlider.ItemsSource = App.DB.Chapter.ToList();
         }
         private void RadioKiller_Checked(object sender, RoutedEventArgs e)
         {

@@ -465,7 +465,6 @@
             </Style.Triggers>
         </Style>
 
-
         <Style TargetType="Button" x:Key="MovingAnglesButton">
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="BorderBrush" Value="Transparent" />
@@ -670,7 +669,7 @@
                             </Path>
                             <StackPanel Margin="8 0 8 0">
                                 <TextBlock Foreground="{TemplateBinding Foreground}" FontWeight="Bold" FontSize="18" FontFamily="{TemplateBinding FontFamily}" Text="{TemplateBinding Tag}" VerticalAlignment="Top" HorizontalAlignment="Center"  Margin="0 25 0 20"/>
-                                <TextBlock Text="{TemplateBinding Content}"  FontSize="16" Foreground="{TemplateBinding Foreground}"   FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                                <TextBlock Text="{TemplateBinding Content}"  FontSize="16" Foreground="{TemplateBinding Foreground}" FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="Center" TextWrapping="Wrap" />
                             </StackPanel>
                             <Path x:Name="BottomAngle" Opacity="0" Data="M43 43L-2.5034e-06 43L-2.28227e-06 40.4706L40.4706 40.4706L40.4706 -2.72452e-06L43 -2.5034e-06L43 43Z" Fill="#3881EF" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                             </Path>

@@ -30,8 +30,14 @@ namespace DbdRoulette.Components
         public DbSet<Rarity> Rarity { get; set; }
         public DbSet<Charm> Charm { get; set; }
         public DbSet<CharmType> CharmType { get; set; }
-        public DbSet<CharmCollection> CharmCollection { get; set; }
+        public DbSet<CosmeticType> CosmeticType { get; set; }
         public DbSet<ChapterCharm> ChapterCharm { get; set; }
+        public DbSet<CosmeticOutfit> CosmeticOutfit { get; set; }
+        public DbSet<BodyPart> BodyPart { get; set; }
+        public DbSet<SurvivorCosmeticOutfit> SurvivorCosmeticOutfit { get; set; }
+        public DbSet<KillerCosmeticOutfit> KillerCosmeticOutfit { get; set; }
+
+
     }
 
 }
