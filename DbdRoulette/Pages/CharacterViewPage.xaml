@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DbdRoulette.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1700" d:DesignWidth="1300"
+      d:DesignHeight="1700" d:DesignWidth="1400"
       Title="CharacterViewPage">
 
     <Grid>
@@ -28,142 +28,144 @@
                 </StackPanel>
 
                 <StackPanel x:Name="GlobalStackPanel" Grid.Row="1" Margin="0 0 0 0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Viewbox Margin="60 0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                        <Grid Height="390" Width="590">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="{Binding MainBackground}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"/>
-                            </Grid.Background>
-                            <Rectangle Fill="Black" Opacity="0.3"/>
-                            <Image Source="{Binding MainImage}" Width="590" Height="390" RenderOptions.BitmapScalingMode="Fant"/>
-                        </Grid>
+                            <Grid Height="390" Width="590">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="{Binding MainBackground}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"/>
+                                </Grid.Background>
+                                <Rectangle Fill="Black" Opacity="0.3"/>
+                                <Image Source="{Binding MainImage}" Width="590" Height="390" RenderOptions.BitmapScalingMode="Fant"/>
+                            </Grid>
 
-                        <Grid x:Name="ColorTitleGrid" Height="auto" Width="600" Background="#FFAA1A18">
-                            <Polygon Points="-60 0 -250 390 60 390 60 0" HorizontalAlignment="Right">
-                                <Polygon.Fill>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF880E0D" Offset="0" x:Name="ColorPolyDarkStop"/>
-                                        <GradientStop Color="#FFA31816" Offset="1" x:Name="ColorPolyLightStop"/>
-                                    </LinearGradientBrush>
-                                </Polygon.Fill>
-                            </Polygon>
-                            <StackPanel>
-                                <Grid>
-                                    <Polygon Fill="Black" Points="155,40, 0,40, 0,10,145,10" Width="180" HorizontalAlignment="Left"/>
-                                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15 10 0 0">
-                                        <TextBlock Text="{Binding Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" Style="{DynamicResource UnicodeText}"/>
-                                        <TextBlock Text="{Binding Сhapter.ChapterType.Name}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
-                                    </StackPanel>
-                                </Grid>
-                                <TextBlock Text="{Binding Name}" Width="540" TextWrapping="Wrap" Foreground="White" FontSize="34" Margin="30 10 0 0" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource EuropeTitleFont}"/>
-                                <StackPanel Orientation="Horizontal" >
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="30 20 0 0">
-                                            <Grid Width="70" Height="70">
-                                                <Ellipse Fill="Black" Width="70" Height="70"/>
-                                                <Image x:Name="RoleIcon" Source="/Resources/Misc/KillerIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                                            </Grid>
-                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
-                                                <TextBlock Text="Роль" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
-                                                    <TextBlock.Foreground>
-                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
-                                                    </TextBlock.Foreground>
-                                                </TextBlock>
-                                                <TextBlock x:Name="RoleTitle" Text="Убийца" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White" HorizontalAlignment="Left"/>
+                            <Grid x:Name="ColorTitleGrid" Height="auto" Width="600" Background="#FFAA1A18">
+                                <Polygon Points="-60 0 -250 390 60 390 60 0" HorizontalAlignment="Right">
+                                    <Polygon.Fill>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF880E0D" Offset="0" x:Name="ColorPolyDarkStop"/>
+                                            <GradientStop Color="#FFA31816" Offset="1" x:Name="ColorPolyLightStop"/>
+                                        </LinearGradientBrush>
+                                    </Polygon.Fill>
+                                </Polygon>
+                                <StackPanel>
+                                    <Grid>
+                                        <Polygon Fill="Black" Points="155,40, 0,40, 0,10,145,10" Width="180" HorizontalAlignment="Left"/>
+                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15 10 0 0">
+                                            <TextBlock Text="{Binding Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" Style="{DynamicResource UnicodeText}"/>
+                                            <TextBlock Text="{Binding Сhapter.ChapterType.Name}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <TextBlock Text="{Binding Name}" Width="540" TextWrapping="Wrap" Foreground="White" FontSize="34" Margin="30 10 0 0" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource EuropeTitleFont}"/>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="30 20 0 0">
+                                                <Grid Width="70" Height="70">
+                                                    <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                    <Image x:Name="RoleIcon" Source="/Resources/Misc/KillerIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                                                </Grid>
+                                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                    <TextBlock Text="Роль" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
+                                                        <TextBlock.Foreground>
+                                                            <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
+                                                    <TextBlock x:Name="RoleTitle" Text="Убийца" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White" HorizontalAlignment="Left"/>
 
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <StackPanel x:Name="StDifficulty" Orientation="Horizontal" Margin="18 10 0 0">
+                                                <Grid Width="95" Height="70">
+                                                    <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                    <Image Source="{Binding DifficultyImage}" RenderOptions.BitmapScalingMode="Fant" Width="95" Height="45" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                                </Grid>
+                                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0">
+                                                    <TextBlock Text="Сложность" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
+                                                        <TextBlock.Foreground>
+                                                            <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
+                                                    <TextBlock Text="{Binding Difficulty.Name}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White" HorizontalAlignment="Left" />
+
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Margin="30 10 0 0">
+                                                <Grid Width="70" Height="70">
+                                                    <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                    <Image Source="/Resources/Misc/BookIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="55" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                                </Grid>
+                                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                    <TextBlock Text="Глава" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
+                                                        <TextBlock.Foreground>
+                                                            <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
+                                                    <TextBlock Text="{Binding Сhapter.Name}" TextWrapping="Wrap" Width="200" TextAlignment="Left" FontSize="20" FontWeight="Bold" Style="{DynamicResource LinkHeader}" Foreground="White" HorizontalAlignment="Left"/>
+
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
 
-                                        <StackPanel x:Name="StDifficulty" Orientation="Horizontal" Margin="18 10 0 0">
-                                            <Grid Width="95" Height="70">
-                                                <Ellipse Fill="Black" Width="70" Height="70"/>
-                                                <Image Source="{Binding DifficultyImage}" RenderOptions.BitmapScalingMode="Fant" Width="95" Height="45" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
-                                            </Grid>
-                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0">
-                                                <TextBlock Text="Сложность" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
-                                                    <TextBlock.Foreground>
-                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
-                                                    </TextBlock.Foreground>
-                                                </TextBlock>
-                                                <TextBlock Text="{Binding Difficulty.Name}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White" HorizontalAlignment="Left" />
-
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal" x:Name="StTerrorRadius" Margin="10 20 0 0">
+                                                <Grid Width="70" Height="70">
+                                                    <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                    <Image Source="/Resources/Misc/TerrorIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Margin="0 0 0 4" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                                                </Grid>
+                                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                    <TextBlock Text="Террор" FontSize="20" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}">
+                                                        <TextBlock.Foreground>
+                                                            <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
+                                                    <TextBlock Text="{Binding TerrorRadius, StringFormat='{}{0} м'}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}"/>
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
 
-                                        <StackPanel Orientation="Horizontal" Margin="30 10 0 0">
-                                            <Grid Width="70" Height="70">
-                                                <Ellipse Fill="Black" Width="70" Height="70"/>
-                                                <Image Source="/Resources/Misc/BookIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="55" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
-                                            </Grid>
-                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
-                                                <TextBlock Text="Глава" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
-                                                    <TextBlock.Foreground>
-                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
-                                                    </TextBlock.Foreground>
-                                                </TextBlock>
-                                                <TextBlock Text="{Binding Сhapter.Name}" TextWrapping="Wrap" Width="200" TextAlignment="Left" FontSize="20" FontWeight="Bold" Style="{DynamicResource LinkHeader}" Foreground="White" HorizontalAlignment="Left"/>
+                                            <StackPanel x:Name="StMoveSpeed" Orientation="Horizontal" Margin="10 10 0 0">
+                                                <Grid Width="70" Height="70">
+                                                    <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                    <Image Source="/Resources/Misc/MoveIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                                </Grid>
+                                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                    <TextBlock Text="Скорость" FontSize="20" FontWeight="Bold" TextAlignment="Center"  HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}">
+                                                        <TextBlock.Foreground>
+                                                            <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
+                                                    <TextBlock Text="{Binding MoveSpeed, StringFormat='{}{0} м/с'}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}"/>
 
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
 
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal" x:Name="StTerrorRadius" Margin="10 20 0 0">
-                                            <Grid Width="70" Height="70">
-                                                <Ellipse Fill="Black" Width="70" Height="70"/>
-                                                <Image Source="/Resources/Misc/TerrorIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Margin="0 0 0 4" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                                            </Grid>
-                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
-                                                <TextBlock Text="Террор" FontSize="20" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}">
-                                                    <TextBlock.Foreground>
-                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
-                                                    </TextBlock.Foreground>
-                                                </TextBlock>
-                                                <TextBlock Text="{Binding TerrorRadius, StringFormat='{}{0} м'}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}"/>
+                                            <StackPanel Orientation="Horizontal" x:Name="StHeight" Margin="10 10 0 0">
+                                                <Grid Width="70" Height="70">
+                                                    <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                    <Image Source="/Resources/Misc/HeightIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                                </Grid>
+                                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                    <TextBlock Text="Рост" FontSize="20" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}">
+                                                        <TextBlock.Foreground>
+                                                            <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                        </TextBlock.Foreground>
+                                                    </TextBlock>
+                                                    <TextBlock Text="{Binding Height}"  TextAlignment="Left" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}"/>
+
+                                                </StackPanel>
                                             </StackPanel>
+
+                                            <TextBlock x:Name="TbDiaryLetter" Visibility="Collapsed" Text="{Binding DiaryLetter}" TextWrapping="Wrap" Width="280" FontWeight="DemiBold" TextAlignment="Left" FontSize="16"  Style="{DynamicResource MiniText}" Foreground="White" HorizontalAlignment="Left" Margin="0 20 0 0"/>
                                         </StackPanel>
-
-                                        <StackPanel x:Name="StMoveSpeed" Orientation="Horizontal" Margin="10 10 0 0">
-                                            <Grid Width="70" Height="70">
-                                                <Ellipse Fill="Black" Width="70" Height="70"/>
-                                                <Image Source="/Resources/Misc/MoveIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
-                                            </Grid>
-                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
-                                                <TextBlock Text="Скорость" FontSize="20" FontWeight="Bold" TextAlignment="Center"  HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}">
-                                                    <TextBlock.Foreground>
-                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
-                                                    </TextBlock.Foreground>
-                                                </TextBlock>
-                                                <TextBlock Text="{Binding MoveSpeed, StringFormat='{}{0} м/с'}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}"/>
-
-                                            </StackPanel>
-                                        </StackPanel>
-
-                                        <StackPanel Orientation="Horizontal" x:Name="StHeight" Margin="10 10 0 0">
-                                            <Grid Width="70" Height="70">
-                                                <Ellipse Fill="Black" Width="70" Height="70"/>
-                                                <Image Source="/Resources/Misc/HeightIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
-                                            </Grid>
-                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
-                                                <TextBlock Text="Рост" FontSize="20" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}">
-                                                    <TextBlock.Foreground>
-                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
-                                                    </TextBlock.Foreground>
-                                                </TextBlock>
-                                                <TextBlock Text="{Binding Height}"  TextAlignment="Left" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}"/>
-
-                                            </StackPanel>
-                                        </StackPanel>
-
-                                        <TextBlock x:Name="TbDiaryLetter" Visibility="Collapsed" Text="{Binding DiaryLetter}" TextWrapping="Wrap" Width="280" FontWeight="DemiBold" TextAlignment="Left" FontSize="16"  Style="{DynamicResource MiniText}" Foreground="White" HorizontalAlignment="Left" Margin="0 20 0 0"/>
                                     </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Viewbox>
 
-                    <StackPanel Margin="0 30 0 0" Orientation="Horizontal">
-                        <StackPanel Width="590" Margin="45 0 0 0">
+                    <Grid Margin="0 30 0 0">
+                        <StackPanel Width="590" Margin="60 0 0 0" HorizontalAlignment="Left">
                             <TextBlock x:Name="PowerAndPerksHeader" Text="СИЛА И НАВЫКИ" Foreground="White" FontSize="34"  HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource EuropeTitleFont}"/>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
@@ -213,7 +215,7 @@
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <Button x:Name="PerkDemoBtn"  Style="{DynamicResource MovingAnglesButton}" Foreground="#FFC7211F" VerticalAlignment="Top" Height="348" Width="600">
+                        <Button x:Name="PerkDemoBtn" HorizontalAlignment="Right" Margin="0 0 60 0" Style="{DynamicResource MovingAnglesButton}" Foreground="#FFC7211F" VerticalAlignment="Top" Height="348" Width="600">
                             <Button.Background>
                                 <ImageBrush x:Name="PerksDemoImage"/>
                             </Button.Background>
@@ -222,7 +224,7 @@
                             </Button.BitmapEffect>
                         </Button>
 
-                    </StackPanel>
+                    </Grid>
                     <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18">
                         <Rectangle.OpacityMask>
                             <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
@@ -233,9 +235,9 @@
                     </Rectangle>
 
                     <StackPanel Background="#FF121212">
-                        <StackPanel VerticalAlignment="Center" Margin="50 20 0 0">
+                        <StackPanel VerticalAlignment="Center" Margin="60 20 0 0">
                             <TextBlock Text="История" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White"/>
-                            <TextBlock Text="{Binding Lore}" FontSize="16" Width="1200"  HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 20 0 20" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Lore}" FontSize="16" Width="1270"  HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 20 0 20" TextWrapping="Wrap"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -250,19 +252,19 @@
                         </Rectangle>
 
                         <Image x:Name="HauntedLine" Source="/Resources/HauntedTheme/Line1.png" VerticalAlignment="Top" Margin="0 62 0 0" Panel.ZIndex="1" Visibility="Collapsed"/>
-                        <StackPanel Orientation="Horizontal" MinHeight="390" Margin="0 100 0 0" Background="#FF121212">
-                            <StackPanel Margin="0 0 0 0" Width="640">
-                                <TextBlock Text="{Binding Сhapter.Name}" Width="590" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="50 20 0 0"/>
-                                <Rectangle x:Name="LineSepChapter" Fill="#FFA31816" Width="80" Height="4" Margin="55 3 0 0" HorizontalAlignment="Left">
+                        <Grid MinHeight="390" Margin="0 100 0 0" Background="#FF121212">
+                            <StackPanel Margin="60 0 0 0" HorizontalAlignment="Left" Width="650">
+                                <TextBlock Text="{Binding Сhapter.Name}" Width="650" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="0 20 0 0"/>
+                                <Rectangle x:Name="LineSepChapter" Fill="#FFA31816" Width="80" Height="4" Margin="5 3 0 0" HorizontalAlignment="Left">
                                     <Rectangle.RenderTransform>
                                         <SkewTransform AngleX="-45"/>
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
-                                <TextBlock Text="{Binding Сhapter.Description}" Width="580" TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="50 20 0 0"/>
-                                <Button x:Name="ChapterViewBtn" Background="Transparent" Style="{DynamicResource ChapterRedBtn}" Height="50" Width="180" Content="Подробнее" HorizontalAlignment="Left" Margin="50 20 0 0" Cursor="Hand" Click="ChapterViewBtn_Click"/>
+                                <TextBlock Text="{Binding Сhapter.Description}" Width="650" TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="00 20 0 0"/>
+                                <Button x:Name="ChapterViewBtn" Background="Transparent" Style="{DynamicResource ChapterRedBtn}" Height="50" Width="180" Content="Подробнее" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="ChapterViewBtn_Click"/>
                             </StackPanel>
-                            <Image Width="650" Stretch="Uniform" Source="{Binding Сhapter.MainImage}" VerticalAlignment="Top"/>
-                        </StackPanel>
+                            <Image Width="690" Stretch="UniformToFill" Source="{Binding Сhapter.MainImage}" HorizontalAlignment="Right" Height="430" VerticalAlignment="Top" Cursor=""/>
+                        </Grid>
                     </Grid>
                 </StackPanel>
             </Grid>

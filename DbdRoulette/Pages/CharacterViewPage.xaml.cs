@@ -147,11 +147,21 @@ namespace DbdRoulette.Pages
 
         private void RadioPower_Checked(object sender, RoutedEventArgs e)
         {
+            var animationOpacity = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.5),
+
+            };
             var character = contextCharacter as Killer;
             TbTypeHeader.Text = "Сила";
             PerksDemoImage.ImageSource = ImageConvert(character.Power.DemoImage);
             TbTitlePerk.Text = character.Power.Name;
             TbPerkDescription.Text = character.Power.Description;
+            PerksDemoImage.BeginAnimation(ImageBrush.OpacityProperty, animationOpacity);
+            PerkDetailsContainer.BeginAnimation(StackPanel.OpacityProperty, animationOpacity);
+
         }
 
         private void ChapterViewBtn_Click(object sender, RoutedEventArgs e)

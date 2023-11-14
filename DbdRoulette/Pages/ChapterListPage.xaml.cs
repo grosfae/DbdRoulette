@@ -27,6 +27,9 @@ namespace DbdRoulette.Pages
         {
             InitializeComponent();
             LvSlider.ItemsSource = App.DB.Chapter.ToList();
+            CbSort.Items.Add("Самые новые");
+            CbSort.Items.Add("Самые ранние");
+            CbSort.SelectedIndex = 0;
         }
         private void RadioKiller_Checked(object sender, RoutedEventArgs e)
         {
@@ -121,6 +124,11 @@ namespace DbdRoulette.Pages
         private void ScrollElem_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             
+        }
+
+        private void ChapterBlockElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

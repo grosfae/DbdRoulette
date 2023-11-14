@@ -20,11 +20,11 @@ using System.Windows.Shapes;
 namespace DbdRoulette.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для KillerListPage.xaml
+    /// Логика взаимодействия для CharacterListPage.xaml
     /// </summary>
-    public partial class KillerListPage : Page
+    public partial class CharacterListPage : Page
     {
-        public KillerListPage()
+        public CharacterListPage()
         {
             InitializeComponent();
 
