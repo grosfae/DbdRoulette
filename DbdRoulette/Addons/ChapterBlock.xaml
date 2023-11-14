@@ -85,7 +85,7 @@
                                 <Ellipse Fill="White" Height="7" Width="7"/>
                             </Border>
                         </BulletDecorator.Bullet>
-                        <TextBlock Text="{Binding Map.Name,StringFormat='Новая Локация: {0}'}" TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
+                    <TextBlock Text="{Binding MapName,StringFormat='Новая Локация: {0}'}" TextWrapping="Wrap" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="10 0 0 0" />
                     </BulletDecorator>
 
                     <BulletDecorator Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}" Visibility="{Binding ExclusiveVisibility}">

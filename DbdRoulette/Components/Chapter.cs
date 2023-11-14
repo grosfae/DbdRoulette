@@ -80,6 +80,22 @@ namespace DbdRoulette.Components
             }
         }
 
+        public string MapName
+        {
+            get
+            {
+                var selectedMap = Map.FirstOrDefault(x => x.ChapterId == Id);
+                if (selectedMap != null)
+                {
+                    return selectedMap.Name;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public string ExclusiveItem
         {
             get
