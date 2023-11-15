@@ -882,7 +882,7 @@
 
                                             <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="RecRight"  From="0.0" To="1.0" Duration="0:0:0.2"/>
 
-                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="RecRight"  From="0.0" To="1.0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleY)" Storyboard.TargetName="RecRight"  From="0.0" To="1.0" Duration="0:0:0.3"/>
 
                                             <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleX)" Storyboard.TargetName="MainGrid"  From="0.8" To="1.0" Duration="0:0:0.3"/>
 

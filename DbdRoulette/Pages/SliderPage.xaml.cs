@@ -30,7 +30,7 @@ namespace DbdRoulette.Pages
             {
                 LvPerks.Items.Add(item);
             }
-           
+            
         }
 
         private BitmapImage ImageConvert(byte[] convertableImage)
@@ -55,24 +55,62 @@ namespace DbdRoulette.Pages
             var selectedPerk = (sender as RadioButton).DataContext as Perk;
             MainImage.Source = ImageConvert(selectedPerk.DemoImage);
             LvPerks.SelectedItem = selectedPerk;
-            
-            if(LvPerks.SelectedIndex == 0)
+            LvPerks.RenderTransform = new TranslateTransform();
+
+            var easing = new QuarticEase
+            {
+                EasingMode = EasingMode.EaseInOut
+            };
+
+            var animationOpacity = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(0.3),
+
+            };
+
+            var animationDown = new DoubleAnimation
+            {
+                From = 0,
+                To = -50,
+                Duration = TimeSpan.FromSeconds(0.3),
+                AutoReverse = true,
+                EasingFunction = easing
+
+            };
+            var animationUp= new DoubleAnimation
+            {
+                From = 0,
+                To = 50,
+                AutoReverse = true,
+                Duration = TimeSpan.FromSeconds(0.3),
+                EasingFunction = easing
+
+            };
+            if (LvPerks.SelectedIndex == 0)
             {
                 LvPerks.Items.Insert(0 , LvPerks.Items[LvPerks.Items.Count - 1]);
                 LvPerks.Items.RemoveAt(LvPerks.Items.Count - 1);
                 LvPerks.Items.Insert(0 , LvPerks.Items[LvPerks.Items.Count - 1]);
                 LvPerks.Items.RemoveAt(LvPerks.Items.Count - 1);
+                LvPerks.RenderTransform.BeginAnimation(TranslateTransform.YProperty, animationUp);
+                LvPerks.BeginAnimation(ListView.OpacityProperty, animationOpacity);
 
             }
             if (LvPerks.SelectedIndex == 1)
             {
                 LvPerks.Items.Insert(0, LvPerks.Items[LvPerks.Items.Count - 1]);
                 LvPerks.Items.RemoveAt(LvPerks.Items.Count - 1);
+                LvPerks.RenderTransform.BeginAnimation(TranslateTransform.YProperty, animationUp);
+                LvPerks.BeginAnimation(ListView.OpacityProperty, animationOpacity);
             }
             if (LvPerks.SelectedIndex == 3)
             {
                 LvPerks.Items.Add(LvPerks.Items[0]);
                 LvPerks.Items.RemoveAt(0);
+                LvPerks.RenderTransform.BeginAnimation(TranslateTransform.YProperty, animationDown);
+                LvPerks.BeginAnimation(ListView.OpacityProperty, animationOpacity);
             }
             if (LvPerks.SelectedIndex == 4)
             {
@@ -80,25 +118,11 @@ namespace DbdRoulette.Pages
                 LvPerks.Items.RemoveAt(0);
                 LvPerks.Items.Add(LvPerks.Items[0]);
                 LvPerks.Items.RemoveAt(0);
-
+                LvPerks.RenderTransform.BeginAnimation(TranslateTransform.YProperty, animationDown);
+                LvPerks.BeginAnimation(ListView.OpacityProperty, animationOpacity);
             }
 
         }
 
-        private void RadioPerkBtn_Initialized(object sender, EventArgs e)
-        {
-            if (LvPerks.SelectedIndex == 0)
-            {
-                (sender as RadioButton).BeginAnimation(ScaleTransform.ScaleYProperty,
-                new DoubleAnimation
-                {
-                   From = 0,
-                   To = 1,
-                   Duration = TimeSpan.FromSeconds(0.2),
-
-                });
-
-            }
-        }
     }
 }

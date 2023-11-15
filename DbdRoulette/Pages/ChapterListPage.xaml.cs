@@ -30,84 +30,13 @@ namespace DbdRoulette.Pages
             CbSort.Items.Add("Самые новые");
             CbSort.Items.Add("Самые ранние");
             CbSort.SelectedIndex = 0;
+            TbDescription.Text = "Расширьте свои возможности в Dead by Daylight с помощью множества DLC в виде глав. Купив главу, вы получите доступ к новым убийцам, " +
+                "выжившим и эксклюзивным предметам. Карты остаются бесплатными для всех игроков. \n \n" +
+                "Существуют главы, в которых также добавлялся второй выживший или добавлялся только убийца без выживших.";
+            LvSkew.ItemsSource = App.DB.Chapter.Take(3).ToList();
         }
-        private void RadioKiller_Checked(object sender, RoutedEventArgs e)
-        {
-            PresentImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/Misc/KillerImage.jpg"));
-            var animationOpacity = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromSeconds(1.5),
+       
 
-            };
-
-
-            var animationBlur = new DoubleAnimation
-            {
-                From = 30,
-                To = 0,
-                Duration = TimeSpan.FromSeconds(1),
-
-            };
-            PresentImage.BeginAnimation(ImageBrush.OpacityProperty, animationOpacity);
-            BlurRad.BeginAnimation(BlurBitmapEffect.RadiusProperty, animationBlur);
-
-            CbSort.Items.Clear();
-
-            CbSort.Items.Add("Самые новые");
-            CbSort.Items.Add("Самые ранние");
-            CbSort.Items.Add("Сложность - Легко");
-            CbSort.Items.Add("Сложность - Умеренно");
-            CbSort.Items.Add("Сложность - Тяжело");
-            CbSort.Items.Add("Сложность - Очень тяжело");
-
-            CbSort.SelectedIndex = 0;
-        }
-
-        private void RadioSurvivor_Checked(object sender, RoutedEventArgs e)
-        {
-            PresentImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/Misc/SurvivorImage.jpg"));
-
-            var animationOpacity = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromSeconds(1.5),
-
-            };
-
-            var animationBlur = new DoubleAnimation
-            {
-                From = 30,
-                To = 0,
-                Duration = TimeSpan.FromSeconds(1),
-
-            };
-            PresentImage.BeginAnimation(ImageBrush.OpacityProperty, animationOpacity);
-            BlurRad.BeginAnimation(BlurBitmapEffect.RadiusProperty, animationBlur);
-
-            CbSort.Items.Clear();
-
-            CbSort.Items.Add("Самые новые");
-            CbSort.Items.Add("Самые ранние");
-
-            CbSort.SelectedIndex = 0;
-
-        }
-        private void TbSelectedCharacterBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (RadioKiller.IsChecked == true)
-            {
-                var selectedKiller = (sender as Button).DataContext as Killer;
-                NavigationService.Navigate(new CharacterViewPage(selectedKiller));
-            }
-            else
-            {
-                var selectedSurvivor = (sender as Button).DataContext as Survivor;
-                NavigationService.Navigate(new CharacterViewPage(selectedSurvivor));
-            }
-        }
 
         
         private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -26,16 +26,11 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="50 0 50 0" Panel.ZIndex="1" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
+                    <Grid >
                         <StackPanel HorizontalAlignment="Left">
-                            <TextBlock Style="{DynamicResource Header}" Text="Список персонажей" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
-                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="У каждого персонажа есть захватывающая предыстория, связанная с уникальным набором способностей. Ознакомьтесь с полным списком убийц и выживших в Dead by Daylight." TextWrapping="Wrap" Width="400" Foreground="White" FontSize="20"/>
-                            <Border Margin="0 20 0 0" BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left">
-                                <StackPanel Orientation="Horizontal" Height="60">
-                                    <RadioButton x:Name="RadioKiller" Style="{DynamicResource RedRadio}" Content="Убийцы" Width="200" Checked="RadioKiller_Checked"/>
-                                    <RadioButton x:Name="RadioSurvivor" Style="{DynamicResource BlueRadio}" Content="Выжившие" Width="200" Checked="RadioSurvivor_Checked"/>
-                                </StackPanel>
-                            </Border>
+                            <TextBlock Style="{DynamicResource Header}" Text="Дополнительный контент" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                            <TextBlock x:Name="TbDescription" Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left"  TextWrapping="Wrap" Width="400" Foreground="White" FontSize="20"/>
+
                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Left">
                                 <StackPanel>
                                     <TextBlock Text="Отсортировать по" Foreground="White" FontSize="20" Style="{DynamicResource Header}"/>
@@ -55,17 +50,24 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <Border Margin="40 0 0 0" Width="600">
-                            <Button Style="{DynamicResource MovingAnglesButton}" Foreground="#3881EF">
-                                <Button.Background>
-                                    <ImageBrush x:Name="PresentImage" ImageSource="/Resources/Misc/KillerImage.jpg"/>
-                                </Button.Background>
-                                <Button.BitmapEffect>
-                                    <BlurBitmapEffect Radius="0" x:Name="BlurRad"/>
-                                </Button.BitmapEffect>
-                            </Button>
-                        </Border>
-                    </StackPanel>
+                        <ListView Width="600" x:Name="LvSkew" HorizontalAlignment="Right" d:ItemsSource="{d:SampleData ItemCount=3}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.Template>
+                                <ControlTemplate TargetType="ItemsControl">
+                                    <ItemsPresenter HorizontalAlignment="Center"/>
+                                </ControlTemplate>
+                            </ListView.Template>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <addons:ChapterRectangle DataContext="{Binding}" Height="300" Width="200" Margin="-20 0"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
 
                     <ListView d:ItemsSource="{d:SampleData ItemCount=7}" x:Name="LvSlider" Width="1280" Margin="0 40 0 0" Focusable="False">
                         <ListView.ItemsPanel>
