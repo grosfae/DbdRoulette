@@ -375,7 +375,7 @@
     <Resource Include="Resources\HauntedTheme\Line1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Addons\Rectangle 62.svg" />
+    <Resource Include="Resources\Misc\HalfIcon.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

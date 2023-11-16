@@ -27,10 +27,118 @@
 
                 <StackPanel Grid.Row="1" Margin="50 0 50 0" Panel.ZIndex="1" HorizontalAlignment="Center">
                     <Grid >
-                        <StackPanel HorizontalAlignment="Left">
-                            <TextBlock Style="{DynamicResource Header}" Text="Дополнительный контент" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
-                            <TextBlock x:Name="TbDescription" Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left"  TextWrapping="Wrap" Width="400" Foreground="White" FontSize="20"/>
+                        <StackPanel>
+                            <TextBlock Style="{DynamicResource Header}" Text="Дополнительный контент" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                            <TextBlock Text="Расширьте свои возможности в Dead by Daylight с помощью множества DLC в виде глав. Купив главу, вы получите доступ к новым убийцам, выжившим и эксклюзивным предметам. Карты остаются бесплатными для всех игроков." Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Center"  TextWrapping="Wrap" Width="700" TextAlignment="Center" Foreground="White" FontSize="20"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0" Cursor="">
+                                <Grid Height="300" Width="270" Background="#FF0A1A26">
+                                    <Rectangle>
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                                <GradientStop Color="#FFAA1A18"/>
+                                                <GradientStop Color="#FF2D63A1" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                        <Rectangle.OpacityMask>
+                                            <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                                <GradientStop Color="Transparent" Offset="0.15"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock Style="{DynamicResource Header}" Text="Выжившие и убийцы" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
+                                    <Grid Margin="0 50 0 0">
+                                        <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                            <Ellipse.Effect>
+                                                <BlurEffect Radius="40"/>
+                                            </Ellipse.Effect>
+                                        </Ellipse>
+                                        <Image Source="/Resources/Misc/HalfIcon.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Button Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Разные главы"  Content="Существуют главы, в которых также добавлялся второй выживший, только выживший или добавлялся только убийца без выживших." Cursor="Arrow" />
+                                </Grid>
+                                
+                                <Grid Height="300" Width="270" Background="#FF0A1A26" Margin="40 0 0 0">
+                                    <Rectangle>
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                                <GradientStop Color="#FFAA1A18"/>
+                                                <GradientStop Color="#FF2D63A1" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                        <Rectangle.OpacityMask>
+                                            <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                                <GradientStop Color="Transparent" Offset="0.15"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock Style="{DynamicResource Header}" Text="Новые локации" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
+                                    <Grid Margin="0 50 0 0">
+                                        <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                            <Ellipse.Effect>
+                                                <BlurEffect Radius="40"/>
+                                            </Ellipse.Effect>
+                                        </Ellipse>
+                                        <Image Source="/Resources/Misc/HalfIcon.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Button Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Разные главы"  Content="Существуют главы, в которых также добавлялся второй выживший, только выживший или добавлялся только убийца без выживших." Cursor="Arrow" />
+                                </Grid>
+                                
+                                <Grid Height="300" Width="270" Background="#FF0A1A26">
+                                    <Rectangle>
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                                <GradientStop Color="#FFAA1A18"/>
+                                                <GradientStop Color="#FF2D63A1" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                        <Rectangle.OpacityMask>
+                                            <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                                <GradientStop Color="Transparent" Offset="0.15"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock Style="{DynamicResource Header}" Text="Выжившие и убийцы" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
+                                    <Grid Margin="0 50 0 0">
+                                        <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                            <Ellipse.Effect>
+                                                <BlurEffect Radius="40"/>
+                                            </Ellipse.Effect>
+                                        </Ellipse>
+                                        <Image Source="/Resources/Misc/HalfIcon.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Button Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Разные главы"  Content="Существуют главы, в которых также добавлялся второй выживший, только выживший или добавлялся только убийца без выживших." Cursor="Arrow" />
+                                </Grid>
+                                <Grid Height="300" Width="270" Background="#FF0A1A26">
+                                    <Rectangle>
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                                <GradientStop Color="#FFAA1A18"/>
+                                                <GradientStop Color="#FF2D63A1" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                        <Rectangle.OpacityMask>
+                                            <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                                <GradientStop Color="Transparent" Offset="0.15"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock Style="{DynamicResource Header}" Text="Выжившие и убийцы" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
+                                    <Grid Margin="0 50 0 0">
+                                        <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                            <Ellipse.Effect>
+                                                <BlurEffect Radius="40"/>
+                                            </Ellipse.Effect>
+                                        </Ellipse>
+                                        <Image Source="/Resources/Misc/HalfIcon.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Button Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Разные главы"  Content="Существуют главы, в которых также добавлялся второй выживший, только выживший или добавлялся только убийца без выживших." Cursor="Arrow" />
+                                </Grid>
 
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Left">
                                 <StackPanel>
                                     <TextBlock Text="Отсортировать по" Foreground="White" FontSize="20" Style="{DynamicResource Header}"/>
@@ -50,23 +158,6 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <ListView Width="600" x:Name="LvSkew" HorizontalAlignment="Right" d:ItemsSource="{d:SampleData ItemCount=3}">
-                            <ListView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.Template>
-                                <ControlTemplate TargetType="ItemsControl">
-                                    <ItemsPresenter HorizontalAlignment="Center"/>
-                                </ControlTemplate>
-                            </ListView.Template>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <addons:ChapterRectangle DataContext="{Binding}" Height="300" Width="200" Margin="-20 0"/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
                     </Grid>
 
                     <ListView d:ItemsSource="{d:SampleData ItemCount=7}" x:Name="LvSlider" Width="1280" Margin="0 40 0 0" Focusable="False">

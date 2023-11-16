@@ -30,13 +30,7 @@ namespace DbdRoulette.Pages
             CbSort.Items.Add("Самые новые");
             CbSort.Items.Add("Самые ранние");
             CbSort.SelectedIndex = 0;
-            TbDescription.Text = "Расширьте свои возможности в Dead by Daylight с помощью множества DLC в виде глав. Купив главу, вы получите доступ к новым убийцам, " +
-                "выжившим и эксклюзивным предметам. Карты остаются бесплатными для всех игроков. \n \n" +
-                "Существуют главы, в которых также добавлялся второй выживший или добавлялся только убийца без выживших.";
-            LvSkew.ItemsSource = App.DB.Chapter.Take(3).ToList();
         }
-       
-
 
         
         private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
