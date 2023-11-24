@@ -144,9 +144,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Addons\ChapterRectangle.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Addons\SliderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -155,8 +155,8 @@
     <Compile Include="Addons\ChapterBlock.xaml.cs">
       <DependentUpon>ChapterBlock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Addons\ChapterRectangle.xaml.cs">
-      <DependentUpon>ChapterRectangle.xaml</DependentUpon>
+    <Compile Include="Addons\SliderControl.xaml.cs">
+      <DependentUpon>SliderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -187,6 +187,8 @@
     <Compile Include="Components\SurvivorCosmeticOutfit.cs" />
     <Compile Include="Components\SurvivorPerk.cs" />
     <Compile Include="Components\User.cs" />
+    <Compile Include="Converters\StyleParametersConverter.cs" />
+    <Compile Include="Converters\StylePlusConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -194,6 +196,10 @@
     <Page Include="Pages\ChapterListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ChapterViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\CharacterViewPage.xaml">
       <SubType>Designer</SubType>
@@ -219,6 +225,9 @@
   <ItemGroup>
     <Compile Include="Pages\ChapterListPage.xaml.cs">
       <DependentUpon>ChapterListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChapterViewPage.xaml.cs">
+      <DependentUpon>ChapterViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CharacterViewPage.xaml.cs">
       <DependentUpon>CharacterViewPage.xaml</DependentUpon>
@@ -376,6 +385,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Misc\HalfIcon.png" />
+    <Resource Include="Resources\Misc\ChapterCharmBackground.png" />
+    <Resource Include="Resources\Misc\CharmIcon.png" />
+    <Resource Include="Resources\Misc\MapIcon.png" />
+    <Resource Include="Resources\Misc\RedBackground.png" />
+    <Resource Include="Resources\Misc\StoreIcon.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

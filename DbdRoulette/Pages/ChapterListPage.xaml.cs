@@ -51,7 +51,8 @@ namespace DbdRoulette.Pages
 
         private void ChapterBlockElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            var selectedItem = (sender as UserControl).DataContext as Chapter;
+            NavigationService.Navigate(new ChapterViewPage(selectedItem));
         }
     }
 }

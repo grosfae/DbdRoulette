@@ -44,7 +44,7 @@ namespace DbdRoulette.Addons
             contextChapter = DataContext as Chapter;
             var chapter = contextChapter as Chapter;
 
-            if(chapter.MainImage != null)
+            if (chapter.MainImage != null)
             {
                 Images.Add(chapter.MainImage);
             }
@@ -79,12 +79,11 @@ namespace DbdRoulette.Addons
                 }
 
             }
-            
+
             if (Images.Count > 0)
             {
                 maxPage = Images.Count;
             }
-            
         }
 
         private void Refresh()
@@ -243,6 +242,10 @@ namespace DbdRoulette.Addons
 
         }
 
-        
+        private void UcGlobal_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Images.Clear();
+            maxPage = 1;
+        }
     }
 }

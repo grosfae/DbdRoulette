@@ -1,0 +1,42 @@
+﻿<UserControl x:Name="userControl" x:Class="DbdRoulette.Addons.SliderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DbdRoulette.Addons"
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
+            >
+    <Grid>
+        <ListView d:ItemsSource="{d:SampleData ItemCount=1}" x:Name="LvSlider" Height="{Binding ActualHeight, ElementName=userControl, Mode=OneWay}" Margin="0 -1">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.Template>
+                <ControlTemplate TargetType="ItemsControl">
+                    <ItemsPresenter HorizontalAlignment="Center" Grid.ColumnSpan="3"/>
+                </ControlTemplate>
+            </ListView.Template>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Image x:Name="image" Margin="-5 0" Height="{Binding ActualHeight, ElementName=LvSlider, Mode=OneWay}" Source="{Binding}" Width="{Binding ActualWidth, ElementName=LvSlider, Mode=OneWay}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Viewbox Margin="20 0 0 0" VerticalAlignment="Center" Width="50"  HorizontalAlignment="Left">
+            <Button x:Name="LeftListBtn" Style="{DynamicResource ListviewArrowBtn}" Width="25" Height="25" FontSize="18" VerticalAlignment="Center" Panel.ZIndex="1" Cursor="Hand" Click="LeftListBtn_Click" >
+                <Path Data="M 410.312 454.729 151.767 244.996 410.312 35.271 381.693 0 79.688 244.996 381.693 490 Z" Fill="White" Stretch="Fill" Height="10" Width="6" Margin="0 0 2 0"/>
+            </Button>
+        </Viewbox>
+        <Viewbox Margin="0 0 20 0" VerticalAlignment="Center" Width="50" HorizontalAlignment="Right" >
+            <Button x:Name="RightListBtn" Grid.Column="2" Style="{DynamicResource ListviewArrowBtn}" Width="25" Height="25" FontSize="18" Cursor="Hand" Click="RightListBtn_Click" >
+                <Path Data="M 106.601 490 412.15 245.004 106.601 0 77.85 35.856 338.702 245.004 77.85 454.159 Z" Fill="White" Stretch="Fill" Height="10" Width="6" Margin="2 0 0 0"/>
+            </Button>
+        </Viewbox>
+        <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 20" Width="50">
+            <StackPanel x:Name="DotStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Loaded="DotStackPanel_Loaded" />
+        </Viewbox>
+
+    </Grid>
+</UserControl>

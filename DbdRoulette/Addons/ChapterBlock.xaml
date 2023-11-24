@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DbdRoulette.Addons"
              mc:Ignorable="d" x:Name="UcGlobal"
-             d:DesignHeight="560" d:DesignWidth="380" Loaded="UserControl_Loaded" MouseEnter="UcGlobal_MouseEnter" MouseLeave="UcGlobal_MouseLeave">
+             d:DesignHeight="560" d:DesignWidth="380" Loaded="UserControl_Loaded" Unloaded="UcGlobal_Unloaded"  MouseEnter="UcGlobal_MouseEnter" MouseLeave="UcGlobal_MouseLeave">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
