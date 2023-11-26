@@ -48,70 +48,70 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="0 0 0 100">
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="30 0 0 0">
-                                            <Grid>
-                                                <Grid.Background>
-                                                    <ImageBrush ImageSource="{Binding MainBackground}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"/>
-                                                </Grid.Background>
-                                                <Rectangle Fill="Black" Opacity="0.3"/>
-                                                <Image Source="{Binding MainImage}" Width="590" Height="{Binding ActualHeight, ElementName=TextSection, Mode=OneWay}" RenderOptions.BitmapScalingMode="Fant"/>
-                                            </Grid>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="30 0 0 0">
+                                        <Grid>
+                                            <Grid.Background>
+                                                <ImageBrush ImageSource="{Binding MainBackground}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"/>
+                                            </Grid.Background>
+                                            <Rectangle Fill="Black" Opacity="0.3"/>
+                                            <Image Source="{Binding MainImage}" Width="590" Height="{Binding ActualHeight, ElementName=TextSection, Mode=OneWay}" RenderOptions.BitmapScalingMode="Fant"/>
+                                        </Grid>
 
-                                            <Grid Height="auto" Width="600" Background="#FFAA1A18" x:Name="TextSection" VerticalAlignment="Top">
-                                                <Polygon Points="-60 0 -250 390 60 390 60 0" HorizontalAlignment="Right">
-                                                    <Polygon.Fill>
-                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                            <GradientStop Color="#FF880E0D" Offset="0"/>
-                                                            <GradientStop Color="#FFA31816" Offset="1"/>
-                                                        </LinearGradientBrush>
-                                                    </Polygon.Fill>
-                                                </Polygon>
-                                                <StackPanel>
-                                                    <TextBlock Text="{Binding Name}" Width="540" TextWrapping="Wrap" Foreground="White" FontSize="34" Margin="30 30 0 0" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource EuropeTitleFont}"/>
-                                                    <StackPanel Orientation="Horizontal" >
-                                                        <StackPanel Orientation="Horizontal" Margin="30 20 0 0">
-                                                            <Grid Width="70" Height="70">
-                                                                <Ellipse Fill="Black" Width="70" Height="70"/>
-                                                                <Image x:Name="RoleIcon" Source="/Resources/Misc/KillerIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                                                            </Grid>
-                                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
-                                                                <TextBlock Text="Роль" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
-                                                                    <TextBlock.Foreground>
-                                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
-                                                                    </TextBlock.Foreground>
-                                                                </TextBlock>
-                                                                <TextBlock x:Name="RoleTitle" Text="Убийца" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White" HorizontalAlignment="Left"/>
+                                        <Grid Height="auto" Width="600" Background="#FFAA1A18" x:Name="TextSection" VerticalAlignment="Top">
+                                            <Polygon Points="-60 0 -250 390 60 390 60 0" HorizontalAlignment="Right">
+                                                <Polygon.Fill>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FF880E0D" Offset="0"/>
+                                                        <GradientStop Color="#FFA31816" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Polygon.Fill>
+                                            </Polygon>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Name}" Width="540" TextWrapping="Wrap" Foreground="White" FontSize="34" Margin="30 30 0 0" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource EuropeTitleFont}"/>
+                                                <StackPanel Orientation="Horizontal" >
+                                                    <StackPanel Orientation="Horizontal" Margin="30 20 0 0">
+                                                        <Grid Width="70" Height="70">
+                                                            <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                            <Image x:Name="RoleIcon" Source="/Resources/Misc/KillerIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                                                        </Grid>
+                                                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                            <TextBlock Text="Роль" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
+                                                                <TextBlock.Foreground>
+                                                                    <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                                </TextBlock.Foreground>
+                                                            </TextBlock>
+                                                            <TextBlock x:Name="RoleTitle" Text="Убийца" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White" HorizontalAlignment="Left"/>
 
-                                                            </StackPanel>
-                                                        </StackPanel>
-
-                                                        <StackPanel x:Name="StDifficulty" Orientation="Horizontal" Margin="30 20 0 0">
-                                                            <Grid Width="95" Height="70">
-                                                                <Ellipse Fill="Black" Width="70" Height="70"/>
-                                                                <Image Source="{Binding DifficultyImage}" RenderOptions.BitmapScalingMode="Fant" Width="95" Height="45" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
-                                                            </Grid>
-                                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0">
-                                                                <TextBlock Text="Сложность" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
-                                                                    <TextBlock.Foreground>
-                                                                        <SolidColorBrush Color="White" Opacity="0.4"/>
-                                                                    </TextBlock.Foreground>
-                                                                </TextBlock>
-                                                                <TextBlock Text="{Binding Difficulty.Name}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White" HorizontalAlignment="Left" />
-
-                                                            </StackPanel>
                                                         </StackPanel>
                                                     </StackPanel>
-                                                    <TextBlock x:Name="TbDiaryLetter" Text="{Binding DiaryLetter}" TextWrapping="Wrap" Width="500" FontWeight="DemiBold" TextAlignment="Left" FontSize="20"  Style="{DynamicResource MiniText}" Foreground="White" HorizontalAlignment="Left" Margin="30 20 0 20"/>
-                                                    <Button Style="{DynamicResource CardBtnWhite}" Height="60" Width="560" Margin="0 0 0 20" Content="СМОТРЕТЬ ПОЛНОСТЬЮ" Cursor="Hand"/>
+
+                                                    <StackPanel x:Name="StDifficulty" Orientation="Horizontal" Margin="30 20 0 0">
+                                                        <Grid Width="95" Height="70">
+                                                            <Ellipse Fill="Black" Width="70" Height="70"/>
+                                                            <Image Source="{Binding DifficultyImage}" RenderOptions.BitmapScalingMode="Fant" Width="95" Height="45" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                                        </Grid>
+                                                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0">
+                                                            <TextBlock Text="Сложность" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
+                                                                <TextBlock.Foreground>
+                                                                    <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                                </TextBlock.Foreground>
+                                                            </TextBlock>
+                                                            <TextBlock Text="{Binding Difficulty.Name}" FontSize="20" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White" HorizontalAlignment="Left" />
+
+                                                        </StackPanel>
+                                                    </StackPanel>
                                                 </StackPanel>
-                                            </Grid>
-                                        </StackPanel>
+                                                <TextBlock x:Name="TbDiaryLetter" Text="{Binding DiaryLetter}" TextWrapping="Wrap" Width="500" FontWeight="DemiBold" TextAlignment="Left" FontSize="20"  Style="{DynamicResource MiniText}" Foreground="White" HorizontalAlignment="Left" Margin="30 20 0 20"/>
+                                                <Button x:Name="ViewBtn" Style="{DynamicResource CardBtnWhite}" Height="60" Width="560" Margin="0 0 0 20" Content="СМОТРЕТЬ ПОЛНОСТЬЮ" Cursor="Hand" Click="ViewBtn_Click"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
                                     <Image HorizontalAlignment="Right" Source="/Resources/Misc/KillerIcon.png" Height="200" Width="200" Margin="0 0 -170 20" Opacity="0.3" VerticalAlignment="Bottom" Panel.ZIndex="-1" RenderOptions.BitmapScalingMode="Fant"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    
+
                     <ListView x:Name="LvSurvivors" BorderThickness="0" Width="1390" d:ItemsSource="{d:SampleData ItemCount=1}">
                         <ListView.Template>
                             <ControlTemplate TargetType="ItemsControl">
@@ -153,7 +153,7 @@
                                                     </StackPanel>
                                                 </StackPanel>
                                                 <TextBlock x:Name="TbDiaryLetter" Text="{Binding DiaryLetter}" TextWrapping="Wrap" Width="500" FontWeight="DemiBold" TextAlignment="Left" FontSize="20"  Style="{DynamicResource MiniText}" Foreground="White" HorizontalAlignment="Left" Margin="30 20 0 20"/>
-                                                <Button Style="{DynamicResource CardBtnWhite}" Height="60" Width="560" Margin="0 0 0 20" Content="СМОТРЕТЬ ПОЛНОСТЬЮ" Cursor="Hand"/>
+                                                <Button x:Name="ViewBtn" Style="{DynamicResource CardBtnWhite}" Height="60" Width="560" Margin="0 0 0 20" Content="СМОТРЕТЬ ПОЛНОСТЬЮ" Cursor="Hand" Click="ViewBtn_Click"/>
                                             </StackPanel>
                                         </Grid>
 
@@ -239,7 +239,7 @@
                     <Grid HorizontalAlignment="Stretch" Margin="175 0 0 20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -253,7 +253,7 @@
                                 <ImageBrush x:Name="MainImage"/>
                             </Button.Background>
                         </Button>
-                        <ListView x:Name="LvGallery" Grid.Column="1" Grid.RowSpan="2" Focusable="False" BorderThickness="0"  d:ItemsSource="{d:SampleData ItemCount=14}" HorizontalAlignment="Right" Height="740" Margin="100 0 0 0">
+                        <ListView x:Name="LvGallery" Grid.Column="1" Grid.RowSpan="2" Focusable="False" BorderThickness="0" Loaded="LvGallery_Loaded"  d:ItemsSource="{d:SampleData ItemCount=14}" Height="730" Margin="70,0,0,0" HorizontalAlignment="Left">
                             <ListView.Template>
                                 <ControlTemplate TargetType="ItemsControl">
                                     <ItemsPresenter/>
@@ -261,7 +261,7 @@
                             </ListView.Template>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <RadioButton Checked="RadioGalleryBtn_Checked" GroupName="Images" HorizontalAlignment="Center" Style="{DynamicResource PictureSelectRadio}" Width="190" Height="130" Margin="0 5" Cursor="Hand">
+                                    <RadioButton Checked="RadioGalleryBtn_Checked" GroupName="Images" Style="{DynamicResource PictureSelectRadio}" Width="220" Height="130" Margin="0 5" Cursor="Hand">
                                         <RadioButton.Background>
                                             <ImageBrush ImageSource="{Binding DemoImage}"/>
                                         </RadioButton.Background>

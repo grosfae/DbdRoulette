@@ -1,4 +1,5 @@
-﻿using DbdRoulette.Components;
+﻿using DbdRoulette.Addons;
+using DbdRoulette.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,6 @@ namespace DbdRoulette.Pages
         public ChapterListPage()
         {
             InitializeComponent();
-            LvSlider.ItemsSource = App.DB.Chapter.ToList();
             CbSort.Items.Add("Самые новые");
             CbSort.Items.Add("Самые ранние");
             CbSort.SelectedIndex = 0;
@@ -35,24 +35,42 @@ namespace DbdRoulette.Pages
         
         private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            RefreshСhapters();
         }
+        private void RefreshСhapters()
+        {
+            IEnumerable<Chapter> chapters = App.DB.Chapter.ToList();
+            if (CbSort.SelectedIndex == 0)
+            {
+                chapters = chapters.OrderByDescending(x => x.DateRelease);
+            }
+            else if (CbSort.SelectedIndex == 1)
+            {
+                chapters = chapters.OrderBy(x => x.DateRelease);
+            }
+            if (TbSearch.Text.Length > 0)
+            {
+                chapters = chapters.Where(x => x.Name.ToLower().Contains(TbSearch.Text.ToLower()));
+            }
+            LvChapters.ItemsSource = chapters;
 
+            LvChapters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+        }
         private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            RefreshСhapters();
         }
 
-
-        private void ScrollElem_ScrollChanged(object sender, ScrollChangedEventArgs e)
-        {
-            
-        }
 
         private void ChapterBlockElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var selectedItem = (sender as UserControl).DataContext as Chapter;
             NavigationService.Navigate(new ChapterViewPage(selectedItem));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            RefreshСhapters();
         }
     }
 }

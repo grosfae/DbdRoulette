@@ -6,7 +6,7 @@
       xmlns:addons="clr-namespace:DbdRoulette.Addons"
       xmlns:local="clr-namespace:DbdRoulette.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1300" d:DesignWidth="1400"
+      d:DesignHeight="1300" d:DesignWidth="1400" Loaded="Page_Loaded"
       Title="ChapterListPage">
 
     <Grid>
@@ -149,10 +149,10 @@
 
                     </Grid>
 
-                    <ListView d:ItemsSource="{d:SampleData ItemCount=7}" x:Name="LvSlider" Width="1280" Margin="0 40 0 0" Focusable="False">
+                    <ListView d:ItemsSource="{d:SampleData ItemCount=7}" x:Name="LvChapters" Width="1280" Margin="0 40 0 0" Focusable="False">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Width="1280"/>
+                                <WrapPanel Width="1280"/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                         <ListView.Template>
@@ -162,7 +162,7 @@
                         </ListView.Template>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <addons:ChapterBlock x:Name="ChapterBlockElement"  DataContext="{Binding}" MouseLeftButtonDown="ChapterBlockElement_MouseLeftButtonDown" Width="410" Height="558" Margin="0 0 0 20"/>
+                                <addons:ChapterBlock x:Name="ChapterBlockElement"  DataContext="{Binding}" MouseLeftButtonDown="ChapterBlockElement_MouseLeftButtonDown" Width="410" Height="558" Margin="3 0 3 20"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

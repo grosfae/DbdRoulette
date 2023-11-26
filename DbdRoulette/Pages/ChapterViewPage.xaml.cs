@@ -1,4 +1,5 @@
-﻿using DbdRoulette.Components;
+﻿using DbdRoulette.Addons;
+using DbdRoulette.Components;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,7 +27,6 @@ namespace DbdRoulette.Pages
     {
         Chapter contextChapter;
         List<Perk> Images = new List<Perk>();
-
         public ChapterViewPage(Chapter chapter)
         {
             InitializeComponent();
@@ -35,11 +35,27 @@ namespace DbdRoulette.Pages
             LvKillers.ItemsSource = contextChapter.Killer;
             LvSurvivors.ItemsSource = contextChapter.Survivor;
 
+            var ThemeCode = Properties.Settings.Default.ThemeCode;
+            if (ThemeCode == 2)
+            {
+                HauntedLine.Visibility = Visibility.Visible;
+            }
+
+            if(contextChapter.Survivor.Count > 0)
+            {
+                RecGradient.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+            }
+
+            if (contextChapter.Killer.Count == 0)
+            {
+                RectangleTop.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+            } 
+
             if (contextChapter.ChapterCharm.Count > 0)
             {
                 StCharm.Visibility = Visibility.Visible;
                 var chapterCharm = contextChapter.ChapterCharm.FirstOrDefault();
-                CharmIcon.Source = ImageConvert(chapterCharm.Charm.MainIcon);
+                CharmIcon.Source = MiscUtilities.ImageConvert(chapterCharm.Charm.MainIcon);
                 CharmName.Text = chapterCharm.Charm.Name;
                 CharmDescription.Text = chapterCharm.Charm.Description;
             }
@@ -55,31 +71,14 @@ namespace DbdRoulette.Pages
             }
 
             GalleryLoad();
+
+            GlobalStackPanel.BeginAnimation(StackPanel.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
-
-
-        private BitmapImage ImageConvert(byte[] convertableImage)
-        {
-            var image = new BitmapImage();
-            using (var mem = new MemoryStream(convertableImage))
-            {
-                mem.Position = 0;
-                image.BeginInit();
-                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = null;
-                image.StreamSource = mem;
-                image.EndInit();
-            }
-            image.Freeze();
-            return image;
-        }
-
-      
 
         private void GalleryLoad()
         {
@@ -124,10 +123,10 @@ namespace DbdRoulette.Pages
         private void RadioGalleryBtn_Checked(object sender, RoutedEventArgs e)
         {
             var selectedPerk = (sender as RadioButton).DataContext as Perk;
-            MainImage.ImageSource = ImageConvert(selectedPerk.DemoImage);
+            MainImage.ImageSource = MiscUtilities.ImageConvert(selectedPerk.DemoImage);
             LvGallery.SelectedItem = selectedPerk;
             LvGallery.RenderTransform = new TranslateTransform();
-            
+
 
             var easing = new QuarticEase
             {
@@ -197,6 +196,23 @@ namespace DbdRoulette.Pages
             }
 
         }
+        private void LvGallery_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (LvGallery.Items.Count > 0)
+            {
+                ListViewItem item = LvGallery.ItemContainerGenerator.ContainerFromIndex(2) as ListViewItem;
+                if (item != null)
+                {
+                    var radioButton = MiscUtilities.FindVisualChild<RadioButton>(item);
+                    radioButton.IsChecked = true;
+                }
+            }
+        }
 
+        private void ViewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var objectData = (sender as Button).DataContext;
+            NavigationService.Navigate(new CharacterViewPage(objectData));
+        }
     }
 }

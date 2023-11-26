@@ -1,4 +1,5 @@
-﻿using DbdRoulette.Components;
+﻿using DbdRoulette.Addons;
+using DbdRoulette.Components;
 using LiveCharts.Maps;
 using System;
 using System.Collections.Generic;
@@ -34,15 +35,7 @@ namespace DbdRoulette.Pages
             contextCharacter = obj;
             DataContext = contextCharacter;
 
-            var animationOpacity = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromSeconds(1.0),
-
-            };
-
-            GlobalStackPanel.BeginAnimation(StackPanel.OpacityProperty, animationOpacity);
+            GlobalStackPanel.BeginAnimation(StackPanel.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
 
             var ThemeCode = Properties.Settings.Default.ThemeCode;
             if (ThemeCode == 2)
@@ -110,14 +103,14 @@ namespace DbdRoulette.Pages
             if (contextCharacter is Survivor)
             {
                 var selectedItem = (sender as RadioButton).DataContext as SurvivorPerk;
-                PerksDemoImage.ImageSource = ImageConvert(selectedItem.Perk.DemoImage);
+                PerksDemoImage.ImageSource = MiscUtilities.ImageConvert(selectedItem.Perk.DemoImage);
                 TbTitlePerk.Text = selectedItem.Perk.Name;
                 TbPerkDescription.Text = selectedItem.Perk.Description;
             }
             else
             {
                 var selectedItem = (sender as RadioButton).DataContext as KillerPerk;
-                PerksDemoImage.ImageSource = ImageConvert(selectedItem.Perk.DemoImage);
+                PerksDemoImage.ImageSource = MiscUtilities.ImageConvert(selectedItem.Perk.DemoImage);
                 TbTitlePerk.Text = selectedItem.Perk.Name;
                 TbPerkDescription.Text = selectedItem.Perk.Description;
             }
@@ -126,23 +119,6 @@ namespace DbdRoulette.Pages
             PerkDetailsContainer.BeginAnimation(StackPanel.OpacityProperty, animationOpacity);
             
             
-        }
-
-        private BitmapImage ImageConvert(byte[] convertableImage)
-        {
-            var image = new BitmapImage();
-            using (var mem = new MemoryStream(convertableImage))
-            {
-                mem.Position = 0;
-                image.BeginInit();
-                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = null;
-                image.StreamSource = mem;
-                image.EndInit();
-            }
-            image.Freeze();
-            return image;
         }
 
         private void RadioPower_Checked(object sender, RoutedEventArgs e)
@@ -156,7 +132,7 @@ namespace DbdRoulette.Pages
             };
             var character = contextCharacter as Killer;
             TbTypeHeader.Text = "Сила";
-            PerksDemoImage.ImageSource = ImageConvert(character.Power.DemoImage);
+            PerksDemoImage.ImageSource = MiscUtilities.ImageConvert(character.Power.DemoImage);
             TbTitlePerk.Text = character.Power.Name;
             TbPerkDescription.Text = character.Power.Description;
             PerksDemoImage.BeginAnimation(ImageBrush.OpacityProperty, animationOpacity);
@@ -166,7 +142,14 @@ namespace DbdRoulette.Pages
 
         private void ChapterViewBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (contextCharacter is Survivor)
+            {
+                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Survivor).Сhapter));
+            }
+            if (contextCharacter is Killer)
+            {
+                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Killer).Сhapter));
+            }
         }
 
         private void RadioPerkBtn_Initialized(object sender, EventArgs e)
@@ -175,6 +158,18 @@ namespace DbdRoulette.Pages
             {
                 (sender as RadioButton).IsChecked = true;
                 FirstPerkSelected = false;
+            }
+        }
+
+        private void TbChapter_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (contextCharacter is Survivor)
+            {
+                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Survivor).Сhapter));
+            }
+            if (contextCharacter is Killer)
+            {
+                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Killer).Сhapter));
             }
         }
     }

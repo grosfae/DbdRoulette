@@ -1,4 +1,5 @@
-﻿using DbdRoulette.Components;
+﻿using DbdRoulette.Addons;
+using DbdRoulette.Components;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -153,15 +154,8 @@ namespace DbdRoulette.Pages
             }
             LvCharacters.ItemsSource = killers;
 
-            var animationOpacity = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromSeconds(1.5),
 
-            };
-
-            LvCharacters.BeginAnimation(ListView.OpacityProperty, animationOpacity);
+            LvCharacters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
         }
 
         private void RefreshSurvivors()
@@ -181,15 +175,7 @@ namespace DbdRoulette.Pages
             }
             LvCharacters.ItemsSource = survivors;
 
-            var animationOpacity = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromSeconds(1.5),
-
-            };
-
-            LvCharacters.BeginAnimation(ListView.OpacityProperty, animationOpacity);
+            LvCharacters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
         }
         private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

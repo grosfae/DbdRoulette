@@ -102,7 +102,7 @@
                                                             <SolidColorBrush Color="White" Opacity="0.4"/>
                                                         </TextBlock.Foreground>
                                                     </TextBlock>
-                                                    <TextBlock Text="{Binding Сhapter.Name}" TextWrapping="Wrap" Width="200" TextAlignment="Left" FontSize="20" FontWeight="Bold" Style="{DynamicResource LinkHeader}" Foreground="White" HorizontalAlignment="Left"/>
+                                                    <TextBlock x:Name="TbChapter" MouseLeftButtonDown="TbChapter_MouseLeftButtonDown" Text="{Binding Сhapter.Name}" TextWrapping="Wrap" Width="200" TextAlignment="Left" FontSize="20" FontWeight="Bold" Style="{DynamicResource LinkHeader}" Foreground="White" HorizontalAlignment="Left"/>
 
                                                 </StackPanel>
                                             </StackPanel>
