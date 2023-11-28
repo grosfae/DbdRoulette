@@ -4,6 +4,19 @@
              xmlns:local="clr-namespace:DbdRoulette.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!--Global Colors-->
+        <SolidColorBrush x:Key="RedLightBrush" Color="#FFAA1A18"/>
+        <SolidColorBrush x:Key="RedDarkBrush" Color="#FF880E0D"/>
+
+        <SolidColorBrush x:Key="BlueLightBrush" Color="#FF2D63A1"/>
+        <SolidColorBrush x:Key="BlueDarkBrush" Color="#FF1D4378"/>
+
+        <SolidColorBrush x:Key="SpecialBlueBrush" Color="#FF3881EF"/>
+
+        <Color x:Key="RedColor" R="170" G="26" B="24"/>
+
+        <Color x:Key="BlueColor" R="56" G="129" B="239"/>
+
         <!--Converters-->
         <local:StyleParametersConverter x:Key="StyleParametersConverter"/>
         <local:StylePlusConverter x:Key="StylePlusConverter"/>
@@ -103,7 +116,7 @@
                     <ControlTemplate TargetType="Button" >
                         <Grid Background="{TemplateBinding Background}" Width="{TemplateBinding Width}">
                             <Label Height="auto" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 0" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}"/>
-                            <Rectangle x:Name="LineSep" Visibility="Hidden" Fill="#FF3881EF" Width="80" Height="5" Margin="0 5 0 0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                            <Rectangle x:Name="LineSep" Visibility="Hidden" Fill="{DynamicResource SpecialBlueBrush}" Width="80" Height="5" Margin="0 5 0 0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                                 <Rectangle.RenderTransform>
                                     <SkewTransform AngleX="-45"/>
                                 </Rectangle.RenderTransform>
@@ -136,121 +149,6 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Foreground" Value="#FF3881EF" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="Button" x:Key="MenuButtonRed">
-            <Setter Property="FontSize" Value="19"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Width" Value="50" />
-            <Setter Property="Height" Value="40" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontFamily" Value="Resources/Fonts/#Roboto Consended"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button" >
-                        <Grid Background="{TemplateBinding Background}" Width="{TemplateBinding Width}">
-                            <Label Height="auto" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 0" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}"/>
-                            <Rectangle x:Name="LineSep" Visibility="Hidden" Fill="#FFE42F2F" Width="80" Height="5" Margin="0 5 0 0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                                <Rectangle.RenderTransform>
-                                    <SkewTransform AngleX="-45"/>
-                                </Rectangle.RenderTransform>
-                                <Rectangle.Style>
-                                    <Style TargetType="Rectangle">
-                                        <Style.Triggers>
-                                            <Trigger Property="Visibility" Value="Visible">
-                                                <Trigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                             From="0.0" To="1.0" Duration="0:0:0.2"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </Trigger.EnterActions>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Rectangle.Style>
-                            </Rectangle>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="LineSep" Property="Visibility" Value="Visible"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#FFE42F2F" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="Button" x:Key="MenuButtonGradientRedBlue">
-            <Setter Property="FontSize" Value="19"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Width" Value="50" />
-            <Setter Property="Height" Value="40" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontFamily" Value="Resources/Fonts/#Roboto Consended"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button" >
-                        <Grid Background="{TemplateBinding Background}" Width="{TemplateBinding Width}">
-                            <Label Height="auto" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 0" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}"/>
-                            <Rectangle x:Name="LineSep" Visibility="Hidden" Width="80" Height="5" Margin="0 5 0 0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                                <Rectangle.Fill>
-                                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.7,0">
-                                        <GradientStop Color="#FF3881EF" Offset="0.9"/>
-                                        <GradientStop Color="#FFE42F2F" Offset="0.9"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.Fill>
-                                <Rectangle.RenderTransform>
-                                    <SkewTransform AngleX="-45"/>
-                                </Rectangle.RenderTransform>
-                                <Rectangle.Style>
-                                    <Style TargetType="Rectangle">
-                                        <Style.Triggers>
-                                            <Trigger Property="Visibility" Value="Visible">
-                                                <Trigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                             From="0.0" To="1.0" Duration="0:0:0.2"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </Trigger.EnterActions>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Rectangle.Style>
-                            </Rectangle>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="LineSep" Property="Visibility" Value="Visible"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" >
-                        <Setter.Value>
-                            <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.7,0">
-                                <GradientStop Color="#FF3881EF" Offset="0.9"/>
-                                <GradientStop Color="#FFE42F2F" Offset="0.9"/>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -313,7 +211,7 @@
             <Setter Property="Focusable" Value="False"/>
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="BorderBrush" Value="#FFA31816"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource RedLightBrush}"/>
             <Setter Property="FontFamily" Value="Resources/Fonts/#Raleway"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value ="DemiBold"/>
@@ -331,7 +229,7 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ColorAnimation To="#FFA31816" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Duration="0:0:0.2"/>
+                                <ColorAnimation To="#FFAA1A18" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Duration="0:0:0.2"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
@@ -352,7 +250,7 @@
             <Setter Property="Focusable" Value="False"/>
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="BorderBrush" Value="#3881EF"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SpecialBlueBrush}"/>
             <Setter Property="FontFamily" Value="Resources/Fonts/#Raleway"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value ="DemiBold"/>
@@ -498,84 +396,6 @@
             </Setter>
         </Style>
 
-        <Style TargetType="ToggleButton" x:Key="MenuListBtn">
-            <Setter Property="FontSize" Value="19"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Width" Value="50" />
-            <Setter Property="Height" Value="40" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontFamily" Value="Resources/Fonts/#Roboto Consended"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ToggleButton" >
-                        <Grid Background="{TemplateBinding Background}" Width="{TemplateBinding Width}">
-                            <Label Height="auto" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 0" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}"/>
-                            <Path Stroke="White" x:Name="Arrow"
-                                HorizontalAlignment="Right" RenderTransformOrigin="0.5, 0.5" Visibility="Visible"
-                                VerticalAlignment="Center" StrokeThickness="2"  StrokeEndLineCap="Square" StrokeStartLineCap="Square"
-                                Data="M9 1.5L5 5.5L1 1.5" Margin="0 0 10 3">
-                                <Path.RenderTransform>
-                                    <RotateTransform Angle="0"/>
-                                </Path.RenderTransform>
-                            </Path>
-                            <Path Stroke="White" x:Name="ArrowUp" Visibility="Hidden"
-                                HorizontalAlignment="Right" RenderTransformOrigin="0.5, 0.5"
-                                VerticalAlignment="Center" StrokeThickness="2"  StrokeEndLineCap="Square" StrokeStartLineCap="Square"
-                                Data="M9 1.5L5 5.5L1 1.5" Margin="0 0 10 3">
-                                <Path.RenderTransform>
-                                    <RotateTransform Angle="180"/>
-                                </Path.RenderTransform>
-                            </Path>
-                            <Rectangle x:Name="LineSep" Visibility="Hidden" Fill="#FF3881EF" Width="80" Height="5" Margin="0 5 0 0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                                <Rectangle.RenderTransform>
-                                    <SkewTransform AngleX="-45"/>
-                                </Rectangle.RenderTransform>
-                                <Rectangle.Style>
-                                    <Style TargetType="Rectangle">
-                                        <Style.Triggers>
-                                            <Trigger Property="Visibility" Value="Visible">
-                                                <Trigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                             From="0.0" To="1.0" Duration="0:0:0.2"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </Trigger.EnterActions>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Rectangle.Style>
-                            </Rectangle>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="LineSep" Property="Visibility" Value="Visible"/>
-                                <Setter TargetName="Arrow" Property="Stroke" Value="#FF3881EF"/>
-                                <Setter TargetName="ArrowUp" Property="Stroke" Value="#FF3881EF"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="Arrow" Property="Visibility" Value="Hidden"/>
-                                <Setter TargetName="ArrowUp" Property="Visibility" Value="Visible"/>
-                                <Setter TargetName="LineSep" Property="Visibility" Value="Visible"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="False">
-                                <Setter TargetName="Arrow" Property="Visibility" Value="Visible"/>
-                                <Setter TargetName="ArrowUp" Property="Visibility" Value="Hidden"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#FF3881EF" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
         <Style TargetType="Button" x:Key="BackButton">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -679,6 +499,155 @@
             </Setter>
         </Style>
         
+        
+        <!--ToggleButtons Style-->
+        <Style TargetType="ToggleButton" x:Key="MenuListBtn">
+            <Setter Property="FontSize" Value="19"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Roboto Consended"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton" >
+                        <Grid Background="{TemplateBinding Background}" Width="{TemplateBinding Width}">
+                            <Label Height="auto" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 0" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}"/>
+                            <Path Stroke="White" x:Name="Arrow"
+                                HorizontalAlignment="Right" RenderTransformOrigin="0.5, 0.5" Visibility="Visible"
+                                VerticalAlignment="Center" StrokeThickness="2"  StrokeEndLineCap="Square" StrokeStartLineCap="Square"
+                                Data="M9 1.5L5 5.5L1 1.5" Margin="0 0 10 3">
+                                <Path.RenderTransform>
+                                    <RotateTransform Angle="0"/>
+                                </Path.RenderTransform>
+                            </Path>
+                            <Path Stroke="White" x:Name="ArrowUp" Visibility="Hidden"
+                                HorizontalAlignment="Right" RenderTransformOrigin="0.5, 0.5"
+                                VerticalAlignment="Center" StrokeThickness="2"  StrokeEndLineCap="Square" StrokeStartLineCap="Square"
+                                Data="M9 1.5L5 5.5L1 1.5" Margin="0 0 10 3">
+                                <Path.RenderTransform>
+                                    <RotateTransform Angle="180"/>
+                                </Path.RenderTransform>
+                            </Path>
+                            <Rectangle x:Name="LineSep" Visibility="Hidden" Fill="#FF3881EF" Width="80" Height="5" Margin="0 5 0 0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                <Rectangle.RenderTransform>
+                                    <SkewTransform AngleX="-45"/>
+                                </Rectangle.RenderTransform>
+                                <Rectangle.Style>
+                                    <Style TargetType="Rectangle">
+                                        <Style.Triggers>
+                                            <Trigger Property="Visibility" Value="Visible">
+                                                <Trigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.EnterActions>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Rectangle.Style>
+                            </Rectangle>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="LineSep" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="Arrow" Property="Stroke" Value="#FF3881EF"/>
+                                <Setter TargetName="ArrowUp" Property="Stroke" Value="#FF3881EF"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Arrow" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="ArrowUp" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="LineSep" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="Arrow" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="ArrowUp" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF3881EF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="ToggleButton" x:Key="ToggleTagBtn">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Opacity" Value="0.5"/>
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Roboto Consended"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton" >
+                        <Border x:Name="MainBorder" CornerRadius="5" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Width="35" CornerRadius="5 0 0 5" Background="{TemplateBinding BorderBrush}">
+                                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center" Height="15">
+                                        <Path x:Name="CrossPath" Data="M0 0H70L256 191L442 0H512V70L322.5 255.5L512 442V512H442L256 321L70 512H0V442L190 257L0 70V0Z" RenderTransformOrigin="0.5 0.5" Fill="White">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="45"/>
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Viewbox>
+                                </Border>
+                                <TextBlock Grid.Column="1" Text="{TemplateBinding Content}" VerticalAlignment="Center" Margin="20 0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" Storyboard.TargetName="CrossPath" From="45.0" To="0.0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" Storyboard.TargetName="CrossPath" From="0.0" To="45.0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.5" To="1" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0.5" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <!--RadioButtons Style-->
         <Style TargetType="RadioButton" x:Key="RedRadio">
             <Setter Property="FontSize" Value="19"/>
@@ -842,7 +811,6 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RadioButton}">
-
                         <Grid Background="Transparent" x:Name="MainGrid" >
                             <Grid.RenderTransform>
                                 <ScaleTransform ScaleX="0.8" ScaleY="0.8" CenterX="120" CenterY="50"/>

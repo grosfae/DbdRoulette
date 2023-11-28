@@ -23,6 +23,11 @@ namespace DbdRoulette.Pages
         public PerkListPage()
         {
             InitializeComponent();
+            LvTags.Items.Add("");
+            LvTags.Items.Add("");
+            LvTags.Items.Add("");
+            LvTags.Items.Add("");
+            LvTags.Items.Add("");
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

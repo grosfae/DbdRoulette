@@ -9,6 +9,116 @@
       Title="PerkListPage">
 
     <Grid>
-        
+        <ScrollViewer CanContentScroll="False">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Персонажи" Margin="15 0 0 0"/>
+                    </StackPanel>
+                    <Button Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Margin="60 0" HorizontalAlignment="Stretch">
+                    <StackPanel HorizontalAlignment="Stretch">
+                        <TextBlock Style="{DynamicResource Header}" Text="Навыки персонажей" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                        <TextBlock Text="Расширьте свои возможности в Dead by Daylight с помощью множества DLC в виде глав. Купив главу, вы получите доступ к новым убийцам, выжившим и эксклюзивным предметам. Карты остаются бесплатными для всех игроков." Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Center"  TextWrapping="Wrap" Width="700" TextAlignment="Center" Foreground="White" FontSize="20"/>
+                        <Border Margin="0 20 0 0" BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="60">
+                                <RadioButton x:Name="RadioKiller" Style="{DynamicResource RedRadio}" Content="Убийцы" Width="200" />
+                                <RadioButton x:Name="RadioSurvivor" Style="{DynamicResource BlueRadio}" Content="Выжившие" Width="200" />
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Left">
+                            <Border VerticalAlignment="Bottom" Margin="0 0 0 0" Height="40" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
+                                <Grid Width="250" HorizontalAlignment="Left">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
+                                    <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+
+                            <ListView x:Name="LvTags" Margin="20 0 0 0" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.Template>
+                                    <ControlTemplate TargetType="ItemsControl">
+                                        <ItemsPresenter VerticalAlignment="Center"/>
+                                    </ControlTemplate>
+                                </ListView.Template>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ToggleButton Style="{DynamicResource ToggleTagBtn}" Height="35" FontSize="16" Background="#FF161D23" BorderBrush="#FFFFAF00" Content="Генераторы" Cursor="" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <ListView x:Name="LvCharacters" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Width="1270" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="12 0 12 20">
+                                    <Border>
+                                        <Border.Effect>
+                                            <DropShadowEffect Color="{Binding ShadowColor}" ShadowDepth="0" BlurRadius="16"/>
+                                        </Border.Effect>
+                                        <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
+                                    </Border>
+                                    <TextBlock Text="{Binding Name}" Width="220" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource Header}" Foreground="White">
+                                        <TextBlock.Background>
+                                            <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                        </TextBlock.Background>
+                                    </TextBlock>
+                                    <Grid VerticalAlignment="Top" HorizontalAlignment="Right">
+                                        <Polygon Points="70,0, 90,30, 220,30, 220,0">
+                                            <Polygon.Fill>
+                                                <ImageBrush ImageSource="{Binding BackgroundMetal}"/>
+                                            </Polygon.Fill>
+                                        </Polygon>
+                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 20 0">
+                                            <TextBlock Text="{Binding Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" Style="{DynamicResource UnicodeText}"/>
+                                            <TextBlock Text="{Binding Сhapter.ChapterType.Name}" FontSize="16" FontWeight="Medium" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Button x:Name="TbSelectedCharacterBtn" Width="220"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="{Binding Name}" Content="{Binding ShortLetter, Mode=OneWay}" Cursor="Hand" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackPanel>
+                <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18" Grid.Row="2">
+                    <Rectangle.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                            <GradientStop Color="Transparent" Offset="0.15"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

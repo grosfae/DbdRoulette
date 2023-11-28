@@ -157,7 +157,7 @@
                         </ListView.ItemsPanel>
                         <ListView.Template>
                             <ControlTemplate TargetType="ItemsControl">
-                                <ItemsPresenter HorizontalAlignment="Center"/>
+                                <ItemsPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </ControlTemplate>
                         </ListView.Template>
                         <ListView.ItemTemplate>
