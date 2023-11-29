@@ -87,7 +87,7 @@
                                         </Border.Effect>
                                         <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
                                     </Border>
-                                    <TextBlock Text="{Binding Name}" Width="220" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource Header}" Foreground="White">
+                                    <TextBlock Text="{Binding Name}" Width="220" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{DynamicResource Header}" Foreground="White">
                                         <TextBlock.Background>
                                             <SolidColorBrush Color="Black" Opacity="0.5"/>
                                         </TextBlock.Background>

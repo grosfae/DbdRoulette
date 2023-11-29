@@ -26,48 +26,89 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="60 0" HorizontalAlignment="Stretch">
-                    <StackPanel HorizontalAlignment="Stretch">
-                        <TextBlock Style="{DynamicResource Header}" Text="Навыки персонажей" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="40"/>
-                        <TextBlock Text="Расширьте свои возможности в Dead by Daylight с помощью множества DLC в виде глав. Купив главу, вы получите доступ к новым убийцам, выжившим и эксклюзивным предметам. Карты остаются бесплатными для всех игроков." Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Center"  TextWrapping="Wrap" Width="700" TextAlignment="Center" Foreground="White" FontSize="20"/>
-                        <Border Margin="0 20 0 0" BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left">
-                            <StackPanel Orientation="Horizontal" Height="60">
-                                <RadioButton x:Name="RadioKiller" Style="{DynamicResource RedRadio}" Content="Убийцы" Width="200" />
-                                <RadioButton x:Name="RadioSurvivor" Style="{DynamicResource BlueRadio}" Content="Выжившие" Width="200" />
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Left">
+                            <TextBlock Style="{DynamicResource Header}" Text="Список навыков персонажей" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="Особый элемент снаряжения в игре Dead by Daylight, раскрывающий игровой потенциал персонажей исходя из выбранной роли (убийца или выживший). Для всех умений отведено только 4 слота. Изначально для использования доступен только один из них. По мере увеличения уровня кровавой паутины, количество доступных слотов и навыков для выбора увеличивается. Игрок может комбинировать между собой навыки, которые доступны ему для выбора." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
+                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="Для каждого персонажа предусмотрен набор уникальных навыков, которые подчеркивают особые способности героев исходя из специфики их жизни. Изначально, уникальные умения каждого из персонажей не доступны другим и не появляются в их кровавой паутине. Однако, если в храме тайн купить навык или повысить уровень престижа выбранного персонажа, то навык станет доступен другим персонажам выбранной роли." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
+
+                            <StackPanel Margin="0 20 0 0" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <Border VerticalAlignment="Bottom" Margin="0 0 0 0" HorizontalAlignment="Left" Height="40" Width="253" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
+                                        <Grid Width="250" HorizontalAlignment="Left">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
+                                            <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+
+                                    <ToggleButton  Margin="10 0 0 0" Style="{DynamicResource ToggleCharacterTypeBtn}" Width="90"/>
+                                </StackPanel>
+                                
+                                <ListView x:Name="LvTags" Margin="0 10 0 0" d:ItemsSource="{d:SampleData ItemCount=6}" Width="820">
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+                                    <ListView.Template>
+                                        <ControlTemplate TargetType="ItemsControl">
+                                            <ItemsPresenter VerticalAlignment="Center" Margin="-5 0 0 0"/>
+                                        </ControlTemplate>
+                                    </ListView.Template>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ToggleButton Style="{DynamicResource ToggleTagBtn}" Height="35" FontSize="16" Background="#FF161D23" BorderBrush="#FFFFAF00" Content="Генераторы" Margin="0 0 0 10"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+
                             </StackPanel>
-                        </Border>
-                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Left">
-                            <Border VerticalAlignment="Bottom" Margin="0 0 0 0" Height="40" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
-                                <Grid Width="250" HorizontalAlignment="Left">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="30"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
-                                    <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
-                                </Grid>
-                            </Border>
-
-                            <ListView x:Name="LvTags" Margin="20 0 0 0" d:ItemsSource="{d:SampleData ItemCount=5}">
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal"/>
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
-                                <ListView.Template>
-                                    <ControlTemplate TargetType="ItemsControl">
-                                        <ItemsPresenter VerticalAlignment="Center"/>
-                                    </ControlTemplate>
-                                </ListView.Template>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ToggleButton Style="{DynamicResource ToggleTagBtn}" Height="35" FontSize="16" Background="#FF161D23" BorderBrush="#FFFFAF00" Content="Генераторы" Cursor="" />
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
                         </StackPanel>
-                    </StackPanel>
 
-                    <ListView x:Name="LvCharacters" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
+                        <StackPanel HorizontalAlignment="Right" Background="#FF121212">
+                            <TextBlock Style="{DynamicResource MiniText}" Text="Храм Тайн" HorizontalAlignment="Center" FontWeight="Regular" Foreground="White" FontSize="26" Margin="0 10"/>
+                            <Grid HorizontalAlignment="Center" Width="451.5" Height="324.5">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/Resources/Misc/ShrineBackground.png" Stretch="UniformToFill"/>
+                                </Grid.Background>
+                                <Image x:Name="PerkFirst" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Top"/>
+                                <Image x:Name="PerkSecond" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="70 0 0 0"/>
+                                <Image x:Name="PerkThird" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 70 0"/>
+                                <Image x:Name="PerkFourth" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Bottom"/>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Height="150" Width="150">
+                                    <StackPanel.Background>
+                                        <ImageBrush ImageSource="/Resources/RarityImages/YellowRarity.png" Stretch="UniformToFill"/>
+                                    </StackPanel.Background>
+                                    <TextBlock Style="{DynamicResource Header}" Text="2,000" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" Foreground="White" FontSize="28"/>
+                                    <Image Source="/Resources/Misc/ShardIcon.png" Width="65" Height="65" Margin="0 5 0 0"/>
+                                </StackPanel>
+                                
+                                <StackPanel Height="150" Width="150">
+                                    <StackPanel.Background>
+                                        <ImageBrush ImageSource="/Resources/RarityImages/GreenRarity.png" Stretch="UniformToFill"/>
+                                    </StackPanel.Background>
+                                    <TextBlock Style="{DynamicResource Header}" Text="4,000" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" Foreground="White" FontSize="28"/>
+                                    <Image Source="/Resources/Misc/ShardIcon.png" Width="65" Height="65" Margin="0 5 0 0"/>
+                                </StackPanel>
+
+                                <StackPanel Height="150" Width="150">
+                                    <StackPanel.Background>
+                                        <ImageBrush ImageSource="/Resources/RarityImages/PurpleRarity.png" Stretch="UniformToFill"/>
+                                    </StackPanel.Background>
+                                    <TextBlock Style="{DynamicResource Header}" Text="6,000" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" Foreground="White" FontSize="28"/>
+                                    <Image Source="/Resources/Misc/ShardIcon.png" Width="65" Height="65" Margin="0 5 0 0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <ListView x:Name="LvPerks" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Width="1270" Orientation="Horizontal"/>
@@ -80,30 +121,49 @@
                         </ListView.Template>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="12 0 12 20">
-                                    <Border>
-                                        <Border.Effect>
-                                            <DropShadowEffect Color="{Binding ShadowColor}" ShadowDepth="0" BlurRadius="16"/>
-                                        </Border.Effect>
-                                        <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
-                                    </Border>
+                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="1">
+                                    <Grid.ToolTip>
+                                        <StackPanel Background="{DynamicResource BlackBrush}" Margin="-7" Width="415">
+                                            <Grid Height="70">
+                                                <Rectangle Fill="#FF5D2871" Stretch="Fill">
+                                                    <Rectangle.OpacityMask>
+                                                        <LinearGradientBrush EndPoint="0.2,0" StartPoint="1,0">
+                                                            <GradientStop Color="Transparent" Offset="0.35"/>
+                                                            <GradientStop Color="White" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                                <Image x:Name="Img" Source="/Resources/Misc/BlackFog.png" Stretch="Fill">
+                                                    <Image.RenderTransform>
+                                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                                    </Image.RenderTransform>
+                                                    <Image.Triggers>
+                                                        <EventTrigger RoutedEvent="Loaded">
+                                                            <EventTrigger.Actions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Image.RenderTransform).(ScaleTransform.ScaleX)" From="1.0" To="2.0" Duration="0:0:1.5" RepeatBehavior="Forever" AutoReverse="True"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger.Actions>
+                                                        </EventTrigger>
+                                                    </Image.Triggers>
+                                                </Image>
+                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                    <TextBlock Text="{Binding Name}" Foreground="White" Style="{DynamicResource ArkhipText}" FontWeight="Bold" FontSize="20"/>
+                                                    <TextBlock Text="ОЧЕНЬ РЕДКИЙ НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5"/>
+                                                </StackPanel>
+                                                <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="400" Margin="15" FontSize="16"/>
+                                        </StackPanel>
+                                    </Grid.ToolTip>
+                                    <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
                                     <TextBlock Text="{Binding Name}" Width="220" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource Header}" Foreground="White">
                                         <TextBlock.Background>
                                             <SolidColorBrush Color="Black" Opacity="0.5"/>
                                         </TextBlock.Background>
                                     </TextBlock>
-                                    <Grid VerticalAlignment="Top" HorizontalAlignment="Right">
-                                        <Polygon Points="70,0, 90,30, 220,30, 220,0">
-                                            <Polygon.Fill>
-                                                <ImageBrush ImageSource="{Binding BackgroundMetal}"/>
-                                            </Polygon.Fill>
-                                        </Polygon>
-                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 20 0">
-                                            <TextBlock Text="{Binding Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" Style="{DynamicResource UnicodeText}"/>
-                                            <TextBlock Text="{Binding Сhapter.ChapterType.Name}" FontSize="16" FontWeight="Medium" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Button x:Name="TbSelectedCharacterBtn" Width="220"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="{Binding Name}" Content="{Binding ShortLetter, Mode=OneWay}" Cursor="Hand" />
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
