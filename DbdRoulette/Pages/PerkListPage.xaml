@@ -45,9 +45,9 @@
                                         </Grid>
                                     </Border>
 
-                                    <ToggleButton  Margin="10 0 0 0" Style="{DynamicResource ToggleCharacterTypeBtn}" Width="90"/>
+                                    <ToggleButton x:Name="TagSwitchBtn" Margin="10 0 0 0" Style="{DynamicResource ToggleCharacterTypeBtn}" Unchecked="TagSwitchBtn_Unchecked" Width="80" Checked="TagSwitchBtn_Checked"/>
                                 </StackPanel>
-                                
+
                                 <ListView x:Name="LvTags" Margin="0 10 0 0" d:ItemsSource="{d:SampleData ItemCount=6}" Width="820">
                                     <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -61,11 +61,10 @@
                                     </ListView.Template>
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <ToggleButton Style="{DynamicResource ToggleTagBtn}" Height="35" FontSize="16" Background="#FF161D23" BorderBrush="#FFFFAF00" Content="Генераторы" Margin="0 0 0 10"/>
+                                            <ToggleButton Style="{DynamicResource ToggleTagBtn}" Height="35" FontSize="16" Background="#FF1B1623" BorderBrush="{Binding TagColor}" IsChecked="True" Content="{Binding Name}" Margin="0 0 0 10" Cursor="Hand"/>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-
                             </StackPanel>
                         </StackPanel>
 
@@ -123,7 +122,10 @@
                             <DataTemplate>
                                 <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="1">
                                     <Grid.ToolTip>
-                                        <StackPanel Background="{DynamicResource BlackBrush}" Margin="-7" Width="415">
+                                        <StackPanel Margin="-7" Width="415">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                            </StackPanel.Background>
                                             <Grid Height="70">
                                                 <Rectangle Fill="#FF5D2871" Stretch="Fill">
                                                     <Rectangle.OpacityMask>
@@ -150,12 +152,12 @@
                                                     </Image.Triggers>
                                                 </Image>
                                                 <StackPanel Margin="15" HorizontalAlignment="Left">
-                                                    <TextBlock Text="{Binding Name}" Foreground="White" Style="{DynamicResource ArkhipText}" FontWeight="Bold" FontSize="20"/>
+                                                    <TextBlock Text="{Binding Name}" Foreground="White" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
                                                     <TextBlock Text="ОЧЕНЬ РЕДКИЙ НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5"/>
                                                 </StackPanel>
                                                 <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                             </Grid>
-                                            <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="400" Margin="15" FontSize="16"/>
+                                            <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15 0 15" FontSize="16"/>
                                         </StackPanel>
                                     </Grid.ToolTip>
                                     <Image Source="{Binding MainIcon}" Height="220" Width="220"/>

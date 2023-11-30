@@ -22,6 +22,12 @@
         <!--Converters-->
         <local:StyleParametersConverter x:Key="StyleParametersConverter"/>
         <local:StylePlusConverter x:Key="StylePlusConverter"/>
+
+        <!--ToolTip Styles-->
+        <Style TargetType="ToolTip">
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
         
         <!--TextBlock Styles-->
         <Style TargetType="TextBlock" x:Key="Header">
@@ -662,41 +668,52 @@
                     <ControlTemplate TargetType="ToggleButton" >
                         <Border x:Name="MainBorder" CornerRadius="20" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                             <Grid>
-                                <Grid HorizontalAlignment="Center">
-                                    <Ellipse Width="38" Height="38" Fill="{DynamicResource RedLightBrush}">
-                                        <Ellipse.Effect>
-                                            <DropShadowEffect ShadowDepth="0" BlurRadius="5"/>
-                                        </Ellipse.Effect>
-                                    </Ellipse>
-                                    <Image Width="33" Height="33" Stretch="Uniform" VerticalAlignment="Center" Source="/Resources/Misc/KillerIcon.png" RenderOptions.BitmapScalingMode="Fant"/>
+                                <Grid HorizontalAlignment="Center" x:Name="MainGrid">
+                                    <Ellipse Width="35" Height="35" Fill="#FFAA1A18" x:Name="MainEllipse"/>
+                                    <Image x:Name="KillerLogo" Width="30" Height="30" Stretch="Uniform" VerticalAlignment="Center" Opacity="1" Source="/Resources/Misc/KillerIcon.png" RenderOptions.BitmapScalingMode="Fant"/>
+                                    <Image x:Name="SurvLogo" Width="30" Height="30" Stretch="Uniform" VerticalAlignment="Center" Opacity="0" Source="/Resources/Misc/SurvIcon.png" RenderOptions.BitmapScalingMode="Fant"/>
                                     <Grid.RenderTransform>
-                                        <TranslateTransform X="-24.6"/>
+                                        <TranslateTransform X="-20.6"/>
                                     </Grid.RenderTransform>
                                 </Grid>
-                                
+
                             </Grid>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="MainGrid" From="-20.6" To="20.6" Duration="0:0:0.3">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="KillerLogo" From="1" To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SurvLogo" From="0" To="1" Duration="0:0:0.2"/>
+                                            <ColorAnimation To="#FF2D63A1" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="MainEllipse" FillBehavior="HoldEnd" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="MainGrid" From="20.6" To="-20.6" Duration="0:0:0.3">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseInOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="KillerLogo" From="0" To="1" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SurvLogo" From="1" To="0" Duration="0:0:0.2"/>
+                                            <ColorAnimation To="#FFAA1A18" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="MainEllipse" FillBehavior="HoldEnd" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsChecked" Value="True">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.5" To="1" Duration="0:0:0.2"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                    <Trigger.ExitActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0.5" Duration="0:0:0.2"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.ExitActions>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
 

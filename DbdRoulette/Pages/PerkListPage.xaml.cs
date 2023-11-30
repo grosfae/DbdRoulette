@@ -1,4 +1,5 @@
 ﻿using AngleSharp;
+using DbdRoulette.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,18 +25,13 @@ namespace DbdRoulette.Pages
         public PerkListPage()
         {
             InitializeComponent();
-            LvTags.Items.Add("");
-            LvTags.Items.Add("");
-            LvTags.Items.Add("");
-            LvTags.Items.Add("");
-            LvTags.Items.Add("");
-            LvTags.Items.Add("");
             LvPerks.ItemsSource = App.DB.Perk.ToList();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ShrineCheck();
+            Refresh(false);
         }
 
         private void ShrineCheck()
@@ -50,8 +46,50 @@ namespace DbdRoulette.Pages
             {
                 list.AddRange(document.GetElementsByClassName("sosPerkDescName").Select(x => x.TextContent));
             }
+            var shrineDays = document.GetElementsByClassName("clr4").FirstOrDefault();
+            if (shrineDays != null)
+            {
+                string translatedText = shrineDays.TextContent;
+                if (translatedText.Contains("Days"))
+                {
+                    translatedText = translatedText.Replace("Days", "Дней");
+                    MessageBox.Show(translatedText);
+                }
+                if (translatedText.Contains("Hours"))
+                {
+                    translatedText = translatedText.Replace("Hours", "Часов");
+                    MessageBox.Show(translatedText);
+                }
+                
+            }
 
             document.Dispose();
+        }
+
+        private void Refresh(bool isSurvivor)
+        {
+            IEnumerable<TextTag> textTags = App.DB.TextTag.ToList();
+
+            if (isSurvivor == true)
+            {
+                textTags = textTags.Where(x => x.Id > 2 && x.Id != 18);
+
+            }
+            else
+            {
+                textTags = textTags.Where(x => x.Id > 2 && x.Id != 17);
+
+            }
+            LvTags.ItemsSource = textTags.OrderBy(x => x.Name).ToList();
+        }
+        private void TagSwitchBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Refresh(false);
+        }
+
+        private void TagSwitchBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            Refresh(true);
         }
     }
 }

@@ -18,24 +18,9 @@ namespace DbdRoulette.Components
         public string Description { get; set; }
         public byte[] MainIcon { get; set; }
         public byte[] DemoImage { get; set; }
-        public int PerkTypeId { get; set; }
-        public virtual PerkType PerkType { get; set; }
+        public virtual ICollection<PerkTextTag> PerkTextTag { get; set; }
         public virtual ICollection<SurvivorPerk> SurvivorPerk { get; set; }
         public virtual ICollection<KillerPerk> KillerPerk { get; set; }
 
-        public string PerkBorderColor
-        {
-            get
-            {
-                if(PerkTypeId == 1)
-                {
-                    return "#FFAA1A18";
-                }
-                else
-                {
-                    return "#3881EF";
-                }
-            }
-        }
     }
 }

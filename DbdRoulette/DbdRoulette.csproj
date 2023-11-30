@@ -199,6 +199,7 @@
     <Compile Include="Components\Map.cs" />
     <Compile Include="Components\MapGallery.cs" />
     <Compile Include="Components\Perk.cs" />
+    <Compile Include="Components\PerkTextTag.cs" />
     <Compile Include="Components\PerkType.cs" />
     <Compile Include="Components\Power.cs" />
     <Compile Include="Components\PowerItem.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Components\Survivor.cs" />
     <Compile Include="Components\SurvivorCosmeticOutfit.cs" />
     <Compile Include="Components\SurvivorPerk.cs" />
+    <Compile Include="Components\TextTag.cs" />
     <Compile Include="Components\User.cs" />
     <Compile Include="Converters\StyleParametersConverter.cs" />
     <Compile Include="Converters\StylePlusConverter.cs" />
