@@ -78,7 +78,7 @@
                                 <Grid Height="50">
                                     <Rectangle Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
-                                    <Button Content="Изучить" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                                    <Button x:Name="PerkPageBtn" Content="Изучить" Style="{StaticResource CardBtnWhite}" Height="35" Width="150" Click="PerkPageBtn_Click"/>
                                 </Grid>
                             </StackPanel>
                         </Border>

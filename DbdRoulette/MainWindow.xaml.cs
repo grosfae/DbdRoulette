@@ -135,5 +135,17 @@ namespace DbdRoulette
                 MainFrame.Navigate(new ChapterListPage());
             }
         }
+
+        private void PerkPageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content is PerkListPage)
+            {
+                return;
+            }
+            else
+            {
+                MainFrame.Navigate(new PerkListPage());
+            }
+        }
     }
 }

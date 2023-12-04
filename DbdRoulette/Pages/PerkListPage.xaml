@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DbdRoulette.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1300" d:DesignWidth="1400" Loaded="Page_Loaded"
+      d:DesignHeight="1700" d:DesignWidth="1400" Loaded="Page_Loaded"
       Title="PerkListPage">
 
     <Grid>
@@ -20,9 +20,9 @@
                     <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
-                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Персонажи" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Навыки персонажей" Margin="15 0 0 0"/>
                     </StackPanel>
-                    <Button Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand"/>
+                    <Button x:Name="BackBtn" Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="BackBtn_Click"/>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="60 0" HorizontalAlignment="Stretch">
@@ -40,7 +40,7 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="30"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
+                                            <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent" TextChanged="TbSearch_TextChanged"/>
                                             <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
                                         </Grid>
                                     </Border>
@@ -48,23 +48,7 @@
                                     <ToggleButton x:Name="TagSwitchBtn" Margin="10 0 0 0" Style="{DynamicResource ToggleCharacterTypeBtn}" Unchecked="TagSwitchBtn_Unchecked" Width="80" Checked="TagSwitchBtn_Checked"/>
                                 </StackPanel>
 
-                                <ListView x:Name="LvTags" Margin="0 10 0 0" d:ItemsSource="{d:SampleData ItemCount=6}" Width="820">
-                                    <ListView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel Orientation="Horizontal"/>
-                                        </ItemsPanelTemplate>
-                                    </ListView.ItemsPanel>
-                                    <ListView.Template>
-                                        <ControlTemplate TargetType="ItemsControl">
-                                            <ItemsPresenter VerticalAlignment="Center" Margin="-5 0 0 0"/>
-                                        </ControlTemplate>
-                                    </ListView.Template>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ToggleButton Style="{DynamicResource ToggleTagBtn}" Height="35" FontSize="16" Background="#FF1B1623" BorderBrush="{Binding TagColor}" IsChecked="True" Content="{Binding Name}" Margin="0 0 0 10" Cursor="Hand"/>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <WrapPanel x:Name="TagsContainer" Margin="0 10 0 0" Width="820"/>
                             </StackPanel>
                         </StackPanel>
 
@@ -79,30 +63,35 @@
                                 <Image x:Name="PerkThird" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 70 0"/>
                                 <Image x:Name="PerkFourth" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Bottom"/>
                             </Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel Height="150" Width="150">
-                                    <StackPanel.Background>
-                                        <ImageBrush ImageSource="/Resources/RarityImages/YellowRarity.png" Stretch="UniformToFill"/>
-                                    </StackPanel.Background>
-                                    <TextBlock Style="{DynamicResource Header}" Text="2,000" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" Foreground="White" FontSize="28"/>
-                                    <Image Source="/Resources/Misc/ShardIcon.png" Width="65" Height="65" Margin="0 5 0 0"/>
-                                </StackPanel>
-                                
-                                <StackPanel Height="150" Width="150">
-                                    <StackPanel.Background>
-                                        <ImageBrush ImageSource="/Resources/RarityImages/GreenRarity.png" Stretch="UniformToFill"/>
-                                    </StackPanel.Background>
-                                    <TextBlock Style="{DynamicResource Header}" Text="4,000" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" Foreground="White" FontSize="28"/>
-                                    <Image Source="/Resources/Misc/ShardIcon.png" Width="65" Height="65" Margin="0 5 0 0"/>
-                                </StackPanel>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Height="150" Width="150">
+                                        <StackPanel.Background>
+                                            <ImageBrush ImageSource="/Resources/RarityImages/YellowRarity.png" Stretch="UniformToFill"/>
+                                        </StackPanel.Background>
+                                        <TextBlock Style="{DynamicResource Header}" Text="2,000" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" Foreground="White" FontSize="28"/>
+                                        <Image Source="/Resources/Misc/ShardIcon.png" Width="65" Height="65" Margin="0 5 0 0"/>
+                                    </StackPanel>
 
-                                <StackPanel Height="150" Width="150">
-                                    <StackPanel.Background>
-                                        <ImageBrush ImageSource="/Resources/RarityImages/PurpleRarity.png" Stretch="UniformToFill"/>
-                                    </StackPanel.Background>
-                                    <TextBlock Style="{DynamicResource Header}" Text="6,000" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" Foreground="White" FontSize="28"/>
-                                    <Image Source="/Resources/Misc/ShardIcon.png" Width="65" Height="65" Margin="0 5 0 0"/>
+                                    <StackPanel Height="150" Width="150">
+                                        <StackPanel.Background>
+                                            <ImageBrush ImageSource="/Resources/RarityImages/GreenRarity.png" Stretch="UniformToFill"/>
+                                        </StackPanel.Background>
+                                        <TextBlock Style="{DynamicResource Header}" Text="4,000" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" Foreground="White" FontSize="28"/>
+                                        <Image Source="/Resources/Misc/ShardIcon.png" Width="65" Height="65" Margin="0 5 0 0"/>
+                                    </StackPanel>
+
+                                    <StackPanel Height="150" Width="150">
+                                        <StackPanel.Background>
+                                            <ImageBrush ImageSource="/Resources/RarityImages/PurpleRarity.png" Stretch="UniformToFill"/>
+                                        </StackPanel.Background>
+                                        <TextBlock Style="{DynamicResource Header}" Text="6,000" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" Foreground="White" FontSize="28"/>
+                                        <Image Source="/Resources/Misc/ShardIcon.png" Width="65" Height="65" Margin="0 5 0 0"/>
+                                    </StackPanel>
                                 </StackPanel>
+                                <TextBlock Style="{DynamicResource Header}" HorizontalAlignment="Center" FontWeight="Regular" Foreground="White" FontSize="23" Margin="0 10">
+                                    <Run Text="Обновиться через"/> <Run x:Name="TbRefreshShrine" Foreground="#FF9121CA"/>
+                                </TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -126,8 +115,8 @@
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
                                             </StackPanel.Background>
-                                            <Grid Height="70">
-                                                <Rectangle Fill="#FF5D2871" Stretch="Fill">
+                                            <Grid MinHeight="70" MaxHeight="100">
+                                                <Rectangle Fill="#FF5D2871" Stretch="Fill" >
                                                     <Rectangle.OpacityMask>
                                                         <LinearGradientBrush EndPoint="0.2,0" StartPoint="1,0">
                                                             <GradientStop Color="Transparent" Offset="0.35"/>
@@ -135,25 +124,32 @@
                                                         </LinearGradientBrush>
                                                     </Rectangle.OpacityMask>
                                                 </Rectangle>
-                                                <Image x:Name="Img" Source="/Resources/Misc/BlackFog.png" Stretch="Fill">
-                                                    <Image.RenderTransform>
+                                                <Rectangle Stretch="Fill" >
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="/Resources/Misc/BlackFog.png"/>
+                                                    </Rectangle.Fill>
+                                                    <Rectangle.RenderTransform>
                                                         <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                                    </Image.RenderTransform>
-                                                    <Image.Triggers>
+                                                    </Rectangle.RenderTransform>
+                                                    <Rectangle.Triggers>
                                                         <EventTrigger RoutedEvent="Loaded">
                                                             <EventTrigger.Actions>
                                                                 <BeginStoryboard>
                                                                     <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetProperty="(Image.RenderTransform).(ScaleTransform.ScaleX)" From="1.0" To="2.0" Duration="0:0:1.5" RepeatBehavior="Forever" AutoReverse="True"/>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" From="1.0" To="2.0" Duration="0:0:1.5" RepeatBehavior="Forever" AutoReverse="True"/>
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
                                                             </EventTrigger.Actions>
                                                         </EventTrigger>
-                                                    </Image.Triggers>
-                                                </Image>
+                                                    </Rectangle.Triggers>
+                                                </Rectangle>
                                                 <StackPanel Margin="15" HorizontalAlignment="Left">
-                                                    <TextBlock Text="{Binding Name}" Foreground="White" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
-                                                    <TextBlock Text="ОЧЕНЬ РЕДКИЙ НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5"/>
+                                                    <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="ОЧЕНЬ РЕДК. - " Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text="{Binding OwnerName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text= " - НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                    </StackPanel>
                                                 </StackPanel>
                                                 <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
                                             </Grid>
@@ -170,6 +166,23 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+
+                    <Grid Height="40" Margin="0 10 0 0" >
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="#FF121212" Opacity="0.8"/>
+                            </Rectangle.Fill>
+                            <Rectangle.OpacityMask>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
+                                    <GradientStop Color="Transparent" Offset="0"/>
+                                    <GradientStop Color="White" Offset="0.5"/>
+                                    <GradientStop Color="Transparent" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+
+                        <StackPanel x:Name="SPanelPages" Orientation="Horizontal" Width="auto" HorizontalAlignment="Center"/>
+                    </Grid>
 
                 </StackPanel>
                 <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18" Grid.Row="2">

@@ -14,6 +14,7 @@ namespace DbdRoulette.Components
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string EngName { get; set; }
         public int PieValue { get; set; }
         public string Description { get; set; }
         public byte[] MainIcon { get; set; }
@@ -21,6 +22,36 @@ namespace DbdRoulette.Components
         public virtual ICollection<PerkTextTag> PerkTextTag { get; set; }
         public virtual ICollection<SurvivorPerk> SurvivorPerk { get; set; }
         public virtual ICollection<KillerPerk> KillerPerk { get; set; }
+
+        public string OwnerName
+        {
+            get
+            {
+                var killerPerk = KillerPerk.FirstOrDefault();
+                var survivorPerk = SurvivorPerk.FirstOrDefault();
+
+                if(killerPerk != null)
+                {
+                    return killerPerk.Killer.Name.ToUpper();
+                }
+                else if (survivorPerk != null)
+                {
+                    return survivorPerk.Survivor.Name.ToUpper();
+                }
+                else
+                {
+                    return "ОБЩИЙ";
+                }
+            }
+        }
+
+        public string PerkUpperName
+        {
+            get
+            {
+                return Name.ToUpper();
+            }
+        }
 
     }
 }
