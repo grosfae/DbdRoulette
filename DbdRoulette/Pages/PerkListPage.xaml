@@ -30,7 +30,8 @@
                         <StackPanel HorizontalAlignment="Left">
                             <TextBlock Style="{DynamicResource Header}" Text="Список навыков персонажей" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
                             <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="Особый элемент снаряжения в игре Dead by Daylight, раскрывающий игровой потенциал персонажей исходя из выбранной роли (убийца или выживший). Для всех умений отведено только 4 слота. Изначально для использования доступен только один из них. По мере увеличения уровня кровавой паутины, количество доступных слотов и навыков для выбора увеличивается. Игрок может комбинировать между собой навыки, которые доступны ему для выбора." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
-                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="Для каждого персонажа предусмотрен набор уникальных навыков, которые подчеркивают особые способности героев исходя из специфики их жизни. Изначально, уникальные умения каждого из персонажей не доступны другим и не появляются в их кровавой паутине. Однако, если в храме тайн купить навык или повысить уровень престижа выбранного персонажа, то навык станет доступен другим персонажам выбранной роли." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
+                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="Храм Тайн — это магазин уникальных навыков, который позволяет игрокам разблокировать уровни навыков персонажей, которых у них в настоящее время нет или которым они еще не собираются повышать уровень и престиж." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
+                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="В зависимости от уровня обладаемого навыка растет его цена для покупки в храме тайн. Если навыка у игрока нет - 2000 радужных осколков, если навык прокачан до 1 уровня - 4000, а если навык уже 2 уровня - 6000 радужных осколков." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
 
                             <StackPanel Margin="0 20 0 0" HorizontalAlignment="Left">
                                 <StackPanel Orientation="Horizontal">
@@ -58,10 +59,203 @@
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/Resources/Misc/ShrineBackground.png" Stretch="UniformToFill"/>
                                 </Grid.Background>
-                                <Image x:Name="PerkFirst" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Top"/>
-                                <Image x:Name="PerkSecond" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="70 0 0 0"/>
-                                <Image x:Name="PerkThird" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 70 0"/>
-                                <Image x:Name="PerkFourth" Source="/Resources/PurplePerk.png" Height="120" Width="120" VerticalAlignment="Bottom"/>
+                                
+                                <Image x:Name="PerkFirst" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Top">
+                                    <Image.ToolTip>
+                                        <StackPanel Margin="-7" Width="415">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                            </StackPanel.Background>
+                                            <Grid MinHeight="70" MaxHeight="100">
+                                                <Rectangle Fill="#FF5D2871" Stretch="Fill" >
+                                                    <Rectangle.OpacityMask>
+                                                        <LinearGradientBrush EndPoint="0.2,0" StartPoint="1,0">
+                                                            <GradientStop Color="Transparent" Offset="0.35"/>
+                                                            <GradientStop Color="White" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                                <Rectangle Stretch="Fill" >
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="/Resources/Misc/BlackFog.png"/>
+                                                    </Rectangle.Fill>
+                                                    <Rectangle.RenderTransform>
+                                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                                    </Rectangle.RenderTransform>
+                                                    <Rectangle.Triggers>
+                                                        <EventTrigger RoutedEvent="Loaded">
+                                                            <EventTrigger.Actions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" From="1.0" To="2.0" Duration="0:0:1.5" RepeatBehavior="Forever" AutoReverse="True"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger.Actions>
+                                                        </EventTrigger>
+                                                    </Rectangle.Triggers>
+                                                </Rectangle>
+                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                    <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="ОЧЕНЬ РЕДК. - " Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text="{Binding OwnerName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text= " - НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15 0 15" FontSize="16"/>
+                                        </StackPanel>
+                                    </Image.ToolTip>
+                                </Image>
+
+                                <Image x:Name="PerkSecond" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="70 0 0 0">
+                                    <Image.ToolTip>
+                                        <StackPanel Margin="-7" Width="415">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                            </StackPanel.Background>
+                                            <Grid MinHeight="70" MaxHeight="100">
+                                                <Rectangle Fill="#FF5D2871" Stretch="Fill" >
+                                                    <Rectangle.OpacityMask>
+                                                        <LinearGradientBrush EndPoint="0.2,0" StartPoint="1,0">
+                                                            <GradientStop Color="Transparent" Offset="0.35"/>
+                                                            <GradientStop Color="White" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                                <Rectangle Stretch="Fill" >
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="/Resources/Misc/BlackFog.png"/>
+                                                    </Rectangle.Fill>
+                                                    <Rectangle.RenderTransform>
+                                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                                    </Rectangle.RenderTransform>
+                                                    <Rectangle.Triggers>
+                                                        <EventTrigger RoutedEvent="Loaded">
+                                                            <EventTrigger.Actions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" From="1.0" To="2.0" Duration="0:0:1.5" RepeatBehavior="Forever" AutoReverse="True"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger.Actions>
+                                                        </EventTrigger>
+                                                    </Rectangle.Triggers>
+                                                </Rectangle>
+                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                    <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="ОЧЕНЬ РЕДК. - " Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text="{Binding OwnerName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text= " - НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15 0 15" FontSize="16"/>
+                                        </StackPanel>
+                                    </Image.ToolTip>
+                                </Image>
+
+                                <Image x:Name="PerkThird" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 70 0">
+                                    <Image.ToolTip>
+                                        <StackPanel Margin="-7" Width="415">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                            </StackPanel.Background>
+                                            <Grid MinHeight="70" MaxHeight="100">
+                                                <Rectangle Fill="#FF5D2871" Stretch="Fill" >
+                                                    <Rectangle.OpacityMask>
+                                                        <LinearGradientBrush EndPoint="0.2,0" StartPoint="1,0">
+                                                            <GradientStop Color="Transparent" Offset="0.35"/>
+                                                            <GradientStop Color="White" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                                <Rectangle Stretch="Fill" >
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="/Resources/Misc/BlackFog.png"/>
+                                                    </Rectangle.Fill>
+                                                    <Rectangle.RenderTransform>
+                                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                                    </Rectangle.RenderTransform>
+                                                    <Rectangle.Triggers>
+                                                        <EventTrigger RoutedEvent="Loaded">
+                                                            <EventTrigger.Actions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" From="1.0" To="2.0" Duration="0:0:1.5" RepeatBehavior="Forever" AutoReverse="True"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger.Actions>
+                                                        </EventTrigger>
+                                                    </Rectangle.Triggers>
+                                                </Rectangle>
+                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                    <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="ОЧЕНЬ РЕДК. - " Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text="{Binding OwnerName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text= " - НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15 0 15" FontSize="16"/>
+                                        </StackPanel>
+                                    </Image.ToolTip>
+                                </Image>
+
+                                <Image x:Name="PerkFourth" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Bottom">
+                                    <Image.ToolTip>
+                                        <StackPanel Margin="-7" Width="415">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                            </StackPanel.Background>
+                                            <Grid MinHeight="70" MaxHeight="100">
+                                                <Rectangle Fill="#FF5D2871" Stretch="Fill" >
+                                                    <Rectangle.OpacityMask>
+                                                        <LinearGradientBrush EndPoint="0.2,0" StartPoint="1,0">
+                                                            <GradientStop Color="Transparent" Offset="0.35"/>
+                                                            <GradientStop Color="White" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                                <Rectangle Stretch="Fill" >
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="/Resources/Misc/BlackFog.png"/>
+                                                    </Rectangle.Fill>
+                                                    <Rectangle.RenderTransform>
+                                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                                    </Rectangle.RenderTransform>
+                                                    <Rectangle.Triggers>
+                                                        <EventTrigger RoutedEvent="Loaded">
+                                                            <EventTrigger.Actions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" From="1.0" To="2.0" Duration="0:0:1.5" RepeatBehavior="Forever" AutoReverse="True"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger.Actions>
+                                                        </EventTrigger>
+                                                    </Rectangle.Triggers>
+                                                </Rectangle>
+                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                    <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="ОЧЕНЬ РЕДК. - " Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text="{Binding OwnerName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text= " - НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15 0 15" FontSize="16"/>
+                                        </StackPanel>
+                                    </Image.ToolTip>
+                                </Image>
+                                
                             </Grid>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
@@ -115,7 +309,7 @@
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
                                             </StackPanel.Background>
-                                            <Grid MinHeight="70" MaxHeight="100">
+                                            <Grid MinHeight="70" MaxHeight="110">
                                                 <Rectangle Fill="#FF5D2871" Stretch="Fill" >
                                                     <Rectangle.OpacityMask>
                                                         <LinearGradientBrush EndPoint="0.2,0" StartPoint="1,0">

@@ -54,7 +54,18 @@ namespace DbdRoulette.Pages
                 shrinePerks.AddRange(document.GetElementsByClassName("sosPerkDescName").Select(x => x.TextContent));
             }
 
-            PerkFirst.Source = App.DB.Perk.FirstOrDefault(x => x.EngName == shrinePerks[0]).;
+            string firstPerk = shrinePerks[0];
+            string secondPerk = shrinePerks[1];
+            string thirdPerk = shrinePerks[2];
+            string fourthPerk = shrinePerks[2];
+
+            PerkFirst.DataContext = App.DB.Perk.FirstOrDefault(x => x.EngName == firstPerk);
+
+            PerkSecond.DataContext = App.DB.Perk.FirstOrDefault(x => x.EngName == secondPerk);
+
+            PerkThird.DataContext = App.DB.Perk.FirstOrDefault(x => x.EngName == thirdPerk);
+
+            PerkFourth.DataContext = App.DB.Perk.FirstOrDefault(x => x.EngName == fourthPerk);
 
             var shrineDays = document.GetElementsByClassName("clr4").FirstOrDefault();
             if (shrineDays != null)
@@ -62,12 +73,12 @@ namespace DbdRoulette.Pages
                 string remainingDays = shrineDays.TextContent;
                 if (remainingDays.Contains("Days"))
                 {
-                    string text = remainingDays.Substring(0, 1);
+                    string text = remainingDays.Substring(0, 2).Trim();
                     remainingDays = $"{text} {MiscUtilities.Generate(int.Parse(text), "День", "Дня", "Дней")}";
                 }
                 if (remainingDays.Contains("Hours"))
                 {
-                    string text = remainingDays.Substring(0, 1);
+                    string text = remainingDays.Substring(0, 2).Trim();
                     remainingDays = $"{text} {MiscUtilities.Generate(int.Parse(text), "Час", "Часа", "Часов")}";
                 }
                 TbRefreshShrine.Text = remainingDays;
@@ -199,12 +210,16 @@ namespace DbdRoulette.Pages
         {
             GenerateTags();
             GeneratePageButtons();
+
+            RecGradient.Fill = MiscUtilities.KillerBrush;
         }
 
         private void TagSwitchBtn_Checked(object sender, RoutedEventArgs e)
         {
             GenerateTags();
             GeneratePageButtons();
+
+            RecGradient.Fill = MiscUtilities.SurvivorBrush;
         }
 
         private void TagBtn_Checked(object sender, RoutedEventArgs e)

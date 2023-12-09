@@ -50,7 +50,7 @@ namespace DbdRoulette.Pages
                 
                 
                 
-                ColorTitleGrid.Background = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+                ColorTitleGrid.Background = MiscUtilities.SurvivorBrush;
                 ColorPolyDarkStop.Color = Color.FromRgb(29, 67, 120);
                 ColorPolyLightStop.Color = Color.FromRgb(45, 99, 161);
 
@@ -65,15 +65,15 @@ namespace DbdRoulette.Pages
 
                 PowerAndPerksHeader.Text = "НАВЫКИ";
 
-                PerkDemoBtn.Foreground = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+                PerkDemoBtn.Foreground = MiscUtilities.SurvivorBrush;
 
                 RadioPower.Visibility = Visibility.Collapsed;
-                LineSep.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+                LineSep.Fill = MiscUtilities.SurvivorBrush;
 
-                RecGradient.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
-                RecGradientBottom.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+                RecGradient.Fill = MiscUtilities.SurvivorBrush;
+                RecGradientBottom.Fill = MiscUtilities.SurvivorBrush;
 
-                LineSepChapter.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+                LineSepChapter.Fill = MiscUtilities.SurvivorBrush;
 
                 ChapterViewBtn.Style = this.FindResource("ChapterBlueBtn") as Style;
             }

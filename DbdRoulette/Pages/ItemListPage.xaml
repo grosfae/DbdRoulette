@@ -5,20 +5,179 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DbdRoulette.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1700" d:DesignWidth="1400"
       Title="ItemListPage">
 
-    <Grid Background="White">
-        <Grid Height="40" Margin="0 10 0 0" Background="#FF121212">
-            <Grid.OpacityMask>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
-                    <GradientStop Color="Transparent" Offset="0"/>
-                    <GradientStop Color="White" Offset="0.5"/>
-                    <GradientStop Color="Transparent" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.OpacityMask>
+    <Grid>
+        <ScrollViewer CanContentScroll="False">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Предметы и улучшения" Margin="15 0 0 0"/>
+                    </StackPanel>
+                    <Button x:Name="BackBtn" Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="BackBtn_Click"/>
+                </StackPanel>
 
-            <StackPanel x:Name="SPanelPages" Orientation="Horizontal" Width="660"/>
-        </Grid>
+                <StackPanel Grid.Row="1" Margin="60 0" HorizontalAlignment="Stretch">
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Left">
+                            <TextBlock Style="{DynamicResource Header}" Text="Список предметов" HorizontalAlignment="Left" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="Предметы можно получить через кровавую паутину или найдя их в сундуках во время испытания." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
+                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="У всех предметов есть определенное количество зарядов, которые обычно расходуются с изменяемой скоростью 1 заряд в секунду. После того, как заряды предмета будут израсходованы, он станет непригодным для использования до конца испытания. Заряды предметов во время игры можно восполнить с помощью различных навыков." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
+                            <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="Если выжившему удастся сбежать с предметом, он останется в его инвентаре и пополнится зарядами. Тем не менее, все экипированные улучшения всегда будут израсходованы, если только выживший не использует соответствующие навыки или подношения." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
+
+                            <StackPanel Margin="0 20 0 0" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <Border VerticalAlignment="Bottom" Margin="0 0 0 0" HorizontalAlignment="Left" Height="40" Width="253" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
+                                        <Grid Width="250" HorizontalAlignment="Left">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
+                                            <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+
+                                </StackPanel>
+
+                                <WrapPanel x:Name="TagsContainer" Margin="0 10 0 0" Width="820"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel HorizontalAlignment="Right" Height="auto">
+                            <StackPanel.Background>
+                                <SolidColorBrush Color="#FF121212" Opacity="0.5"/>
+                            </StackPanel.Background>
+                            <TextBlock Style="{DynamicResource MiniText}" Text="Редкости Предметов" HorizontalAlignment="Center" FontWeight="Regular" Foreground="White" FontSize="26" Margin="10"/>
+                            <ListView x:Name="LvRarities" d:ItemsSource="{d:SampleData ItemCount=7}" Width="300">
+                                <ListView.Template>
+                                    <ControlTemplate TargetType="ItemsControl">
+                                        <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </ControlTemplate>
+                                </ListView.Template>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0 5">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid>
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="#FF0B0B0B" Opacity="0.6"/>
+                                                </Grid.Background>
+                                                <TextBlock Text="{Binding Id}" Style="{DynamicResource Header}" Foreground="#FFAAA9A9" FontSize="24" Width="30" TextAlignment="Center" Margin="0 0 10 0"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Name}" Style="{DynamicResource Header}" Foreground="{Binding RarityColor}" FontSize="24" Grid.Column="1" Width="170">
+                                                <TextBlock.Background>
+                                                    <SolidColorBrush Color="#FF0B0B0B" Opacity="0.6"/>
+                                                </TextBlock.Background>
+                                            </TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                    </Grid>
+
+                    <ListView x:Name="LvItems" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Width="1270" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="1">
+                                    <Grid.ToolTip>
+                                        <StackPanel Margin="-7" Width="415">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                            </StackPanel.Background>
+                                            <Grid MinHeight="70" MaxHeight="110">
+                                                <Rectangle Fill="#FF121212" Stretch="Fill"/>
+                                                <Rectangle Stretch="Fill" >
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="{Binding Rarity.ColorHaze}"/>
+                                                    </Rectangle.Fill>
+                                                    <Rectangle.RenderTransform>
+                                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                                    </Rectangle.RenderTransform>
+                                                    <Rectangle.Triggers>
+                                                        <EventTrigger RoutedEvent="Loaded">
+                                                            <EventTrigger.Actions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" From="1.0" To="3.5" Duration="0:0:13.5" RepeatBehavior="Forever" AutoReverse="True"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger.Actions>
+                                                        </EventTrigger>
+                                                    </Rectangle.Triggers>
+                                                </Rectangle>
+                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                    <TextBlock Text="{Binding ItemUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Rarity.UpperName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                        <TextBlock Text= " - ПРЕДМЕТ" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15 0 15" FontSize="16"/>
+                                        </StackPanel>
+                                    </Grid.ToolTip>
+                                    <Image Source="{Binding MainIcon}" Height="200" Width="200"/>
+                                    <TextBlock Text="{Binding Name}" Width="220" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource Header}" Foreground="White">
+                                        <TextBlock.Background>
+                                            <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                        </TextBlock.Background>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Grid Height="40" Margin="0 10 0 0" >
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="#FF121212" Opacity="0.8"/>
+                            </Rectangle.Fill>
+                            <Rectangle.OpacityMask>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
+                                    <GradientStop Color="Transparent" Offset="0"/>
+                                    <GradientStop Color="White" Offset="0.5"/>
+                                    <GradientStop Color="Transparent" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+
+                        <StackPanel x:Name="SPanelPages" Orientation="Horizontal" Width="auto" HorizontalAlignment="Center"/>
+                    </Grid>
+
+                </StackPanel>
+                <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18" Grid.Row="2">
+                    <Rectangle.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                            <GradientStop Color="Transparent" Offset="0.15"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

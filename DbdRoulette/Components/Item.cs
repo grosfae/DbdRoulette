@@ -17,6 +17,14 @@ namespace DbdRoulette.Components
         public int RarityId { get; set; }
         public virtual Rarity Rarity { get; set; }
         public virtual ICollection<PowerItem> PowerItem { get; set; }
+        public virtual ICollection<ItemThematicCollection> ItemThematicCollection { get; set; }
 
+        public string ItemUpperName
+        {
+            get
+            {
+                return Name.ToUpper();
+            }
+        }
     }
 }

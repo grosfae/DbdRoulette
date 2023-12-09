@@ -55,8 +55,8 @@ namespace DbdRoulette.Pages
             PresentImage.BeginAnimation(ImageBrush.OpacityProperty, animationOpacity);
             BlurRad.BeginAnimation(BlurBitmapEffect.RadiusProperty, animationBlur);
 
-            RecGradient.Fill = new SolidColorBrush(Color.FromRgb(170, 26, 24));
-            PresentImageBtn.Foreground = new SolidColorBrush(Color.FromRgb(170, 26, 24));
+            RecGradient.Fill = MiscUtilities.KillerBrush;
+            PresentImageBtn.Foreground = MiscUtilities.KillerBrush;
 
             CbSort.Items.Clear();
 
@@ -94,9 +94,9 @@ namespace DbdRoulette.Pages
             PresentImage.BeginAnimation(ImageBrush.OpacityProperty, animationOpacity);
             BlurRad.BeginAnimation(BlurBitmapEffect.RadiusProperty, animationBlur);
 
-            RecGradient.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+            RecGradient.Fill = MiscUtilities.SurvivorBrush;
 
-            PresentImageBtn.Foreground = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+            PresentImageBtn.Foreground = MiscUtilities.SurvivorBrush;
 
             CbSort.Items.Clear();
 

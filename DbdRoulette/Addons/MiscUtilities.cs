@@ -13,6 +13,10 @@ namespace DbdRoulette.Addons
 {
     public class MiscUtilities
     {
+        public static SolidColorBrush SurvivorBrush = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+
+        public static SolidColorBrush KillerBrush = new SolidColorBrush(Color.FromRgb(170, 26, 24));
+
         public static BitmapImage ImageConvert(byte[] convertableImage)
         {
             var image = new BitmapImage();

@@ -43,12 +43,12 @@ namespace DbdRoulette.Pages
 
             if(contextChapter.Survivor.Count > 0)
             {
-                RecGradient.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+                RecGradient.Fill = MiscUtilities.SurvivorBrush;
             }
 
             if (contextChapter.Killer.Count == 0)
             {
-                RectangleTop.Fill = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+                RectangleTop.Fill = MiscUtilities.SurvivorBrush;
             } 
 
             if (contextChapter.ChapterCharm.Count > 0)

@@ -37,6 +37,8 @@ namespace DbdRoulette.Components
         public DbSet<BodyPart> BodyPart { get; set; }
         public DbSet<SurvivorCosmeticOutfit> SurvivorCosmeticOutfit { get; set; }
         public DbSet<KillerCosmeticOutfit> KillerCosmeticOutfit { get; set; }
+        public DbSet<ItemThematicCollection> ItemThematicCollection { get; set; }
+        public DbSet<ThematicCollection> ThematicCollection { get; set; }
 
 
     }

@@ -23,6 +23,13 @@ namespace DbdRoulette.Pages
         public ItemListPage()
         {
             InitializeComponent();
+            LvRarities.ItemsSource = App.DB.Rarity.Where(x => x.Id != 6 && x.Id != 8 && x.Id != 10).ToList();
+            LvItems.ItemsSource = App.DB.Item.ToList();
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

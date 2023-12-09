@@ -163,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Addons\ColorHazeAnimated.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Addons\SliderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -173,6 +177,10 @@
     </Page>
     <Compile Include="Addons\ChapterBlock.xaml.cs">
       <DependentUpon>ChapterBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Addons\CircularPanel.cs" />
+    <Compile Include="Addons\ColorHazeAnimated.xaml.cs">
+      <DependentUpon>ColorHazeAnimated.xaml</DependentUpon>
     </Compile>
     <Compile Include="Addons\MiscUtilities.cs" />
     <Compile Include="Addons\SliderControl.xaml.cs">
@@ -193,6 +201,7 @@
     <Compile Include="Components\CosmeticType.cs" />
     <Compile Include="Components\Difficulty.cs" />
     <Compile Include="Components\Item.cs" />
+    <Compile Include="Components\ItemThematicCollection.cs" />
     <Compile Include="Components\Killer.cs" />
     <Compile Include="Components\KillerCosmeticOutfit.cs" />
     <Compile Include="Components\KillerPerk.cs" />
@@ -208,6 +217,7 @@
     <Compile Include="Components\SurvivorCosmeticOutfit.cs" />
     <Compile Include="Components\SurvivorPerk.cs" />
     <Compile Include="Components\TextTag.cs" />
+    <Compile Include="Components\ThematicCollection.cs" />
     <Compile Include="Components\User.cs" />
     <Compile Include="Converters\StyleParametersConverter.cs" />
     <Compile Include="Converters\StylePlusConverter.cs" />
@@ -333,9 +343,6 @@
     <Resource Include="Resources\LogoCell.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Misc\FonImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Logos.png" />
   </ItemGroup>
   <ItemGroup>
@@ -389,9 +396,6 @@
     <Resource Include="Resources\Misc\BookIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Power.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Misc\TerrorIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -434,6 +438,13 @@
     <Resource Include="Resources\Misc\ShardIcon.png" />
     <Resource Include="Resources\RarityImages\ThreeLevelPerk.png" />
     <Resource Include="Resources\Misc\BlackFog.png" />
+    <Resource Include="Resources\ColorHazes\CommonHaze.png" />
+    <Resource Include="Resources\ColorHazes\LimitedHaze.png" />
+    <Resource Include="Resources\ColorHazes\RareHaze.png" />
+    <Resource Include="Resources\ColorHazes\UltraRareHaze.png" />
+    <Resource Include="Resources\ColorHazes\VeryRareHaze.png" />
+    <Resource Include="Resources\ColorHazes\EventHaze.png" />
+    <Resource Include="Resources\ColorHazes\Def.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>
