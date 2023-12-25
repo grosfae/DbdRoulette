@@ -120,7 +120,7 @@ namespace DbdRoulette.Components
                 }
                 else
                 {
-                    return null;
+                    return "pack://application:,,,/DbdRoulette;component/Resources/ColorHazes/DefaultHaze.png";
                 }
             }
         }

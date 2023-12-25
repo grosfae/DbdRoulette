@@ -1,0 +1,144 @@
+﻿<Page x:Class="DbdRoulette.Pages.ItemAddonsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DbdRoulette.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1700" d:DesignWidth="1400"
+      Title="ItemAddonsPage">
+
+    <Grid>
+        <ScrollViewer CanContentScroll="False">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Улучшения снаряжения" Margin="15 0 0 0"/>
+                    </StackPanel>
+                    <Button x:Name="BackBtn" Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="BackBtn_Click"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Margin="60 0" HorizontalAlignment="Stretch">
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Style="{DynamicResource Header}" Text="Улучшения снаряжения" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                            <TextBlock Text="Предназначены для усиления предметов и силы убийцы, либо наделения их дополнительными качествами. Улучшения расходуются вместе с предметом для выживших, либо исчезают после завершения матча при использовании их совместно с силой убийцы." Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Center"  TextWrapping="Wrap" Width="700" TextAlignment="Center" Foreground="White" FontSize="20"/>
+                        </StackPanel>
+
+                    </Grid>
+                    <ListView x:Name="LvItems" d:ItemsSource="{d:SampleData ItemCount=37}" Margin="0 10 0 0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Width="1270" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <RadioButton Style="{DynamicResource SimpleRadio}" GroupName="Items" Width="auto" Height="70" Margin="-6 0">
+                                    <RadioButton.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.5">
+                                            <GradientStop Color="#FF121212" Offset="0.245"/>
+                                            <GradientStop Color="#FF121212" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </RadioButton.Background>
+                                    <RadioButton.Content>
+                                        <StackPanel  Margin="15 0">
+                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" TextWrapping="Wrap" FontSize="26"/>
+                                            <TextBlock Text="СНАРЯЖЕНИЕ" HorizontalAlignment="Center" FontSize="18" Foreground="White"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                    <RadioButton.BorderBrush>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent"/>
+                                            <GradientStop Color="Transparent" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </RadioButton.BorderBrush>
+                                    <RadioButton.Triggers>
+                                        <EventTrigger RoutedEvent="RadioButton.Checked">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="{Binding Rarity.RarityColor}" Storyboard.TargetProperty="Background.GradientStops[1].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                        <ColorAnimation To="#FF121212" Storyboard.TargetProperty="BorderBrush.GradientStops[0].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                        <ColorAnimation To="{Binding Rarity.RarityColor}" Storyboard.TargetProperty="BorderBrush.GradientStops[1].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+
+                                        <EventTrigger RoutedEvent="RadioButton.Unchecked">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="#FF121212" Storyboard.TargetProperty="Background.GradientStops[1].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                        <ColorAnimation To="Transparent" Storyboard.TargetProperty="BorderBrush.GradientStops[0].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                        <ColorAnimation To="Transparent" Storyboard.TargetProperty="BorderBrush.GradientStops[1].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </RadioButton.Triggers>
+                                </RadioButton>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ListView x:Name="LvAddons" d:ItemsSource="{d:SampleData ItemCount=37}" Margin="0 10 0 0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Width="1270" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding MainIcon}" Width="100" Height="100"/>
+                                    <StackPanel Grid.Column="1" Margin="5 0 0 0">
+                                        <TextBlock Style="{DynamicResource Header}" Text="{Binding Name}" Foreground="White" TextWrapping="Wrap" Width="200" Height="auto" FontSize="20"/>
+                                        <TextBlock Style="{DynamicResource PtSansText}" Text="{Binding Description}" Foreground="White" TextWrapping="Wrap" Width="200" Height="auto" FontSize="15"/>
+
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackPanel>
+                <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18" Grid.Row="2">
+                    <Rectangle.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                            <GradientStop Color="Transparent" Offset="0.15"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</Page>

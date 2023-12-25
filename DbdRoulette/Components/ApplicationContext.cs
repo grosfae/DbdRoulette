@@ -25,6 +25,7 @@ namespace DbdRoulette.Components
         public DbSet<KillerPerk> KillerPerk { get; set; }
         public DbSet<Power> Power { get; set; }
         public DbSet<Item> Item { get; set; }
+        public DbSet<ItemType> ItemType { get; set; }
         public DbSet<PowerItem> PowerItem { get; set; }
         public DbSet<Map> Map { get; set; }
         public DbSet<MapGallery> MapGallery { get; set; }
@@ -37,10 +38,12 @@ namespace DbdRoulette.Components
         public DbSet<BodyPart> BodyPart { get; set; }
         public DbSet<SurvivorCosmeticOutfit> SurvivorCosmeticOutfit { get; set; }
         public DbSet<KillerCosmeticOutfit> KillerCosmeticOutfit { get; set; }
-        public DbSet<ItemThematicCollection> ItemThematicCollection { get; set; }
         public DbSet<ThematicCollection> ThematicCollection { get; set; }
-
-
+        public DbSet<Effect> Effect { get; set; }
+        public DbSet<PerkEffect> PerkEffect { get; set; }
+        public DbSet<Addon> Addon { get; set; }
+        public DbSet<AddonEffect> AddonEffect { get; set; }
+        public DbSet<AddonItemType> AddonItemType { get; set; }
     }
 
 }

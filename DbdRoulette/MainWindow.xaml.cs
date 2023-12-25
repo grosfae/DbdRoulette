@@ -32,7 +32,7 @@ namespace DbdRoulette
         {
             InitializeComponent();
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
-            MainFrame.Navigate(new ItemListPage());
+            MainFrame.Navigate(new ItemAddonsPage());
 
             var ThemeCode = Properties.Settings.Default.ThemeCode;
             if (ThemeCode == 2)

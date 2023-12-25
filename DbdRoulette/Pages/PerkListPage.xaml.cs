@@ -225,16 +225,19 @@ namespace DbdRoulette.Pages
         private void TagBtn_Checked(object sender, RoutedEventArgs e)
         {
             Refresh();
+            GeneratePageButtons();
         }
 
         private void TagBtn_Unchecked(object sender, RoutedEventArgs e)
         {
             Refresh();
+            GeneratePageButtons();
         }
 
         private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             Refresh();
+            GeneratePageButtons();
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {

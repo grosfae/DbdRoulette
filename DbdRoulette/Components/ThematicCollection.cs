@@ -12,6 +12,15 @@ namespace DbdRoulette.Components
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<ItemThematicCollection> ItemThematicCollection { get; set; }
+        public byte[] MainImage { get; set; }
+        public virtual ICollection<Item> Item { get; set; }
+
+        public string UpperName
+        {
+            get
+            {
+                return Name.ToUpper();
+            }
+        }
     }
 }

@@ -163,7 +163,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Addons\ColorHazeAnimated.xaml">
+    <Page Include="Addons\HazeRowAnimate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,8 +179,8 @@
       <DependentUpon>ChapterBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Addons\CircularPanel.cs" />
-    <Compile Include="Addons\ColorHazeAnimated.xaml.cs">
-      <DependentUpon>ColorHazeAnimated.xaml</DependentUpon>
+    <Compile Include="Addons\HazeRowAnimate.xaml.cs">
+      <DependentUpon>HazeRowAnimate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Addons\MiscUtilities.cs" />
     <Compile Include="Addons\SliderControl.xaml.cs">
@@ -190,6 +190,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Components\Addon.cs" />
+    <Compile Include="Components\AddonEffect.cs" />
+    <Compile Include="Components\AddonItemType.cs" />
     <Compile Include="Components\ApplicationContext.cs" />
     <Compile Include="Components\BodyPart.cs" />
     <Compile Include="Components\Chapter.cs" />
@@ -200,14 +203,16 @@
     <Compile Include="Components\CosmeticOutfit.cs" />
     <Compile Include="Components\CosmeticType.cs" />
     <Compile Include="Components\Difficulty.cs" />
+    <Compile Include="Components\Effect.cs" />
     <Compile Include="Components\Item.cs" />
-    <Compile Include="Components\ItemThematicCollection.cs" />
+    <Compile Include="Components\ItemType.cs" />
     <Compile Include="Components\Killer.cs" />
     <Compile Include="Components\KillerCosmeticOutfit.cs" />
     <Compile Include="Components\KillerPerk.cs" />
     <Compile Include="Components\Map.cs" />
     <Compile Include="Components\MapGallery.cs" />
     <Compile Include="Components\Perk.cs" />
+    <Compile Include="Components\PerkEffect.cs" />
     <Compile Include="Components\PerkTextTag.cs" />
     <Compile Include="Components\PerkType.cs" />
     <Compile Include="Components\Power.cs" />
@@ -238,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CharacterListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ItemAddonsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -274,6 +283,9 @@
     </Compile>
     <Compile Include="Pages\CharacterListPage.xaml.cs">
       <DependentUpon>CharacterListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ItemAddonsPage.xaml.cs">
+      <DependentUpon>ItemAddonsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ItemListPage.xaml.cs">
       <DependentUpon>ItemListPage.xaml</DependentUpon>
@@ -315,9 +327,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\BeerMoney-08po.ttf" />
     <Resource Include="Resources\Fonts\europeextendedc_bold.otf" />
     <Resource Include="Resources\Fonts\Arkhip_font.ttf" />
-    <Resource Include="Resources\Fonts\Molot.otf" />
     <Resource Include="Resources\Fonts\RobotoCondensed-Bold.ttf" />
     <Resource Include="Resources\Fonts\Agency FB Cyrillic.ttf" />
     <Resource Include="Resources\Fonts\fontawesome-webfont.ttf" />
@@ -444,7 +456,9 @@
     <Resource Include="Resources\ColorHazes\UltraRareHaze.png" />
     <Resource Include="Resources\ColorHazes\VeryRareHaze.png" />
     <Resource Include="Resources\ColorHazes\EventHaze.png" />
-    <Resource Include="Resources\ColorHazes\Def.png" />
+    <Resource Include="Resources\ColorHazes\UncommonHaze.png" />
+    <Resource Include="Resources\ColorHazes\DefaultHaze.png" />
+    <Resource Include="Resources\Misc\WhiteLine.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

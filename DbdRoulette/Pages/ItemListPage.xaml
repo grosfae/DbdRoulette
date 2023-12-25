@@ -3,10 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:DbdRoulette.Pages"
+      xmlns:local="clr-namespace:DbdRoulette.Addons"
       mc:Ignorable="d" 
       d:DesignHeight="1700" d:DesignWidth="1400"
-      Title="ItemListPage">
+      Title="ItemListPage" Loaded="Page_Loaded">
 
     <Grid>
         <ScrollViewer CanContentScroll="False">
@@ -20,7 +20,7 @@
                     <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
-                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Предметы и улучшения" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Снаряжение выживших" Margin="15 0 0 0"/>
                     </StackPanel>
                     <Button x:Name="BackBtn" Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="BackBtn_Click"/>
                 </StackPanel>
@@ -35,29 +35,33 @@
 
                             <StackPanel Margin="0 20 0 0" HorizontalAlignment="Left">
                                 <StackPanel Orientation="Horizontal">
-                                    <Border VerticalAlignment="Bottom" Margin="0 0 0 0" HorizontalAlignment="Left" Height="40" Width="253" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
+                                    <StackPanel>
+                                        <TextBlock Text="Отсортировать по" Foreground="White" FontSize="20" Style="{DynamicResource Header}"/>
+                                        <ComboBox x:Name="CbSort" SelectionChanged="CbSort_SelectionChanged" Style="{DynamicResource CustomSortBox}" Width="250" Cursor="Hand" Height="40"  ItemContainerStyle="{StaticResource CustomSortBoxItem}"/>
+                                    </StackPanel>
+
+                                    <Border VerticalAlignment="Bottom" Margin="30 0 0 0" HorizontalAlignment="Left" Height="40" Width="253" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
                                         <Grid Width="250" HorizontalAlignment="Left">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="30"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
+                                            <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent" TextChanged="TbSearch_TextChanged"/>
                                             <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
                                         </Grid>
                                     </Border>
-
                                 </StackPanel>
 
                                 <WrapPanel x:Name="TagsContainer" Margin="0 10 0 0" Width="820"/>
                             </StackPanel>
                         </StackPanel>
 
-                        <StackPanel HorizontalAlignment="Right" Height="auto">
+                        <StackPanel HorizontalAlignment="Right" Height="auto" VerticalAlignment="Top">
                             <StackPanel.Background>
                                 <SolidColorBrush Color="#FF121212" Opacity="0.5"/>
                             </StackPanel.Background>
                             <TextBlock Style="{DynamicResource MiniText}" Text="Редкости Предметов" HorizontalAlignment="Center" FontWeight="Regular" Foreground="White" FontSize="26" Margin="10"/>
-                            <ListView x:Name="LvRarities" d:ItemsSource="{d:SampleData ItemCount=7}" Width="300">
+                            <ListView x:Name="LvRarities" d:ItemsSource="{d:SampleData ItemCount=7}" Width="300" Margin="0 0 0 15">
                                 <ListView.Template>
                                     <ControlTemplate TargetType="ItemsControl">
                                         <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -104,32 +108,14 @@
                             <DataTemplate>
                                 <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="1">
                                     <Grid.ToolTip>
-                                        <StackPanel Margin="-7" Width="415">
+                                        <StackPanel Width="410">
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
                                             </StackPanel.Background>
-                                            <Grid MinHeight="70" MaxHeight="110">
-                                                <Rectangle Fill="#FF121212" Stretch="Fill"/>
-                                                <Rectangle Stretch="Fill" >
-                                                    <Rectangle.Fill>
-                                                        <ImageBrush ImageSource="{Binding Rarity.ColorHaze}"/>
-                                                    </Rectangle.Fill>
-                                                    <Rectangle.RenderTransform>
-                                                        <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                                    </Rectangle.RenderTransform>
-                                                    <Rectangle.Triggers>
-                                                        <EventTrigger RoutedEvent="Loaded">
-                                                            <EventTrigger.Actions>
-                                                                <BeginStoryboard>
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(ScaleTransform.ScaleX)" From="1.0" To="3.5" Duration="0:0:13.5" RepeatBehavior="Forever" AutoReverse="True"/>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </EventTrigger.Actions>
-                                                        </EventTrigger>
-                                                    </Rectangle.Triggers>
-                                                </Rectangle>
-                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                            <Grid MinHeight="70" MaxHeight="110" Background="#FF121212">
+                                                <Image Source="{Binding ThematicCollection.MainImage}" Stretch="UniformToFill"/>
+                                                <local:HazeRowAnimate DataContext="{Binding}"/>
+                                                <StackPanel Margin="15 10 15 0" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                     <TextBlock Text="{Binding ItemUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="{Binding Rarity.UpperName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
@@ -137,7 +123,16 @@
                                                     </StackPanel>
                                                 </StackPanel>
                                             </Grid>
-                                            <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15 0 15" FontSize="16"/>
+                                            <StackPanel Margin="0 0 0 15">
+                                                <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
+                                                <TextBlock Margin="0 10" Visibility="{Binding ShowItemTypeQuote}" Text="{Binding ItemType.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                <TextBlock Margin="0 10" Visibility="{Binding ShowQuote}" Text="{Binding Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                <StackPanel Visibility="{Binding ShowCollection}">
+                                                    <Image Source="/Resources/Misc/WhiteLine.png" Stretch="Uniform" Margin="0 0 0 5"/>
+                                                    <TextBlock Text= "СОБЫТИЕ" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14" Width="390"/>
+                                                    <TextBlock Text="{Binding ThematicCollection.UpperName}" Foreground="White" TextWrapping="Wrap" Width="390" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                </StackPanel>
+                                            </StackPanel>
                                         </StackPanel>
                                     </Grid.ToolTip>
                                     <Image Source="{Binding MainIcon}" Height="200" Width="200"/>
