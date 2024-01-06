@@ -192,7 +192,6 @@
     </Compile>
     <Compile Include="Components\Addon.cs" />
     <Compile Include="Components\AddonEffect.cs" />
-    <Compile Include="Components\AddonItemType.cs" />
     <Compile Include="Components\ApplicationContext.cs" />
     <Compile Include="Components\BodyPart.cs" />
     <Compile Include="Components\Chapter.cs" />

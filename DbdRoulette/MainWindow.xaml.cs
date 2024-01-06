@@ -32,7 +32,7 @@ namespace DbdRoulette
         {
             InitializeComponent();
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
-            MainFrame.Navigate(new ItemAddonsPage());
+            MainFrame.Navigate(new ItemAddonsPage(null));
 
             var ThemeCode = Properties.Settings.Default.ThemeCode;
             if (ThemeCode == 2)
@@ -145,6 +145,18 @@ namespace DbdRoulette
             else
             {
                 MainFrame.Navigate(new PerkListPage());
+            }
+        }
+
+        private void ItemListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content is ItemListPage)
+            {
+                return;
+            }
+            else
+            {
+                MainFrame.Navigate(new ItemListPage());
             }
         }
     }

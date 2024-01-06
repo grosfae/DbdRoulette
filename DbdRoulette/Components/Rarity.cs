@@ -22,7 +22,7 @@ namespace DbdRoulette.Components
             {
                 if (Id == 1)
                 {
-                    return "#FFAB5E00";
+                    return "#FF654D3B";
                 }
                 else if(Id == 2)
                 {

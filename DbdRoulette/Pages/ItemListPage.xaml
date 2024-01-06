@@ -106,16 +106,20 @@
                         </ListView.Template>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="1">
+                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="1" x:Name="ItemBtn" MouseLeftButtonDown="ItemBtn_MouseLeftButtonDown">
                                     <Grid.ToolTip>
                                         <StackPanel Width="410">
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
                                             </StackPanel.Background>
                                             <Grid MinHeight="70" MaxHeight="110" Background="#FF121212">
-                                                <Image Source="{Binding ThematicCollection.MainImage}" Stretch="UniformToFill"/>
+                                                <Grid>
+                                                    <Grid.Background>
+                                                        <ImageBrush ImageSource="{Binding ThematicCollection.MainImage}"  Stretch="UniformToFill" AlignmentY="Top"/>
+                                                    </Grid.Background>
+                                                </Grid>
                                                 <local:HazeRowAnimate DataContext="{Binding}"/>
-                                                <StackPanel Margin="15 10 15 0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <StackPanel Margin="15 10 15 5" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                     <TextBlock Text="{Binding ItemUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="{Binding Rarity.UpperName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
@@ -164,7 +168,7 @@
                     </Grid>
 
                 </StackPanel>
-                <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18" Grid.Row="2">
+                <Rectangle x:Name="RecGradient" Height="150" Fill="#FF2D63A1" Grid.Row="2">
                     <Rectangle.OpacityMask>
                         <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
                             <GradientStop Color="Transparent" Offset="0.15"/>

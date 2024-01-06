@@ -72,5 +72,13 @@ namespace DbdRoulette.Pages
         {
             RefreshСhapters();
         }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack == true)
+            {
+                NavigationService.GoBack();
+            }
+        }
     }
 }

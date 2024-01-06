@@ -39,7 +39,10 @@ namespace DbdRoulette.Pages
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            if (NavigationService.CanGoBack == true)
+            {
+                NavigationService.GoBack();
+            }
         }
 
         private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -125,6 +128,12 @@ namespace DbdRoulette.Pages
             numberPage = realPageNumber;
             fakePage = int.Parse(radioButton.Content.ToString());
             Refresh();
+        }
+
+        private void ItemBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var selectedItem = (sender as Grid).DataContext as Item;
+            NavigationService.Navigate(new ItemAddonsPage(selectedItem.ItemType));
         }
     }
 }

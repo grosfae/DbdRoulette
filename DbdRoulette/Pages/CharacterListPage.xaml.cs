@@ -28,9 +28,7 @@ namespace DbdRoulette.Pages
         public CharacterListPage()
         {
             InitializeComponent();
-
             RadioKiller.IsChecked = true;
-
         }
 
         private void RadioKiller_Checked(object sender, RoutedEventArgs e)
@@ -201,6 +199,12 @@ namespace DbdRoulette.Pages
             }
         }
 
-        
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack == true)
+            {
+                NavigationService.GoBack();
+            }
+        }
     }
 }
