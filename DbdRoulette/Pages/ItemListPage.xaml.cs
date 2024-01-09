@@ -31,7 +31,9 @@ namespace DbdRoulette.Pages
             InitializeComponent();
 
             CbSort.Items.Add("По алфавиту");
-            CbSort.Items.Add("По редкости");
+            CbSort.Items.Add("По возрастанию редкости");
+            CbSort.Items.Add("По убыванию редкости");
+
             CbSort.SelectedIndex = 0;
 
             LvRarities.ItemsSource = App.DB.Rarity.Where(x => x.Id != 6 && x.Id != 8 && x.Id != 10).ToList();
@@ -65,6 +67,10 @@ namespace DbdRoulette.Pages
             else if (CbSort.SelectedIndex == 1)
             {
                 items = items.OrderBy(x => x.RarityId);
+            }
+            else if (CbSort.SelectedIndex == 2)
+            {
+                items = items.OrderByDescending(x => x.RarityId);
             }
             if (TbSearch.Text.Length > 0)
             {

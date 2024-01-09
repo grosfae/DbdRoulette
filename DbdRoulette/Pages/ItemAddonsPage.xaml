@@ -20,7 +20,7 @@
                     <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
-                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Список предметов" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Снаряжение выживших" Margin="15 0 0 0"/>
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Улучшения снаряжения" Margin="15 0 0 0"/>
 

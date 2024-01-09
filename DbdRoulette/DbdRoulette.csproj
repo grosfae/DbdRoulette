@@ -265,6 +265,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PowerListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\SliderPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -297,6 +301,9 @@
     </Compile>
     <Compile Include="Pages\PerkListPage.xaml.cs">
       <DependentUpon>PerkListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PowerListPage.xaml.cs">
+      <DependentUpon>PowerListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SliderPage.xaml.cs">
       <DependentUpon>SliderPage.xaml</DependentUpon>
