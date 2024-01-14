@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace DbdRoulette.Components
@@ -23,6 +24,13 @@ namespace DbdRoulette.Components
         public virtual ICollection<Killer> Killer { get; set; }
         public virtual ICollection<PowerItem> PowerItem { get; set; }
 
+        public string UpperName
+        {
+            get
+            {
+                return Name.ToUpper();
+            }
+        }
         public string OwnerName
         {
             get
@@ -35,6 +43,27 @@ namespace DbdRoulette.Components
                 else
                 {
                     return "НЕИЗВЕСТНО";
+                }
+            }
+        }
+        public string HazeCloud
+        {
+            get
+            {
+                return "pack://application:,,,/DbdRoulette;component/Resources/ColorHazes/CommonHaze.png"; 
+            }
+        }
+        public Visibility ShowQuote
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(Quote))
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
                 }
             }
         }

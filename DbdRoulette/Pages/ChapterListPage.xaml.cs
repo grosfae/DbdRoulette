@@ -80,5 +80,6 @@ namespace DbdRoulette.Pages
                 NavigationService.GoBack();
             }
         }
+
     }
 }

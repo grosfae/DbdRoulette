@@ -23,6 +23,9 @@ namespace DbdRoulette.Pages
         public PowerListPage()
         {
             InitializeComponent();
+            
+            LvPowers.ItemsSource = App.DB.Power.ToList();
         }
+
     }
 }

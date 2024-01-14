@@ -163,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Addons\FlowerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Addons\HazeRowAnimate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +183,9 @@
       <DependentUpon>ChapterBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Addons\CircularPanel.cs" />
+    <Compile Include="Addons\FlowerControl.xaml.cs">
+      <DependentUpon>FlowerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Addons\HazeRowAnimate.xaml.cs">
       <DependentUpon>HazeRowAnimate.xaml</DependentUpon>
     </Compile>
@@ -455,7 +462,6 @@
     <Resource Include="Resources\RarityImages\YellowRarity.png" />
     <Resource Include="Resources\Misc\ShardIcon.png" />
     <Resource Include="Resources\RarityImages\ThreeLevelPerk.png" />
-    <Resource Include="Resources\Misc\BlackFog.png" />
     <Resource Include="Resources\ColorHazes\CommonHaze.png" />
     <Resource Include="Resources\ColorHazes\LimitedHaze.png" />
     <Resource Include="Resources\ColorHazes\RareHaze.png" />
@@ -465,6 +471,9 @@
     <Resource Include="Resources\ColorHazes\UncommonHaze.png" />
     <Resource Include="Resources\ColorHazes\DefaultHaze.png" />
     <Resource Include="Resources\Misc\WhiteLine.png" />
+    <Resource Include="Resources\Misc\BlessingIcon.png" />
+    <Resource Include="Resources\Misc\TrapBlackIcon.png" />
+    <Resource Include="Resources\Misc\TrapIcon.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

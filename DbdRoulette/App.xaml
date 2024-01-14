@@ -716,6 +716,48 @@
             </Setter>
         </Style>
 
+        <Style TargetType="ToggleButton" x:Key="FogToggleButton">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="#FF121212"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton" >
+                        <Grid>
+                            <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" RenderTransformOrigin="0.5, 0.5" Fill="{TemplateBinding Background}">
+                                <Ellipse.Effect>
+                                    <BlurEffect Radius="40"/>
+                                </Ellipse.Effect>
+                                <Ellipse.RenderTransform>
+                                    <RotateTransform Angle="0"/>
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+                            <Image x:Name="WhiteImage" Source="/Resources/Misc/TrapIcon.png" Height="95" Width="95" Stretch="Uniform" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                            <Image x:Name="BlackImage" Source="/Resources/Misc/TrapBlackIcon.png" Visibility="Collapsed" Height="95" Width="95" Stretch="Uniform" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" From="#FF121212" To="White" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)" From="White" To="#FF121212" Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
 
         <!--RadioButtons Style-->
         <Style TargetType="RadioButton" x:Key="RedRadio">
@@ -821,7 +863,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
 
         <Style TargetType="RadioButton" x:Key="PerksSelectionRadio">
             <Setter Property="BorderThickness" Value="0" />
