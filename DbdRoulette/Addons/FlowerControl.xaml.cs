@@ -33,12 +33,133 @@ namespace DbdRoulette.Addons
 
         private void MainToggle_Checked(object sender, RoutedEventArgs e)
         {
+            FirstGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
+            {
+                From = 0,
+                To = -150,
+                EasingFunction = new CircleEase {EasingMode = EasingMode.EaseOut},
+                Duration = TimeSpan.FromSeconds(0.5)
+            });
+            FirstGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
+            {
+                From = 0,
+                To = -100,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
+                Duration = TimeSpan.FromSeconds(0.5)
+            });
 
+            SecondGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
+            {
+                From = 0,
+                To = 150,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
+                Duration = TimeSpan.FromSeconds(0.8)
+            });
+
+            SecondGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
+            {
+                From = 0,
+                To = -100,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
+                Duration = TimeSpan.FromSeconds(0.8)
+            });
+
+
+            ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
+            {
+                From = 0,
+                To = 150,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
+                Duration = TimeSpan.FromSeconds(1.1)
+            });
+            ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
+            {
+                From = 0,
+                To = 100,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
+                Duration = TimeSpan.FromSeconds(1.1)
+            });
+
+            FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
+            {
+                From = 0,
+                To = -150,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
+                Duration = TimeSpan.FromSeconds(1.4)
+            });
+            FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
+            {
+                From = 0,
+                To = 100,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
+                Duration = TimeSpan.FromSeconds(1.4)
+            });
         }
 
         private void MainToggle_Unchecked(object sender, RoutedEventArgs e)
         {
+            FirstGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
+            {
+                From = -150,
+                To = 0,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
+                Duration = TimeSpan.FromSeconds(0.5)
+            });
+            FirstGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
+            {
+                From = -100,
+                To = 0,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
+                Duration = TimeSpan.FromSeconds(0.5)
+            });
 
+            SecondGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
+            {
+                From = 150,
+                To = 0,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
+                Duration = TimeSpan.FromSeconds(0.8)
+            });
+
+            SecondGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
+            {
+                From = -100,
+                To = 0,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
+                Duration = TimeSpan.FromSeconds(0.8)
+            });
+
+
+            ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
+            {
+                From = 150,
+                To = 0,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
+                Duration = TimeSpan.FromSeconds(1.1)
+            });
+            ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
+            {
+                From = 100,
+                To = 0,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
+                Duration = TimeSpan.FromSeconds(1.1)
+            });
+
+            FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
+            {
+                From = -150,
+                To = 0,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
+                Duration = TimeSpan.FromSeconds(1.4)
+            });
+            FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
+            {
+                From = 100,
+                To = 0,
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
+                Duration = TimeSpan.FromSeconds(1.4)
+            });
         }
+        
     }
 }
