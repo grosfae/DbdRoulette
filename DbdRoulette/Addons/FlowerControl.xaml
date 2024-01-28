@@ -7,38 +7,196 @@
              mc:Ignorable="d" 
              Height="300" Width="570" Loaded="UserControl_Loaded">
     <Grid>
+
         <ToggleButton x:Name="MainToggle" Width="160" Height="160" Panel.ZIndex="3" Style="{DynamicResource FogToggleButton}" BorderThickness="0" Checked="MainToggle_Checked" Unchecked="MainToggle_Unchecked" RenderTransformOrigin="0.5, 0.5" Cursor="Hand">
             <ToggleButton.RenderTransform>
                 <ScaleTransform ScaleX="1" ScaleY="1"/>
             </ToggleButton.RenderTransform>
         </ToggleButton>
-        <Grid x:Name="FirstGrid" Height="100" Width="100" RenderTransformOrigin="0.5, 0.5">
+        <Grid x:Name="FirstGrid" Height="100" Width="100" RenderTransformOrigin="0.5, 0.5" ToolTipService.InitialShowDelay="0">
             <Grid.RenderTransform>
                 <TranslateTransform X="0" Y="0"/>
             </Grid.RenderTransform>
-            <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" Fill="#FF3B6CCC"/>
-            <Image Source="/Resources/Misc/StoreIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+            <Border VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" Background="#FF121212" BorderBrush="Transparent" BorderThickness="3" CornerRadius="100">
+                <Image Source="/Resources/FlowerControl/PowerIcon.png" Height="100" Width="100" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" From="Transparent" To="#FF2D63A1" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" From="#FF2D63A1" To="Transparent" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Border.Triggers>
+            </Border>
+            <Grid.ToolTip>
+                <StackPanel Width="370" Height="auto">
+                    <Grid Background="#FF121212" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="/Resources/FlowerControl/FlowerCard/UniquePowerCardImage.png" Height="265" Stretch="UniformToFill" Width="370" HorizontalAlignment="Center"/>
+                        <Image Source="/Resources/Misc/WhiteLine.png" Grid.Row="1" VerticalAlignment="Top"/>
+                        <TextBlock Text="Каждый персонаж в роли убийцы обладает своей уникальной силой, которая не может быть использована другими персонажами." Style="{DynamicResource MiniText}" HorizontalAlignment="Left"  TextWrapping="Wrap" Width="370" Padding="10" TextAlignment="Left" Foreground="White" FontSize="18" Grid.Row="1"/>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 5">
+                            <Image Source="/Resources/Misc/KillerIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+                            <TextBlock Style="{DynamicResource Header}" Text="Уникальные способности" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20" TextWrapping="Wrap" Width="270"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid.ToolTip>
         </Grid>
-        <Grid x:Name="SecondGrid" Height="100" Width="100" RenderTransformOrigin="0.5, 0.5">
+        <Grid x:Name="SecondGrid" Height="100" Width="100" RenderTransformOrigin="0.5, 0.5" ToolTipService.InitialShowDelay="0">
             <Grid.RenderTransform>
                 <TranslateTransform X="0" Y="0"/>
             </Grid.RenderTransform>
-            <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" Fill="#FF3B6CCC"/>
-            <Image Source="/Resources/Misc/StoreIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+            <Border VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" Background="#FF121212" BorderBrush="Transparent" BorderThickness="3" CornerRadius="100">
+                <Image Source="/Resources/FlowerControl/BloodWebIcon.png" Height="100" Width="100" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" From="Transparent" To="#FF2D63A1" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" From="#FF2D63A1" To="Transparent" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Border.Triggers>
+            </Border>
+            <Grid.ToolTip>
+                <StackPanel Width="370" Height="auto">
+                    <Grid Background="#FF121212" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="/Resources/FlowerControl/FlowerCard/AddonsCardImage.png" Height="265" Stretch="UniformToFill" Width="370" HorizontalAlignment="Center"/>
+                        <Image Source="/Resources/Misc/WhiteLine.png" Grid.Row="1" VerticalAlignment="Top"/>
+                        <TextBlock Text="Улучшения, которые используются для увеличения эффективности силы, расходуются в течение матча вне зависимости от его исхода." Style="{DynamicResource MiniText}" HorizontalAlignment="Left"  TextWrapping="Wrap" Width="370" Padding="10" TextAlignment="Left" Foreground="White" FontSize="18" Grid.Row="1"/>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 5">
+                            <Image Source="/Resources/Misc/KillerIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+                            <TextBlock Style="{DynamicResource Header}" Text="Повышение эффективности" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20" TextWrapping="Wrap" Width="270"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid.ToolTip>
         </Grid>
-        <Grid x:Name="ThirdGrid" Height="100" Width="100" RenderTransformOrigin="0.5, 0.5">
+        <Grid x:Name="ThirdGrid" Height="100" Width="100" RenderTransformOrigin="0.5, 0.5" ToolTipService.InitialShowDelay="0">
             <Grid.RenderTransform>
                 <TranslateTransform X="0" Y="0"/>
             </Grid.RenderTransform>
-            <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" Fill="#FF3B6CCC"/>
-            <Image Source="/Resources/Misc/StoreIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+            <Border VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" Background="#FF121212" BorderBrush="Transparent" BorderThickness="3" CornerRadius="100">
+                <Image Source="/Resources/FlowerControl/ChainsawIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" From="Transparent" To="#FF2D63A1" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" From="#FF2D63A1" To="Transparent" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Border.Triggers>
+            </Border>
+            <Grid.ToolTip>
+                <StackPanel Width="370" Height="auto">
+                    <Grid Background="#FF121212" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="/Resources/FlowerControl/FlowerCard/ProgressCardImage.png" Height="265" Stretch="UniformToFill" Width="370" HorizontalAlignment="Center"/>
+                        <Image Source="/Resources/Misc/WhiteLine.png" Grid.Row="1" VerticalAlignment="Top"/>
+                        <TextBlock Text="Для активации некоторых видов силы требуется заполнить небольшую полоску прогресса." Style="{DynamicResource MiniText}" HorizontalAlignment="Left"  TextWrapping="Wrap" Width="370" Padding="10" TextAlignment="Left" Foreground="White" FontSize="18" Grid.Row="1"/>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 5">
+                            <Image Source="/Resources/Misc/KillerIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+                            <TextBlock Style="{DynamicResource Header}" Text="Подготовка способности" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20" TextWrapping="Wrap" Width="270"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid.ToolTip>
         </Grid>
-        <Grid x:Name="FourthGrid" Height="100" Width="100" RenderTransformOrigin="0.5, 0.5">
+        <Grid x:Name="FourthGrid" Height="100" Width="100" RenderTransformOrigin="0.5, 0.5" ToolTipService.InitialShowDelay="0">
             <Grid.RenderTransform>
                 <TranslateTransform X="0" Y="0"/>
             </Grid.RenderTransform>
-            <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" Fill="#FF3B6CCC"/>
-            <Image Source="/Resources/Misc/StoreIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+            <Border VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" Background="#FF121212" BorderBrush="Transparent" BorderThickness="3" CornerRadius="100">
+                <Image Source="/Resources/FlowerControl/SpendableIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" From="Transparent" To="#FF2D63A1" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" From="#FF2D63A1" To="Transparent" Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Border.Triggers>
+            </Border>
+            <Grid.ToolTip>
+                <StackPanel Width="370" Height="auto">
+                    <Grid Background="#FF121212" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="/Resources/FlowerControl/FlowerCard/TypePowerCardImage.png" Height="265" Stretch="UniformToFill" Width="370" HorizontalAlignment="Center"/>
+                        <Image Source="/Resources/Misc/WhiteLine.png" Grid.Row="1" VerticalAlignment="Top"/>
+                        <TextBlock Text="Силу убийц можно условно разделить на расходуемую и не расходуемую." Style="{DynamicResource MiniText}" HorizontalAlignment="Left"  TextWrapping="Wrap" Width="370" Padding="10" TextAlignment="Left" Foreground="White" FontSize="18" Grid.Row="1"/>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 5">
+                            <Image Source="/Resources/Misc/KillerIcon.png" Height="80" Width="80" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 0"/>
+                            <TextBlock Style="{DynamicResource Header}" Text="Подготовка способности" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20" TextWrapping="Wrap" Width="270"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid.ToolTip>
+
         </Grid>
     </Grid>
 </UserControl>

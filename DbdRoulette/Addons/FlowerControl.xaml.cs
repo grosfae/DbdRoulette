@@ -70,14 +70,14 @@ namespace DbdRoulette.Addons
                 From = 0,
                 To = 150,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
-                Duration = TimeSpan.FromSeconds(1.1)
+                Duration = TimeSpan.FromSeconds(1.0)
             });
             ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
                 From = 0,
                 To = 100,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
-                Duration = TimeSpan.FromSeconds(1.1)
+                Duration = TimeSpan.FromSeconds(1.0)
             });
 
             FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
@@ -85,14 +85,14 @@ namespace DbdRoulette.Addons
                 From = 0,
                 To = -150,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
-                Duration = TimeSpan.FromSeconds(1.4)
+                Duration = TimeSpan.FromSeconds(1.2)
             });
             FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
                 From = 0,
                 To = 100,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
-                Duration = TimeSpan.FromSeconds(1.4)
+                Duration = TimeSpan.FromSeconds(1.2)
             });
         }
 
@@ -135,14 +135,14 @@ namespace DbdRoulette.Addons
                 From = 150,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
-                Duration = TimeSpan.FromSeconds(1.1)
+                Duration = TimeSpan.FromSeconds(1.0)
             });
             ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
                 From = 100,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
-                Duration = TimeSpan.FromSeconds(1.1)
+                Duration = TimeSpan.FromSeconds(1.0)
             });
 
             FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
@@ -150,16 +150,26 @@ namespace DbdRoulette.Addons
                 From = -150,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
-                Duration = TimeSpan.FromSeconds(1.4)
+                Duration = TimeSpan.FromSeconds(1.2)
             });
             FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
                 From = 100,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
-                Duration = TimeSpan.FromSeconds(1.4)
+                Duration = TimeSpan.FromSeconds(1.2)
             });
         }
-        
+
+        private void StackPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+            (sender as StackPanel).RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
+            {
+                From = -SystemParameters.PrimaryScreenHeight,
+                To = 0,
+                
+                Duration = TimeSpan.FromSeconds(1.2)
+            });
+        }
     }
 }

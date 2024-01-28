@@ -171,6 +171,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Addons\NothingFoundControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Addons\SliderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -190,6 +194,9 @@
       <DependentUpon>HazeRowAnimate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Addons\MiscUtilities.cs" />
+    <Compile Include="Addons\NothingFoundControl.xaml.cs">
+      <DependentUpon>NothingFoundControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Addons\SliderControl.xaml.cs">
       <DependentUpon>SliderControl.xaml</DependentUpon>
     </Compile>
@@ -474,6 +481,18 @@
     <Resource Include="Resources\Misc\BlessingIcon.png" />
     <Resource Include="Resources\Misc\TrapBlackIcon.png" />
     <Resource Include="Resources\Misc\TrapIcon.png" />
+    <Resource Include="Resources\FlowerControl\BloodWebIcon.png" />
+    <Resource Include="Resources\FlowerControl\ChainsawIcon.png" />
+    <Resource Include="Resources\FlowerControl\FlowerCard\UniquePowerCardImage.png" />
+    <Resource Include="Resources\FlowerControl\PowerIcon.png" />
+    <Resource Include="Resources\FlowerControl\SpendableIcon.png" />
+    <Resource Include="Resources\FlowerControl\TrapBlackIcon.png" />
+    <Resource Include="Resources\FlowerControl\TrapIcon.png" />
+    <Resource Include="Resources\FlowerControl\FlowerCard\AddonsCardImage.png" />
+    <Resource Include="Resources\FlowerControl\FlowerCard\ProgressCardImage.png" />
+    <Resource Include="Resources\FlowerControl\FlowerCard\TypePowerCardImage.png" />
+    <Resource Include="Resources\Misc\DroneIcon.png" />
+    <Resource Include="Resources\Misc\Fog.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

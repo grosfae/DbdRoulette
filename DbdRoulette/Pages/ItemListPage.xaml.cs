@@ -30,7 +30,7 @@ namespace DbdRoulette.Pages
         {
             InitializeComponent();
 
-            CbSort.Items.Add("По алфавиту");
+            CbSort.Items.Add("По названию");
             CbSort.Items.Add("По возрастанию редкости");
             CbSort.Items.Add("По убыванию редкости");
 
