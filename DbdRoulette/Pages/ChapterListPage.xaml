@@ -146,7 +146,7 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <ListView d:ItemsSource="{d:SampleData ItemCount=7}" x:Name="LvChapters" Width="1280" Margin="0 40 0 0" Focusable="False">
+                        <ListView d:ItemsSource="{d:SampleData ItemCount=3}" x:Name="LvChapters" Width="1280" Margin="0 40 0 0" Focusable="False">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Width="1280"/>
@@ -163,6 +163,8 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+
+                    <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

@@ -151,9 +151,15 @@ namespace DbdRoulette.Pages
                 killers = killers.Where(x => x.Name.ToLower().Contains(TbSearch.Text.ToLower()));
             }
             LvCharacters.ItemsSource = killers;
-
-
-            LvCharacters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            if(LvCharacters.Items.Count > 0)
+            {
+                NothingFoundElement.Visibility = Visibility.Collapsed;
+                LvCharacters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            }
+            else
+            {
+                NothingFoundElement.Visibility = Visibility.Visible;
+            }
         }
 
         private void RefreshSurvivors()

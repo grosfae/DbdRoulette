@@ -21,8 +21,10 @@ namespace DbdRoulette.Components
         public byte[] DemoImage { get; set; }
         public string Range { get; set; }
         public string Count { get; set; }
+        public virtual ICollection<PowerAddon> PowerAddon { get; set; }
         public virtual ICollection<Killer> Killer { get; set; }
         public virtual ICollection<PowerItem> PowerItem { get; set; }
+
 
         public string UpperName
         {

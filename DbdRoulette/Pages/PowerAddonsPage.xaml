@@ -1,0 +1,179 @@
+﻿<Page x:Class="DbdRoulette.Pages.PowerAddonsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DbdRoulette.Pages"
+      xmlns:addons="clr-namespace:DbdRoulette.Addons"
+      mc:Ignorable="d" 
+      d:DesignHeight="1700" d:DesignWidth="1400"
+      Title="PowerAddonsPage">
+
+    <Grid>
+        <ScrollViewer CanContentScroll="False">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Способности убийцы" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Улучшения способностей" Margin="15 0 0 0"/>
+
+                    </StackPanel>
+                    <Button x:Name="BackBtn" Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="BackBtn_Click"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Margin="60 0" HorizontalAlignment="Stretch">
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Style="{DynamicResource Header}" Text="Улучшения способностей" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                            <TextBlock Text="Предназначены для усиления способностей, либо для их изменения. Улучшения исчезают после завершения матча, если не было использовано соответсвующее подношение." Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Center"  TextWrapping="Wrap" Width="700" TextAlignment="Center" Foreground="White" FontSize="20"/>
+                        </StackPanel>
+                    </Grid>
+                    <ListView x:Name="LvPowers" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0 10 0 0" HorizontalAlignment="Center">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Width="auto" Orientation="Horizontal" HorizontalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <RadioButton x:Name="PowerBtn" Checked="PowerBtn_Checked" Loaded="PowerBtn_Loaded" Style="{DynamicResource SimpleRadio}" GroupName="Powers" Width="auto" Height="70" Margin="6 0">
+                                    <RadioButton.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.5">
+                                            <GradientStop Color="#FF121212" Offset="0.245"/>
+                                            <GradientStop Color="#FF121212" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </RadioButton.Background>
+                                    <RadioButton.Content>
+                                        <StackPanel  Margin="15 0">
+                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" TextWrapping="Wrap" FontSize="26"/>
+                                            <TextBlock Text="{Binding OwnerName}" HorizontalAlignment="Center" FontSize="18" Foreground="White"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                    <RadioButton.BorderBrush>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent"/>
+                                            <GradientStop Color="Transparent" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </RadioButton.BorderBrush>
+                                    <RadioButton.Triggers>
+                                        <EventTrigger RoutedEvent="RadioButton.Checked">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="#FF654D3B" Storyboard.TargetProperty="Background.GradientStops[1].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                        <ColorAnimation To="#FF121212" Storyboard.TargetProperty="BorderBrush.GradientStops[0].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                        <ColorAnimation To="#FF654D3B" Storyboard.TargetProperty="BorderBrush.GradientStops[1].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+
+                                        <EventTrigger RoutedEvent="RadioButton.Unchecked">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation To="#FF121212" Storyboard.TargetProperty="Background.GradientStops[1].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                        <ColorAnimation To="Transparent" Storyboard.TargetProperty="BorderBrush.GradientStops[0].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                        <ColorAnimation To="Transparent" Storyboard.TargetProperty="BorderBrush.GradientStops[1].Color" FillBehavior="HoldEnd" Duration="0:0:0.2"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </RadioButton.Triggers>
+                                </RadioButton>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ListView x:Name="LvAddons" d:ItemsSource="{d:SampleData ItemCount=37}" Margin="0 10 0 0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Width="1270" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="10 0 10 20" ToolTipService.InitialShowDelay="1" Cursor="Hand">
+                                    <Grid.ToolTip>
+                                        <StackPanel Width="410">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                            </StackPanel.Background>
+                                            <Grid MinHeight="70" MaxHeight="110" Background="#FF121212">
+                                                <Grid>
+                                                    <Grid.Background>
+                                                        <ImageBrush ImageSource="{Binding Addon.ThematicCollection.MainImage}"  Stretch="UniformToFill" AlignmentY="Top"/>
+                                                    </Grid.Background>
+                                                </Grid>
+                                                <addons:HazeRowAnimate DataContext="{Binding Addon}" />
+                                                <StackPanel Margin="15 10 15 5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Addon.UpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="{Binding Addon.SignatureText}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                                </StackPanel>
+                                            </Grid>
+                                            <StackPanel Margin="0 0 0 15">
+                                                <TextBlock Text="{Binding Addon.Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
+                                                <ListView ItemsSource="{Binding Addon.AddonEffect}" Visibility="{Binding Addon.ShowEffect}">
+                                                    <ListView.Template>
+                                                        <ControlTemplate TargetType="ItemsControl">
+                                                            <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                        </ControlTemplate>
+                                                    </ListView.Template>
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Margin="0 5" Text="{Binding Effect.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+
+                                                <TextBlock Margin="0 10" Visibility="{Binding Addon.ShowQuote}" Text="{Binding Addon.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                <StackPanel Visibility="{Binding Addon.ShowCollection}">
+                                                    <Image Source="/Resources/Misc/WhiteLine.png" Stretch="Uniform" Margin="0 0 0 5"/>
+                                                    <TextBlock Text= "СОБЫТИЕ" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14" Width="390"/>
+                                                    <TextBlock Text="{Binding Addon.ThematicCollection.UpperName}" Foreground="White" TextWrapping="Wrap" Width="390" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid.ToolTip>
+                                    <Image Source="{Binding Addon.MainIcon}" Height="150" Width="150"/>
+                                    <TextBlock Text="{Binding Addon.Name}" Width="150" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{StaticResource Header}" Foreground="White">
+                                        <TextBlock.Background>
+                                            <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                        </TextBlock.Background>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackPanel>
+                <Rectangle x:Name="RecGradient" Height="150" Fill="#FF2D63A1" Grid.Row="2">
+                    <Rectangle.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                            <GradientStop Color="Transparent" Offset="0.15"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

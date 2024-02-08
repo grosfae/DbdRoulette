@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:DbdRoulette.Addons"
+      xmlns:local="clr-namespace:DbdRoulette.Pages"
+      xmlns:addons="clr-namespace:DbdRoulette.Addons"
       mc:Ignorable="d" 
       d:DesignHeight="1700" d:DesignWidth="1400" Loaded="Page_Loaded"
       Title="PerkListPage">
@@ -60,14 +61,14 @@
                                     <ImageBrush ImageSource="/Resources/Misc/ShrineBackground.png" Stretch="UniformToFill"/>
                                 </Grid.Background>
                                 
-                                <Image x:Name="PerkFirst" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Top">
+                                <Image x:Name="PerkFirst" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Top" ToolTipService.InitialShowDelay="0">
                                     <Image.ToolTip>
                                         <StackPanel Margin="-7" Width="415">
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
                                             </StackPanel.Background>
                                             <Grid MinHeight="70" MaxHeight="110"  Background="#FF121212">
-                                                <local:HazeRowAnimate DataContext="{Binding}"/>
+                                                <addons:HazeRowAnimate DataContext="{Binding}"/>
                                                 <StackPanel Margin="15" HorizontalAlignment="Left">
                                                     <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
                                                     <StackPanel Orientation="Horizontal">
@@ -98,14 +99,14 @@
                                     </Image.ToolTip>
                                 </Image>
 
-                                <Image x:Name="PerkSecond" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="70 0 0 0">
+                                <Image x:Name="PerkSecond" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="70 0 0 0" ToolTipService.InitialShowDelay="0">
                                     <Image.ToolTip>
                                         <StackPanel Margin="-7" Width="415">
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
                                             </StackPanel.Background>
                                             <Grid MinHeight="70" MaxHeight="110"  Background="#FF121212">
-                                                <local:HazeRowAnimate DataContext="{Binding}"/>
+                                                <addons:HazeRowAnimate DataContext="{Binding}"/>
                                                 <StackPanel Margin="15" HorizontalAlignment="Left">
                                                     <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
                                                     <StackPanel Orientation="Horizontal">
@@ -136,14 +137,14 @@
                                     </Image.ToolTip>
                                 </Image>
 
-                                <Image x:Name="PerkThird" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 70 0">
+                                <Image x:Name="PerkThird" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 70 0" ToolTipService.InitialShowDelay="0">
                                     <Image.ToolTip>
                                         <StackPanel Margin="-7" Width="415">
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
                                             </StackPanel.Background>
                                             <Grid MinHeight="70" MaxHeight="110"  Background="#FF121212">
-                                                <local:HazeRowAnimate DataContext="{Binding}"/>
+                                                <addons:HazeRowAnimate DataContext="{Binding}"/>
                                                 <StackPanel Margin="15" HorizontalAlignment="Left">
                                                     <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
                                                     <StackPanel Orientation="Horizontal">
@@ -174,14 +175,14 @@
                                     </Image.ToolTip>
                                 </Image>
 
-                                <Image x:Name="PerkFourth" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Bottom">
+                                <Image x:Name="PerkFourth" Source="{Binding MainIcon}" Height="120" Width="120" VerticalAlignment="Bottom" ToolTipService.InitialShowDelay="0">
                                     <Image.ToolTip>
                                         <StackPanel Margin="-7" Width="415">
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
                                             </StackPanel.Background>
                                             <Grid MinHeight="70" MaxHeight="110"  Background="#FF121212">
-                                                <local:HazeRowAnimate DataContext="{Binding}"/>
+                                                <addons:HazeRowAnimate DataContext="{Binding}"/>
                                                 <StackPanel Margin="15" HorizontalAlignment="Left">
                                                     <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
                                                     <StackPanel Orientation="Horizontal">
@@ -258,14 +259,14 @@
                         </ListView.Template>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="1">
+                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="0">
                                     <Grid.ToolTip>
                                         <StackPanel Width="410">
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
                                             </StackPanel.Background>
                                             <Grid MinHeight="70" MaxHeight="110"  Background="#FF121212">
-                                                <local:HazeRowAnimate DataContext="{Binding}"/>
+                                                <addons:HazeRowAnimate DataContext="{Binding}"/>
                                                 <StackPanel Margin="15" HorizontalAlignment="Left">
                                                     <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
                                                     <StackPanel Orientation="Horizontal">
@@ -305,6 +306,8 @@
                         </ListView.ItemTemplate>
                     </ListView>
 
+                    <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
+                    
                     <Grid Height="40" Margin="0 10 0 0" >
                         <Rectangle>
                             <Rectangle.Fill>

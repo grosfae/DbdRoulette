@@ -97,7 +97,15 @@ namespace DbdRoulette.Pages
             }
             items = items.Skip(count * numberPage).Take(count).ToList();
             LvItems.ItemsSource = items;
-            LvItems.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            if (LvItems.Items.Count > 0)
+            {
+                NothingFoundElement.Visibility = Visibility.Collapsed;
+                LvItems.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            }
+            else
+            {
+                NothingFoundElement.Visibility = Visibility.Visible;
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

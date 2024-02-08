@@ -176,5 +176,10 @@
             </Grid.Triggers>
         </Grid>
 
+        <TextBlock Text="Ничего не найдено" VerticalAlignment="Center" Foreground="White" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="/Resources/Fonts/#Terminator Gen">
+            <TextBlock.Effect>
+                <DropShadowEffect/>
+            </TextBlock.Effect>
+        </TextBlock>
     </Grid>
 </UserControl>

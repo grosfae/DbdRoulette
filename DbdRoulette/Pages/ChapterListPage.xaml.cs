@@ -53,8 +53,15 @@ namespace DbdRoulette.Pages
                 chapters = chapters.Where(x => x.Name.ToLower().Contains(TbSearch.Text.ToLower()));
             }
             LvChapters.ItemsSource = chapters;
-
-            LvChapters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            if (LvChapters.Items.Count > 0)
+            {
+                NothingFoundElement.Visibility = Visibility.Collapsed;
+                LvChapters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            }
+            else
+            {
+                NothingFoundElement.Visibility = Visibility.Visible;
+            }
         }
         private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {

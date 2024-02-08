@@ -21,7 +21,7 @@
                     <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
                         <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
-                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Снаряжение выживших" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Способности убийцы" Margin="15 0 0 0"/>
                     </StackPanel>
                     <Button x:Name="BackBtn" Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand"/>
                 </StackPanel>
@@ -76,7 +76,7 @@
                         </ListView.Template>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="1" x:Name="PowerBtn">
+                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="1" x:Name="PowerBtn" MouseLeftButtonDown="PowerBtn_MouseLeftButtonDown">
                                     <Grid.ToolTip>
                                         <StackPanel Width="410">
                                             <StackPanel.Background>
@@ -110,11 +110,9 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-
-                    <StackPanel>
-                        <addons:NothingFoundControl/>
-                    </StackPanel>
                     
+                    <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
+
                     <Grid Height="40" Margin="0 10 0 0" >
                         <Rectangle>
                             <Rectangle.Fill>

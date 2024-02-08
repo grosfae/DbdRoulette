@@ -229,6 +229,7 @@
     <Compile Include="Components\PerkTextTag.cs" />
     <Compile Include="Components\PerkType.cs" />
     <Compile Include="Components\Power.cs" />
+    <Compile Include="Components\PowerAddon.cs" />
     <Compile Include="Components\PowerItem.cs" />
     <Compile Include="Components\Rarity.cs" />
     <Compile Include="Components\Survivor.cs" />
@@ -279,6 +280,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PowerAddonsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PowerListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -316,6 +321,9 @@
     <Compile Include="Pages\PerkListPage.xaml.cs">
       <DependentUpon>PerkListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PowerAddonsPage.xaml.cs">
+      <DependentUpon>PowerAddonsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PowerListPage.xaml.cs">
       <DependentUpon>PowerListPage.xaml</DependentUpon>
     </Compile>
@@ -347,6 +355,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\TerminatorGen.otf" />
     <Resource Include="Resources\Fonts\BeerMoney-08po.ttf" />
     <Resource Include="Resources\Fonts\europeextendedc_bold.otf" />
     <Resource Include="Resources\Fonts\Arkhip_font.ttf" />

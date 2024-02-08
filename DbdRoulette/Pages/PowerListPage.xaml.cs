@@ -84,11 +84,19 @@ namespace DbdRoulette.Pages
             powers = powers.Skip(count * numberPage).Take(count).ToList();
             LvPowers.ItemsSource = powers;
             LvPowers.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+
+            if (LvPowers.Items.Count == 0)
+            {
+                NothingFoundElement.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                NothingFoundElement.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Refresh();
             GeneratePageButtons();
         }
         private void GeneratePageButtons()
@@ -122,10 +130,10 @@ namespace DbdRoulette.Pages
             Refresh();
         }
 
-        private void ItemBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void PowerBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var selectedItem = (sender as Grid).DataContext as Power;
-            NavigationService.Navigate(new ItemAddonsPage(selectedItem));
+            var selectedPower = (sender as Grid).DataContext as Power;
+            NavigationService.Navigate(new PowerAddonsPage(selectedPower));
         }
     }
 }

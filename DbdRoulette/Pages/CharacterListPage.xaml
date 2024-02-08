@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DbdRoulette.Pages"
+      xmlns:addons="clr-namespace:DbdRoulette.Addons"
       mc:Ignorable="d" 
       d:DesignHeight="1500" d:DesignWidth="1400"
       Title="CharacterListPage">
@@ -108,7 +109,8 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-               
+
+                    <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
                 </StackPanel>
                 <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18" Grid.Row="2">
                     <Rectangle.OpacityMask>

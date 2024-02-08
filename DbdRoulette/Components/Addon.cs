@@ -23,6 +23,7 @@ namespace DbdRoulette.Components
         public virtual ItemType ItemType { get; set; }
         public virtual ThematicCollection ThematicCollection { get; set; }
         public virtual ICollection<AddonEffect> AddonEffect { get; set; }
+        public virtual ICollection<PowerAddon> PowerAddon { get; set; }
         public string UpperName
         {
             get
@@ -64,6 +65,20 @@ namespace DbdRoulette.Components
             get
             {
                 if (!string.IsNullOrWhiteSpace(Quote))
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+        public Visibility ShowEffect
+        {
+            get
+            {
+                if (AddonEffect.Count > 0)
                 {
                     return Visibility.Visible;
                 }

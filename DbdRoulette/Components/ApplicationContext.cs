@@ -43,6 +43,7 @@ namespace DbdRoulette.Components
         public DbSet<PerkEffect> PerkEffect { get; set; }
         public DbSet<Addon> Addon { get; set; }
         public DbSet<AddonEffect> AddonEffect { get; set; }
+        public DbSet<PowerAddon> PowerAddon { get; set; }
     }
 
 }

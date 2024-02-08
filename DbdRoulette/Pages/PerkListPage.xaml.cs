@@ -57,7 +57,7 @@ namespace DbdRoulette.Pages
             string firstPerk = shrinePerks[0];
             string secondPerk = shrinePerks[1];
             string thirdPerk = shrinePerks[2];
-            string fourthPerk = shrinePerks[2];
+            string fourthPerk = shrinePerks[3];
 
             PerkFirst.DataContext = App.DB.Perk.FirstOrDefault(x => x.EngName == firstPerk);
 
@@ -140,8 +140,15 @@ namespace DbdRoulette.Pages
 
             groupedPerks = groupedPerks.Skip(count * numberPage).Take(count).ToList();
             LvPerks.ItemsSource = groupedPerks.ToList();
-
-            LvPerks.BeginAnimation(OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            if (LvPerks.Items.Count > 0)
+            {
+                NothingFoundElement.Visibility = Visibility.Collapsed;
+                LvPerks.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            }
+            else
+            {
+                NothingFoundElement.Visibility = Visibility.Visible;
+            }
         }
 
         private void GeneratePageButtons()

@@ -27,7 +27,7 @@ namespace DbdRoulette.Pages
             InitializeComponent();
             contextItemType = itemType;
             LvItems.ItemsSource = App.DB.ItemType.Where(x => x.Id != 1 && x.Id != 2 && x.Id != 8).ToList();
-            LvAddons.ItemsSource = App.DB.Addon.OrderBy(x => x.ItemType.Name).ToList();
+            LvAddons.ItemsSource = App.DB.Addon.Where(x => x.ItemTypeId != 8).OrderBy(x => x.ItemTypeId).ToList();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -42,7 +42,7 @@ namespace DbdRoulette.Pages
             var selectedItem = (sender as RadioButton).DataContext as ItemType;
             if(selectedItem.Id != 8)
             {
-                LvAddons.ItemsSource = App.DB.Addon.Where(x => x.ItemTypeId == selectedItem.Id).OrderBy(x => x.Rarity.Name).OrderBy(x => x.Name).ToList();
+                LvAddons.ItemsSource = App.DB.Addon.Where(x => x.ItemTypeId == selectedItem.Id).OrderBy(x => x.RarityId).OrderBy(x => x.Name).ToList();
             }
             else
             {
