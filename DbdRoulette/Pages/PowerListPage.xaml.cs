@@ -60,7 +60,7 @@ namespace DbdRoulette.Pages
             }
             if (TbSearch.Text.Length > 0)
             {
-                powers = powers.Where(x => x.Name.ToLower().Contains(TbSearch.Text.ToLower()));
+                powers = powers.Where(x => x.Name.ToLower().Contains(TbSearch.Text.ToLower()) || x.OwnerName.ToLower().Contains(TbSearch.Text.ToLower()));
             }
             if (powers.Count() > count)
             {

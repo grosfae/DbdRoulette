@@ -94,7 +94,7 @@ namespace DbdRoulette
                 From = 0,
                 To = 1,
                 Duration = TimeSpan.FromSeconds(0.2),
-
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
             });
 
         }
@@ -107,6 +107,7 @@ namespace DbdRoulette
                 From = 1,
                 To = 0,
                 Duration = TimeSpan.FromSeconds(0.2),
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
 
             });
 
@@ -157,6 +158,18 @@ namespace DbdRoulette
             else
             {
                 MainFrame.Navigate(new ItemListPage());
+            }
+        }
+
+        private void PowerListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content is PowerListPage)
+            {
+                return;
+            }
+            else
+            {
+                MainFrame.Navigate(new PowerListPage());
             }
         }
     }

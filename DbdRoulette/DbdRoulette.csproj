@@ -260,6 +260,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EffectListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ItemAddonsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -305,6 +309,9 @@
     </Compile>
     <Compile Include="Pages\CharacterListPage.xaml.cs">
       <DependentUpon>CharacterListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EffectListPage.xaml.cs">
+      <DependentUpon>EffectListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ItemAddonsPage.xaml.cs">
       <DependentUpon>ItemAddonsPage.xaml</DependentUpon>
@@ -502,6 +509,8 @@
     <Resource Include="Resources\FlowerControl\FlowerCard\TypePowerCardImage.png" />
     <Resource Include="Resources\Misc\DroneIcon.png" />
     <Resource Include="Resources\Misc\Fog.png" />
+    <Resource Include="Resources\CardImages\Power.png" />
+    <Resource Include="Resources\CardImages\Powers.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>
