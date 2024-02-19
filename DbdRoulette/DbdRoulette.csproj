@@ -171,6 +171,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Addons\MapSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Addons\NothingFoundControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +196,9 @@
     </Compile>
     <Compile Include="Addons\HazeRowAnimate.xaml.cs">
       <DependentUpon>HazeRowAnimate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Addons\MapSlider.xaml.cs">
+      <DependentUpon>MapSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Addons\MiscUtilities.cs" />
     <Compile Include="Addons\NothingFoundControl.xaml.cs">
@@ -276,6 +283,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\LocationsListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -321,6 +336,12 @@
     </Compile>
     <Compile Include="Pages\KillerRoulette.xaml.cs">
       <DependentUpon>KillerRoulette.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LocationsListPage.xaml.cs">
+      <DependentUpon>LocationsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
@@ -511,6 +532,8 @@
     <Resource Include="Resources\Misc\Fog.png" />
     <Resource Include="Resources\CardImages\Power.png" />
     <Resource Include="Resources\CardImages\Powers.png" />
+    <Resource Include="Resources\Misc\EffectBackground.png" />
+    <Resource Include="Resources\Misc\SmallBook.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

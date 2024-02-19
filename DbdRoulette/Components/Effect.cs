@@ -18,5 +18,13 @@ namespace DbdRoulette.Components
         public bool IsBuff { get; set; }
         public virtual ICollection<PerkEffect> PerkEffect { get; set; }
         public virtual ICollection<AddonEffect> AddonEffect { get; set; }
+
+        public string UpperName
+        {
+            get
+            {
+                return Name.ToUpper();
+            }
+        }
     }
 }

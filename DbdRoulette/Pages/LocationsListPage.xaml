@@ -1,0 +1,88 @@
+﻿<Page x:Class="DbdRoulette.Pages.LocationsListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DbdRoulette.Pages"
+      xmlns:addons="clr-namespace:DbdRoulette.Addons"
+      mc:Ignorable="d" 
+      d:DesignHeight="1700" d:DesignWidth="1400"
+      Title="LocationsListPage" Loaded="Page_Loaded">
+
+    <Grid>
+        <ScrollViewer CanContentScroll="False">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" Margin="30 0 0 0" Orientation="Horizontal">
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="#FFBDBDBD" FontWeight="DemiBold" Text="Главная"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text=">" Margin="15 0 0 0"/>
+                        <TextBlock Style="{DynamicResource Header}" FontSize="20" Foreground="White" FontWeight="DemiBold" Text="Локации" Margin="15 0 0 0"/>
+
+                    </StackPanel>
+                    <Button x:Name="BackBtn" Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="BackBtn_Click"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Margin="60 0" HorizontalAlignment="Stretch">
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Style="{DynamicResource Header}" Text="Локации испытаний" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="40"/>
+                            <TextBlock Text="В Dead by Daylight убийцы и выжившие сражаются на зловещих аренах, известных как измерения. Созданные Сущностью на основе воспоминаний своих жертв, измерения содержат одну или несколько локаций (или карт), планировка которых меняется каждый раз, когда вы играете." Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Center"  TextWrapping="Wrap" Width="700" TextAlignment="Center" Foreground="White" FontSize="20"/>
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Left">
+                        <StackPanel>
+                            <TextBlock Text="Отсортировать по" Foreground="White" FontSize="20" Style="{DynamicResource Header}"/>
+                            <ComboBox x:Name="CbSort" SelectionChanged="CbSort_SelectionChanged" Style="{DynamicResource CustomSortBox}" Width="250" Cursor="Hand" Height="40"  ItemContainerStyle="{StaticResource CustomSortBoxItem}"/>
+                        </StackPanel>
+
+                        <Border VerticalAlignment="Bottom" Margin="30 0 0 0" Height="40" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
+                            <Grid Width="250" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Margin="8 0 0 0" TextChanged="TbSearch_TextChanged" x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
+                                <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <ListView x:Name="LvLocations" d:ItemsSource="{d:SampleData ItemCount=37}" Margin="0 20 0 0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Width="1270"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <addons:MapSlider Width="620" DataContext="{Binding}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                    <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
+
+                </StackPanel>
+                <Rectangle x:Name="RecGradient" Height="150" Fill="#FF2D63A1" Grid.Row="2">
+                    <Rectangle.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                            <GradientStop Color="Transparent" Offset="0.15"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</Page>

@@ -35,7 +35,7 @@
                 <Button Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Рулетки"/>
                 <ToggleButton x:Name="CharactersBtn" Style="{DynamicResource MenuListBtn}" Width="150" Height="50" Content="Персонажи" Checked="CharactersBtn_Checked" Unchecked="CharactersBtn_Unchecked"/>
                 <Button Style="{DynamicResource MenuButton}" Width="250" Height="50" Content="Объекты взаимодействия"/>
-                <Button Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Локации"/>
+                <Button x:Name="LocationViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Локации" Click="LocationViewBtn_Click"/>
                 <Button x:Name="DLCViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Дополнения" Click="DLCViewBtn_Click"/>
             </StackPanel>
         </StackPanel>
@@ -121,7 +121,7 @@
                     <StackPanel Margin="50 0 0 0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Image Source="/Resources/CardImages/Effect.png" Height="35" Width="35"/>
-                            <TextBlock Text="Индикатор эффектов" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
+                            <TextBlock Text="Эффекты состояния" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
                         </StackPanel>
                         <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
                             <StackPanel >
@@ -129,7 +129,7 @@
                                 <Grid Height="50">
                                     <Rectangle Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
-                                    <Button Content="Подробнее" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                                    <Button x:Name="EffectListBtn" Content="Подробнее" Style="{StaticResource CardBtnWhite}" Height="35" Width="150" Click="EffectListBtn_Click"/>
                                 </Grid>
                             </StackPanel>
                         </Border>

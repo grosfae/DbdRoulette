@@ -32,7 +32,7 @@ namespace DbdRoulette
         {
             InitializeComponent();
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
-            MainFrame.Navigate(new PowerListPage());
+            MainFrame.Navigate(new LocationsListPage());
 
             var ThemeCode = Properties.Settings.Default.ThemeCode;
             if (ThemeCode == 2)
@@ -170,6 +170,30 @@ namespace DbdRoulette
             else
             {
                 MainFrame.Navigate(new PowerListPage());
+            }
+        }
+
+        private void EffectListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content is EffectListPage)
+            {
+                return;
+            }
+            else
+            {
+                MainFrame.Navigate(new EffectListPage());
+            }
+        }
+
+        private void LocationViewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content is LocationsListPage)
+            {
+                return;
+            }
+            else
+            {
+                MainFrame.Navigate(new LocationsListPage());
             }
         }
     }

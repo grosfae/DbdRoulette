@@ -25,7 +25,13 @@ namespace DbdRoulette.Components
         public virtual ICollection<Survivor> Survivor { get; set; }
         public virtual ICollection<Map> Map { get; set; }
         public virtual ICollection<ChapterCharm> ChapterCharm { get; set; }
-
+        public string UpperName
+        {
+            get
+            {
+                return Name.ToUpper();
+            }
+        }
         public string KillerEnumerable
         {
             get
@@ -205,6 +211,8 @@ namespace DbdRoulette.Components
                 }
             }
         }
+
+       
 
     }
 }
