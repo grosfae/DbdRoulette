@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbdRoulette.Addons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ namespace DbdRoulette.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+
 
         }
     }

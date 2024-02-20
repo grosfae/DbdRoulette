@@ -534,6 +534,9 @@
     <Resource Include="Resources\CardImages\Powers.png" />
     <Resource Include="Resources\Misc\EffectBackground.png" />
     <Resource Include="Resources\Misc\SmallBook.png" />
+    <Resource Include="Resources\Misc\KillerManualImage.png" />
+    <Resource Include="Resources\Misc\SurvivorManualImage.png" />
+    <Resource Include="Resources\Misc\TitleImage.jpg" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

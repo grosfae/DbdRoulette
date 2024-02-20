@@ -11,16 +11,63 @@
     <Grid>
         <ScrollViewer CanContentScroll="False">
             <Grid>
-                <StackPanel Grid.Row="1" Margin="60 0" HorizontalAlignment="Stretch">
-                    <Grid>
-                        <StackPanel HorizontalAlignment="Center">
-                            <TextBlock Style="{DynamicResource Header}" Text="Эффекты состояния" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="40"/>
-                            <TextBlock Text="Позитивные или негативные эффекты, применяемые как к выжившим, так и убийцам. Они отображаются на экране в виде определенных иконок. Позитивные эффекты имеют желтый цвет, негативные - красный." Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Center"  TextWrapping="Wrap" Width="1200" TextAlignment="Center" Foreground="White" FontSize="20"/>
-                            <TextBlock Text="Уровень эффекта можно определить по насечкам на иконке - одной, двум или трем. Одна обозначает самый слабый уровень эффекта, а три - максимальный." Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left"  TextWrapping="Wrap" Width="1200" TextAlignment="Center" Foreground="White" FontSize="20"/>
-                            <TextBlock Text="Индикатор окружающий иконку указывает на то, что эффект является временным и его действие прекратится вместе с таймером. Если индикатора нет, эффект является постоянным и может быть убран только при определенных условиях - окончание действия силы убийцы или очищение проклятых тотемов." Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Center"  TextWrapping="Wrap" Width="1200" TextAlignment="Center" Foreground="White" FontSize="20"/>
-                        </StackPanel>
-                    </Grid>
+                <Image Width="1400" Height="600" VerticalAlignment="Top" Source="/Resources/Misc/TitleImage.jpg" Stretch="UniformToFill"/>
+                <StackPanel Grid.Row="1" Margin="60 260 60 0" HorizontalAlignment="Stretch">
+                    <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="СМЕРТЕЛЬНАЯ ИГРА В ПРЯТКИ" HorizontalAlignment="Center" FontSize="60"/>
+                    <TextBlock Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="В Dead by Daylight вам предстоит выслеживать, рубить и приносить в жертву свою добычу, играя за чудовищного убийцу, или присоединяйтесь к команде из четырех хитроумных выживших, которые работают вместе, чтобы сбежать." HorizontalAlignment="Center" FontSize="20" Width="750" TextAlignment="Center" Margin="0 30"/>
+                    <Grid Width="950">
+                        
+                        <Grid HorizontalAlignment="Left" x:Name="KillerManualBtn">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Image x:Name="KillerImage" Source="/Resources/Misc/KillerManualImage.png" Width="450" Height="300" Stretch="UniformToFill"/>
 
+                            <Rectangle Width="450" Height="130" Fill="#FFAA1A18" Grid.Row="1"/>
+                            <Polygon Points="130 60 130 0 0 0 -70 130 90 130" HorizontalAlignment="Right" Grid.Row="1">
+                                <Polygon.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF880E0D"/>
+                                        <GradientStop Color="#FFAA1A18" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Polygon.Fill>
+                            </Polygon>
+
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0 0 0"  Grid.Row="1">
+                                <TextBlock Style="{DynamicResource Header}" Text="ИГРА ЗА УБИЙЦУ" Foreground="White" FontSize="36" TextWrapping="Wrap" Width="250" />
+                                <TextBlock Style="{DynamicResource Header}" Text="(SOLO)" Foreground="White" FontSize="20" TextWrapping="Wrap" Width="170" HorizontalAlignment="Left"/>
+                            </StackPanel>
+
+                            <Image Source="/Resources/Misc/KillerIcon.png" Width="100" Height="100" HorizontalAlignment="Right" Margin="0 0 20 0" RenderOptions.BitmapScalingMode="Fant"  Grid.Row="1"/>
+                        </Grid>
+
+                        <Grid HorizontalAlignment="Right" x:Name="SurvivorManualBtn">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="/Resources/Misc/SurvivorManualImage.png" Width="450" Height="300" Stretch="UniformToFill"/>
+
+                            <Rectangle Width="450" Height="130" Fill="#FF2D63A1" Grid.Row="1"/>
+                            <Polygon Points="130 60 130 0 0 0 -70 130 90 130" HorizontalAlignment="Right" Grid.Row="1">
+                                <Polygon.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF1D4378"/>
+                                        <GradientStop Color="#FF2D63A1" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Polygon.Fill>
+                            </Polygon>
+
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0 0 0"  Grid.Row="1">
+                                <TextBlock Style="{DynamicResource Header}" Text="ИГРА ЗА ВЫЖИВШЕГО" Foreground="White" FontSize="36" TextWrapping="Wrap" Width="250" />
+                                <TextBlock Style="{DynamicResource Header}" Text="(CO-OP)" Foreground="White" FontSize="20" TextWrapping="Wrap" Width="170" HorizontalAlignment="Left"/>
+                            </StackPanel>
+
+                            <Image Source="/Resources/Misc/SurvIcon.png" Width="100" Height="100" HorizontalAlignment="Right" Margin="0 0 20 0" RenderOptions.BitmapScalingMode="Fant"  Grid.Row="1"/>
+                        </Grid>
+                    </Grid>
+                    
                 </StackPanel>
                 <Rectangle x:Name="RecGradient" Height="150" Fill="#FF2D63A1" Grid.Row="2">
                     <Rectangle.OpacityMask>
