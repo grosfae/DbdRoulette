@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DbdRoulette"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:addons="clr-namespace:DbdRoulette.Addons"
         mc:Ignorable="d"
         Title="DbdRoulette" Height="850" Width="1400"
         
@@ -24,7 +24,7 @@
         <RectangleGeometry Rect="0, 0, 1400, 850"/>
     </Window.Clip>
 
-    <Grid Background="White" ShowGridLines="False">
+    <Grid Background="White" ShowGridLines="False" x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
@@ -61,7 +61,7 @@
                                 <Grid Height="50">
                                     <Rectangle Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="black" Opacity="0.3"/>
-                                    <Button x:Name="CharacterListBtn" Click="CharacterListBtn_Click" Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                                    <Button x:Name="CharacterListBtn" Click="CharacterListBtn_ClickAsync" Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
                                 </Grid>
                             </StackPanel>
                         </Border>
@@ -183,7 +183,7 @@
         </Grid>
 
         <Image x:Name="GeneralBackground" Grid.Row="1" Source="/Resources/Misc/MainBackground.jpg" Stretch="UniformToFill"/>
-        
+
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="Transparent" Focusable="False" Grid.Row="1"/>
     </Grid>
 </Window>

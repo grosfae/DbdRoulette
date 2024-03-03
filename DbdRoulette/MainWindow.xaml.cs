@@ -20,6 +20,8 @@ using LiveCharts.Defaults;
 using LiveCharts.Wpf.Charts.Base;
 using System.Windows.Interop;
 using DbdRoulette.Pages;
+using DbdRoulette.Addons;
+using System.Threading;
 
 namespace DbdRoulette
 {
@@ -112,8 +114,7 @@ namespace DbdRoulette
             });
 
         }
-
-        private void CharacterListBtn_Click(object sender, RoutedEventArgs e)
+        private void CharacterListBtn_ClickAsync(object sender, RoutedEventArgs e)
         {
             if (MainFrame.Content is CharacterListPage)
             {
@@ -121,7 +122,15 @@ namespace DbdRoulette
             }
             else
             {
+                //LoadingControl loadingControl = new LoadingControl();
+                //Grid.SetRow(loadingControl, 1);
+                //MainGrid.Children.Add(loadingControl); 
+                //await Task.Run(() => MainFrame.Navigate(new CharacterListPage()));
+
                 MainFrame.Navigate(new CharacterListPage());
+
+                //MainFrame.Navigate(new CharacterListPage());
+                //MainGrid.Children.Remove(loadingControl);
             }
         }
 

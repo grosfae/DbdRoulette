@@ -171,6 +171,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Addons\LoadingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Addons\MapSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +200,9 @@
     </Compile>
     <Compile Include="Addons\HazeRowAnimate.xaml.cs">
       <DependentUpon>HazeRowAnimate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Addons\LoadingControl.xaml.cs">
+      <DependentUpon>LoadingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Addons\MapSlider.xaml.cs">
       <DependentUpon>MapSlider.xaml</DependentUpon>

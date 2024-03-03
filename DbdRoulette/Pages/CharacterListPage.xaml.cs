@@ -79,7 +79,6 @@ namespace DbdRoulette.Pages
                 From = 0,
                 To = 1,
                 Duration = TimeSpan.FromSeconds(1.5),
-
             };
 
             var animationBlur = new DoubleAnimation
@@ -87,7 +86,6 @@ namespace DbdRoulette.Pages
                 From = 30,
                 To = 0,
                 Duration = TimeSpan.FromSeconds(1),
-
             };
             PresentImage.BeginAnimation(ImageBrush.OpacityProperty, animationOpacity);
             BlurRad.BeginAnimation(BlurBitmapEffect.RadiusProperty, animationBlur);
