@@ -21,7 +21,8 @@ namespace DbdRoulette.Components
         public string Quote { get; set; }
         public byte[] MainIcon { get; set; }
         public byte[] DemoImage { get; set; }
-        public virtual ICollection<PerkTextTag> PerkTextTag { get; set; }
+        public int PerkTypeId { get; set; }
+        public virtual PerkType PerkType { get; set; }
         public virtual ICollection<SurvivorPerk> SurvivorPerk { get; set; }
         public virtual ICollection<KillerPerk> KillerPerk { get; set; }
         public virtual ICollection<PerkEffect> PerkEffect { get; set; }

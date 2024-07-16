@@ -4,25 +4,34 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DbdRoulette.Pages"
+      xmlns:addons="clr-namespace:DbdRoulette.Addons"
       mc:Ignorable="d" 
-      d:DesignHeight="1700" d:DesignWidth="1400" Loaded="Page_Loaded"
+      d:DesignHeight="2700" d:DesignWidth="1400" Loaded="Page_Loaded"
       Title="MainPage">
 
     <Grid>
         <ScrollViewer CanContentScroll="False">
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Panel.ZIndex="1" VerticalAlignment="Top" Margin="0 23 0 0">
+                    <Button Style="{DynamicResource BackButton}" x:Name="BackBtn" Content="Назад" HorizontalAlignment="Left" Margin="0 44 0 0" Cursor="Hand" Click="BackBtn_Click"/>
+                </StackPanel>
                 <Image Width="1400" Height="600" VerticalAlignment="Top" Source="/Resources/Misc/TitleImage.jpg" Stretch="UniformToFill"/>
-                <StackPanel Grid.Row="1" Margin="60 260 60 0" HorizontalAlignment="Stretch">
+                <StackPanel Grid.Row="0" Margin="60 260 60 0" HorizontalAlignment="Stretch">
                     <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="СМЕРТЕЛЬНАЯ ИГРА В ПРЯТКИ" HorizontalAlignment="Center" FontSize="60"/>
                     <TextBlock Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="В Dead by Daylight вам предстоит выслеживать, рубить и приносить в жертву свою добычу, играя за чудовищного убийцу, или присоединяйтесь к команде из четырех хитроумных выживших, которые работают вместе, чтобы сбежать." HorizontalAlignment="Center" FontSize="20" Width="750" TextAlignment="Center" Margin="0 30"/>
-                    <Grid Width="950">
-                        
-                        <Grid HorizontalAlignment="Left" x:Name="KillerManualBtn">
+                    <Grid Width="950" Margin="0 0 0 40">
+                        <Grid HorizontalAlignment="Left" x:Name="KillerManualBtn" Width="450" MouseEnter="KillerManualBtn_MouseEnter" MouseLeave="KillerManualBtn_MouseLeave" Cursor="Hand" MouseLeftButtonDown="KillerManualBtn_MouseLeftButtonDown">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
-                            <Image x:Name="KillerImage" Source="/Resources/Misc/KillerManualImage.png" Width="450" Height="300" Stretch="UniformToFill"/>
+                            <Image x:Name="KillerImage" Source="/Resources/Misc/KillerManualImage.png" Width="450" Height="300" Stretch="UniformToFill" Panel.ZIndex="1" RenderTransformOrigin="0.5, 0.5" HorizontalAlignment="Center"/>
+                            <Image x:Name="KillerGrayImage" Source="/Resources/Misc/KillerManualGrayImage.png" Width="450" Height="300" Stretch="UniformToFill" Opacity="0" HorizontalAlignment="Center"/>
 
                             <Rectangle Width="450" Height="130" Fill="#FFAA1A18" Grid.Row="1"/>
                             <Polygon Points="130 60 130 0 0 0 -70 130 90 130" HorizontalAlignment="Right" Grid.Row="1">
@@ -42,12 +51,13 @@
                             <Image Source="/Resources/Misc/KillerIcon.png" Width="100" Height="100" HorizontalAlignment="Right" Margin="0 0 20 0" RenderOptions.BitmapScalingMode="Fant"  Grid.Row="1"/>
                         </Grid>
 
-                        <Grid HorizontalAlignment="Right" x:Name="SurvivorManualBtn">
+                        <Grid HorizontalAlignment="Right" x:Name="SurvivorManualBtn" Width="450" MouseEnter="SurvivorManualBtn_MouseEnter" MouseLeave="SurvivorManualBtn_MouseLeave" Cursor="Hand" MouseLeftButtonDown="SurvivorManualBtn_MouseLeftButtonDown">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
-                            <Image Source="/Resources/Misc/SurvivorManualImage.png" Width="450" Height="300" Stretch="UniformToFill"/>
+                            <Image x:Name="SurvivorImage" Source="/Resources/Misc/SurvivorManualImage.png" Width="450" Height="300" Stretch="UniformToFill" Panel.ZIndex="1" HorizontalAlignment="Center"/>
+                            <Image x:Name="SurvivorGrayImage" Source="/Resources/Misc/SurvivorManualGrayImage.png" Width="450" Height="300" Stretch="UniformToFill" Opacity="0" HorizontalAlignment="Center"/>
 
                             <Rectangle Width="450" Height="130" Fill="#FF2D63A1" Grid.Row="1"/>
                             <Polygon Points="130 60 130 0 0 0 -70 130 90 130" HorizontalAlignment="Right" Grid.Row="1">
@@ -67,16 +77,159 @@
                             <Image Source="/Resources/Misc/SurvIcon.png" Width="100" Height="100" HorizontalAlignment="Right" Margin="0 0 20 0" RenderOptions.BitmapScalingMode="Fant"  Grid.Row="1"/>
                         </Grid>
                     </Grid>
-                    
                 </StackPanel>
-                <Rectangle x:Name="RecGradient" Height="150" Fill="#FF2D63A1" Grid.Row="2">
-                    <Rectangle.OpacityMask>
-                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
-                            <GradientStop Color="Transparent" Offset="0.15"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Rectangle.OpacityMask>
-                </Rectangle>
+
+                <StackPanel Grid.Row="1">
+                    <Grid Background="#FF121212">
+                        <Rectangle x:Name="RecGradientTop" Height="100" Fill="#FFAA1A18" VerticalAlignment="Top">
+                            <Rectangle.OpacityMask>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5, -0.5">
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="Transparent" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                        
+                        <Image x:Name="IconStageImage" Source="/Resources/Misc/KillerIcon.png" Width="200" Height="200" Opacity="0.2" HorizontalAlignment="Left" Margin="70 40 0 0" VerticalAlignment="Top"/>
+
+                        <StackPanel Margin="0 30 0 0">
+                            <Border BorderBrush="White" BorderThickness="2" HorizontalAlignment="Center" Height="60">
+                                <StackPanel Orientation="Horizontal" Height="60">
+                                    <RadioButton x:Name="RadioKiller" Style="{DynamicResource RedRadio}" Content="Убийцы" Width="200" Checked="RadioKiller_Checked"/>
+                                    <RadioButton x:Name="RadioSurvivor" Style="{DynamicResource BlueRadio}" Content="Выжившие" Width="200" Checked="RadioSurvivor_Checked"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Name="ContentStackPanel">
+                                <TextBlock x:Name="MainStageTitle" Style="{DynamicResource Header}" Foreground="White" Text="ОСНОВЫ ИГРЫ ЗА УБИЙЦУ" HorizontalAlignment="Center" FontSize="40" Margin="0 40 0 0"/>
+                                <TextBlock x:Name="MainStageMiniText" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="Несмотря на уникальность каждого убийцы, их цели остаются неизменными. Убивайте выживших одного за другим и приносите их в жертву Сущности. Вот основы, с которых можно начать." HorizontalAlignment="Center" FontSize="20" Width="860" TextAlignment="Center" Margin="0 20 0 30"/>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 50">
+                                    <StackPanel>
+                                        <TextBlock x:Name="FirstStageTitle" Style="{DynamicResource Header}" Foreground="White" Text="ОХОТА" HorizontalAlignment="Center" FontSize="40" Margin="0 0 0 15"/>
+
+                                        <Grid Width="400" Height="250">
+                                            <Grid x:Name="FirstStageGrid" Panel.ZIndex="1">
+                                                <Rectangle Width="35" Height="5" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FFAA1A18"/>
+                                                <Rectangle Width="5" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FFAA1A18"/>
+                                                <Rectangle Width="35" Height="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Fill="#FFAA1A18"/>
+                                                <Rectangle Width="5" Height="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" Fill="#FFAA1A18"/>
+                                            </Grid>
+                                            <Image x:Name="FirstStageImage" Width="400" Height="250" Source="/Resources/MainPageStagesImages/FirstStageKiller.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <TextBlock x:Name="FirstStageTb" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="Выжившим нужно починить генераторы по всей карте, чтобы включить выходные ворота и сбежать. Патрулируйте и повреждайте эти генераторы в поисках следующей жертвы. Следите за шумовыми оповещениями, появляющимися, когда выжившие не проходят проверку генератора и навыков лечения или выполняют поспешные действия, такие как прыжки через окна." HorizontalAlignment="Center" FontSize="20" Width="400" TextAlignment="Left" Margin="0 20"/>
+                                    </StackPanel>
+
+                                    <StackPanel>
+                                        <TextBlock x:Name="SecondStageTitle" Style="{DynamicResource Header}" Foreground="White" Text="ПОГОНЯ" HorizontalAlignment="Center" FontSize="40" Margin="0 0 0 15"/>
+
+                                        <Grid Width="400" Height="250" Margin="40 0">
+                                            <Grid x:Name="SecondStageGrid" Panel.ZIndex="1">
+                                                <Rectangle Width="35" Height="5" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FFAA1A18"/>
+                                                <Rectangle Width="5" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FFAA1A18"/>
+                                                <Rectangle Width="35" Height="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Fill="#FFAA1A18"/>
+                                                <Rectangle Width="5" Height="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" Fill="#FFAA1A18"/>
+                                            </Grid>
+                                            <Image x:Name="SecondStageImage" Width="400" Height="250" Source="/Resources/MainPageStagesImages/SecondStageKiller.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <TextBlock x:Name="SecondStageTb" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="По мере того, как выжившие спасаются бегством, они будут оставлять следы, по которым их можно найти. Если след исчезает, проверьте ближайшие шкафчики, где они могут прятаться. Выжившие будут пытаться ускользнуть от вас, перепрыгивая через окна, ослепляя вас фонариками и сбрасывая поддоны на вашем пути. Думайте наперед, сокращайте дистанцию и наносите удар." HorizontalAlignment="Center" FontSize="20" Width="400" TextAlignment="Left" Margin="0 20"/>
+                                    </StackPanel>
+
+                                    <StackPanel>
+                                        <TextBlock x:Name="ThirdStageTitle" Style="{DynamicResource Header}" Foreground="White" Text="КРЮК" HorizontalAlignment="Center" FontSize="40" Margin="0 0 0 15"/>
+
+                                        <Grid Width="400" Height="250">
+                                            <Grid x:Name="ThirdStageGrid" Panel.ZIndex="1">
+                                                <Rectangle Width="35" Height="5" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FFAA1A18"/>
+                                                <Rectangle Width="5" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FFAA1A18"/>
+                                                <Rectangle Width="35" Height="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Fill="#FFAA1A18"/>
+                                                <Rectangle Width="5" Height="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" Fill="#FFAA1A18"/>
+                                            </Grid>
+                                            <Image x:Name="ThirdStageImage" Width="400" Height="250" Source="/Resources/MainPageStagesImages/ThirdStageKiller.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <TextBlock x:Name="ThirdStageTb" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="Один раз ударив выжившего, он становится раненым. После второго удара они входят в предсмертное сотояние, позволяя вам поднять их, поднести к одному из многочисленных жертвенных крюков и пронзить. Если они слишком долго борются на крюке, не могут быть спасены союзником или спасены и подвешены в общей сложности 3 раза - жертва неизбежна." HorizontalAlignment="Center" FontSize="20" Width="400" TextAlignment="Left" Margin="0 20"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Rectangle x:Name="RecGradientDown" Height="150" Fill="#FFAA1A18" VerticalAlignment="Bottom">
+                            <Rectangle.OpacityMask>
+                                <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                    <GradientStop Color="Transparent" Offset="0.15"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+
+                    </Grid>
+
+                    <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="ИГРОВОЙ ПРОГРЕСС" HorizontalAlignment="Center" FontSize="40" Margin="0 20 0 0"/>
+                    <TextBlock Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="Получайте вознаграждения за достижения в матчах, будь то принесение жертвы или побег." HorizontalAlignment="Center" FontSize="20" Width="860" TextAlignment="Center" Margin="0 20"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel>
+                            <Image Width="400" Height="250" Source="/Resources/MainPageStagesImages/Bloodpoints.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Зарабатывайте очки крови" HorizontalAlignment="Left" FontSize="30" Margin="0 10 0 10"/>
+                            <TextBlock Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="Набирайте очки крови, охотясь или убегая Чем больше вы дадите волю своему инстинкту убийцы или выжившего, тем больше очков крови вы заработаете." HorizontalAlignment="Center" FontSize="20" Width="400" TextAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="40 0">
+                            <Image Width="400" Height="250" Source="/Resources/MainPageStagesImages/BonusExample.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Открывайте бонусы" HorizontalAlignment="Left" FontSize="30" Margin="0 10 0 10"/>
+                            <TextBlock Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="Тратьте очки крови в Кровавой паутине, чтобы улучшить своего убийцу. Вы можете покупать дополнения, предложения и бонусы, которые дают полезные преимущества и позволяют вам развивать свои навыки." HorizontalAlignment="Center" FontSize="20" Width="400" TextAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <Image Width="400" Height="250" Source="/Resources/FlowerControl/FlowerCard/AddonsCardImage.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Повышайте уровень" HorizontalAlignment="Left" FontSize="30" Margin="0 10 0 10"/>
+                            <TextBlock Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Text="Повышайте свой уровень, используя свои очки крови, чтобы покупать все, что есть в вашей Кровавой паутине. По завершении ваш персонаж получит уровень, а вы получите доступ к новой кровавой паутине с новыми мощными преимуществами." HorizontalAlignment="Center" FontSize="20" Width="400" TextAlignment="Left"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel  Height="150" Background="#FF121212" Grid.Row="2"  Margin="0 10 0 0">
+                    <TextBlock Text="ПРИСОЕДИНЯЙТЕСЬ К СООБЩЕСТВУ DEAD BY DAYLIGHT" Foreground="White" HorizontalAlignment="Center" FontSize="26" Margin="0 20 0 10" Style="{DynamicResource Header}"/>
+
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Name="YouTubeBtn" Style="{DynamicResource LinkButton}" Width="60" Height="60" Margin="5 0" Click="YouTubeBtn_Click">
+                            <Viewbox Width="25">
+                                <Path Fill="White">
+                                    <Path.Data>
+                                        M96.1,6c-3.6-4.3-10.3-6-23-6H26.9C13.9,0,7.1,1.9,3.5,6.4C0,10.9,0,17.4,0,26.5v17.3c0,17.6,4.2,26.5,26.9,26.5h46.2
+	c11,0,17.2-1.5,21.1-5.3c4.1-3.9,5.8-10.2,5.8-21.2V26.5C100,17,99.7,10.4,96.1,6z M64.2,37.6l-21,11c-0.5,0.2-1,0.4-1.5,0.4
+	c-0.6,0-1.2-0.2-1.7-0.5c-1-0.6-1.6-1.6-1.6-2.8V23.8c0-1.1,0.6-2.2,1.6-2.8c1-0.6,2.2-0.6,3.2-0.1l21,10.9c1.1,0.6,1.7,1.7,1.7,2.9
+	C65.9,35.9,65.3,37,64.2,37.6z
+                                    </Path.Data>
+                                </Path>
+
+                            </Viewbox>
+                        </Button>
+
+                        <Button Name="TwitterBtn" Style="{DynamicResource LinkButton}" Width="60" Height="60" Margin="5 0" Click="TwitterBtn_Click">
+                            <Viewbox Width="25">
+                                <Path Fill="White">
+                                    <Path.Data>
+                                        M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z
+                                    </Path.Data>
+                                </Path>
+
+                            </Viewbox>
+                        </Button>
+
+                        <Button Name="TwitchBtn" Style="{DynamicResource LinkButton}" Width="60" Height="60" Margin="5 0" Click="TwitchBtn_Click">
+                            <Viewbox Width="25">
+                                <Path Fill="White">
+                                    <Path.Data>
+                                        M6.8,0L0,18.2v72.7h25v13.6h13.6l13.6-13.6h20.5L100,63.6V0L6.8,0z M15.9,9.1h75v50L75,75H50L36.4,88.6V75H15.9L15.9,9.1z
+	 M40.9,54.6H50V27.3h-9.1V54.6z M65.9,54.6H75V27.3h-9.1V54.6z
+                                    </Path.Data>
+                                </Path>
+
+                            </Viewbox>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
             </Grid>
         </ScrollViewer>
     </Grid>

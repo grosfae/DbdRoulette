@@ -22,14 +22,16 @@ namespace DbdRoulette.Addons
     /// </summary>
     public partial class LoadingControl : UserControl
     {
+        System.Windows.Threading.DispatcherTimer DispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        Storyboard MainStoryboard;
         public LoadingControl()
         {
             InitializeComponent();
 
-            var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
-            dispatcherTimer.Start();
+            MainStoryboard = (Storyboard)LoaderGrid.Resources["MainStoryboard"];
+
+            DispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            DispatcherTimer.Interval = TimeSpan.FromSeconds(1);
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -52,6 +54,18 @@ namespace DbdRoulette.Addons
             }
         }
 
-        
+        public void StartAnimation()
+        {
+            this.Visibility = Visibility.Visible;
+            MainStoryboard.Begin();
+            DispatcherTimer.Start();
+            LoadingTextTb.Text = "Загрузка";
+        }
+        public void StopAnimation()
+        {
+            this.Visibility = Visibility.Collapsed;
+            MainStoryboard.Stop();
+            DispatcherTimer.Stop();
+        }
     }
 }

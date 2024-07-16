@@ -45,10 +45,7 @@ namespace DbdRoulette.Pages
 
             if (contextCharacter is Survivor)
             {
-
                 LvPerks.ItemsSource = (contextCharacter as Survivor).SurvivorPerk.ToList();
-                
-                
                 
                 ColorTitleGrid.Background = MiscUtilities.SurvivorBrush;
                 ColorPolyDarkStop.Color = Color.FromRgb(29, 67, 120);
@@ -147,11 +144,11 @@ namespace DbdRoulette.Pages
         {
             if (contextCharacter is Survivor)
             {
-                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Survivor).Сhapter));
+                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Survivor).Chapter));
             }
             if (contextCharacter is Killer)
             {
-                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Killer).Сhapter));
+                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Killer).Chapter));
             }
         }
 
@@ -168,11 +165,11 @@ namespace DbdRoulette.Pages
         {
             if (contextCharacter is Survivor)
             {
-                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Survivor).Сhapter));
+                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Survivor).Chapter));
             }
             if (contextCharacter is Killer)
             {
-                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Killer).Сhapter));
+                NavigationService.Navigate(new ChapterViewPage((contextCharacter as Killer).Chapter));
             }
         }
     }

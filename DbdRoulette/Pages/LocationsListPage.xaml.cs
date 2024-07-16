@@ -1,5 +1,6 @@
 ﻿using DbdRoulette.Addons;
 using DbdRoulette.Components;
+using DbdRoulette.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,53 +23,16 @@ namespace DbdRoulette.Pages
     /// </summary>
     public partial class LocationsListPage : Page
     {
-        public LocationsListPage()
+        LoadingControl contextContentLoader;
+        public bool FirstTry;
+        public LocationsListPage(LoadingControl loadingControl)
         {
             InitializeComponent();
 
-            CbSort.Items.Add("По умолчанию");
-            CbSort.Items.Add("По названию");
-
-            CbSort.SelectedIndex = 0;
-        }
-
-        private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Refresh();
-        }
-
-        private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Refresh();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            Refresh();
-        }
-        private void Refresh()
-        {
-            IEnumerable<Map> maps = App.DB.Map.ToList();
-            if (CbSort.SelectedIndex == 1)
-            {
-                maps = maps.OrderBy(x => x.Name);
-            }
-            if (TbSearch.Text.Length > 0)
-            {
-                maps = maps.Where(x => x.Name.ToLower().Contains(TbSearch.Text.ToLower()) || x.Chapter.Name.ToLower().Contains(TbSearch.Text.ToLower()));
-            }
-
-            LvLocations.ItemsSource = maps;
-
-            if (LvLocations.Items.Count > 0)
-            {
-                NothingFoundElement.Visibility = Visibility.Collapsed;
-                LvLocations.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
-            }
-            else
-            {
-                NothingFoundElement.Visibility = Visibility.Visible;
-            }
+            CbSort.Items.Add("Самые новые");
+            CbSort.Items.Add("Самые ранние");
+            contextContentLoader = loadingControl;
+            DataContext = new LocationListViewModel();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -76,6 +40,28 @@ namespace DbdRoulette.Pages
             if(NavigationService.CanGoBack == true)
             {
                 NavigationService.GoBack();
+            }
+        }
+
+        private void LvLocations_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            if (FirstTry == true)
+            {
+                contextContentLoader.StopAnimation();
+            }
+            else
+            {
+                FirstTry = true;
+            }
+
+            if (LvLocations.Items.Count == 0)
+            {
+                NothingFoundElement.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                NothingFoundElement.Visibility = Visibility.Collapsed;
+                LvLocations.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
             }
         }
     }

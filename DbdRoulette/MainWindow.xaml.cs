@@ -34,7 +34,10 @@ namespace DbdRoulette
         {
             InitializeComponent();
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
-            MainFrame.Navigate(new MainPage());
+
+            ContentLoader.StopAnimation();
+
+            MainFrame.Navigate(new RoulettePage());
 
             var ThemeCode = Properties.Settings.Default.ThemeCode;
             if (ThemeCode == 2)
@@ -44,7 +47,6 @@ namespace DbdRoulette
                 HeaderHauntedLine.Visibility = Visibility.Visible;
                 StartPumpkinAnimation();
             }
-            
         }
         public void StartPumpkinAnimation()
         {
@@ -98,7 +100,6 @@ namespace DbdRoulette
                 Duration = TimeSpan.FromSeconds(0.2),
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
             });
-
         }
 
         private void CharactersBtn_Unchecked(object sender, RoutedEventArgs e)
@@ -110,11 +111,9 @@ namespace DbdRoulette
                 To = 0,
                 Duration = TimeSpan.FromSeconds(0.2),
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
-
             });
-
         }
-        private void CharacterListBtn_ClickAsync(object sender, RoutedEventArgs e)
+        private void CharacterListBtn_Click(object sender, RoutedEventArgs e)
         {
             if (MainFrame.Content is CharacterListPage)
             {
@@ -122,15 +121,8 @@ namespace DbdRoulette
             }
             else
             {
-                //LoadingControl loadingControl = new LoadingControl();
-                //Grid.SetRow(loadingControl, 1);
-                //MainGrid.Children.Add(loadingControl); 
-                //await Task.Run(() => MainFrame.Navigate(new CharacterListPage()));
-
-                MainFrame.Navigate(new CharacterListPage());
-
-                //MainFrame.Navigate(new CharacterListPage());
-                //MainGrid.Children.Remove(loadingControl);
+                ContentLoader.StartAnimation();
+                MainFrame.Navigate(new CharacterListPage(ContentLoader));
             }
         }
 
@@ -142,7 +134,8 @@ namespace DbdRoulette
             }
             else
             {
-                MainFrame.Navigate(new ChapterListPage());
+                ContentLoader.StartAnimation();
+                MainFrame.Navigate(new ChapterListPage(ContentLoader));
             }
         }
 
@@ -154,7 +147,8 @@ namespace DbdRoulette
             }
             else
             {
-                MainFrame.Navigate(new PerkListPage());
+                ContentLoader.StartAnimation();
+                MainFrame.Navigate(new PerkListPage(ContentLoader));
             }
         }
 
@@ -166,7 +160,8 @@ namespace DbdRoulette
             }
             else
             {
-                MainFrame.Navigate(new ItemListPage());
+                ContentLoader.StartAnimation();
+                MainFrame.Navigate(new ItemListPage(ContentLoader));
             }
         }
 
@@ -178,7 +173,8 @@ namespace DbdRoulette
             }
             else
             {
-                MainFrame.Navigate(new PowerListPage());
+                ContentLoader.StartAnimation();
+                MainFrame.Navigate(new PowerListPage(ContentLoader));
             }
         }
 
@@ -190,7 +186,8 @@ namespace DbdRoulette
             }
             else
             {
-                MainFrame.Navigate(new EffectListPage());
+                ContentLoader.StartAnimation();
+                MainFrame.Navigate(new EffectListPage(ContentLoader));
             }
         }
 
@@ -202,7 +199,20 @@ namespace DbdRoulette
             }
             else
             {
-                MainFrame.Navigate(new LocationsListPage());
+                ContentLoader.StartAnimation();
+                MainFrame.Navigate(new LocationsListPage(ContentLoader));
+            }
+        }
+
+        private void MainBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content is MainPage)
+            {
+                return;
+            }
+            else
+            {
+                MainFrame.Navigate(new MainPage());
             }
         }
     }

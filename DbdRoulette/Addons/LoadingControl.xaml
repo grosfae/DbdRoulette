@@ -9,7 +9,8 @@
     <UserControl.Background>
         <SolidColorBrush Color="Black" Opacity="0.7"/>
     </UserControl.Background>
-    <Grid>
+    
+    <Grid Name="LoaderGrid">
         <Image x:Name="SurvImage" VerticalAlignment="Center" HorizontalAlignment="Center" Width="70" Height="70" Source="/Resources/Misc/SurvIcon.png" Panel.ZIndex="4" RenderOptions.BitmapScalingMode="Fant" Opacity="1"/>
         
         <Image x:Name="KillerImage" VerticalAlignment="Center" HorizontalAlignment="Center" Width="70" Height="70" Source="/Resources/Misc/KillerIcon.png" Panel.ZIndex="4" RenderOptions.BitmapScalingMode="Fant" Opacity="0" Margin="0 10 0 0"/>
@@ -52,100 +53,96 @@
 
         <TextBlock x:Name="LoadingTextTb" Style="{DynamicResource Header}" Text="Загрузка" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 260 0 0" FontSize="30"/>
 
-        <Grid.Triggers>
-            <EventTrigger RoutedEvent="Loaded">
-                <BeginStoryboard>
-                    <Storyboard RepeatBehavior="Forever" AutoReverse="True">
-                        <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="1.5" Duration="0:0:1.5" BeginTime="0:0:1">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+        <Grid.Resources>
+            <Storyboard RepeatBehavior="Forever" AutoReverse="True" x:Key="MainStoryboard">
+                <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="1.5" Duration="0:0:1.5" BeginTime="0:0:1">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
 
-                        <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="1.5" Duration="0:0:1.5" BeginTime="0:0:1">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="1.5" Duration="0:0:1.5" BeginTime="0:0:1">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
 
-                        <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="2" Duration="0:0:1.5" BeginTime="0:0:2.5">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="2" Duration="0:0:1.5" BeginTime="0:0:2.5">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
 
-                        <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="2" Duration="0:0:1.5" BeginTime="0:0:2.5">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="2" Duration="0:0:1.5" BeginTime="0:0:2.5">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
 
-                        <!--Downscale-->
+                <!--Downscale-->
 
-                        <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="2" To="1" Duration="0:0:1.5" BeginTime="0:0:4">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseIn"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="2" To="1" Duration="0:0:1.5" BeginTime="0:0:4">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseIn"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
 
-                        <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="2" To="1" Duration="0:0:1.5" BeginTime="0:0:4">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseIn"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="2" To="1" Duration="0:0:1.5" BeginTime="0:0:4">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseIn"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
 
-                        <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1.5" To="1" Duration="0:0:1.5" BeginTime="0:0:5.5">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseIn"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1.5" To="1" Duration="0:0:1.5" BeginTime="0:0:5.5">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseIn"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
 
-                        <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1.5" To="1" Duration="0:0:1.5" BeginTime="0:0:5.5">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseIn"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        
-                        <!--Image and color change-->
+                <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1.5" To="1" Duration="0:0:1.5" BeginTime="0:0:5.5">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseIn"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
 
-                        <DoubleAnimation Storyboard.TargetName="SurvImage" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" BeginTime="0:0:6.5"/>
+                <!--Image and color change-->
 
-                        <DoubleAnimation Storyboard.TargetName="KillerImage" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:7"/>
+                <DoubleAnimation Storyboard.TargetName="SurvImage" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" BeginTime="0:0:6.5"/>
 
-                        <ColorAnimation Storyboard.TargetName="SmallEllipse" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" To="#FFAA1A18" Duration="0:0:1" BeginTime="0:0:6.5"/>
+                <DoubleAnimation Storyboard.TargetName="KillerImage" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" BeginTime="0:0:7"/>
 
-                        <ColorAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" To="#FFAA1A18" Duration="0:0:1" BeginTime="0:0:6.5"/>
+                <ColorAnimation Storyboard.TargetName="SmallEllipse" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" To="#FFAA1A18" Duration="0:0:1" BeginTime="0:0:6.5"/>
 
-                        <ColorAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" To="#FFAA1A18" Duration="0:0:1" BeginTime="0:0:6.5"/>
-                        
-                        <!--Upscale again-->
+                <ColorAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" To="#FFAA1A18" Duration="0:0:1" BeginTime="0:0:6.5"/>
 
-                        <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="1.5" Duration="0:0:1.5" BeginTime="0:0:7">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                <ColorAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" To="#FFAA1A18" Duration="0:0:1" BeginTime="0:0:6.5"/>
 
-                        <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="1.5" Duration="0:0:1.5" BeginTime="0:0:7">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                <!--Upscale again-->
 
-                        <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="2" Duration="0:0:1.5" BeginTime="0:0:8.5">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="1.5" Duration="0:0:1.5" BeginTime="0:0:7">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
 
-                        <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="2" Duration="0:0:1.5" BeginTime="0:0:8.5">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut"/>
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                    </Storyboard>
-                </BeginStoryboard>
-            </EventTrigger>
-        </Grid.Triggers>
+                <DoubleAnimation Storyboard.TargetName="MediumEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="1.5" Duration="0:0:1.5" BeginTime="0:0:7">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+
+                <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="2" Duration="0:0:1.5" BeginTime="0:0:8.5">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+
+                <DoubleAnimation Storyboard.TargetName="BigEllipse" Storyboard.TargetProperty="(Ellipse.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="2" Duration="0:0:1.5" BeginTime="0:0:8.5">
+                    <DoubleAnimation.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+        </Grid.Resources>
     </Grid>
 </UserControl>

@@ -18,7 +18,7 @@ namespace DbdRoulette.Components
         public byte[] MainImage { get; set; }
         public byte[] MainBackground { get; set; }
         public int ChapterId { get; set; }
-        public virtual Chapter Сhapter { get; set; }
+        public virtual Chapter Chapter { get; set; }
         public virtual ICollection<SurvivorPerk> SurvivorPerk { get; set; }
         public string DiaryLetter { get; set; }
         public virtual ICollection<SurvivorCosmeticOutfit> SurvivorCosmeticOutfit { get; set; }
@@ -41,15 +41,15 @@ namespace DbdRoulette.Components
         {
             get
             {
-                if (Сhapter.ChapterType.Id == 1)
+                if (Chapter.ChapterType.Id == 1)
                 {
                     return "#FFB5873C";
                 }
-                if (Сhapter.ChapterType.Id == 2)
+                if (Chapter.ChapterType.Id == 2)
                 {
                     return "#FF6C6358";
                 }
-                if (Сhapter.ChapterType.Id == 3)
+                if (Chapter.ChapterType.Id == 3)
                 {
                     return "#FFC50000";
                 }
@@ -64,15 +64,15 @@ namespace DbdRoulette.Components
         {
             get
             {
-                if (Сhapter.ChapterType.Id == 1)
+                if (Chapter.ChapterType.Id == 1)
                 {
                     return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/Gold.jpg";
                 }
-                if (Сhapter.ChapterType.Id == 2)
+                if (Chapter.ChapterType.Id == 2)
                 {
                     return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/Metal.jpg";
                 }
-                if (Сhapter.ChapterType.Id == 3)
+                if (Chapter.ChapterType.Id == 3)
                 {
                     return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/RedMetal.jpg";
                 }
@@ -87,15 +87,15 @@ namespace DbdRoulette.Components
         {
             get
             {
-                if (Сhapter.ChapterType.Id == 1)
+                if (Chapter.ChapterType.Id == 1)
                 {
                     return "";
                 }
-                if (Сhapter.ChapterType.Id == 2)
+                if (Chapter.ChapterType.Id == 2)
                 {
                     return "";
                 }
-                if (Сhapter.ChapterType.Id == 3)
+                if (Chapter.ChapterType.Id == 3)
                 {
                     return "";
                 }

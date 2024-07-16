@@ -35,14 +35,12 @@ namespace DbdRoulette.Addons
         {
             FirstGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
             {
-                From = 0,
                 To = -150,
                 EasingFunction = new CircleEase {EasingMode = EasingMode.EaseOut},
                 Duration = TimeSpan.FromSeconds(0.5)
             });
             FirstGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
-                From = 0,
                 To = -100,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
                 Duration = TimeSpan.FromSeconds(0.5)
@@ -50,7 +48,6 @@ namespace DbdRoulette.Addons
 
             SecondGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
             {
-                From = 0,
                 To = 150,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
                 Duration = TimeSpan.FromSeconds(0.8)
@@ -58,7 +55,6 @@ namespace DbdRoulette.Addons
 
             SecondGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
-                From = 0,
                 To = -100,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
                 Duration = TimeSpan.FromSeconds(0.8)
@@ -67,14 +63,12 @@ namespace DbdRoulette.Addons
 
             ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
             {
-                From = 0,
                 To = 150,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
                 Duration = TimeSpan.FromSeconds(1.0)
             });
             ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
-                From = 0,
                 To = 100,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
                 Duration = TimeSpan.FromSeconds(1.0)
@@ -82,14 +76,12 @@ namespace DbdRoulette.Addons
 
             FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
             {
-                From = 0,
                 To = -150,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
                 Duration = TimeSpan.FromSeconds(1.2)
             });
             FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
-                From = 0,
                 To = 100,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut },
                 Duration = TimeSpan.FromSeconds(1.2)
@@ -100,14 +92,12 @@ namespace DbdRoulette.Addons
         {
             FirstGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
             {
-                From = -150,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
                 Duration = TimeSpan.FromSeconds(0.5)
             });
             FirstGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
-                From = -100,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
                 Duration = TimeSpan.FromSeconds(0.5)
@@ -115,7 +105,6 @@ namespace DbdRoulette.Addons
 
             SecondGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
             {
-                From = 150,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
                 Duration = TimeSpan.FromSeconds(0.8)
@@ -123,7 +112,6 @@ namespace DbdRoulette.Addons
 
             SecondGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
-                From = -100,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
                 Duration = TimeSpan.FromSeconds(0.8)
@@ -132,14 +120,12 @@ namespace DbdRoulette.Addons
 
             ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
             {
-                From = 150,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
                 Duration = TimeSpan.FromSeconds(1.0)
             });
             ThirdGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
-                From = 100,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
                 Duration = TimeSpan.FromSeconds(1.0)
@@ -147,14 +133,12 @@ namespace DbdRoulette.Addons
 
             FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.XProperty, new DoubleAnimation
             {
-                From = -150,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
                 Duration = TimeSpan.FromSeconds(1.2)
             });
             FourthGrid.RenderTransform.BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation
             {
-                From = 100,
                 To = 0,
                 EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn },
                 Duration = TimeSpan.FromSeconds(1.2)

@@ -159,6 +159,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\RoulettePage.xaml.cs">
+      <DependentUpon>RoulettePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ChapterListViewModel.cs" />
+    <Compile Include="ViewModels\CharacterListViewModel.cs" />
+    <Compile Include="ViewModels\EffectListViewModel.cs" />
+    <Compile Include="ViewModels\ItemListViewModel.cs" />
+    <Compile Include="ViewModels\LocationListViewModel.cs" />
+    <Compile Include="ViewModels\PerkListViewModel.cs" />
+    <Compile Include="ViewModels\PowerListViewModel.cs" />
     <Page Include="Addons\ChapterBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -240,7 +250,6 @@
     <Compile Include="Components\MapGallery.cs" />
     <Compile Include="Components\Perk.cs" />
     <Compile Include="Components\PerkEffect.cs" />
-    <Compile Include="Components\PerkTextTag.cs" />
     <Compile Include="Components\PerkType.cs" />
     <Compile Include="Components\Power.cs" />
     <Compile Include="Components\PowerAddon.cs" />
@@ -249,7 +258,6 @@
     <Compile Include="Components\Survivor.cs" />
     <Compile Include="Components\SurvivorCosmeticOutfit.cs" />
     <Compile Include="Components\SurvivorPerk.cs" />
-    <Compile Include="Components\TextTag.cs" />
     <Compile Include="Components\ThematicCollection.cs" />
     <Compile Include="Components\User.cs" />
     <Compile Include="Converters\StyleParametersConverter.cs" />
@@ -311,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PowerListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RoulettePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -544,6 +556,20 @@
     <Resource Include="Resources\Misc\KillerManualImage.png" />
     <Resource Include="Resources\Misc\SurvivorManualImage.png" />
     <Resource Include="Resources\Misc\TitleImage.jpg" />
+    <Resource Include="Resources\Misc\KillerManualGrayImage.png" />
+    <Resource Include="Resources\Misc\SurvivorManualGrayImage.png" />
+    <Resource Include="Resources\MainPageStagesImages\FirstStageKiller.jpg" />
+    <Resource Include="Resources\MainPageStagesImages\SecondStageKiller.jpg" />
+    <Resource Include="Resources\MainPageStagesImages\ThirdStageKiller.jpg" />
+    <Resource Include="Resources\MainPageStagesImages\Bloodpoints.png" />
+    <Resource Include="Resources\MainPageStagesImages\BonusExample.png" />
+    <Resource Include="Resources\MainPageStagesImages\FirstStageSurvivor.png" />
+    <Resource Include="Resources\MainPageStagesImages\SecondStageSurvivor.png" />
+    <Resource Include="Resources\MainPageStagesImages\ThirdStageSurvivor.png" />
+    <Resource Include="Resources\RouletteIcon\PartyRoulette.png" />
+    <Resource Include="Resources\RouletteIcon\PerkRoulette.png" />
+    <Resource Include="Resources\RouletteIcon\ModsRoulette.png" />
+    <Resource Include="Resources\RouletteIcon\ComingRoulette.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

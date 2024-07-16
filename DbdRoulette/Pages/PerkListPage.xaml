@@ -34,7 +34,7 @@
                             <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="Храм Тайн — это магазин уникальных навыков, который позволяет игрокам разблокировать уровни навыков персонажей, которых у них в настоящее время нет или которым они еще не собираются повышать уровень и престиж." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
                             <TextBlock Style="{DynamicResource MiniText}" Margin="0 15 0 0" HorizontalAlignment="Left" Text="В зависимости от уровня обладаемого навыка растет его цена для покупки в храме тайн. Если навыка у игрока нет - 2000 радужных осколков, если навык прокачан до 1 уровня - 4000, а если навык уже 2 уровня - 6000 радужных осколков." TextWrapping="Wrap" Width="800" Foreground="White" FontSize="20"/>
 
-                            <StackPanel Margin="0 20 0 0" HorizontalAlignment="Left">
+                            <StackPanel Margin="0 130 0 0" HorizontalAlignment="Left">
                                 <StackPanel Orientation="Horizontal">
                                     <Border VerticalAlignment="Bottom" Margin="0 0 0 0" HorizontalAlignment="Left" Height="40" Width="253" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
                                         <Grid Width="250" HorizontalAlignment="Left">
@@ -42,15 +42,13 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="30"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent" TextChanged="TbSearch_TextChanged"/>
+                                            <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
                                             <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
                                         </Grid>
                                     </Border>
 
-                                    <ToggleButton x:Name="TagSwitchBtn" Margin="10 0 0 0" Style="{DynamicResource ToggleCharacterTypeBtn}" Unchecked="TagSwitchBtn_Unchecked" Width="80" Checked="TagSwitchBtn_Checked"/>
+                                    <ToggleButton x:Name="TagSwitchBtn" IsChecked="{Binding TypeCharacterSelect, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 0 0" Style="{DynamicResource ToggleCharacterTypeBtn}" Unchecked="TagSwitchBtn_Unchecked" Width="80" Checked="TagSwitchBtn_Checked"/>
                                 </StackPanel>
-
-                                <WrapPanel x:Name="TagsContainer" Margin="0 10 0 0" Width="820"/>
                             </StackPanel>
                         </StackPanel>
 
@@ -246,7 +244,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <ListView x:Name="LvPerks" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
+                    <ListView x:Name="LvPerks" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding PerkList,IsAsync=True,NotifyOnTargetUpdated=True}" TargetUpdated="LvPerks_TargetUpdated">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Width="1270" Orientation="Horizontal"/>
@@ -308,23 +306,6 @@
 
                     <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
                     
-                    <Grid Height="40" Margin="0 10 0 0" >
-                        <Rectangle>
-                            <Rectangle.Fill>
-                                <SolidColorBrush Color="#FF121212" Opacity="0.8"/>
-                            </Rectangle.Fill>
-                            <Rectangle.OpacityMask>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
-                                    <GradientStop Color="Transparent" Offset="0"/>
-                                    <GradientStop Color="White" Offset="0.5"/>
-                                    <GradientStop Color="Transparent" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Rectangle.OpacityMask>
-                        </Rectangle>
-
-                        <StackPanel x:Name="SPanelPages" Orientation="Horizontal" Width="auto" HorizontalAlignment="Center"/>
-                    </Grid>
-
                 </StackPanel>
                 <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18" Grid.Row="2">
                     <Rectangle.OpacityMask>

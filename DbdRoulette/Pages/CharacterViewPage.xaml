@@ -53,7 +53,7 @@
                                         <Polygon Fill="Black" Points="155,40, 0,40, 0,10,145,10" Width="180" HorizontalAlignment="Left"/>
                                         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15 10 0 0">
                                             <TextBlock Text="{Binding Symbol}" Foreground="White" FontSize="18" FontWeight="Medium" Style="{DynamicResource UnicodeText}"/>
-                                            <TextBlock Text="{Binding Сhapter.ChapterType.Name}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
+                                            <TextBlock Text="{Binding Chapter.ChapterType.Name}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
                                         </StackPanel>
                                     </Grid>
                                     <TextBlock Text="{Binding Name}" Width="540" TextWrapping="Wrap" Foreground="White" FontSize="34" Margin="30 10 0 0" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource EuropeTitleFont}"/>
@@ -102,7 +102,7 @@
                                                             <SolidColorBrush Color="White" Opacity="0.4"/>
                                                         </TextBlock.Foreground>
                                                     </TextBlock>
-                                                    <TextBlock x:Name="TbChapter" MouseLeftButtonDown="TbChapter_MouseLeftButtonDown" Text="{Binding Сhapter.Name}" TextWrapping="Wrap" Width="200" TextAlignment="Left" FontSize="20" FontWeight="Bold" Style="{DynamicResource LinkHeader}" Foreground="White" HorizontalAlignment="Left"/>
+                                                    <TextBlock x:Name="TbChapter" MouseLeftButtonDown="TbChapter_MouseLeftButtonDown" Text="{Binding Chapter.Name}" TextWrapping="Wrap" Width="200" TextAlignment="Left" FontSize="20" FontWeight="Bold" Style="{DynamicResource LinkHeader}" Foreground="White" HorizontalAlignment="Left"/>
 
                                                 </StackPanel>
                                             </StackPanel>
@@ -254,16 +254,16 @@
                         <Image x:Name="HauntedLine" Source="/Resources/HauntedTheme/Line1.png" VerticalAlignment="Top" Margin="0 62 0 0" Panel.ZIndex="1" Visibility="Collapsed"/>
                         <Grid MinHeight="390" Margin="0 100 0 0" Background="#FF121212">
                             <StackPanel Margin="60 0 0 0" HorizontalAlignment="Left" Width="650">
-                                <TextBlock Text="{Binding Сhapter.Name}" Width="650" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="0 20 0 0"/>
+                                <TextBlock Text="{Binding Chapter.Name}" Width="650" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="0 20 0 0"/>
                                 <Rectangle x:Name="LineSepChapter" Fill="#FFA31816" Width="80" Height="4" Margin="5 3 0 0" HorizontalAlignment="Left">
                                     <Rectangle.RenderTransform>
                                         <SkewTransform AngleX="-45"/>
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
-                                <TextBlock Text="{Binding Сhapter.Description}" Width="650" TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="00 20 0 0"/>
+                                <TextBlock Text="{Binding Chapter.Description}" Width="650" TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="00 20 0 0"/>
                                 <Button x:Name="ChapterViewBtn" Background="Transparent" Style="{DynamicResource ChapterRedBtn}" Height="50" Width="180" Content="Подробнее" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="ChapterViewBtn_Click"/>
                             </StackPanel>
-                            <Image Width="690" Stretch="UniformToFill" Source="{Binding Сhapter.MainImage}" HorizontalAlignment="Right" Height="430" VerticalAlignment="Top" Cursor=""/>
+                            <Image Width="690" Stretch="UniformToFill" Source="{Binding Chapter.MainImage}" HorizontalAlignment="Right" Height="430" VerticalAlignment="Top" Cursor=""/>
                         </Grid>
                     </Grid>
                 </StackPanel>

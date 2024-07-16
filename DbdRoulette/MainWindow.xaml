@@ -32,16 +32,19 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal" Background="#FF161D23" x:Name="Head">
                 <Image Source="/Resources/Logos.png" Width="70" Height="70" Margin="15 0 0 0"/>
-                <Button Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Рулетки"/>
+                <Button x:Name="MainBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Главная" Click="MainBtn_Click"/>
                 <ToggleButton x:Name="CharactersBtn" Style="{DynamicResource MenuListBtn}" Width="150" Height="50" Content="Персонажи" Checked="CharactersBtn_Checked" Unchecked="CharactersBtn_Unchecked"/>
-                <Button Style="{DynamicResource MenuButton}" Width="250" Height="50" Content="Объекты взаимодействия"/>
                 <Button x:Name="LocationViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Локации" Click="LocationViewBtn_Click"/>
                 <Button x:Name="DLCViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Дополнения" Click="DLCViewBtn_Click"/>
+                <Button Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Рулетки"/>
             </StackPanel>
         </StackPanel>
+        
+        <addons:LoadingControl Grid.RowSpan="2" Panel.ZIndex="3" x:Name="ContentLoader" Visibility="Collapsed"/>
+        
         <Image x:Name="HeaderHauntedLine" Source="/Resources/HauntedTheme/DefaultLine.png" VerticalAlignment="Bottom" Visibility="Collapsed"/>
         
-        <Grid x:Name="GridPupup" VerticalAlignment="Top" Margin="0 70 0 0" Height="330" Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="3">
+        <Grid x:Name="GridPupup" VerticalAlignment="Top" Margin="0 70 0 0" Height="330" Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="2">
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.7"/>
             </Grid.Background>
@@ -61,7 +64,7 @@
                                 <Grid Height="50">
                                     <Rectangle Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="black" Opacity="0.3"/>
-                                    <Button x:Name="CharacterListBtn" Click="CharacterListBtn_ClickAsync" Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
+                                    <Button x:Name="CharacterListBtn" Click="CharacterListBtn_Click" Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
                                 </Grid>
                             </StackPanel>
                         </Border>
@@ -139,7 +142,7 @@
             <Separator  Background="#FF3881EF" VerticalAlignment="Bottom" Margin="0 10 0 0"/>
         </Grid>
 
-        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 15 15 0" VerticalAlignment="Top">
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 15 15 0" VerticalAlignment="Top" Panel.ZIndex="4">
             <Border CornerRadius="15" Background="#FF3881EF" Height="35" Width="35">
                 <Image x:Name="MinButton" Height="20" Width="20"  MouseLeftButtonDown="MinButton_MouseLeftButtonDown" Cursor="Hand">
                     <Image.Style>
@@ -169,6 +172,7 @@
                 </Image>
             </Border>
         </StackPanel>
+        
         <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1" Panel.ZIndex="1" x:Name="PumpkinsGrid" Visibility="Collapsed">
             <Image  Source="/Resources/HauntedTheme/PumpkinLeft.png" Height="100" Width="100" Margin="0 0 100 0" Stretch="Uniform" RenderOptions.BitmapScalingMode="Fant">
                 <Image.RenderTransform>

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,9 +16,9 @@ namespace DbdRoulette.Addons
 {
     public class MiscUtilities
     {
-        public static SolidColorBrush SurvivorBrush = new SolidColorBrush(Color.FromRgb(45, 99, 161));
+        public static SolidColorBrush SurvivorBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(45, 99, 161));
 
-        public static SolidColorBrush KillerBrush = new SolidColorBrush(Color.FromRgb(170, 26, 24));
+        public static SolidColorBrush KillerBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(170, 26, 24));
 
         public static BitmapImage ImageConvert(byte[] convertableImage)
         {
@@ -60,7 +63,6 @@ namespace DbdRoulette.Addons
             From = 0,
             To = 1,
             Duration = TimeSpan.FromSeconds(1.0),
-
         };
 
         public static string Generate(int number, string nominativ, string genetiv, string plural)

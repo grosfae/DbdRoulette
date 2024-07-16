@@ -7,7 +7,7 @@
       xmlns:addons="clr-namespace:DbdRoulette.Addons"
       mc:Ignorable="d" 
       d:DesignHeight="1700" d:DesignWidth="1400"
-      Title="ItemListPage" Loaded="Page_Loaded">
+      Title="ItemListPage">
 
     <Grid>
         <ScrollViewer CanContentScroll="False">
@@ -38,7 +38,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel>
                                         <TextBlock Text="Отсортировать по" Foreground="White" FontSize="20" Style="{DynamicResource Header}"/>
-                                        <ComboBox x:Name="CbSort" SelectionChanged="CbSort_SelectionChanged" Style="{DynamicResource CustomSortBox}" Width="250" Cursor="Hand" Height="40"  ItemContainerStyle="{StaticResource CustomSortBoxItem}"/>
+                                        <ComboBox x:Name="CbSort" SelectedIndex="{Binding ComboBoxIndex, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource CustomSortBox}" Width="250" Cursor="Hand" Height="40"  ItemContainerStyle="{StaticResource CustomSortBoxItem}"/>
                                     </StackPanel>
 
                                     <Border VerticalAlignment="Bottom" Margin="30 0 0 0" HorizontalAlignment="Left" Height="40" Width="253" Background="Transparent" BorderThickness="1.5" BorderBrush="White">
@@ -47,7 +47,7 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="30"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Margin="8 0 0 0"  x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent" TextChanged="TbSearch_TextChanged"/>
+                                            <TextBox Margin="8 0 0 0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" x:Name="TbSearch" Style="{DynamicResource placeHolder}" BorderThickness="0" Foreground="White" CaretBrush="White" Tag="Искать здесь" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center" Background="Transparent"/>
                                             <Image Grid.Column="1" Source="/Resources/Misc/SearchIcon.png" RenderOptions.BitmapScalingMode="Fant" Height="20" Width="20" HorizontalAlignment="Center"/>
                                         </Grid>
                                     </Border>
@@ -94,7 +94,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <ListView x:Name="LvItems" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
+                    <ListView x:Name="LvItems" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding ItemList,IsAsync=True,NotifyOnTargetUpdated=True}" TargetUpdated="LvItems_TargetUpdated">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Width="1270" Orientation="Horizontal"/>
@@ -152,25 +152,7 @@
                     </ListView>
                     
                     <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
-                    
-                    <Grid Height="40" Margin="0 10 0 0" >
-                        <Rectangle>
-                            <Rectangle.Fill>
-                                <SolidColorBrush Color="#FF121212" Opacity="0.8"/>
-                            </Rectangle.Fill>
-                            <Rectangle.OpacityMask>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
-                                    <GradientStop Color="Transparent" Offset="0"/>
-                                    <GradientStop Color="White" Offset="0.5"/>
-                                    <GradientStop Color="Transparent" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Rectangle.OpacityMask>
-                        </Rectangle>
-
-                        <StackPanel x:Name="SPanelPages" Orientation="Horizontal" Width="auto" HorizontalAlignment="Center"/>
-                    </Grid>
-
-                    
+                                    
                 </StackPanel>
                 
                 <Rectangle x:Name="RecGradient" Height="150" Fill="#FF2D63A1" Grid.Row="2">

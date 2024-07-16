@@ -1,9 +1,12 @@
 ﻿using DbdRoulette.Addons;
 using DbdRoulette.Components;
+using DbdRoulette.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,9 +28,14 @@ namespace DbdRoulette.Pages
     /// </summary>
     public partial class CharacterListPage : Page
     {
-        public CharacterListPage()
+        LoadingControl contextContentLoader;
+        public bool FirstTry;
+
+        public CharacterListPage(LoadingControl loadingControl)
         {
             InitializeComponent();
+            contextContentLoader = loadingControl;
+            DataContext = new CharacterListViewModel();
             RadioKiller.IsChecked = true;
         }
 
@@ -42,7 +50,6 @@ namespace DbdRoulette.Pages
 
             };
 
-            
             var animationBlur = new DoubleAnimation
             {
                 From = 30,
@@ -64,10 +71,6 @@ namespace DbdRoulette.Pages
             CbSort.Items.Add("Сложность - Умеренно");
             CbSort.Items.Add("Сложность - Тяжело");
             CbSort.Items.Add("Сложность - Очень тяжело");
-
-            CbSort.SelectedIndex = 0;
-
-            RefreshKillers();
         }
 
         private void RadioSurvivor_Checked(object sender, RoutedEventArgs e)
@@ -87,6 +90,7 @@ namespace DbdRoulette.Pages
                 To = 0,
                 Duration = TimeSpan.FromSeconds(1),
             };
+
             PresentImage.BeginAnimation(ImageBrush.OpacityProperty, animationOpacity);
             BlurRad.BeginAnimation(BlurBitmapEffect.RadiusProperty, animationBlur);
 
@@ -101,10 +105,9 @@ namespace DbdRoulette.Pages
 
             CbSort.SelectedIndex = 0;
 
-            RefreshSurvivors();
         }
         private void TbSelectedCharacterBtn_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             if (RadioKiller.IsChecked == true)
             {
                 var selectedKiller = (sender as Button).DataContext as Killer;
@@ -117,97 +120,33 @@ namespace DbdRoulette.Pages
             }
         }
 
-        private void RefreshKillers()
-        {
-            IEnumerable<Killer> killers = App.DB.Killer.ToList();
-            if(CbSort.SelectedIndex == 0)
-            {
-                killers = killers.OrderByDescending(x => x.Сhapter.DateRelease);
-            }
-            else if(CbSort.SelectedIndex == 1)
-            {
-                killers = killers.OrderBy(x => x.Сhapter.DateRelease);
-            }
-            else if (CbSort.SelectedIndex == 2)
-            {
-                killers = killers.Where(x => x.DifficultyId == 1);
-            }
-            else if (CbSort.SelectedIndex == 3)
-            {
-                killers = killers.Where(x => x.DifficultyId == 2);
-            }
-            else if (CbSort.SelectedIndex == 4)
-            {
-                killers = killers.Where(x => x.DifficultyId == 3);
-            }
-            else if (CbSort.SelectedIndex == 5)
-            {
-                killers = killers.Where(x => x.DifficultyId == 4);
-            }
-            if(TbSearch.Text.Length > 0)
-            {
-                killers = killers.Where(x => x.Name.ToLower().Contains(TbSearch.Text.ToLower()));
-            }
-            LvCharacters.ItemsSource = killers;
-            if(LvCharacters.Items.Count > 0)
-            {
-                NothingFoundElement.Visibility = Visibility.Collapsed;
-                LvCharacters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
-            }
-            else
-            {
-                NothingFoundElement.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void RefreshSurvivors()
-        {
-            IEnumerable<Survivor> survivors = App.DB.Survivor.ToList();
-            if (CbSort.SelectedIndex == 0)
-            {
-                survivors = survivors.OrderByDescending(x => x.Сhapter.DateRelease);
-            }
-            else if (CbSort.SelectedIndex == 1)
-            {
-                survivors = survivors.OrderBy(x => x.Сhapter.DateRelease);
-            }
-            if (TbSearch.Text.Length > 0)
-            {
-                survivors = survivors.Where(x => x.Name.ToLower().Contains(TbSearch.Text.ToLower()));
-            }
-            LvCharacters.ItemsSource = survivors;
-
-            LvCharacters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
-        }
-        private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (RadioKiller.IsChecked == true)
-            {
-                RefreshKillers();
-            }
-            if (RadioSurvivor.IsChecked == true)
-            {
-                RefreshSurvivors();
-            }
-        }
-
-        private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (RadioKiller.IsChecked == true)
-            {
-                RefreshKillers();
-            }
-            if (RadioSurvivor.IsChecked == true)
-            {
-                RefreshSurvivors();
-            }
-        }
-
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             if (NavigationService.CanGoBack == true)
             {
                 NavigationService.GoBack();
+            }
+        }
+
+
+        private void LvCharacters_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            if (FirstTry == true)
+            {
+                contextContentLoader.StopAnimation();
+            }
+            else
+            {
+                FirstTry = true;
+            }
+            if (LvCharacters.Items.Count == 0)
+            {
+                NothingFoundElement.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                NothingFoundElement.Visibility = Visibility.Collapsed;
+                LvCharacters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
             }
         }
     }
