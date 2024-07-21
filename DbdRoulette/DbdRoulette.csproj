@@ -159,6 +159,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Addons\RouletteResultRowControl.xaml.cs">
+      <DependentUpon>RouletteResultRowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Addons\ShuffleClass.cs" />
+    <Compile Include="Components\NoneDatabase\PartyPlayer.cs" />
+    <Compile Include="Components\NoneDatabase\PerkSlot.cs" />
+    <Compile Include="Components\Player.cs" />
+    <Compile Include="Components\RouletteResult.cs" />
     <Compile Include="Pages\RoulettePage.xaml.cs">
       <DependentUpon>RoulettePage.xaml</DependentUpon>
     </Compile>
@@ -169,6 +177,9 @@
     <Compile Include="ViewModels\LocationListViewModel.cs" />
     <Compile Include="ViewModels\PerkListViewModel.cs" />
     <Compile Include="ViewModels\PowerListViewModel.cs" />
+    <Compile Include="Windows\AddDataWindow.xaml.cs">
+      <DependentUpon>AddDataWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Addons\ChapterBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -190,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Addons\NothingFoundControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Addons\RouletteResultRowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -330,6 +345,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\AddDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\ChapterListPage.xaml.cs">
@@ -402,6 +421,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\Miratrix-Normal.otf" />
     <Resource Include="Resources\Fonts\TerminatorGen.otf" />
     <Resource Include="Resources\Fonts\BeerMoney-08po.ttf" />
     <Resource Include="Resources\Fonts\europeextendedc_bold.otf" />
@@ -570,6 +590,12 @@
     <Resource Include="Resources\RouletteIcon\PerkRoulette.png" />
     <Resource Include="Resources\RouletteIcon\ModsRoulette.png" />
     <Resource Include="Resources\RouletteIcon\ComingRoulette.png" />
+    <Resource Include="Resources\RouletteIcon\RouletteCube.png" />
+    <Resource Include="Resources\RouletteIcon\NumberFifthIcon.png" />
+    <Resource Include="Resources\RouletteIcon\NumberFirstIcon.png" />
+    <Resource Include="Resources\RouletteIcon\NumberFourthIcon.png" />
+    <Resource Include="Resources\RouletteIcon\NumberSecondIcon.png" />
+    <Resource Include="Resources\RouletteIcon\NumberThirdIcon.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

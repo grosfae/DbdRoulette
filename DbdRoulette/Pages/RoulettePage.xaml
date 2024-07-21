@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DbdRoulette.Pages"
+      xmlns:addons="clr-namespace:DbdRoulette.Addons"
       mc:Ignorable="d" 
       d:DesignHeight="2700" d:DesignWidth="1400"
       Title="RoulettePage">
@@ -25,194 +26,657 @@
                     <Button x:Name="BackBtn" Style="{DynamicResource BackButton}" Content="Назад" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="BackBtn_Click"/>
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Margin="60 0" HorizontalAlignment="Stretch">
-                    <Grid Margin="0 20 0 0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid Height="300" Width="270" Background="#FF0A1A26">
-                            <Rectangle>
-                                <Rectangle.Fill>
-                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
-                                        <GradientStop Color="#FF0BFF73"/>
-                                        <GradientStop Color="#FF2D63A1" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.Fill>
-                                <Rectangle.OpacityMask>
-                                    <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
-                                        <GradientStop Color="Transparent" Offset="0.15"/>
-                                        <GradientStop Color="White" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <TextBlock Style="{DynamicResource Header}" Text="Порядок игроков" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
-                            <Grid Margin="0 50 0 0">
-                                <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
-                                    <Ellipse.Effect>
-                                        <BlurEffect Radius="40"/>
-                                    </Ellipse.Effect>
-                                </Ellipse>
-                                <Image Source="/Resources/RouletteIcon/PartyRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Margin="60 20 60 0" HorizontalAlignment="Stretch">
+                    <Grid>
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Panel.ZIndex="6">
+                            <Rectangle Width="1220" Height="30" Fill="#FF121212" RadiusX="15" RadiusY="15" VerticalAlignment="Top"/>
+                            <Grid x:Name="HorizontalArrowGrid" Width="30" Height="62" RenderTransformOrigin="0.5,0.5">
+                                <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Panel.ZIndex="6">
+                                    <Ellipse Width="30" Height="30" StrokeThickness="3">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                                                <GradientStop Color="White" x:Name="HorizontalExternalStop1"/>
+                                                <GradientStop Color="White" Offset="1" x:Name="HorizontalExternalStop2"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                    <Ellipse Width="15" Height="15">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                                                <GradientStop Color="White" x:Name="HorizontalInternalStop1"/>
+                                                <GradientStop Color="White" Offset="1" x:Name="HorizontalInternalStop2"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                                <Path Data="M0.849609 0.5L3.99844 2L7.13844 0.5L3.99906 10L0.849609 0.5Z" Panel.ZIndex="6" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0.7 0" >
+                                    <Path.Fill>
+                                        <LinearGradientBrush EndPoint="1.0,0.0" StartPoint="0,0">
+                                            <GradientStop Color="White" x:Name="HorizontalPathArrowheadStop1"/>
+                                            <GradientStop Color="White" Offset="1" x:Name="HorizontalPathArrowheadStop2"/>
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                                <Path Data="M15.0008 45L0.130835 1.21643e-06L5.50083 8L15.0008 13L24.5008 8L29.8516 0L15.0008 45Z" Fill="#FF121212" Margin="0 17 0 0" Panel.ZIndex="5" HorizontalAlignment="Center"/>
+                                <Grid.RenderTransform>
+                                    <TranslateTransform X="0" Y="0"/>
+                                </Grid.RenderTransform>
                             </Grid>
-                            <Button x:Name="PartyRouletteBtn" Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Определение очереди"  Content="Рулетка для определения очереди в ролях игроков" Cursor="Hand" Click="PartyRouletteDependenseBtn_Click"/>
                         </Grid>
 
-                        <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="1">
-                            <Rectangle Fill="#FFB7B7B7">
-                                <Rectangle.OpacityMask>
-                                    <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
-                                        <GradientStop Color="Transparent" Offset="0.15"/>
-                                        <GradientStop Color="White" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <TextBlock Style="{DynamicResource Header}" Text="Случайная локация" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
-                            <Grid Margin="0 50 0 0">
-                                <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
-                                    <Ellipse.Effect>
-                                        <BlurEffect Radius="40"/>
-                                    </Ellipse.Effect>
-                                </Ellipse>
-                                <Image Source="/Resources/Misc/MapIcon.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Panel.ZIndex="6">
+                            <Rectangle Width="30" Height="645" Fill="#FF121212" RadiusX="15" RadiusY="15" VerticalAlignment="Top" Margin="0 40 0 0" HorizontalAlignment="Left"/>
+                            <Grid Width="30" RenderTransformOrigin="0.5, 0.5" Height="62" Margin="16 0 0 0">
+                                <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Panel.ZIndex="6">
+                                    <Ellipse Width="30" Height="30" StrokeThickness="3">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                                                <GradientStop Color="White" x:Name="VerticalExternalStop1"/>
+                                                <GradientStop Color="White" Offset="1" x:Name="VerticalExternalStop2"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+                                    <Ellipse Width="15" Height="15">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                                                <GradientStop Color="White" x:Name="VerticalInternalStop1"/>
+                                                <GradientStop Color="White" Offset="1" x:Name="VerticalInternalStop2"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                                <Path Data="M0.849609 0.5L3.99844 2L7.13844 0.5L3.99906 10L0.849609 0.5Z" Panel.ZIndex="6" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0.7 0" Name="VerticalPathArrowhead">
+                                    <Path.Fill>
+                                        <LinearGradientBrush EndPoint="1.0,0.0" StartPoint="0,0">
+                                            <GradientStop Color="White" x:Name="VerticalPathArrowheadStop1"/>
+                                            <GradientStop Color="White" Offset="1" x:Name="VerticalPathArrowheadStop2"/>
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                                <Path Data="M15.0008 45L0.130835 1.21643e-06L5.50083 8L15.0008 13L24.5008 8L29.8516 0L15.0008 45Z" Fill="#FF121212" Margin="0 17 0 0" Panel.ZIndex="5" HorizontalAlignment="Center"/>
+                                <Grid.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="270"/>
+                                        <TranslateTransform X="0" Y="0" x:Name="VerticalArrowGridTransform"/>
+                                    </TransformGroup>
+                                </Grid.RenderTransform>
                             </Grid>
-                            <Button Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Случайное измерение"  Content="Данная рулетка позволяет определить случайную игровую локацию." Cursor="Hand" />
                         </Grid>
 
-                        <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="2">
-                            <Rectangle Fill="#FF9C3DFF">
-                                <Rectangle.OpacityMask>
-                                    <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
-                                        <GradientStop Color="Transparent" Offset="0.15"/>
-                                        <GradientStop Color="White" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <TextBlock Style="{DynamicResource Header}" Text="Случайные навыки" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
-                            <Grid Margin="0 50 0 0">
-                                <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
-                                    <Ellipse.Effect>
-                                        <BlurEffect Radius="40"/>
-                                    </Ellipse.Effect>
-                                </Ellipse>
-                                <Image Source="/Resources/RouletteIcon/PerkRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
-                            </Grid>
-                            <Button Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Набор навыков"  Content="В данной рулетке можно определить случайный навык или набор навыков." Cursor="Hand" />
-                        </Grid>
+                        <Grid Margin="20 40 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
-                        <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="3">
-                            <Rectangle Fill="#FFBD0045">
-                                <Rectangle.OpacityMask>
-                                    <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
-                                        <GradientStop Color="Transparent" Offset="0.15"/>
-                                        <GradientStop Color="White" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <TextBlock Style="{DynamicResource Header}" Text="Случайный модификатор" FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
-                            <Grid Margin="0 50 0 0">
-                                <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
-                                    <Ellipse.Effect>
-                                        <BlurEffect Radius="40"/>
-                                    </Ellipse.Effect>
-                                </Ellipse>
-                                <Image Source="/Resources/RouletteIcon/ModsRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                            <Grid Height="300" Width="270" Background="#FF0A1A26">
+                                <Rectangle>
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                            <GradientStop Color="#FF0BFF73"/>
+                                            <GradientStop Color="#FF2D63A1" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                    <Rectangle.OpacityMask>
+                                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent" Offset="0.15"/>
+                                            <GradientStop Color="White" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Style="{DynamicResource Header}" Text="Порядок игроков" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
+                                <Grid Margin="0 50 0 0">
+                                    <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                        <Ellipse.Effect>
+                                            <BlurEffect Radius="40"/>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                    <Image Source="/Resources/RouletteIcon/PartyRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Button x:Name="PartyRouletteBtn" Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Определение очереди"  Content="Рулетка для определения очереди в ролях игроков" Cursor="Hand" Click="PartyRouletteBtn_Click"/>
                             </Grid>
-                            <Button Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Тематические амулеты"  Content="К главам в комплекте также могут идти тематические амулеты. Можно прицепить несколько амулетов к поясу Выжившего или на крюк Убийцы." Cursor="Hand" />
-                        </Grid>
 
-                        <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="0" Grid.Row="1" Margin="0 45 0 0">
-                            <Rectangle Fill="#FFBD0000">
-                                <Rectangle.OpacityMask>
-                                    <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
-                                        <GradientStop Color="Transparent" Offset="0.15"/>
-                                        <GradientStop Color="White" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <TextBlock Style="{DynamicResource Header}" Text="Случайный убийца" FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
-                            <Grid Margin="0 50 0 0">
-                                <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
-                                    <Ellipse.Effect>
-                                        <BlurEffect Radius="40"/>
-                                    </Ellipse.Effect>
-                                </Ellipse>
-                                <Image Source="/Resources/Misc/KillerIcon.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                            <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="1">
+                                <Rectangle Fill="#FFB7B7B7">
+                                    <Rectangle.OpacityMask>
+                                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent" Offset="0.15"/>
+                                            <GradientStop Color="White" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Style="{DynamicResource Header}" Text="Случайная локация" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
+                                <Grid Margin="0 50 0 0">
+                                    <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                        <Ellipse.Effect>
+                                            <BlurEffect Radius="40"/>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                    <Image Source="/Resources/Misc/MapIcon.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Button Width="270" x:Name="LocationRouletteBtn" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Случайное измерение"  Content="Данная рулетка позволяет определить случайную игровую локацию." Cursor="Hand" Click="LocationRouletteBtn_Click"/>
                             </Grid>
-                            <Button Width="270"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Рулетка убийцы"  Content="Эта рулетка определяет случайного убийцу из выбранных в списке." Cursor="Hand" />
-                        </Grid>
 
-                        <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="1" Grid.Row="1" Margin="0 45 0 0">
-                            <Rectangle Fill="#FF3E3E3E">
-                                <Rectangle.OpacityMask>
-                                    <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
-                                        <GradientStop Color="Transparent" Offset="0.15"/>
-                                        <GradientStop Color="White" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <TextBlock Style="{DynamicResource Header}" Text="Скоро..." FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
-                            <Grid Margin="0 50 0 0">
-                                <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
-                                    <Ellipse.Effect>
-                                        <BlurEffect Radius="40"/>
-                                    </Ellipse.Effect>
-                                </Ellipse>
-                                <Image Source="/Resources/RouletteIcon/ComingRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                            <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="2">
+                                <Rectangle Fill="#FF9C3DFF">
+                                    <Rectangle.OpacityMask>
+                                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent" Offset="0.15"/>
+                                            <GradientStop Color="White" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Style="{DynamicResource Header}" Text="Случайные навыки" FontWeight="Bold" Foreground="White" FontSize="26" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0"/>
+                                <Grid Margin="0 50 0 0">
+                                    <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                        <Ellipse.Effect>
+                                            <BlurEffect Radius="40"/>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                    <Image Source="/Resources/RouletteIcon/PerkRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Button Width="270" x:Name="PerkRouletteBtn" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Набор навыков"  Content="В данной рулетке можно определить случайный навык или набор навыков." Cursor="Hand" Click="PerkRouletteBtn_Click"/>
                             </Grid>
-                            <Button Width="270" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Будущая рулетка"  Content="Скоро здесь будет новая рулетка..." Cursor="Arrow" />
-                        </Grid>
 
-                        <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="2" Grid.Row="1" Margin="0 45 0 0">
-                            <Rectangle Fill="#FF3E3E3E">
-                                <Rectangle.OpacityMask>
-                                    <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
-                                        <GradientStop Color="Transparent" Offset="0.15"/>
-                                        <GradientStop Color="White" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <TextBlock Style="{DynamicResource Header}" Text="Скоро..." FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
-                            <Grid Margin="0 50 0 0">
-                                <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
-                                    <Ellipse.Effect>
-                                        <BlurEffect Radius="40"/>
-                                    </Ellipse.Effect>
-                                </Ellipse>
-                                <Image Source="/Resources/RouletteIcon/ComingRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                            <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="3">
+                                <Rectangle Fill="#FFBD0045">
+                                    <Rectangle.OpacityMask>
+                                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent" Offset="0.15"/>
+                                            <GradientStop Color="White" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Style="{DynamicResource Header}" Text="Случайный модификатор" FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
+                                <Grid Margin="0 50 0 0">
+                                    <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                        <Ellipse.Effect>
+                                            <BlurEffect Radius="40"/>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                    <Image Source="/Resources/RouletteIcon/ModsRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Button Width="270" x:Name="ModsRouletteBtn" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Модификаторы режима"  Content="Рулетка для различных модификаторов режима своей игры." Cursor="Hand" Click="ModsRouletteBtn_Click"/>
                             </Grid>
-                            <Button Width="270" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Будущая рулетка"  Content="Скоро здесь будет новая рулетка..." Cursor="Arrow" />
-                        </Grid>
-                        
-                        <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="3" Grid.Row="1" Margin="0 45 0 0">
-                            <Rectangle Fill="#FF3E3E3E">
-                                <Rectangle.OpacityMask>
-                                    <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
-                                        <GradientStop Color="Transparent" Offset="0.15"/>
-                                        <GradientStop Color="White" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <TextBlock Style="{DynamicResource Header}" Text="Скоро..." FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
-                            <Grid Margin="0 50 0 0">
-                                <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
-                                    <Ellipse.Effect>
-                                        <BlurEffect Radius="40"/>
-                                    </Ellipse.Effect>
-                                </Ellipse>
-                                <Image Source="/Resources/RouletteIcon/ComingRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
-                            </Grid>
-                            <Button Width="270" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Будущая рулетка"  Content="Скоро здесь будет новая рулетка..." Cursor="Arrow" />
-                        </Grid>
 
+                            <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="0" Grid.Row="1" Margin="0 45 0 0">
+                                <Rectangle Fill="#FFAA1A18">
+                                    <Rectangle.OpacityMask>
+                                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent" Offset="0.15"/>
+                                            <GradientStop Color="White" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Style="{DynamicResource Header}" Text="Случайный убийца" FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
+                                <Grid Margin="0 50 0 0">
+                                    <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                        <Ellipse.Effect>
+                                            <BlurEffect Radius="40"/>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                    <Image Source="/Resources/Misc/KillerIcon.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Button Width="270" x:Name="KillerRouletteBtn" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Рулетка убийцы"  Content="Эта рулетка определяет случайного убийцу из выбранных в списке." Cursor="Hand" Click="KillerRouletteBtn_Click"/>
+                            </Grid>
+
+                            <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="1" Grid.Row="1" Margin="0 45 0 0">
+                                <Rectangle Fill="#FF3E3E3E">
+                                    <Rectangle.OpacityMask>
+                                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent" Offset="0.15"/>
+                                            <GradientStop Color="White" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Style="{DynamicResource Header}" Text="Скоро..." FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
+                                <Grid Margin="0 50 0 0">
+                                    <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                        <Ellipse.Effect>
+                                            <BlurEffect Radius="40"/>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                    <Image Source="/Resources/RouletteIcon/ComingRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Button Width="270" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Будущая рулетка"  Content="Скоро здесь будет новая рулетка..." Cursor="Arrow" />
+                            </Grid>
+
+                            <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="2" Grid.Row="1" Margin="0 45 0 0">
+                                <Rectangle Fill="#FF3E3E3E">
+                                    <Rectangle.OpacityMask>
+                                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent" Offset="0.15"/>
+                                            <GradientStop Color="White" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Style="{DynamicResource Header}" Text="Скоро..." FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
+                                <Grid Margin="0 50 0 0">
+                                    <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                        <Ellipse.Effect>
+                                            <BlurEffect Radius="40"/>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                    <Image Source="/Resources/RouletteIcon/ComingRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Button Width="270" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Будущая рулетка"  Content="Скоро здесь будет новая рулетка..." Cursor="Arrow" />
+                            </Grid>
+
+                            <Grid Height="300" Width="270" Background="#FF0A1A26" Grid.Column="3" Grid.Row="1" Margin="0 45 0 0">
+                                <Rectangle Fill="#FF3E3E3E">
+                                    <Rectangle.OpacityMask>
+                                        <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0">
+                                            <GradientStop Color="Transparent" Offset="0.15"/>
+                                            <GradientStop Color="White" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Style="{DynamicResource Header}" Text="Скоро..." FontWeight="Bold" Foreground="White" FontSize="26" Height="65" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 20 0 0" TextWrapping="Wrap" TextAlignment="Center"/>
+                                <Grid Margin="0 50 0 0">
+                                    <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" Fill="#FF121212">
+                                        <Ellipse.Effect>
+                                            <BlurEffect Radius="40"/>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                    <Image Source="/Resources/RouletteIcon/ComingRoulette.png" Height="140" Width="140" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                </Grid>
+                                <Button Width="270" Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="Будущая рулетка"  Content="Скоро здесь будет новая рулетка..." Cursor="Arrow" />
+                            </Grid>
+
+                        </Grid>
                     </Grid>
 
+                    <Grid Margin="0 20 0 0" x:Name="RouletteGrid">
+                        <Viewbox Height="100" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Path Data="M512 70V0H70L0 -2.23802e-05L-3.0598e-06 70L0 512H70V70L512 70Z">
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                        <GradientStop Color="White" x:Name="TopLeftStop1"/>
+                                        <GradientStop Color="White" Offset="1" x:Name="TopLeftStop2"/>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                        </Viewbox>
+                        <Viewbox Height="100" Width="100" HorizontalAlignment="Right" RenderTransformOrigin="0.5, 0.5" VerticalAlignment="Top">
+                            <Path Data="M512 70V0H70L0 -2.23802e-05L-3.0598e-06 70L0 512H70V70L512 70Z">
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                        <GradientStop Color="White" x:Name="TopRightStop1"/>
+                                        <GradientStop Color="White" Offset="1" x:Name="TopRightStop2"/>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Viewbox.RenderTransform>
+                                <ScaleTransform ScaleX="-1"/>
+                            </Viewbox.RenderTransform>
+                        </Viewbox>
+                        <Viewbox Height="100" Width="100" HorizontalAlignment="Left" RenderTransformOrigin="0.5, 0.5" VerticalAlignment="Bottom">
+                            <Path Data="M512 70V0H70L0 -2.23802e-05L-3.0598e-06 70L0 512H70V70L512 70Z">
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                        <GradientStop Color="White" x:Name="LeftBottomStop1"/>
+                                        <GradientStop Color="White" Offset="1" x:Name="LeftBottomStop2"/>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Viewbox.RenderTransform>
+                                <ScaleTransform ScaleY="-1"/>
+                            </Viewbox.RenderTransform>
+                        </Viewbox>
+                        <Viewbox Height="100" Width="100" HorizontalAlignment="Right" RenderTransformOrigin="0.5, 0.5" VerticalAlignment="Bottom">
+                            <Path Data="M512 70V0H70L0 -2.23802e-05L-3.0598e-06 70L0 512H70V70L512 70Z">
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                        <GradientStop Color="White" x:Name="RightBottomStop1"/>
+                                        <GradientStop Color="White" Offset="1" x:Name="RightBottomStop2"/>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Viewbox.RenderTransform>
+                                <ScaleTransform ScaleY="-1" ScaleX="-1"/>
+                            </Viewbox.RenderTransform>
+                        </Viewbox>
+
+                        <StackPanel Margin="40 0">
+                            <StackPanel Margin="0 0 0 40"  x:Name="PartyRouletteSt" Visibility="Collapsed">
+                                <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Определение порядка игроков" HorizontalAlignment="Center" FontSize="40" Margin="0 20 0 0"/>
+                                <Grid Margin="0 20 0 0">
+                                    <StackPanel HorizontalAlignment="Left" Margin="40 0 0 0">
+                                        <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Список игроков" HorizontalAlignment="Center" FontSize="26" />
+                                        <ListView x:Name="LvPartyPlayers" d:ItemsSource="{d:SampleData ItemCount=7}" Margin="0 10 0 0" HorizontalAlignment="Center" Height="370">
+                                            <ListView.Template>
+                                                <ControlTemplate TargetType="ItemsControl">
+                                                    <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                                        <ItemsPresenter VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                                                    </ScrollViewer>
+                                                </ControlTemplate>
+                                            </ListView.Template>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ToggleButton x:Name="TbSelectPlayer" Style="{DynamicResource PlayerSelectToggle}" Width="275" Height="60" Margin="5" Content="{Binding Name}" MinWidth="180" FontSize="20" Checked="TbSelectPlayer_Checked" Unchecked="TbSelectPlayer_Unchecked"/>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <StackPanel HorizontalAlignment="Center" Margin="0 0 0 30">
+                                            <TextBlock Style="{DynamicResource Header}" Text="Управление игроками" Foreground="White" FontSize="26" HorizontalAlignment="Center"/>
+                                            <Border BorderThickness="1" BorderBrush="#FF3881EF" Margin="0 10 0 5"  Width="280">
+                                                <TextBox x:Name="TbPlayerName" Style="{DynamicResource placeHolder}" Tag="Имя игрока" FontSize="20" Margin="5 5 0 0" BorderThickness="0" Height="30" VerticalAlignment="Center" VerticalContentAlignment="Center" Foreground="White" MaxLength="30" CaretBrush="White">
+                                                    <TextBox.Background>
+                                                        <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
+                                                    </TextBox.Background>
+                                                </TextBox>
+                                            </Border>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="PlayerAddBtn" Style="{DynamicResource HalfOpacityButton}" Width="150" Height="40" Margin="5" Content="Добавить" FontSize="20" Click="PlayerAddBtn_Click"/>
+                                                <Button x:Name="PlayerRemoveBtn" Style="{DynamicResource HalfOpacityButton}" Width="120" Height="40" Margin="5" Content="Удалить" FontSize="20" Click="PlayerRemoveBtn_Click"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <Button x:Name="RollBtn" Height="120" Width="120" Style="{DynamicResource HalfOpacityButton}" FontSize="20" Click="RollBtn_Click">
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <Image Height="80" Width="80" Source="/Resources/RouletteIcon/RouletteCube.png" VerticalAlignment="Center" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"/>
+                                                <TextBlock Text="Начать" HorizontalAlignment="Center" FontSize="20"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                    <StackPanel HorizontalAlignment="Right" Margin="0 0 40 0">
+                                        <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Результат" HorizontalAlignment="Center" FontSize="26" />
+                                        <ListView x:Name="LvPartyResult" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0 10 0 0" HorizontalAlignment="Center" Height="370" Width="300">
+                                            <ListView.Background>
+                                                <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
+                                            </ListView.Background>
+                                            <ListView.Template>
+                                                <ControlTemplate TargetType="ItemsControl">
+                                                    <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="{TemplateBinding Background}" Height="{TemplateBinding Height}">
+                                                        <ItemsPresenter VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                                                    </ScrollViewer>
+                                                </ControlTemplate>
+                                            </ListView.Template>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border BorderBrush="#FF3881EF" BorderThickness="1" Margin="0 5">
+                                                        <Grid Width="275" Height="60" >
+                                                            <Image Source="{Binding NumberImage}" HorizontalAlignment="Left" Height="100" Width="100" Margin="-20 0 0 0"/>
+                                                            <TextBlock Text="{Binding Name}" Style="{DynamicResource ArkhipText}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="20" Margin="20 0 0 0"/>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel Margin="0 0 0 40" x:Name="LocationRouletteSt" Visibility="Collapsed">
+                                <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Случайное измерение" HorizontalAlignment="Center" FontSize="40" Margin="0 20 0 0"/>
+                                <Grid Margin="0 20 0 0">
+                                    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="1000" Height="560" Margin="0 0 0 55" x:Name="LocationGrid">
+                                        <Grid.Background>
+                                            <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
+                                        </Grid.Background>
+                                        <Image x:Name="MapImage" Source="{Binding Screenshot}" Width="1000" Height="560" Stretch="UniformToFill" Opacity="0"/>
+                                        <TextBlock x:Name="TbQuestion" Style="{DynamicResource ArkhipText}" Text="?" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="120" Foreground="White"/>
+                                        <StackPanel x:Name="MapData" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Width="1000" Opacity="0">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
+                                            </StackPanel.Background>
+                                            <TextBlock Text="{Binding Map.Name}" Width="980" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White"/>
+                                            <Rectangle Fill="#FF3881EF" Width="80" Height="4" Margin="15 3 0 0" HorizontalAlignment="Left">
+                                                <Rectangle.RenderTransform>
+                                                    <SkewTransform AngleX="-45"/>
+                                                </Rectangle.RenderTransform>
+                                            </Rectangle>
+                                            <TextBlock Text="{Binding Map.Description}" Width="980" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 10 0 10"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Button x:Name="LocationRollBtn" Style="{DynamicResource HalfOpacityButton}" Content="Определить измерение" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="50" Width="1000" FontSize="24" Click="LocationRollBtn_Click"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel Margin="0 0 0 40" x:Name="PerkRouletteSt" Visibility="Collapsed">
+                                <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Случайные навыки" HorizontalAlignment="Center" FontSize="40" Margin="0 20 0 0"/>
+                                <StackPanel Margin="0 20 0 0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <StackPanel Margin="30 0">
+                                            <Grid>
+                                                <Grid Margin="12 0 12 10" ToolTipService.InitialShowDelay="0" x:Name="FirstPerkGrid" Opacity="0" Panel.ZIndex="2">
+                                                    <Grid.ToolTip>
+                                                        <StackPanel Width="410">
+                                                            <StackPanel.Background>
+                                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                                            </StackPanel.Background>
+                                                            <Grid MinHeight="70" MaxHeight="110"  Background="#FF121212">
+                                                                <addons:HazeRowAnimate DataContext="{Binding}"/>
+                                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                                    <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="ОЧЕНЬ РЕДК. - " Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                        <TextBlock Text="{Binding OwnerName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                        <TextBlock Text= " - НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                    </StackPanel>
+                                                                </StackPanel>
+                                                                <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                            </Grid>
+                                                            <StackPanel Margin="0 0 0 15">
+                                                                <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
+                                                                <ListView ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
+                                                                    <ListView.Template>
+                                                                        <ControlTemplate TargetType="ItemsControl">
+                                                                            <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                                        </ControlTemplate>
+                                                                    </ListView.Template>
+                                                                    <ListView.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <TextBlock Margin="0 5" Text="{Binding Effect.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                                        </DataTemplate>
+                                                                    </ListView.ItemTemplate>
+                                                                </ListView>
+                                                                <TextBlock Margin="0 10" Visibility="{Binding ShowQuote}" Text="{Binding Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </Grid.ToolTip>
+                                                    <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
+                                                </Grid>
+                                                <Image x:Name="FirstPerkPlug" Source="/Resources/RouletteIcon/PerkRoulette.png" Height="220" Width="220"/>
+                                            </Grid>
+                                            <ToggleButton x:Name="FirstPerkTb" Style="{DynamicResource PlayerSelectToggle}" Content="Включить" FontSize="20" Height="35" Width="220"/>
+                                        </StackPanel>
+
+                                        <StackPanel Margin="30 0">
+                                            <Grid>
+                                                <Grid Margin="12 0 12 10" ToolTipService.InitialShowDelay="0" x:Name="SecondPerkGrid" Opacity="0" Panel.ZIndex="2">
+                                                    <Grid.ToolTip>
+                                                        <StackPanel Width="410">
+                                                            <StackPanel.Background>
+                                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                                            </StackPanel.Background>
+                                                            <Grid MinHeight="70" MaxHeight="110"  Background="#FF121212">
+                                                                <addons:HazeRowAnimate DataContext="{Binding}"/>
+                                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                                    <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="ОЧЕНЬ РЕДК. - " Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                        <TextBlock Text="{Binding OwnerName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                        <TextBlock Text= " - НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                    </StackPanel>
+                                                                </StackPanel>
+                                                                <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                            </Grid>
+                                                            <StackPanel Margin="0 0 0 15">
+                                                                <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
+                                                                <ListView ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
+                                                                    <ListView.Template>
+                                                                        <ControlTemplate TargetType="ItemsControl">
+                                                                            <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                                        </ControlTemplate>
+                                                                    </ListView.Template>
+                                                                    <ListView.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <TextBlock Margin="0 5" Text="{Binding Effect.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                                        </DataTemplate>
+                                                                    </ListView.ItemTemplate>
+                                                                </ListView>
+                                                                <TextBlock Margin="0 10" Visibility="{Binding ShowQuote}" Text="{Binding Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </Grid.ToolTip>
+                                                    <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
+                                                </Grid>
+                                                <Image x:Name="SecondPerkPlug" Source="/Resources/RouletteIcon/PerkRoulette.png" Height="220" Width="220"/>
+                                            </Grid>
+                                            <ToggleButton x:Name="SecondPerkTb" Style="{DynamicResource PlayerSelectToggle}" Content="Включить" FontSize="20" Height="35" Width="220"/>
+                                        </StackPanel>
+
+                                        <StackPanel Margin="30 0">
+                                            <Grid>
+                                                <Grid Margin="12 0 12 10" ToolTipService.InitialShowDelay="0" x:Name="ThirdPerkGrid" Opacity="0" Panel.ZIndex="2">
+                                                    <Grid.ToolTip>
+                                                        <StackPanel Width="410">
+                                                            <StackPanel.Background>
+                                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                                            </StackPanel.Background>
+                                                            <Grid MinHeight="70" MaxHeight="110"  Background="#FF121212">
+                                                                <addons:HazeRowAnimate DataContext="{Binding}"/>
+                                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                                    <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="ОЧЕНЬ РЕДК. - " Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                        <TextBlock Text="{Binding OwnerName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                        <TextBlock Text= " - НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                    </StackPanel>
+                                                                </StackPanel>
+                                                                <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                            </Grid>
+                                                            <StackPanel Margin="0 0 0 15">
+                                                                <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
+                                                                <ListView ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
+                                                                    <ListView.Template>
+                                                                        <ControlTemplate TargetType="ItemsControl">
+                                                                            <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                                        </ControlTemplate>
+                                                                    </ListView.Template>
+                                                                    <ListView.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <TextBlock Margin="0 5" Text="{Binding Effect.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                                        </DataTemplate>
+                                                                    </ListView.ItemTemplate>
+                                                                </ListView>
+                                                                <TextBlock Margin="0 10" Visibility="{Binding ShowQuote}" Text="{Binding Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </Grid.ToolTip>
+                                                    <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
+                                                </Grid>
+                                                <Image x:Name="ThirdPerkPlug" Source="/Resources/RouletteIcon/PerkRoulette.png" Height="220" Width="220"/>
+                                            </Grid>
+                                            <ToggleButton x:Name="ThirdPerkTb" Style="{DynamicResource PlayerSelectToggle}" Content="Включить" FontSize="20" Height="35" Width="220" />
+                                        </StackPanel>
+
+                                        <StackPanel Margin="30 0">
+                                            <Grid>
+                                                <Grid Margin="12 0 12 10" ToolTipService.InitialShowDelay="0" x:Name="FourthPerkGrid" Opacity="0" Panel.ZIndex="2">
+                                                    <Grid.ToolTip>
+                                                        <StackPanel Width="410">
+                                                            <StackPanel.Background>
+                                                                <SolidColorBrush Color="#FF121212" Opacity="0.9"/>
+                                                            </StackPanel.Background>
+                                                            <Grid MinHeight="70" MaxHeight="110"  Background="#FF121212">
+                                                                <addons:HazeRowAnimate DataContext="{Binding}"/>
+                                                                <StackPanel Margin="15" HorizontalAlignment="Left">
+                                                                    <TextBlock Text="{Binding PerkUpperName}" Foreground="White" TextWrapping="Wrap" Width="340" Style="{DynamicResource Header}" FontWeight="Bold" FontSize="24"/>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="ОЧЕНЬ РЕДК. - " Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                        <TextBlock Text="{Binding OwnerName}" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                        <TextBlock Text= " - НАВЫК" Style="{DynamicResource MiniText}" Foreground="White" Opacity="0.5" FontSize="14"/>
+                                                                    </StackPanel>
+                                                                </StackPanel>
+                                                                <Image HorizontalAlignment="Right" Source="/Resources/RarityImages/ThreeLevelPerk.png" Width="50" Height="50" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                                            </Grid>
+                                                            <StackPanel Margin="0 0 0 15">
+                                                                <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
+                                                                <ListView ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
+                                                                    <ListView.Template>
+                                                                        <ControlTemplate TargetType="ItemsControl">
+                                                                            <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                                        </ControlTemplate>
+                                                                    </ListView.Template>
+                                                                    <ListView.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <TextBlock Margin="0 5" Text="{Binding Effect.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                                        </DataTemplate>
+                                                                    </ListView.ItemTemplate>
+                                                                </ListView>
+                                                                <TextBlock Margin="0 10" Visibility="{Binding ShowQuote}" Text="{Binding Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </Grid.ToolTip>
+                                                    <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
+                                                </Grid>
+                                                <Image x:Name="FourthPerkPlug" Source="/Resources/RouletteIcon/PerkRoulette.png" Height="220" Width="220"/>
+                                            </Grid>
+                                            <ToggleButton x:Name="FourthPerkTb" Style="{DynamicResource PlayerSelectToggle}" Content="Включить" FontSize="20" Height="35" Width="220"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Border  Margin="0 10 0 0" Width="1132">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
+                                        </Border.Background>
+                                        <StackPanel Orientation="Horizontal" Height="60" HorizontalAlignment="Center">
+                                            <RadioButton x:Name="RadioKillerPerk" Style="{DynamicResource RedRadio}" Content="Навыки убийц" Width="566" Checked="RadioKillerPerk_Checked"/>
+                                            <RadioButton x:Name="RadioSurvivorPerk" Style="{DynamicResource BlueRadio}" Content="Навыки выживших" Width="566" Checked="RadioSurvivorPerk_Checked"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Button x:Name="PerkRollingBtn" Style="{DynamicResource HalfOpacityButton}" Content="Сгенерировать навыки" FontSize="30" Height="60" Margin="0 10 0 0" Click="PerkRollingBtn_Click" Width="1132"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Margin="0 0 0 40" x:Name="ModsRouletteSt" Visibility="Visible">
+                                <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Случайный модификатор" HorizontalAlignment="Center" FontSize="40" Margin="0 20 0 0"/>
+                                <StackPanel Margin="0 20 0 0">
+                                    <WrapPanel Width="1100">
+                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
+                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
+                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
+                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
+                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
+                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
+                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
+                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                            <StackPanel Margin="0 0 0 0">
+                                <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="История результатов" HorizontalAlignment="Center" FontSize="40" />
+                                <Grid Margin="0 0 0 40">
+                                    <ListView x:Name="LvResultHistory" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="0 10 0 0" Width="1120" HorizontalAlignment="Center" Height="340" BorderBrush="#FF3881EF" BorderThickness="1">
+                                        <ListView.Background>
+                                            <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
+                                        </ListView.Background>
+                                        <ListView.Template>
+                                            <ControlTemplate TargetType="ItemsControl">
+                                                <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}">
+                                                    <ItemsPresenter VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                                                </ScrollViewer>
+                                            </ControlTemplate>
+                                        </ListView.Template>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <addons:RouletteResultRowControl DataContext="{Binding}"/>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
 
                 <Rectangle x:Name="RecGradient" Height="150" Fill="#FF2D63A1" Grid.Row="2">
