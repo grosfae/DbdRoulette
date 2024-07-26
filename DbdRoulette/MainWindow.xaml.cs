@@ -37,7 +37,7 @@ namespace DbdRoulette
 
             ContentLoader.StopAnimation();
 
-            MainFrame.Navigate(new RoulettePage());
+            MainFrame.Navigate(new MainPage());
 
             var ThemeCode = Properties.Settings.Default.ThemeCode;
             if (ThemeCode == 2)
@@ -213,6 +213,18 @@ namespace DbdRoulette
             else
             {
                 MainFrame.Navigate(new MainPage());
+            }
+        }
+
+        private void RoulettesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content is RoulettePage)
+            {
+                return;
+            }
+            else
+            {
+                MainFrame.Navigate(new RoulettePage());
             }
         }
     }

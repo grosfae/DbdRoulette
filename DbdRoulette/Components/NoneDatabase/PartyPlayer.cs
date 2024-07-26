@@ -36,7 +36,7 @@ namespace DbdRoulette.Components.NoneDatabase
                 }
                 else
                 {
-                    return null;
+                    return "pack://application:,,,/DbdRoulette;component/Resources/RouletteIcon/SpectatorIcon.png";
                 }
             }
         }

@@ -637,22 +637,203 @@
                                 </StackPanel>
                             </StackPanel>
 
-                            <StackPanel Margin="0 0 0 40" x:Name="ModsRouletteSt" Visibility="Visible">
+                            <StackPanel Margin="0 0 0 40" x:Name="ModsRouletteSt" Visibility="Collapsed">
                                 <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Случайный модификатор" HorizontalAlignment="Center" FontSize="40" Margin="0 20 0 0"/>
-                                <StackPanel Margin="0 20 0 0">
-                                    <WrapPanel Width="1100">
-                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
-                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
-                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
-                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
-                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
-                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
-                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
-                                        <Border BorderBrush="White" BorderThickness="1" Width="275" Height="170"/>
-                                    </WrapPanel>
-                                </StackPanel>
+                                <Grid Margin="0 20 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <WrapPanel Width="1100" x:Name="WrapPanelForModPlates"/>
+                                    <Button Grid.Row="1" x:Name="ModRollBtn" Style="{DynamicResource HalfOpacityButton}" Content="Определить модификатор" FontSize="30" Height="60" Width="1100" Margin="0 10 0 0" Click="ModRollBtn_Click"/>
+                                </Grid>
                             </StackPanel>
-                            
+
+                            <StackPanel Margin="0 0 0 40" x:Name="KillerRouletteSt" Visibility="Collapsed">
+                                <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Случайный убийца" HorizontalAlignment="Center" FontSize="40" Margin="0 20 0 0"/>
+                                <Grid Margin="0 20 0 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <StackPanel>
+                                            <Grid Margin="0 0 0 15">
+                                                <Viewbox  Margin="20 0 0 0" HorizontalAlignment="Left">
+                                                    <ToggleButton x:Name="SelectAllKillersBtn" Style="{DynamicResource ToggleTagBtn}" Content="Выбрать всех" Height="30" BorderBrush="#FF3881EF" FontSize="14" Checked="SelectAllKillersBtn_Checked" Unchecked="SelectAllKillersBtn_Unchecked"/>
+                                                </Viewbox>
+                                                <TextBlock Style="{DynamicResource Header}" Text="Список персонажей" Foreground="White" FontSize="26" HorizontalAlignment="Right" Margin="0 0 30 0"/>
+                                            </Grid>
+                                            <ListView x:Name="LvCharacters" Focusable="False" BorderThickness="0" Width="570" Height="535" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
+                                                <ListView.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel Width="540" Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ListView.ItemsPanel>
+                                                <ListView.Template>
+                                                    <ControlTemplate TargetType="ItemsControl">
+                                                        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                                            <ItemsPresenter VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                                                        </ScrollViewer>
+                                                    </ControlTemplate>
+                                                </ListView.Template>
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ToggleButton x:Name="CharacterBtn" Margin="3 0 3 13" BorderThickness="0" Opacity="0.6" Cursor="Hand" Checked="CharacterBtn_Checked" Unchecked="CharacterBtn_Unchecked">
+                                                            <ToggleButton.Style>
+                                                                <Style TargetType="ToggleButton">
+                                                                    <Setter Property="Template">
+                                                                        <Setter.Value>
+                                                                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                                                <Grid>
+                                                                                    <Image Source="{Binding MainIcon}" Height="160" Width="160"/>
+                                                                                    <TextBlock Text="{Binding Name}" Width="160" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{DynamicResource Header}" Foreground="White">
+                                                                                        <TextBlock.Background>
+                                                                                            <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                                                                        </TextBlock.Background>
+                                                                                    </TextBlock>
+                                                                                </Grid>
+                                                                                <ControlTemplate.Triggers>
+                                                                                    <Trigger Property="IsChecked" Value="True">
+                                                                                        <Trigger.EnterActions>
+                                                                                            <BeginStoryboard>
+                                                                                                <Storyboard>
+                                                                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3">
+                                                                                                        <DoubleAnimation.EasingFunction>
+                                                                                                            <CircleEase EasingMode="EaseOut"/>
+                                                                                                        </DoubleAnimation.EasingFunction>
+                                                                                                    </DoubleAnimation>
+                                                                                                </Storyboard>
+                                                                                            </BeginStoryboard>
+                                                                                        </Trigger.EnterActions>
+                                                                                        <Trigger.ExitActions>
+                                                                                            <BeginStoryboard>
+                                                                                                <Storyboard>
+                                                                                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6" Duration="0:0:0.3">
+                                                                                                        <DoubleAnimation.EasingFunction>
+                                                                                                            <CircleEase EasingMode="EaseOut"/>
+                                                                                                        </DoubleAnimation.EasingFunction>
+                                                                                                    </DoubleAnimation>
+                                                                                                </Storyboard>
+                                                                                            </BeginStoryboard>
+                                                                                        </Trigger.ExitActions>
+                                                                                    </Trigger>
+                                                                                </ControlTemplate.Triggers>
+                                                                            </ControlTemplate>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </Style>
+                                                            </ToggleButton.Style>
+                                                        </ToggleButton>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackPanel>
+                                        <Grid Width="500">
+                                            <Border Height="535" Width="420" VerticalAlignment="Center" BorderBrush="#FFAA1A18" BorderThickness="1">
+                                                <Border.Background>
+                                                    <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
+                                                </Border.Background>
+                                                <Grid x:Name="KillerGrid">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                        <RowDefinition Height="auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.Background>
+                                                        <ImageBrush x:Name="GridKillerBackground" ImageSource="{Binding MainBackground}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant" Opacity="0"/>
+                                                    </Grid.Background>
+                                                    <Grid Height="40" VerticalAlignment="Top" x:Name="KillerNameGrid" Opacity="0">
+                                                        <TextBlock Style="{DynamicResource Header}" Text="{Binding Name}" FontSize="28" Foreground="White" TextAlignment="Center" VerticalAlignment="Center"/>
+                                                        <Grid.Background>
+                                                            <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
+                                                        </Grid.Background>
+                                                    </Grid>
+                                                    <Image x:Name="KillerImage" VerticalAlignment="Bottom" Source="{Binding MainImage}" Width="420" Height="280" Stretch="UniformToFill" Opacity="0"/>
+                                                    <Grid x:Name="ParametersGrid" Opacity="0" Height="150" Width="420" Background="#FFAA1A18" VerticalAlignment="Bottom" Grid.Row="1">
+                                                        <Polygon Points="-40 0 -150 150 60 150 60 0" HorizontalAlignment="Right">
+                                                            <Polygon.Fill>
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FF880E0D" Offset="0"/>
+                                                                    <GradientStop Color="#FFAA1A18" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </Polygon.Fill>
+                                                        </Polygon>
+
+                                                        <StackPanel Margin="15 15 0 0" Orientation="Horizontal" HorizontalAlignment="Left">
+                                                            <StackPanel HorizontalAlignment="Center">
+                                                                <StackPanel x:Name="StDifficulty" Orientation="Horizontal" Margin="0 0 0 0" Opacity="0">
+                                                                    <Grid Width="65" Height="50">
+                                                                        <Ellipse Fill="Black" Width="50" Height="50"/>
+                                                                        <Image Source="{Binding DifficultyImage}" RenderOptions.BitmapScalingMode="Fant" Width="65" Height="25" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                                                    </Grid>
+                                                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 0 0">
+                                                                        <TextBlock Text="Сложность" FontSize="16" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" HorizontalAlignment="Left">
+                                                                            <TextBlock.Foreground>
+                                                                                <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                                            </TextBlock.Foreground>
+                                                                        </TextBlock>
+                                                                        <TextBlock Text="{Binding Difficulty.Name}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White" HorizontalAlignment="Left" />
+                                                                    </StackPanel>
+                                                                </StackPanel>
+
+                                                                <StackPanel x:Name="StMoveSpeed" Orientation="Horizontal" Margin="0 20 0 0" Opacity="0">
+                                                                    <Grid Width="50" Height="50" Margin="7.5 0 0 0">
+                                                                        <Ellipse Fill="Black" Width="50" Height="50"/>
+                                                                        <Image Source="/Resources/Misc/MoveIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="40" Height="40" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                                                    </Grid>
+                                                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                                        <TextBlock Text="Скорость" FontSize="16" FontWeight="Bold" TextAlignment="Center"  HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}">
+                                                                            <TextBlock.Foreground>
+                                                                                <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                                            </TextBlock.Foreground>
+                                                                        </TextBlock>
+                                                                        <TextBlock Text="{Binding MoveSpeed, StringFormat='{}{0} м/с'}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}"/>
+                                                                    </StackPanel>
+                                                                </StackPanel>
+                                                            </StackPanel>
+
+                                                            <StackPanel Margin="30 0 0 0">
+                                                                <StackPanel Orientation="Horizontal" x:Name="StHeight" Opacity="0">
+                                                                    <Grid Width="50" Height="50">
+                                                                        <Ellipse Fill="Black" Width="50" Height="50"/>
+                                                                        <Image Source="/Resources/Misc/HeightIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="35" Height="35" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                                                                    </Grid>
+                                                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                                        <TextBlock Text="Рост" FontSize="16" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}">
+                                                                            <TextBlock.Foreground>
+                                                                                <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                                            </TextBlock.Foreground>
+                                                                        </TextBlock>
+                                                                        <TextBlock Text="{Binding Height}"  TextAlignment="Left" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}"/>
+                                                                    </StackPanel>
+                                                                </StackPanel>
+
+                                                                <StackPanel Orientation="Horizontal" x:Name="StTerrorRadius" Margin="0 20 0 0" Opacity="0">
+                                                                    <Grid Width="50" Height="50">
+                                                                        <Ellipse Fill="Black" Width="50" Height="50"/>
+                                                                        <Image Source="/Resources/Misc/TerrorIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="40" Height="40" Margin="0 0 0 3" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                                                                    </Grid>
+                                                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                                                        <TextBlock Text="Террор" FontSize="16" FontWeight="Bold" TextAlignment="Center" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}">
+                                                                            <TextBlock.Foreground>
+                                                                                <SolidColorBrush Color="White" Opacity="0.4"/>
+                                                                            </TextBlock.Foreground>
+                                                                        </TextBlock>
+                                                                        <TextBlock Text="{Binding TerrorRadius, StringFormat='{}{0} м'}" FontSize="16" FontWeight="Bold" TextAlignment="Center" Foreground="White" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}"/>
+                                                                    </StackPanel>
+                                                                </StackPanel>
+
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </StackPanel>
+                                    <Button Grid.Row="1" x:Name="KillerRollBtn" Style="{DynamicResource HalfOpacityButton}" Content="Определить случайного убийцу" FontSize="30" Height="60" Width="1100" Margin="0 10 0 0" Click="KillerRollBtn_Click"/>
+                                </Grid>
+                            </StackPanel>
+
                             <StackPanel Margin="0 0 0 0">
                                 <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="История результатов" HorizontalAlignment="Center" FontSize="40" />
                                 <Grid Margin="0 0 0 40">

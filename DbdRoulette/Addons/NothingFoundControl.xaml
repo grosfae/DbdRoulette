@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DbdRoulette.Addons"
              mc:Ignorable="d" 
-             Height="300" Width="1270" Loaded="UserControl_Loaded">
+             Height="300" Width="1270">
     <Grid>
         <Image Source="/Resources/Misc/Fog.png" Height="300" VerticalAlignment="Bottom" Stretch="UniformToFill" RenderTransformOrigin="0.5, 0.5">
             <Image.RenderTransform>

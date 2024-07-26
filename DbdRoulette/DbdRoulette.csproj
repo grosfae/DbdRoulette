@@ -159,13 +159,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Addons\ModInformationControl.xaml.cs">
+      <DependentUpon>ModInformationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Addons\RouletteResultRowControl.xaml.cs">
       <DependentUpon>RouletteResultRowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Addons\ShuffleClass.cs" />
     <Compile Include="Components\NoneDatabase\PartyPlayer.cs" />
     <Compile Include="Components\NoneDatabase\PerkSlot.cs" />
+    <Compile Include="Components\NoneDatabase\PrivateModCheck.cs" />
     <Compile Include="Components\Player.cs" />
+    <Compile Include="Components\PrivateMod.cs" />
     <Compile Include="Components\RouletteResult.cs" />
     <Compile Include="Pages\RoulettePage.xaml.cs">
       <DependentUpon>RoulettePage.xaml</DependentUpon>
@@ -197,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Addons\MapSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Addons\ModInformationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -596,6 +605,7 @@
     <Resource Include="Resources\RouletteIcon\NumberFourthIcon.png" />
     <Resource Include="Resources\RouletteIcon\NumberSecondIcon.png" />
     <Resource Include="Resources\RouletteIcon\NumberThirdIcon.png" />
+    <Resource Include="Resources\RouletteIcon\SpectatorIcon.png" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

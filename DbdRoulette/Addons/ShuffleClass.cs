@@ -21,5 +21,6 @@ namespace DbdRoulette.Addons
                 list[n] = value;
             }
         }
+
     }
 }

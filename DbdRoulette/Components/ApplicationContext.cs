@@ -45,6 +45,7 @@ namespace DbdRoulette.Components
         public DbSet<PowerAddon> PowerAddon { get; set; }
         public DbSet<Player> Player { get; set; }
         public DbSet<RouletteResult> RouletteResult { get; set; }
+        public DbSet<PrivateMod> PrivateMod { get; set; }
     }
 
 }

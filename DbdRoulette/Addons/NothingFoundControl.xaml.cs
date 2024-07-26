@@ -26,41 +26,6 @@ namespace DbdRoulette.Addons
             InitializeComponent(); 
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            DoubleAnimation translateAnim = new DoubleAnimation { 
-            From = 0,
-            To = -30,
-            Duration = TimeSpan.FromSeconds(5),
-            BeginTime = TimeSpan.FromSeconds(2),
-            };
-            DoubleAnimation scaleAnim = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromSeconds(2),
-            };
-            DoubleAnimation skewAnim = new DoubleAnimation
-            {
-                From = 20,
-                To = 60,
-                Duration = TimeSpan.FromSeconds(5),
-                BeginTime = TimeSpan.FromSeconds(2),
-            };
-            //Storyboard storyboard = new Storyboard();
-            //storyboard.Children.Add(scaleAnim);
-            //storyboard.Children.Add(skewAnim);
-            //storyboard.Children.Add(translateAnim);
-            //storyboard.RepeatBehavior = RepeatBehavior.Forever;
-            //storyboard.AutoReverse = true;
-
-            //Storyboard.SetTargetProperty(scaleAnim, new PropertyPath(ScaleTransform.ScaleYProperty));
-            //Storyboard.SetTargetProperty(skewAnim, new PropertyPath(SkewTransform.AngleXProperty));
-            //Storyboard.SetTargetProperty(translateAnim, new PropertyPath(TranslateTransform.XProperty));
-
-            //Storyboard.SetTarget(ScanRect, storyboard);
-
-            //ScanRect.BeginStoryboard(storyboard);
-        }
+        
     }
 }

@@ -958,7 +958,6 @@
             </Style.Triggers>
         </Style>
 
-
         <!--RadioButtons Style-->
         <Style TargetType="RadioButton" x:Key="RedRadio">
             <Setter Property="FontSize" Value="19"/>
@@ -1765,24 +1764,5 @@
             </Setter>
         </Style>
 
-        <!--ContextMeny Style-->
-        <Style x:Key="BlueBorderContextMenu" TargetType="ContextMenu">
-            <Setter Property="Grid.IsSharedSizeScope"
-          Value="true" />
-            <Setter Property="HasDropShadow"
-          Value="True" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ContextMenu}">
-                        <Border
-                Background="{TemplateBinding Background}"
-                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
-                            <StackPanel IsItemsHost="True"
-                      KeyboardNavigation.DirectionalNavigation="Cycle"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Application.Resources>
 </Application>

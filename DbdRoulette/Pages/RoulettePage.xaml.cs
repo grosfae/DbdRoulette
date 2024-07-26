@@ -15,7 +15,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -27,15 +26,20 @@ namespace DbdRoulette.Pages
     public partial class RoulettePage : Page
     {
         public List<Player> SelectedPlayersList = new List<Player>();
+        public List<Killer> SelectedKillersList = new List<Killer>();
+        public List<PrivateMod> PrivateModList = new List<PrivateMod>();
+        public List<PrivateModCheck> PrivateModRolledList = new List<PrivateModCheck>();
         public List<PerkSlot> PerkSlotList = new List<PerkSlot>(4);
         public List<Perk> PerkList = new List<Perk>(4);
+        public ModInformationControl LastWinnerModControl = null;
         public bool IsFirstLocationTry = true;
+        public bool IsModPanelClear = false;
+        public bool IsFirstKillerRollTry = true;
 
         public RoulettePage()
         {
             InitializeComponent();
-            LvPartyPlayers.ItemsSource = App.DB.Player.ToList();
-            LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Порядок игроков").OrderByDescending(x => x.RollDate).ToList();
+            LvResultHistory.ItemsSource = App.DB.RouletteResult.OrderByDescending(x => x.RollDate).ToList();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -46,6 +50,7 @@ namespace DbdRoulette.Pages
             }
         }
 
+        #region RouletteSelect Buttons
         private void PartyRouletteBtn_Click(object sender, RoutedEventArgs e)
         {
             //Horizontal arrow
@@ -185,8 +190,15 @@ namespace DbdRoulette.Pages
                 Duration = TimeSpan.FromSeconds(0.8),
                 EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
             });
-
+            SelectedPlayersList.Clear();
+            LvPartyResult.ItemsSource = null;
             PartyRouletteSt.Visibility = Visibility.Visible;
+            LvPartyPlayers.ItemsSource = App.DB.Player.ToList();
+            LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Порядок игроков").OrderByDescending(x => x.RollDate).ToList();
+            LocationRouletteSt.Visibility = Visibility.Collapsed;
+            PerkRouletteSt.Visibility = Visibility.Collapsed;
+            ModsRouletteSt.Visibility = Visibility.Collapsed;
+            KillerRouletteSt.Visibility = Visibility.Collapsed;
         }
 
         private void LocationRouletteBtn_Click(object sender, RoutedEventArgs e)
@@ -328,8 +340,12 @@ namespace DbdRoulette.Pages
                 Duration = TimeSpan.FromSeconds(0.8),
                 EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
             });
-
+            PartyRouletteSt.Visibility = Visibility.Collapsed;
             LocationRouletteSt.Visibility = Visibility.Visible;
+            LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Случайная локация").OrderByDescending(x => x.RollDate).ToList();
+            PerkRouletteSt.Visibility = Visibility.Collapsed;
+            ModsRouletteSt.Visibility = Visibility.Collapsed;
+            KillerRouletteSt.Visibility = Visibility.Collapsed;
         }
 
         private void PerkRouletteBtn_Click(object sender, RoutedEventArgs e)
@@ -471,6 +487,12 @@ namespace DbdRoulette.Pages
                 Duration = TimeSpan.FromSeconds(0.8),
                 EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
             });
+            PartyRouletteSt.Visibility = Visibility.Collapsed;
+            LocationRouletteSt.Visibility = Visibility.Collapsed;
+            PerkRouletteSt.Visibility = Visibility.Visible;
+            LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Случайные навыки").OrderByDescending(x => x.RollDate).ToList();
+            ModsRouletteSt.Visibility = Visibility.Collapsed;
+            KillerRouletteSt.Visibility = Visibility.Collapsed;
         }
 
         private void ModsRouletteBtn_Click(object sender, RoutedEventArgs e)
@@ -611,6 +633,13 @@ namespace DbdRoulette.Pages
                 Duration = TimeSpan.FromSeconds(0.8),
                 EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
             });
+            PartyRouletteSt.Visibility = Visibility.Collapsed;
+            LocationRouletteSt.Visibility = Visibility.Collapsed;
+            PerkRouletteSt.Visibility = Visibility.Collapsed;
+            KillerRouletteSt.Visibility = Visibility.Collapsed;
+            ModsRouletteSt.Visibility = Visibility.Visible;
+            LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Случайный модификатор").OrderByDescending(x => x.RollDate).ToList();
+            ModPlatesGenerate();
         }
 
         private void KillerRouletteBtn_Click(object sender, RoutedEventArgs e)
@@ -750,8 +779,51 @@ namespace DbdRoulette.Pages
                 Duration = TimeSpan.FromSeconds(0.8),
                 EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
             });
+            PartyRouletteSt.Visibility = Visibility.Collapsed;
+            LocationRouletteSt.Visibility = Visibility.Collapsed;
+            PerkRouletteSt.Visibility = Visibility.Collapsed;
+            ModsRouletteSt.Visibility = Visibility.Collapsed;
+            KillerRouletteSt.Visibility = Visibility.Visible;
+            LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Случайный убийца").OrderByDescending(x => x.RollDate).ToList();
+            LvCharacters.ItemsSource = App.DB.Killer.OrderByDescending(x => x.Chapter.DateRelease).ToList();
+            SelectedKillersList.Clear();
+            IsFirstKillerRollTry = true;
+            KillerGrid.DataContext = null;
+            GridKillerBackground.Opacity = 0;
+            KillerImage.Opacity = 0;
+            ParametersGrid.Opacity = 0;
+            StDifficulty.Opacity = 0;
+            StHeight.Opacity = 0;
+            StMoveSpeed.Opacity = 0;
+            StTerrorRadius.Opacity = 0;
+            KillerNameGrid.Opacity = 0;
         }
-
+        #endregion
+        private void ModPlatesGenerate()
+        {
+            PrivateModList = App.DB.PrivateMod.ToList();
+            PrivateModRolledList.Clear();
+            PrivateModList.Shuffle();
+            LastWinnerModControl = null;
+            WrapPanelForModPlates.Children.Clear();
+            //Generate plates
+            int ModIndex = 0;
+            foreach (var Mod in PrivateModList)
+            {
+                PrivateModRolledList.Add(new PrivateModCheck()
+                {
+                    ModNumber = ModIndex,
+                    PrivateMod = Mod
+                });
+                ModIndex++;
+                ModInformationControl modInformationControl = new ModInformationControl();
+                modInformationControl.DataContext = Mod;
+                WrapPanelForModPlates.Children.Add(modInformationControl);
+            }
+            PrivateModRolledList.Shuffle();
+            ModRollBtn.Content = "Определить модификатор"; 
+            IsModPanelClear = false;
+        }
         private void RollBtn_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedPlayersList.Count() > 1)
@@ -916,6 +988,8 @@ namespace DbdRoulette.Pages
 
         private void PerkRollingBtn_Click(object sender, RoutedEventArgs e)
         {
+            PerkSlotList.Clear();
+            PerkList.Clear();
             FirstPerkGrid.DataContext = null;
             SecondPerkGrid.DataContext = null;
             ThirdPerkGrid.DataContext = null;
@@ -1035,6 +1109,338 @@ namespace DbdRoulette.Pages
             SecondPerkGrid.DataContext = null;
             ThirdPerkGrid.DataContext = null;
             FourthPerkGrid.DataContext = null;
+        }
+
+        private async void ModRollBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsModPanelClear == true)
+            {
+                ModPlatesGenerate();
+            }
+            else
+            {
+                ModRollBtn.IsEnabled = false;
+                if (LastWinnerModControl != null)
+                {
+                    LastWinnerModControl.MainBorderBrushStop.BeginAnimation(SolidColorBrush.ColorProperty, new ColorAnimation()
+                    {
+                        To = Color.FromRgb(18, 18, 18),
+                        Duration = TimeSpan.FromSeconds(0.2),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    LastWinnerModControl.MainBorder.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 0.3,
+                        Duration = TimeSpan.FromSeconds(0.3),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                }
+
+                double Tick = 0;
+                foreach (var Row in PrivateModRolledList)
+                {
+                    (WrapPanelForModPlates.Children[Row.ModNumber] as ModInformationControl).MainBorderBrushStop.BeginAnimation(SolidColorBrush.ColorProperty, new ColorAnimation()
+                    {
+                        To = Color.FromRgb(56, 129, 239),
+                        Duration = TimeSpan.FromSeconds(0.2),
+                        BeginTime = TimeSpan.FromSeconds(Tick),
+                        AutoReverse = true,
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    Tick += 0.2;
+                }
+                Random rnd = new Random();
+                int WinDigit = rnd.Next(0, PrivateModList.Count);
+                var WinnerMod = PrivateModList[WinDigit];
+                await Task.Delay(TimeSpan.FromSeconds(Tick));
+                foreach (var Child in WrapPanelForModPlates.Children)
+                {
+                    var ControlChild = Child as ModInformationControl;
+                    if ((ControlChild.DataContext as PrivateMod).Id == WinnerMod.Id)
+                    {
+                        ControlChild.MainBorderBrushStop.BeginAnimation(SolidColorBrush.ColorProperty, new ColorAnimation()
+                        {
+                            To = Color.FromRgb(170, 26, 24),
+                            Duration = TimeSpan.FromSeconds(0.3),
+                            EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                        });
+                        App.DB.RouletteResult.Add(new RouletteResult()
+                        {
+                            RouletteName = "Случайный модификатор",
+                            RollDate = DateTime.Now,
+                            Result = WinnerMod.Name,
+                        });
+                        App.DB.SaveChanges();
+                        LastWinnerModControl = ControlChild;
+                        PrivateModList.Remove(WinnerMod);
+                        PrivateModRolledList.Remove(PrivateModRolledList.FirstOrDefault(x => x.PrivateMod == WinnerMod));
+                        PrivateModRolledList.Shuffle();
+                    }
+                }
+                ModRollBtn.IsEnabled = true;
+                if (PrivateModList.Count == 0)
+                {
+                    ModRollBtn.Content = "Начать заново";
+                    IsModPanelClear = true;
+                }
+                LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Случайный модификатор").OrderByDescending(x => x.RollDate).ToList();
+            }
+
+        }
+
+        private void CharacterBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            var SelectedKiller = (sender as ToggleButton).DataContext as Killer;
+            SelectedKillersList.Add(SelectedKiller);
+            if(SelectedKillersList.Count == LvCharacters.Items.Count)
+            {
+                SelectAllKillersBtn.IsChecked = true;
+            }
+        }
+
+        private void CharacterBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var SelectedKiller = (sender as ToggleButton).DataContext as Killer;
+            SelectedKillersList.Remove(SelectedKiller);
+            if (SelectedKillersList.Count < LvCharacters.Items.Count)
+            {
+                SelectAllKillersBtn.IsChecked = false;
+            }
+        }
+
+        private void SelectAllKillersBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            if (SelectedKillersList.Count < LvCharacters.Items.Count)
+            {
+                foreach (var ChildItem in LvCharacters.Items)
+                {
+                    ListViewItem item = LvCharacters.ItemContainerGenerator.ContainerFromItem(ChildItem) as ListViewItem;
+                    if (item != null)
+                    {
+                        var ToggleButton = MiscUtilities.FindVisualChild<ToggleButton>(item);
+                        if (ToggleButton.IsChecked == false)
+                        {
+                            ToggleButton.IsChecked = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void SelectAllKillersBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (SelectedKillersList.Count < LvCharacters.Items.Count)
+            {
+                SelectAllKillersBtn.IsChecked = false;
+            }
+            else
+            {
+                foreach (var ChildItem in LvCharacters.Items)
+                {
+                    ListViewItem item = LvCharacters.ItemContainerGenerator.ContainerFromItem(ChildItem) as ListViewItem;
+                    if (item != null)
+                    {
+                        var ToggleButton = MiscUtilities.FindVisualChild<ToggleButton>(item);
+                        if (ToggleButton.IsChecked == true)
+                        {
+                            ToggleButton.IsChecked = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        private async void KillerRollBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedKillersList.Count > 1)
+            {
+                KillerRollBtn.IsEnabled = false;
+                Random rnd = new Random();
+                int WinDigit = rnd.Next(0, SelectedKillersList.Count);
+                var WinnerKiller = SelectedKillersList[WinDigit];
+                if (IsFirstKillerRollTry == true)
+                {
+                    KillerGrid.DataContext = WinnerKiller;
+                    ParametersGrid.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    GridKillerBackground.BeginAnimation(ImageBrush.OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StDifficulty.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(0.6),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StHeight.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(0.6),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StMoveSpeed.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(1.2),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StTerrorRadius.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(1.2),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    KillerImage.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(1.8),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    KillerNameGrid.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(1.8),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    IsFirstKillerRollTry = false;
+                    await Task.Delay(2400);
+                    KillerRollBtn.IsEnabled = true;
+                }
+                else
+                {
+                    ParametersGrid.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(0.3),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    GridKillerBackground.BeginAnimation(ImageBrush.OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(0.3),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StDifficulty.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(0.3),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StHeight.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(0.3),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StMoveSpeed.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(0.3),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StTerrorRadius.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(0.3),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    KillerImage.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(0.3),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    KillerNameGrid.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 0,
+                        Duration = TimeSpan.FromSeconds(0.3),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    //Opacity appear
+                    await Task.Delay(300);
+                    KillerGrid.DataContext = WinnerKiller;
+                    ParametersGrid.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(0.6),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    GridKillerBackground.BeginAnimation(ImageBrush.OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(0.6),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StDifficulty.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(1.2),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StHeight.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(1.2),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StMoveSpeed.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(1.8),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    StTerrorRadius.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(1.8),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    KillerImage.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(2.4),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    KillerNameGrid.BeginAnimation(OpacityProperty, new DoubleAnimation()
+                    {
+                        To = 1,
+                        Duration = TimeSpan.FromSeconds(0.6),
+                        BeginTime = TimeSpan.FromSeconds(2.4),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                    });
+                    await Task.Delay(3000);
+                    KillerRollBtn.IsEnabled = true;
+                }
+                App.DB.RouletteResult.Add(new RouletteResult()
+                {
+                    RouletteName = "Случайный убийца",
+                    RollDate = DateTime.Now,
+                    Result = WinnerKiller.Name,
+                });
+                App.DB.SaveChanges();
+                LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Случайный убийца").OrderByDescending(x => x.RollDate).ToList();
+
+            }
         }
     }
 }
