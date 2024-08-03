@@ -184,57 +184,59 @@
 
                     <Grid>
                         <Image x:Name="HauntedLine" Source="/Resources/HauntedTheme/Line1.png" VerticalAlignment="Top" Margin="0 -43 0 0" Panel.ZIndex="1" Visibility="Collapsed"/>
-                        <Grid Height="375" Margin="0 0 0 0" Background="#FF121212" x:Name="StCharm" Visibility="Collapsed">
-                            <Grid Width="690" HorizontalAlignment="Left" Height="375">
-                                <Grid.Background>
-                                    <ImageBrush Stretch="UniformToFill" ImageSource="/Resources/Misc/ChapterCharmBackground.png"/>
-                                </Grid.Background>
+                        <StackPanel>
+                            <Grid Height="375" Margin="0 0 0 0" Background="#FF121212" x:Name="StCharm" Visibility="Collapsed">
+                                <Grid Width="690" HorizontalAlignment="Left" Height="375">
+                                    <Grid.Background>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="/Resources/Misc/ChapterCharmBackground.png"/>
+                                    </Grid.Background>
 
-                                <Grid Margin="0 0 0 0">
-                                    <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="260" Width="260" Fill="#FF121212" Opacity="0.7">
-                                        <Ellipse.Effect>
-                                            <BlurEffect Radius="40"/>
-                                        </Ellipse.Effect>
-                                    </Ellipse>
-                                    <Image x:Name="CharmIcon" Height="240" Width="240" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                    <Grid Margin="0 0 0 0">
+                                        <Ellipse VerticalAlignment="Center" HorizontalAlignment="Center" Height="260" Width="260" Fill="#FF121212" Opacity="0.7">
+                                            <Ellipse.Effect>
+                                                <BlurEffect Radius="40"/>
+                                            </Ellipse.Effect>
+                                        </Ellipse>
+                                        <Image x:Name="CharmIcon" Height="240" Width="240" Stretch="UniformToFill" VerticalAlignment="Center" Margin="0 5 0 0" HorizontalAlignment="Center"/>
+                                    </Grid>
                                 </Grid>
+                                <StackPanel Margin="60 0 0 0" HorizontalAlignment="Right" Width="650">
+                                    <TextBlock Text="Универсальный Амулет" Width="650" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="0 20 0 0"/>
+                                    <TextBlock x:Name="CharmName" Width="650" TextWrapping="Wrap" FontSize="24" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="00 20 0 0"/>
+                                    <Rectangle Fill="#FFA31816" Width="80" Height="4" Margin="5 3 0 0" HorizontalAlignment="Left">
+                                        <Rectangle.RenderTransform>
+                                            <SkewTransform AngleX="-45"/>
+                                        </Rectangle.RenderTransform>
+                                    </Rectangle>
+                                    <TextBlock x:Name="CharmDescription" Width="650" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 20 0 0"/>
+                                </StackPanel>
                             </Grid>
-                            <StackPanel Margin="60 0 0 0" HorizontalAlignment="Right" Width="650">
-                                <TextBlock Text="Универсальный Амулет" Width="650" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="0 20 0 0"/>
-                                <TextBlock x:Name="CharmName" Width="650" TextWrapping="Wrap" FontSize="24" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="00 20 0 0"/>
-                                <Rectangle Fill="#FFA31816" Width="80" Height="4" Margin="5 3 0 0" HorizontalAlignment="Left">
-                                    <Rectangle.RenderTransform>
-                                        <SkewTransform AngleX="-45"/>
-                                    </Rectangle.RenderTransform>
-                                </Rectangle>
-                                <TextBlock x:Name="CharmDescription" Width="650" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 20 0 0"/>
-                            </StackPanel>
-                        </Grid>
-                    </Grid>
+                            <Grid x:Name="GridMap" Visibility="Collapsed">
+                                <Grid.Background>
+                                    <ImageBrush x:Name="GridMapImageSource" ImageSource="/Resources/Misc/RedBackground.png"/>
+                                </Grid.Background>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="КАРТА" FontSize="30" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="175 30 0 30"/>
 
-                    <Grid x:Name="GridMap" Visibility="Collapsed">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/Resources/Misc/RedBackground.png"/>
-                        </Grid.Background>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="КАРТА" FontSize="30" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="175 30 0 30"/>
+                                <addons:SliderControl Grid.Row="1" Height="500" x:Name="MapSlider"/>
 
-                        <addons:SliderControl Grid.Row="1" Height="500" x:Name="MapSlider"/>
-
-                        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0 0 0 20">
-                            <TextBlock x:Name="MapName" Width="950" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="00 20 0 0"/>
-                            <Rectangle Fill="#FFA31816" Width="80" Height="4" Margin="5 3 0 0" HorizontalAlignment="Left">
-                                <Rectangle.RenderTransform>
-                                    <SkewTransform AngleX="-45"/>
-                                </Rectangle.RenderTransform>
-                            </Rectangle>
-                            <TextBlock x:Name="MapDescription" Width="1040" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 20 0 0"/>
+                                <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0 0 0 20">
+                                    <TextBlock x:Name="MapName" Width="950" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="00 20 0 0"/>
+                                    <Rectangle x:Name="MapRectangle" Fill="#FFA31816" Width="80" Height="4" Margin="5 3 0 0" HorizontalAlignment="Left">
+                                        <Rectangle.RenderTransform>
+                                            <SkewTransform AngleX="-45"/>
+                                        </Rectangle.RenderTransform>
+                                    </Rectangle>
+                                    <TextBlock x:Name="MapDescription" Width="1040" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 20 0 0"/>
+                                </StackPanel>
+                            </Grid>
                         </StackPanel>
                     </Grid>
+
 
                     <Grid HorizontalAlignment="Stretch" Margin="175 0 0 20">
                         <Grid.ColumnDefinitions>

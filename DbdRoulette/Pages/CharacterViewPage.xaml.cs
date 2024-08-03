@@ -1,6 +1,5 @@
 ﻿using DbdRoulette.Addons;
 using DbdRoulette.Components;
-using LiveCharts.Maps;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;

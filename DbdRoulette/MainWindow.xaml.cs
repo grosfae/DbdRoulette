@@ -1,6 +1,4 @@
-﻿using LiveCharts.Wpf;
-using LiveCharts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -14,14 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using LiveCharts.Defaults;
-using LiveCharts.Wpf.Charts.Base;
-using System.Windows.Interop;
 using DbdRoulette.Pages;
 using DbdRoulette.Addons;
-using System.Threading;
+using System.Media;
 
 namespace DbdRoulette
 {
@@ -36,17 +29,42 @@ namespace DbdRoulette
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
 
             ContentLoader.StopAnimation();
-
+            
             MainFrame.Navigate(new MainPage());
 
             var ThemeCode = Properties.Settings.Default.ThemeCode;
             if (ThemeCode == 2)
             {
+                this.BorderBrush = MiscUtilities.HauntedThemeCyanBrush;
+                PopupSeparator.Background = MiscUtilities.HauntedThemeCyanBrush;
                 GeneralBackground.Source = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/HauntedTheme/KeyArt.jpg"));
+                Icon = new BitmapImage(new Uri("pack://application:,,,/Resources/HauntedTheme/HauntedThemeIcon.ico"));
+                CharacterListRect.Fill = new SolidColorBrush(Colors.DarkSlateGray);
+                PerkPageRect.Fill = new SolidColorBrush(Colors.DarkSlateGray);
+                ItemListRect.Fill = new SolidColorBrush(Colors.DarkSlateGray);
+                PowerListRect.Fill = new SolidColorBrush(Colors.DarkSlateGray);
+                EffectListRect.Fill = new SolidColorBrush(Colors.DarkSlateGray);
                 PumpkinsGrid.Visibility = Visibility.Visible;
                 HeaderHauntedLine.Visibility = Visibility.Visible;
                 StartPumpkinAnimation();
             }
+            if (ThemeCode == 3)
+            {
+                this.BorderBrush = MiscUtilities.AnniversaryThemeGoldenBrush;
+                Head.Background = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/AnniversaryTheme/HeaderAnniversaryBackground.jpg")));
+                LogoImage.Source = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/AnniversaryTheme/AnniversaryLogo.png"));
+                PopupSeparator.Background = MiscUtilities.AnniversaryThemeGoldenBrush;
+                GeneralBackground.Source = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/AnniversaryTheme/AnniversaryThemeBackground.jpg"));
+                Icon = new BitmapImage(new Uri("pack://application:,,,/Resources/AnniversaryTheme/AnniversaryThemeIcon.ico"));
+                CharacterListRect.Fill = MiscUtilities.SpecialBlack;
+                PerkPageRect.Fill = MiscUtilities.SpecialBlack;
+                ItemListRect.Fill = MiscUtilities.SpecialBlack;
+                PowerListRect.Fill = MiscUtilities.SpecialBlack;
+                EffectListRect.Fill = MiscUtilities.SpecialBlack;
+                TryksEyeGrid.Visibility = Visibility.Visible;
+                StartEyeGlow();
+            }
+
         }
         public void StartPumpkinAnimation()
         {
@@ -69,16 +87,39 @@ namespace DbdRoulette
                 AutoReverse = true
             });
         }
-        private void MinButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public void StartEyeGlow()
+        {
+            GlowEllipse.BeginAnimation(OpacityProperty,
+            new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                RepeatBehavior = RepeatBehavior.Forever,
+                Duration = TimeSpan.FromSeconds(5),
+                EasingFunction = new BounceEase() {Bounces = 10, EasingMode = EasingMode.EaseIn },
+                AutoReverse = true
+            });
+        }
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.Content is SettingsPage)
+            {
+                return;
+            }
+            else
+            {
+                MainFrame.Navigate(new SettingsPage());
+            }
+
+        }
+        private void MinButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
-
-        private void CloseButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -227,5 +268,6 @@ namespace DbdRoulette
                 MainFrame.Navigate(new RoulettePage());
             }
         }
+
     }
 }

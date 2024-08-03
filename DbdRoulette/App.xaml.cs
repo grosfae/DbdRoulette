@@ -1,13 +1,18 @@
 ﻿using AngleSharp;
 using DbdRoulette.Addons;
 using DbdRoulette.Components;
+using DbdRoulette.Properties;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace DbdRoulette
 {
@@ -24,6 +29,8 @@ namespace DbdRoulette
         public static Perk PerkShrineFourth;
 
         public static string RefreshShrineTimeOut;
+        public static int ThemeCode;
+
         private void ShrineCheck()
         {
             var config = Configuration.Default.WithDefaultLoader();
@@ -71,7 +78,22 @@ namespace DbdRoulette
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            ThemeCode = Settings.Default.ThemeCode;
+            if (Settings.Default.ThemeCode == 2)
+            {
+                this.Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/ThemesDictionaries/HauntedThemeDictionary.xaml") };
+            }
+            if (Settings.Default.ThemeCode == 3)
+            {
+                this.Resources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/ThemesDictionaries/AnniversaryThemeDictionary.xaml") };
+            }
             ShrineCheck();
+        }
+
+        public static void ApplicationRestart()
+        {
+            Application.Current.Shutdown();
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
         }
     }
 }

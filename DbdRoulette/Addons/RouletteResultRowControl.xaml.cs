@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbdRoulette.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,16 +26,6 @@ namespace DbdRoulette.Addons
         public RouletteResultRowControl()
         {
             InitializeComponent();
-        }
-
-        private void ExpandBtn_MouseEnter(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void ExpandBtn_MouseLeave(object sender, MouseEventArgs e)
-        {
-
         }
 
         private void ExpandBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

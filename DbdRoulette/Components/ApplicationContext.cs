@@ -12,7 +12,6 @@ namespace DbdRoulette.Components
         public ApplicationContext() : base("DefaultConnection")
         {
         }
-        public DbSet<User> User { get; set; }
         public DbSet<Killer> Killer { get; set; }
         public DbSet<Survivor> Survivor { get; set; }
         public DbSet<Chapter> Chapter { get; set; }

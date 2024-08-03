@@ -1,5 +1,6 @@
 ﻿using DbdRoulette.Addons;
 using DbdRoulette.Components;
+using DbdRoulette.Properties;
 using DbdRoulette.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,14 @@ namespace DbdRoulette.Pages
 
             contextContentLoader = loadingControl;
             DataContext = new EffectListViewModel();
+            if (Settings.Default.ThemeCode == 2)
+            {
+                RecGradient.Fill = MiscUtilities.HauntedThemeCyanBrush;
+            }
+            if (Settings.Default.ThemeCode == 3)
+            {
+                RecGradient.Fill = MiscUtilities.AnniversaryThemeGoldenBrush;
+            }
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DbdRoulette.Addons"
              mc:Ignorable="d" 
              Height="auto" Width="1100" >
-    <Border Name="ExpandBtn" BorderThickness="1" BorderBrush="#FF121212" MouseEnter="ExpandBtn_MouseEnter" MouseLeave="ExpandBtn_MouseLeave" MouseLeftButtonDown="ExpandBtn_MouseLeftButtonDown" Cursor="Hand">
+    <Border Name="ExpandBtn" BorderThickness="1" BorderBrush="#FF121212" MouseLeftButtonDown="ExpandBtn_MouseLeftButtonDown" Cursor="Hand">
         <Border.Background>
             <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
         </Border.Background>

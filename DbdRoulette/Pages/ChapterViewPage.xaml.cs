@@ -39,9 +39,18 @@ namespace DbdRoulette.Pages
             if (ThemeCode == 2)
             {
                 HauntedLine.Visibility = Visibility.Visible;
+                GridMapImageSource.ImageSource = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/HauntedTheme/SectionBackground.jpg"));
+                PresentImageBtn.Foreground = MiscUtilities.HauntedThemeCyanBrush;
+                MapRectangle.Fill = MiscUtilities.HauntedThemeCyanBrush;
+            }
+            if (ThemeCode == 3)
+            {
+                GridMapImageSource.ImageSource = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/AnniversaryTheme/AnniversaryMapBackground.jpg"));
+                PresentImageBtn.Foreground = MiscUtilities.AnniversaryThemeGoldenBrush;
+                MapRectangle.Fill = MiscUtilities.AnniversaryThemeGoldenBrush;
             }
 
-            if(contextChapter.Survivor.Count > 0)
+            if (contextChapter.Survivor.Count > 0)
             {
                 RecGradient.Fill = MiscUtilities.SurvivorBrush;
             }

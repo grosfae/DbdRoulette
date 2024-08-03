@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -93,6 +93,9 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DefaultIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=1.0.7.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.1.0.7\lib\net472\AngleSharp.dll</HintPath>
@@ -102,12 +105,6 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
-    </Reference>
-    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -162,6 +159,7 @@
     <Compile Include="Addons\ModInformationControl.xaml.cs">
       <DependentUpon>ModInformationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Addons\ResourceMediaPlayer.cs" />
     <Compile Include="Addons\RouletteResultRowControl.xaml.cs">
       <DependentUpon>RouletteResultRowControl.xaml</DependentUpon>
     </Compile>
@@ -175,6 +173,9 @@
     <Compile Include="Pages\RoulettePage.xaml.cs">
       <DependentUpon>RoulettePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ChapterListViewModel.cs" />
     <Compile Include="ViewModels\CharacterListViewModel.cs" />
     <Compile Include="ViewModels\EffectListViewModel.cs" />
@@ -182,8 +183,8 @@
     <Compile Include="ViewModels\LocationListViewModel.cs" />
     <Compile Include="ViewModels\PerkListViewModel.cs" />
     <Compile Include="ViewModels\PowerListViewModel.cs" />
-    <Compile Include="Windows\AddDataWindow.xaml.cs">
-      <DependentUpon>AddDataWindow.xaml</DependentUpon>
+    <Compile Include="Windows\CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
     <Page Include="Addons\ChapterBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -283,7 +284,6 @@
     <Compile Include="Components\SurvivorCosmeticOutfit.cs" />
     <Compile Include="Components\SurvivorPerk.cs" />
     <Compile Include="Components\ThematicCollection.cs" />
-    <Compile Include="Components\User.cs" />
     <Compile Include="Converters\StyleParametersConverter.cs" />
     <Compile Include="Converters\StylePlusConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -318,19 +318,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\KillerRoulette.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\LocationsListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -350,11 +342,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\SliderPage.xaml">
+    <Page Include="Pages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemesDictionaries\AnniversaryThemeDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\AddDataWindow.xaml">
+    <Page Include="ThemesDictionaries\HauntedThemeDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -381,17 +381,11 @@
     <Compile Include="Pages\ItemListPage.xaml.cs">
       <DependentUpon>ItemListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\KillerRoulette.xaml.cs">
-      <DependentUpon>KillerRoulette.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\LocationsListPage.xaml.cs">
       <DependentUpon>LocationsListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MenuPage.xaml.cs">
-      <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PerkListPage.xaml.cs">
       <DependentUpon>PerkListPage.xaml</DependentUpon>
@@ -401,9 +395,6 @@
     </Compile>
     <Compile Include="Pages\PowerListPage.xaml.cs">
       <DependentUpon>PowerListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\SliderPage.xaml.cs">
-      <DependentUpon>SliderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -448,19 +439,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Header\ActiveBar.png" />
-    <Resource Include="Resources\Header\ActiveCross.png" />
-    <Resource Include="Resources\Header\NoneActiveBar.png" />
-    <Resource Include="Resources\Header\NoneActiveCross.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\LogoCell.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Logos.png" />
+    <Resource Include="Resources\GameLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\CardImages\Character.png" />
@@ -497,9 +476,6 @@
   <ItemGroup>
     <Resource Include="Resources\Misc\KillerIcon.png" />
     <Resource Include="Resources\Misc\SurvIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Background.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\DifficultyIcons\Easy.png" />
@@ -548,7 +524,6 @@
     <Resource Include="Resources\Misc\RedBackground.png" />
     <Resource Include="Resources\Misc\StoreIcon.png" />
     <Resource Include="Resources\Misc\ShrineBackground.png" />
-    <Resource Include="Resources\PurplePerk.png" />
     <Resource Include="Resources\RarityImages\GreenRarity.png" />
     <Resource Include="Resources\RarityImages\PurpleRarity.png" />
     <Resource Include="Resources\RarityImages\YellowRarity.png" />
@@ -606,6 +581,22 @@
     <Resource Include="Resources\RouletteIcon\NumberSecondIcon.png" />
     <Resource Include="Resources\RouletteIcon\NumberThirdIcon.png" />
     <Resource Include="Resources\RouletteIcon\SpectatorIcon.png" />
+    <Resource Include="Resources\HauntedTheme\SectionBackground.jpg" />
+    <Resource Include="Resources\HauntedTheme\Line2.png" />
+    <Resource Include="Resources\DefaultIcon.ico" />
+    <Resource Include="DefaultIcon.ico" />
+    <Resource Include="Resources\HauntedTheme\HauntedThemeIcon.ico" />
+    <Resource Include="Resources\AnniversaryTheme\AnniversaryThemeBackground.jpg" />
+    <Resource Include="Resources\AnniversaryTheme\AnniversaryThemeIcon.ico" />
+    <Resource Include="Resources\AnniversaryTheme\AnniversaryCloud.png" />
+    <Resource Include="Resources\AnniversaryTheme\Particle.png" />
+    <Resource Include="Resources\AnniversaryTheme\HeaderAnniversaryBackground.jpg" />
+    <Resource Include="Resources\AnniversaryTheme\AnniversaryLogo.png" />
+    <Resource Include="Resources\AnniversaryTheme\AnniversaryMapBackground.jpg" />
+    <Resource Include="Resources\AnniversaryTheme\TryksEye.png" />
+    <Resource Include="Resources\ThemesScreens\AnniversaryThemeScreen.jpg" />
+    <Resource Include="Resources\ThemesScreens\DefaultThemeScreen.jpg" />
+    <Resource Include="Resources\ThemesScreens\HauntedThemeScreen.jpg" />
     <Content Include="SQLite.Interop.dll" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using DbdRoulette.Components;
 using DbdRoulette.Pages;
+using DbdRoulette.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,18 @@ namespace DbdRoulette.Addons
         public MapSlider()
         {
             InitializeComponent();
+            if(Settings.Default.ThemeCode == 2)
+            {
+                LineSep.Fill = MiscUtilities.HauntedThemeCyanBrush;
+                VerticalBorder.BorderBrush = MiscUtilities.HauntedThemeCyanBrush;
+                HorizontalBorder.BorderBrush = MiscUtilities.HauntedThemeCyanBrush;
+            }
+            if (Settings.Default.ThemeCode == 3)
+            {
+                LineSep.Fill = MiscUtilities.AnniversaryThemeGoldenBrush;
+                VerticalBorder.BorderBrush = MiscUtilities.AnniversaryThemeGoldenBrush;
+                HorizontalBorder.BorderBrush = MiscUtilities.AnniversaryThemeGoldenBrush;
+            }
 
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

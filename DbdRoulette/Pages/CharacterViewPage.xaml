@@ -261,7 +261,7 @@
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
                                 <TextBlock Text="{Binding Chapter.Description}" Width="650" TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="00 20 0 0"/>
-                                <Button x:Name="ChapterViewBtn" Background="Transparent" Style="{DynamicResource ChapterRedBtn}" Height="50" Width="180" Content="Подробнее" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="ChapterViewBtn_Click"/>
+                                <Button x:Name="ChapterViewBtn" Style="{DynamicResource ChapterRedBtn}" Height="50" Width="180" Content="Подробнее" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="ChapterViewBtn_Click"/>
                             </StackPanel>
                             <Image Width="690" Stretch="UniformToFill" Source="{Binding Chapter.MainImage}" HorizontalAlignment="Right" Height="430" VerticalAlignment="Top" Cursor=""/>
                         </Grid>

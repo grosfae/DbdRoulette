@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DbdRoulette"
         xmlns:addons="clr-namespace:DbdRoulette.Addons"
         mc:Ignorable="d"
-        Title="DbdRoulette" Height="850" Width="1400"
+        Title="DBD: Roulette Dealer" Height="850" Width="1400"
         
         BorderThickness="1"
         BorderBrush="#FF3881EF"
@@ -14,11 +14,11 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
         
         WindowStartupLocation="CenterScreen"
         PreviewMouseUp="Window_PreviewMouseUp"
-        Icon="Resources/Logo.png">
+        Icon="/Resources/DefaultIcon.ico">
 
     <Window.Clip>
         <RectangleGeometry Rect="0, 0, 1400, 850"/>
@@ -29,16 +29,16 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel>
+        <Grid>
             <StackPanel Orientation="Horizontal" Background="#FF161D23" x:Name="Head">
-                <Image Source="/Resources/Logos.png" Width="70" Height="70" Margin="15 0 0 0"/>
+                <Image x:Name="LogoImage" Source="/Resources/GameLogo.png" Width="70" Height="70" Margin="15 0 0 0"/>
                 <Button x:Name="MainBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Главная" Click="MainBtn_Click"/>
                 <ToggleButton x:Name="CharactersBtn" Style="{DynamicResource MenuListBtn}" Width="150" Height="50" Content="Персонажи" Checked="CharactersBtn_Checked" Unchecked="CharactersBtn_Unchecked"/>
                 <Button x:Name="LocationViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Локации" Click="LocationViewBtn_Click"/>
                 <Button x:Name="DLCViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Дополнения" Click="DLCViewBtn_Click"/>
                 <Button x:Name="RoulettesBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Рулетки" Click="RoulettesBtn_Click"/>
             </StackPanel>
-        </StackPanel>
+        </Grid>
         
         <addons:LoadingControl Grid.RowSpan="2" Panel.ZIndex="3" x:Name="ContentLoader" Visibility="Collapsed"/>
         
@@ -59,10 +59,10 @@
                             <TextBlock Text="Убийцы и выжившие" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Style="{StaticResource Header}" Foreground="White" Margin="10 0 0 0"/>
                         </StackPanel>
                         <Border Margin="0 10 0 0" Style="{DynamicResource CardBorder}">
-                            <StackPanel >
+                            <StackPanel>
                                 <Image Height="205" Source="/Resources/CardImages/Double.jpg"/>
                                 <Grid Height="50">
-                                    <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                    <Rectangle x:Name="CharacterListRect" Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="black" Opacity="0.3"/>
                                     <Button x:Name="CharacterListBtn" Click="CharacterListBtn_Click" Content="Смотреть" Style="{StaticResource CardBtnWhite}" Height="35" Width="150"/>
                                 </Grid>
@@ -79,7 +79,7 @@
                             <StackPanel >
                                 <Image Height="205" Source="/Resources/CardImages/Perks.jpg"/>
                                 <Grid Height="50">
-                                    <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                    <Rectangle x:Name="PerkPageRect" Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
                                     <Button x:Name="PerkPageBtn" Content="Изучить" Style="{StaticResource CardBtnWhite}" Height="35" Width="150" Click="PerkPageBtn_Click"/>
                                 </Grid>
@@ -96,7 +96,7 @@
                             <StackPanel >
                                 <Image Height="205" Source="/Resources/CardImages/Addons.jpg"/>
                                 <Grid Height="50">
-                                    <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                    <Rectangle x:Name="ItemListRect" Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
                                     <Button x:Name="ItemListBtn" Content="Узнать" Style="{StaticResource CardBtnWhite}" Click="ItemListBtn_Click" Height="35" Width="150"/>
                                 </Grid>
@@ -113,7 +113,7 @@
                             <StackPanel >
                                 <Image Height="205" Source="/Resources/CardImages/Powers.png"/>
                                 <Grid Height="50">
-                                    <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                    <Rectangle x:Name="PowerListRect" Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
                                     <Button x:Name="PowerListBtn" Content="Исследовать" Style="{StaticResource CardBtnWhite}" Height="35" Width="150" Click="PowerListBtn_Click"/>
                                 </Grid>
@@ -130,7 +130,7 @@
                             <StackPanel >
                                 <Image Height="205" Source="/Resources/CardImages/Effects.jpg"/>
                                 <Grid Height="50">
-                                    <Rectangle Width="205" Height="56" Fill="#3881EF"/>
+                                    <Rectangle x:Name="EffectListRect" Width="205" Height="56" Fill="#3881EF"/>
                                     <Path Data="M190.5 0H205V56H158L190.5 0Z" Fill="Black" Opacity="0.3"/>
                                     <Button x:Name="EffectListBtn" Content="Подробнее" Style="{StaticResource CardBtnWhite}" Height="35" Width="150" Click="EffectListBtn_Click"/>
                                 </Grid>
@@ -139,38 +139,13 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <Separator  Background="#FF3881EF" VerticalAlignment="Bottom" Margin="0 10 0 0"/>
+            <Separator x:Name="PopupSeparator"  Background="#FF3881EF" VerticalAlignment="Bottom" Margin="0 10 0 0"/>
         </Grid>
 
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0 15 15 0" VerticalAlignment="Top" Panel.ZIndex="4">
-            <Border CornerRadius="15" Background="#FF3881EF" Height="35" Width="35">
-                <Image x:Name="MinButton" Height="20" Width="20"  MouseLeftButtonDown="MinButton_MouseLeftButtonDown" Cursor="Hand">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source" Value="Resources/Header/NoneActiveBar.png"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinButton}" Value="True">
-                                    <Setter Property="Source" Value="Resources/Header/ActiveBar.png"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Border>
-            <Border CornerRadius="15" Background="#FF3881EF" Height="35" Width="35" Margin="15 0 0 0">
-                <Image x:Name="CloseButton" Height="20" Width="20"  MouseLeftButtonDown="CloseButton_MouseLeftButtonDown" Cursor="Hand">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source" Value="Resources/Header/NoneActiveCross.png"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CloseButton}" Value="True">
-                                    <Setter Property="Source" Value="Resources/Header/ActiveCross.png"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Border>
+            <Button x:Name="SettingsButton" Style="{DynamicResource SettingWindowButton}" Width="35" Height="35" Click="SettingsButton_Click"/>
+            <Button x:Name="MinButton" Style="{DynamicResource MinimizeWindowButton}" Width="35" Height="35" Click="MinButton_Click" Margin="15 0 0 0"/>
+            <Button x:Name="CloseButton" Style="{DynamicResource CloseWindowButton}" Width="35" Height="35" Click="CloseButton_Click" Margin="15 0 0 0"/>
         </StackPanel>
         
         <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1" Panel.ZIndex="1" x:Name="PumpkinsGrid" Visibility="Collapsed">
@@ -186,8 +161,18 @@
             </Image>
         </Grid>
 
+        <Grid x:Name="TryksEyeGrid" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1" Panel.ZIndex="1" Visibility="Collapsed">
+            <Image Source="/Resources/AnniversaryTheme/TryksEye.png" Height="150" Width="150" Stretch="UniformToFill"/>
+            <Ellipse x:Name="GlowEllipse" Width="33.5" Height="32" RenderTransformOrigin="0.5,0.5" Stroke="#FF0EC8BB" StrokeThickness="10.5" Panel.ZIndex="3" Opacity="0">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform X="-5.1" Y="12"/>
+                </Ellipse.RenderTransform>
+                <Ellipse.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="#FF0EC8BB" BlurRadius="10"/>
+                </Ellipse.Effect>
+            </Ellipse>
+        </Grid>
         <Image x:Name="GeneralBackground" Grid.Row="1" Source="/Resources/Misc/MainBackground.jpg" Stretch="UniformToFill"/>
-
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="Transparent" Focusable="False" Grid.Row="1"/>
     </Grid>
 </Window>

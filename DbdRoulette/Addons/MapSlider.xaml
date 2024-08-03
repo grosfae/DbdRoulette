@@ -13,12 +13,12 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid Panel.ZIndex="3" Grid.RowSpan="3">
-            <Border BorderThickness="4 0" BorderBrush="#FFAA1A18" RenderTransformOrigin="0 0.5" >
+            <Border x:Name="VerticalBorder" BorderThickness="4 0" BorderBrush="#FFAA1A18" RenderTransformOrigin="0 0.5" >
                 <Border.RenderTransform>
                     <ScaleTransform x:Name="transformSide" ScaleY="0"/>
                 </Border.RenderTransform>
             </Border>
-            <Border BorderThickness="0 4" RenderTransformOrigin="0.5 0" BorderBrush="#FFAA1A18">
+            <Border x:Name="HorizontalBorder" BorderThickness="0 4" RenderTransformOrigin="0.5 0" BorderBrush="#FFAA1A18">
                 <Border.RenderTransform>
                     <ScaleTransform x:Name="transformUpDown" ScaleX="0"/>
                 </Border.RenderTransform>
@@ -43,10 +43,10 @@
             </ListView.ItemTemplate>
         </ListView>
         <Button x:Name="LeftListBtn" HorizontalAlignment="Left" Style="{DynamicResource ListviewArrowBtn}" Width="25" Height="25" FontSize="18" VerticalAlignment="Center" Panel.ZIndex="1" Cursor="Hand" Click="LeftListBtn_Click" Margin="20 0 0 0">
-            <Path Data="M 410.312 454.729 151.767 244.996 410.312 35.271 381.693 0 79.688 244.996 381.693 490 Z" Fill="White" Stretch="Fill" Height="10" Width="6" Margin="0 0 2 0"/>
+            <Path Data="M 410.312 454.729 151.767 244.996 410.312 35.271 381.693 0 79.688 244.996 381.693 490 Z" Fill="{Binding Foreground, ElementName=LeftListBtn}" Stretch="Fill" Height="10" Width="6" Margin="0 0 2 0"/>
         </Button>
         <Button x:Name="RightListBtn" Grid.Column="2" Style="{DynamicResource ListviewArrowBtn}" HorizontalAlignment="Right" Width="25" Height="25" FontSize="18" Cursor="Hand" Click="RightListBtn_Click" Margin="0 0 20 0">
-            <Path Data="M 106.601 490 412.15 245.004 106.601 0 77.85 35.856 338.702 245.004 77.85 454.159 Z" Fill="White" Stretch="Fill" Height="10" Width="6" Margin="2 0 0 0"/>
+            <Path Data="M 106.601 490 412.15 245.004 106.601 0 77.85 35.856 338.702 245.004 77.85 454.159 Z" Fill="{Binding Foreground, ElementName=RightListBtn}" Stretch="Fill" Height="10" Width="6" Margin="2 0 0 0"/>
         </Button>
         <StackPanel x:Name="DotStackPanel" Orientation="Horizontal"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Loaded="DotStackPanel_Loaded" Margin="0 0 0 20"/>
 
@@ -58,7 +58,7 @@
                         <SkewTransform AngleX="-45"/>
                     </Rectangle.RenderTransform>
                 </Rectangle>
-                <Button Visibility="{Binding ChapterVisibility}" x:Name="ChapterLinkBtn" Style="{DynamicResource MapSliderChapterName}" Content="{Binding Chapter.UpperName}" Margin="0 5 0 0" Cursor="Hand" Click="ChapterLinkBtn_Click"/>
+                <Button Visibility="{Binding ChapterVisibility}" x:Name="ChapterLinkBtn" Style="{DynamicResource MapSliderChapterName}" Content="{Binding Chapter.UpperName}" Margin="0 10 0 0" Cursor="Hand" Click="ChapterLinkBtn_Click"/>
                 <TextBlock Text="{Binding Description}" Foreground="White" FontSize="16" Style="{DynamicResource PtSansText}" Margin="0 15 0 0" TextWrapping="Wrap" Width="{Binding ActualWidth, ElementName=DescriptionBlock, Mode=OneWay}"/>
             </StackPanel>
         </StackPanel>

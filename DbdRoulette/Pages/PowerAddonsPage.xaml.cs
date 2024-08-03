@@ -1,4 +1,6 @@
-﻿using DbdRoulette.Components;
+﻿using DbdRoulette.Addons;
+using DbdRoulette.Components;
+using DbdRoulette.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,14 @@ namespace DbdRoulette.Pages
             contextPower = power;
             LvPowers.ItemsSource = App.DB.Power.ToList();
             LvAddons.ItemsSource = App.DB.PowerAddon.Where(x => x.Addon.ItemTypeId == 8).OrderBy(x => x.Addon.RarityId).OrderBy(x => x.PowerId).ToList();
+            if (Settings.Default.ThemeCode == 2)
+            {
+                RecGradient.Fill = MiscUtilities.HauntedThemeCyanBrush;
+            }
+            if (Settings.Default.ThemeCode == 3)
+            {
+                RecGradient.Fill = MiscUtilities.AnniversaryThemeGoldenBrush;
+            }
         }
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {

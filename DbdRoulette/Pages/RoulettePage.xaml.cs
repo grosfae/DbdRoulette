@@ -1,6 +1,7 @@
 ﻿using DbdRoulette.Addons;
 using DbdRoulette.Components;
 using DbdRoulette.Components.NoneDatabase;
+using DbdRoulette.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,14 @@ namespace DbdRoulette.Pages
         public RoulettePage()
         {
             InitializeComponent();
+            if(Settings.Default.ThemeCode == 2)
+            {
+                SelectAllKillersBtn.BorderBrush = MiscUtilities.HauntedThemeCyanBrush;
+            }
+            if (Settings.Default.ThemeCode == 3)
+            {
+                SelectAllKillersBtn.BorderBrush = MiscUtilities.AnniversaryThemeGoldenBrush;
+            }
             LvResultHistory.ItemsSource = App.DB.RouletteResult.OrderByDescending(x => x.RollDate).ToList();
         }
 
@@ -787,16 +796,49 @@ namespace DbdRoulette.Pages
             LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Случайный убийца").OrderByDescending(x => x.RollDate).ToList();
             LvCharacters.ItemsSource = App.DB.Killer.OrderByDescending(x => x.Chapter.DateRelease).ToList();
             SelectedKillersList.Clear();
+            SelectAllKillersBtn.IsChecked = false;
             IsFirstKillerRollTry = true;
             KillerGrid.DataContext = null;
-            GridKillerBackground.Opacity = 0;
-            KillerImage.Opacity = 0;
-            ParametersGrid.Opacity = 0;
-            StDifficulty.Opacity = 0;
-            StHeight.Opacity = 0;
-            StMoveSpeed.Opacity = 0;
-            StTerrorRadius.Opacity = 0;
-            KillerNameGrid.Opacity = 0;
+            GridKillerBackground.BeginAnimation(OpacityProperty, new DoubleAnimation()
+            {
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0)
+            });
+            KillerImage.BeginAnimation(OpacityProperty, new DoubleAnimation()
+            {
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0)
+            });
+            ParametersGrid.BeginAnimation(OpacityProperty, new DoubleAnimation()
+            {
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0)
+            });
+            StDifficulty.BeginAnimation(OpacityProperty, new DoubleAnimation()
+            {
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0)
+            }); ;
+            StHeight.BeginAnimation(OpacityProperty, new DoubleAnimation()
+            {
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0)
+            }); ;
+            StMoveSpeed.BeginAnimation(OpacityProperty, new DoubleAnimation()
+            {
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0)
+            }); ;
+            StTerrorRadius.BeginAnimation(OpacityProperty, new DoubleAnimation()
+            {
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0)
+            }); ;
+            KillerNameGrid.BeginAnimation(OpacityProperty, new DoubleAnimation()
+            {
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0)
+            });
         }
         #endregion
         private void ModPlatesGenerate()
@@ -1139,14 +1181,39 @@ namespace DbdRoulette.Pages
                 double Tick = 0;
                 foreach (var Row in PrivateModRolledList)
                 {
-                    (WrapPanelForModPlates.Children[Row.ModNumber] as ModInformationControl).MainBorderBrushStop.BeginAnimation(SolidColorBrush.ColorProperty, new ColorAnimation()
+                    if (Settings.Default.ThemeCode == 1)
                     {
-                        To = Color.FromRgb(56, 129, 239),
-                        Duration = TimeSpan.FromSeconds(0.2),
-                        BeginTime = TimeSpan.FromSeconds(Tick),
-                        AutoReverse = true,
-                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
-                    });
+                        (WrapPanelForModPlates.Children[Row.ModNumber] as ModInformationControl).MainBorderBrushStop.BeginAnimation(SolidColorBrush.ColorProperty, new ColorAnimation()
+                        {
+                            To = Color.FromRgb(56, 129, 239),
+                            Duration = TimeSpan.FromSeconds(0.2),
+                            BeginTime = TimeSpan.FromSeconds(Tick),
+                            AutoReverse = true,
+                            EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                        });
+                    }
+                    if (Settings.Default.ThemeCode == 2)
+                    {
+                        (WrapPanelForModPlates.Children[Row.ModNumber] as ModInformationControl).MainBorderBrushStop.BeginAnimation(SolidColorBrush.ColorProperty, new ColorAnimation()
+                        {
+                            To = Color.FromRgb(75, 218, 214),
+                            Duration = TimeSpan.FromSeconds(0.2),
+                            BeginTime = TimeSpan.FromSeconds(Tick),
+                            AutoReverse = true,
+                            EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                        });
+                    }
+                    if (Settings.Default.ThemeCode == 3)
+                    {
+                        (WrapPanelForModPlates.Children[Row.ModNumber] as ModInformationControl).MainBorderBrushStop.BeginAnimation(SolidColorBrush.ColorProperty, new ColorAnimation()
+                        {
+                            To = Color.FromRgb(223, 173, 73),
+                            Duration = TimeSpan.FromSeconds(0.2),
+                            BeginTime = TimeSpan.FromSeconds(Tick),
+                            AutoReverse = true,
+                            EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
+                        });
+                    }
                     Tick += 0.2;
                 }
                 Random rnd = new Random();

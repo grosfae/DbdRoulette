@@ -20,6 +20,13 @@ namespace DbdRoulette.Addons
 
         public static SolidColorBrush KillerBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(170, 26, 24));
 
+        public static SolidColorBrush SpecialBlack = new SolidColorBrush(System.Windows.Media.Color.FromRgb(18, 18, 18));
+
+        public static SolidColorBrush HauntedThemeCyanBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(75, 218, 214));
+
+        public static SolidColorBrush AnniversaryThemeGoldenBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(223, 173, 73));
+        public static SolidColorBrush AnniversaryThemeBlueBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 163, 255));
+
         public static BitmapImage ImageConvert(byte[] convertableImage)
         {
             var image = new BitmapImage();

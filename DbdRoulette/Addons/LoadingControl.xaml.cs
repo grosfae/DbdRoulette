@@ -30,11 +30,11 @@ namespace DbdRoulette.Addons
 
             MainStoryboard = (Storyboard)LoaderGrid.Resources["MainStoryboard"];
 
-            DispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            DispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             DispatcherTimer.Interval = TimeSpan.FromSeconds(1);
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             if(LoadingTextTb.Text == "Загрузка")
             {
