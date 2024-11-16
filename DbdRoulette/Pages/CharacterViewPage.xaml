@@ -58,7 +58,7 @@
                                     </Grid>
                                     <TextBlock Text="{Binding Name}" Width="540" TextWrapping="Wrap" Foreground="White" FontSize="34" Margin="30 10 0 0" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource EuropeTitleFont}"/>
                                     <StackPanel Orientation="Horizontal" >
-                                        <StackPanel>
+                                        <StackPanel Margin="0 0 10 0">
                                             <StackPanel Orientation="Horizontal" Margin="30 20 0 0">
                                                 <Grid Width="70" Height="70">
                                                     <Ellipse Fill="Black" Width="70" Height="70"/>
@@ -91,7 +91,7 @@
                                                 </StackPanel>
                                             </StackPanel>
 
-                                            <StackPanel Orientation="Horizontal" Margin="30 10 0 0">
+                                            <StackPanel Orientation="Horizontal" Margin="30 10 0 0" x:Name="ChapterSt">
                                                 <Grid Width="70" Height="70">
                                                     <Ellipse Fill="Black" Width="70" Height="70"/>
                                                     <Image Source="/Resources/Misc/BookIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="55" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
@@ -103,13 +103,12 @@
                                                         </TextBlock.Foreground>
                                                     </TextBlock>
                                                     <TextBlock x:Name="TbChapter" MouseLeftButtonDown="TbChapter_MouseLeftButtonDown" Text="{Binding Chapter.Name}" TextWrapping="Wrap" Width="200" TextAlignment="Left" FontSize="20" FontWeight="Bold" Style="{DynamicResource LinkHeader}" Foreground="White" HorizontalAlignment="Left"/>
-
                                                 </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
 
                                         <StackPanel>
-                                            <StackPanel Orientation="Horizontal" x:Name="StTerrorRadius" Margin="10 20 0 0">
+                                            <StackPanel Orientation="Horizontal" x:Name="StTerrorRadius" Margin="0 20 0 0">
                                                 <Grid Width="70" Height="70">
                                                     <Ellipse Fill="Black" Width="70" Height="70"/>
                                                     <Image Source="/Resources/Misc/TerrorIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Margin="0 0 0 4" Stretch="UniformToFill" HorizontalAlignment="Center"/>
@@ -124,7 +123,7 @@
                                                 </StackPanel>
                                             </StackPanel>
 
-                                            <StackPanel x:Name="StMoveSpeed" Orientation="Horizontal" Margin="10 10 0 0">
+                                            <StackPanel x:Name="StMoveSpeed" Orientation="Horizontal" Margin="0 10 0 0">
                                                 <Grid Width="70" Height="70">
                                                     <Ellipse Fill="Black" Width="70" Height="70"/>
                                                     <Image Source="/Resources/Misc/MoveIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
@@ -140,7 +139,7 @@
                                                 </StackPanel>
                                             </StackPanel>
 
-                                            <StackPanel Orientation="Horizontal" x:Name="StHeight" Margin="10 10 0 0">
+                                            <StackPanel Orientation="Horizontal" x:Name="StHeight" Margin="0 10 0 0">
                                                 <Grid Width="70" Height="70">
                                                     <Ellipse Fill="Black" Width="70" Height="70"/>
                                                     <Image Source="/Resources/Misc/HeightIcon.png" RenderOptions.BitmapScalingMode="Fant" Width="50" Height="50" Stretch="UniformToFill" Margin="0 0 0 0" HorizontalAlignment="Center"/>
@@ -175,18 +174,18 @@
                                         </RadioButton.Background>
                                     </RadioButton>
 
-                                    <ListView x:Name="LvPerks" Focusable="False" BorderThickness="0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=3}" >
-                                        <ListView.ItemsPanel>
+                                    <ListBox x:Name="LvPerks" Focusable="False" BorderThickness="0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=3}" >
+                                        <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <WrapPanel Orientation="Horizontal"/>
                                             </ItemsPanelTemplate>
-                                        </ListView.ItemsPanel>
-                                        <ListView.Template>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.Template>
                                             <ControlTemplate TargetType="ItemsControl">
                                                 <ItemsPresenter/>
                                             </ControlTemplate>
-                                        </ListView.Template>
-                                        <ListView.ItemTemplate>
+                                        </ListBox.Template>
+                                        <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <RadioButton x:Name="RadioPerkBtn" GroupName="Perks" Initialized="RadioPerkBtn_Initialized" Style="{DynamicResource PerksSelectionRadio}" Foreground="{Binding Perk.PerkBorderColor}" Height="100" Width="100" Margin="0 0 20 0" Cursor="Hand" Checked="RadioPerkBtn_Checked">
                                                     <RadioButton.Background>
@@ -194,8 +193,8 @@
                                                     </RadioButton.Background>
                                                 </RadioButton>
                                             </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
                                 </StackPanel>
 
                                 <StackPanel Margin="0 30 0 0" x:Name="PerkDetailsContainer">
@@ -252,7 +251,7 @@
                         </Rectangle>
 
                         <Image x:Name="HauntedLine" Source="/Resources/HauntedTheme/Line1.png" VerticalAlignment="Top" Margin="0 62 0 0" Panel.ZIndex="1" Visibility="Collapsed"/>
-                        <Grid MinHeight="390" Margin="0 100 0 0" Background="#FF121212">
+                        <Grid MinHeight="390" Margin="0 100 0 0" Background="#FF121212" x:Name="ChapterGrid">
                             <StackPanel Margin="60 0 0 0" HorizontalAlignment="Left" Width="650">
                                 <TextBlock Text="{Binding Chapter.Name}" Width="650" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Left" FontWeight="Bold" Style="{DynamicResource ArkhipText}" Foreground="White" Margin="0 20 0 0"/>
                                 <Rectangle x:Name="LineSepChapter" Fill="#FFA31816" Width="80" Height="4" Margin="5 3 0 0" HorizontalAlignment="Left">
@@ -260,7 +259,7 @@
                                         <SkewTransform AngleX="-45"/>
                                     </Rectangle.RenderTransform>
                                 </Rectangle>
-                                <TextBlock Text="{Binding Chapter.Description}" Width="650" TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="00 20 0 0"/>
+                                <TextBlock Text="{Binding Chapter.Description}" Width="640" TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="00 20 0 0"/>
                                 <Button x:Name="ChapterViewBtn" Style="{DynamicResource ChapterRedBtn}" Height="50" Width="180" Content="Подробнее" HorizontalAlignment="Left" Margin="0 20 0 0" Cursor="Hand" Click="ChapterViewBtn_Click"/>
                             </StackPanel>
                             <Image Width="690" Stretch="UniformToFill" Source="{Binding Chapter.MainImage}" HorizontalAlignment="Right" Height="430" VerticalAlignment="Top" Cursor=""/>

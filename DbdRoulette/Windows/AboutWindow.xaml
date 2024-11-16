@@ -1,0 +1,80 @@
+﻿<Window x:Class="DbdRoulette.Windows.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DbdRoulette.Windows"
+        mc:Ignorable="d"
+        Title="AboutWindow" Height="600" Width="420"
+        BorderThickness="1"
+        BorderBrush="{DynamicResource ThemePrimaryBrush}"
+
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF161D23">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="Header" Grid.Row="0" Background="#FF161D23">
+            <TextBlock Text="О программе" Style="{DynamicResource Header}" FontSize="20" FontWeight="Medium" Margin="10 0 0 0" VerticalAlignment="Center" Foreground="White"/>
+            <Separator Background="{DynamicResource ThemePrimaryBrush}" Margin="0 34 0 0"/>
+            <Viewbox  Margin="0 0 5 0"  Height="25" HorizontalAlignment="Right">
+                <Button x:Name="CloseButton" Style="{DynamicResource CloseWindowButton}" Width="35" Height="35" Click="CloseButton_Click"/>
+            </Viewbox>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="LogoImg" Source="/Resources/DefaultIcon.ico" Height="60" Width="60" Margin="10 0 0 0" HorizontalAlignment="Left"/>
+            <TextBlock Style="{DynamicResource PtSansText}" Grid.Row="1" Text="Версия:" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Foreground="White" HorizontalAlignment="Left"/>
+            <TextBlock Style="{DynamicResource PtSansText}" Grid.Row="2" Text="GitHub:" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Foreground="White" HorizontalAlignment="Left"/>
+            <TextBlock Style="{DynamicResource PtSansText}" x:Name="TbVersion" Grid.Row="1" Grid.Column="1" Text="1.0.0" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Foreground="White" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="GitLinkBtn" Style="{DynamicResource PtSansText}" Grid.Row="2" Grid.Column="1" Text="https://github.com/grosfae/DbdRoulette" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Foreground="White" HorizontalAlignment="Left" Cursor="Hand" MouseLeftButtonDown="GitLinkBtn_MouseLeftButtonDown"/>
+            <TextBlock Style="{DynamicResource Header}" Grid.Column="1" Text="DBD: Roulette Dealer" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="22" Margin="10 0 0 0" Foreground="White"/>
+            <StackPanel  Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 10 0 0">
+                <TextBlock Style="{DynamicResource PtSansText}" Text="Приложение не имеет никакого отношения к разработчикам игры и похожим на этот ресурс. Разработано с целью разнообразить приватный режим в игре Dead By Daylight." TextWrapping="Wrap" FontSize="18" Foreground="White" Margin="10 0 10 0"/>
+                <TextBlock Style="{DynamicResource PtSansText}" Text="Содержит некую справочную информацию о мире игры, а также рулетки с различным рандомайзером для приватного режима игры." TextWrapping="Wrap" FontSize="18" Foreground="White" Margin="10 10 10 0"/>
+            </StackPanel>
+
+            <TextBlock Style="{DynamicResource PtSansText}" Grid.Row="4" Grid.ColumnSpan="2" Text="Источники информации о мире Dead by Daylight" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" Margin="10 10 0 10" Foreground="White" HorizontalAlignment="Left"/>
+            <TextBlock Style="{DynamicResource PtSansText}" Grid.Row="5" Text="Rus - Wiki:" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Foreground="White" HorizontalAlignment="Left"/>
+            <TextBlock Style="{DynamicResource PtSansText}" x:Name="RusWikiTb" Grid.Row="5" Grid.Column="1" Text="https://dead-by-daylight.fandom.com/ru" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="18" Margin="10 0 0 0" Foreground="White" HorizontalAlignment="Left" Cursor="Hand" MouseLeftButtonDown="RusWikiTb_MouseLeftButtonDown"/>
+            
+            <TextBlock Style="{DynamicResource PtSansText}" Grid.Row="6" Text="Eng - Wiki:" VerticalAlignment="Center" FontSize="18" Margin="10 10 0 0" Foreground="White" HorizontalAlignment="Left"/>
+            <TextBlock Style="{DynamicResource PtSansText}" x:Name="EngWikiTb" Grid.Row="6" Grid.Column="1" Text="https://deadbydaylight.fandom.com/" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="18" Margin="10 10 0 0" Foreground="White" HorizontalAlignment="Left" Cursor="Hand" MouseLeftButtonDown="EngWikiTb_MouseLeftButtonDown"/>
+            
+            <TextBlock Style="{DynamicResource PtSansText}" Grid.Row="7" Text="Сайт игры:" VerticalAlignment="Center" FontSize="18" Margin="10 10 0 0" Foreground="White" HorizontalAlignment="Left"/>
+            <TextBlock Style="{DynamicResource PtSansText}"  x:Name="OffSiteTb" Grid.Row="7" Grid.Column="1" Text="https://deadbydaylight.com/" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="18" Margin="10 10 0 0" Foreground="White" HorizontalAlignment="Left" Cursor="Hand" MouseLeftButtonDown="OffSiteTb_MouseLeftButtonDown"/>
+            
+            <TextBlock Style="{DynamicResource PtSansText}" Grid.Row="8" Grid.ColumnSpan="2" Text="Данная программа имеет открытый исходный код и распространяется бесплатно" VerticalAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="18" Foreground="White" Margin="10 20 0 20" FontWeight="Bold"/>
+
+        </Grid>
+        
+        <Grid Grid.Row="2" HorizontalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="OkBtn" Style="{StaticResource CardBtnWhite}" Content="ОК" FontSize="20" Width="80" Height="30"  Grid.Column="0" Margin="0 0 0 10" Click="OkBtn_Click"/>
+        </Grid>
+    </Grid>
+</Window>

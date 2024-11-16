@@ -349,20 +349,20 @@
                                 <Grid Margin="0 20 0 0">
                                     <StackPanel HorizontalAlignment="Left" Margin="40 0 0 0">
                                         <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Список игроков" HorizontalAlignment="Center" FontSize="26" />
-                                        <ListView x:Name="LvPartyPlayers" d:ItemsSource="{d:SampleData ItemCount=7}" Margin="0 10 0 0" HorizontalAlignment="Center" Height="370">
-                                            <ListView.Template>
+                                        <ListBox x:Name="LvPartyPlayers" d:ItemsSource="{d:SampleData ItemCount=7}" Margin="0 10 0 0" HorizontalAlignment="Center" Height="370">
+                                            <ListBox.Template>
                                                 <ControlTemplate TargetType="ItemsControl">
                                                     <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top">
                                                         <ItemsPresenter VerticalAlignment="Top" HorizontalAlignment="Center"/>
                                                     </ScrollViewer>
                                                 </ControlTemplate>
-                                            </ListView.Template>
-                                            <ListView.ItemTemplate>
+                                            </ListBox.Template>
+                                            <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <ToggleButton x:Name="TbSelectPlayer" Style="{DynamicResource PlayerSelectToggle}" Width="275" Height="60" Margin="5" Content="{Binding Name}" MinWidth="180" FontSize="20" Checked="TbSelectPlayer_Checked" Unchecked="TbSelectPlayer_Unchecked"/>
                                                 </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                        </ListView>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
                                     </StackPanel>
                                     <StackPanel>
                                         <StackPanel HorizontalAlignment="Center" Margin="0 0 0 30">
@@ -388,18 +388,18 @@
                                     </StackPanel>
                                     <StackPanel HorizontalAlignment="Right" Margin="0 0 40 0">
                                         <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="Результат" HorizontalAlignment="Center" FontSize="26" />
-                                        <ListView x:Name="LvPartyResult" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0 10 0 0" HorizontalAlignment="Center" Height="370" Width="300">
-                                            <ListView.Background>
+                                        <ListBox x:Name="LvPartyResult" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0 10 0 0" HorizontalAlignment="Center" Height="370" Width="300">
+                                            <ListBox.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
-                                            </ListView.Background>
-                                            <ListView.Template>
+                                            </ListBox.Background>
+                                            <ListBox.Template>
                                                 <ControlTemplate TargetType="ItemsControl">
                                                     <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="{TemplateBinding Background}" Height="{TemplateBinding Height}">
                                                         <ItemsPresenter VerticalAlignment="Top" HorizontalAlignment="Center"/>
                                                     </ScrollViewer>
                                                 </ControlTemplate>
-                                            </ListView.Template>
-                                            <ListView.ItemTemplate>
+                                            </ListBox.Template>
+                                            <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <Border BorderBrush="#FF3881EF" BorderThickness="1" Margin="0 5">
                                                         <Grid Width="275" Height="60" >
@@ -408,8 +408,8 @@
                                                         </Grid>
                                                     </Border>
                                                 </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                        </ListView>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -427,13 +427,13 @@
                                             <StackPanel.Background>
                                                 <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
                                             </StackPanel.Background>
-                                            <TextBlock Text="{Binding Map.Name}" Width="980" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White"/>
+                                            <TextBlock Text="{Binding Name}" Width="980" TextWrapping="Wrap" FontSize="26" HorizontalAlignment="Center" Style="{DynamicResource ArkhipText}" Foreground="White"/>
                                             <Rectangle Fill="#FF3881EF" Width="80" Height="4" Margin="15 3 0 0" HorizontalAlignment="Left">
                                                 <Rectangle.RenderTransform>
                                                     <SkewTransform AngleX="-45"/>
                                                 </Rectangle.RenderTransform>
                                             </Rectangle>
-                                            <TextBlock Text="{Binding Map.Description}" Width="980" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 10 0 10"/>
+                                            <TextBlock Text="{Binding Description}" Width="980" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 10 0 10"/>
                                         </StackPanel>
                                     </Grid>
                                     <Button x:Name="LocationRollBtn" Style="{DynamicResource HalfOpacityButton}" Content="Определить измерение" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="50" Width="1000" FontSize="24" Click="LocationRollBtn_Click"/>
@@ -466,18 +466,18 @@
                                                             </Grid>
                                                             <StackPanel Margin="0 0 0 15">
                                                                 <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
-                                                                <ListView ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
-                                                                    <ListView.Template>
+                                                                <ListBox ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
+                                                                    <ListBox.Template>
                                                                         <ControlTemplate TargetType="ItemsControl">
                                                                             <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                                                         </ControlTemplate>
-                                                                    </ListView.Template>
-                                                                    <ListView.ItemTemplate>
+                                                                    </ListBox.Template>
+                                                                    <ListBox.ItemTemplate>
                                                                         <DataTemplate>
                                                                             <TextBlock Margin="0 5" Text="{Binding Effect.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
                                                                         </DataTemplate>
-                                                                    </ListView.ItemTemplate>
-                                                                </ListView>
+                                                                    </ListBox.ItemTemplate>
+                                                                </ListBox>
                                                                 <TextBlock Margin="0 10" Visibility="{Binding ShowQuote}" Text="{Binding Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
                                                             </StackPanel>
                                                         </StackPanel>
@@ -511,18 +511,18 @@
                                                             </Grid>
                                                             <StackPanel Margin="0 0 0 15">
                                                                 <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
-                                                                <ListView ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
-                                                                    <ListView.Template>
+                                                                <ListBox ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
+                                                                    <ListBox.Template>
                                                                         <ControlTemplate TargetType="ItemsControl">
                                                                             <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                                                         </ControlTemplate>
-                                                                    </ListView.Template>
-                                                                    <ListView.ItemTemplate>
+                                                                    </ListBox.Template>
+                                                                    <ListBox.ItemTemplate>
                                                                         <DataTemplate>
                                                                             <TextBlock Margin="0 5" Text="{Binding Effect.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
                                                                         </DataTemplate>
-                                                                    </ListView.ItemTemplate>
-                                                                </ListView>
+                                                                    </ListBox.ItemTemplate>
+                                                                </ListBox>
                                                                 <TextBlock Margin="0 10" Visibility="{Binding ShowQuote}" Text="{Binding Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
                                                             </StackPanel>
                                                         </StackPanel>
@@ -556,18 +556,18 @@
                                                             </Grid>
                                                             <StackPanel Margin="0 0 0 15">
                                                                 <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
-                                                                <ListView ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
-                                                                    <ListView.Template>
+                                                                <ListBox ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
+                                                                    <ListBox.Template>
                                                                         <ControlTemplate TargetType="ItemsControl">
                                                                             <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                                                         </ControlTemplate>
-                                                                    </ListView.Template>
-                                                                    <ListView.ItemTemplate>
+                                                                    </ListBox.Template>
+                                                                    <ListBox.ItemTemplate>
                                                                         <DataTemplate>
                                                                             <TextBlock Margin="0 5" Text="{Binding Effect.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
                                                                         </DataTemplate>
-                                                                    </ListView.ItemTemplate>
-                                                                </ListView>
+                                                                    </ListBox.ItemTemplate>
+                                                                </ListBox>
                                                                 <TextBlock Margin="0 10" Visibility="{Binding ShowQuote}" Text="{Binding Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
                                                             </StackPanel>
                                                         </StackPanel>
@@ -601,18 +601,18 @@
                                                             </Grid>
                                                             <StackPanel Margin="0 0 0 15">
                                                                 <TextBlock Text="{Binding Description}" Style="{DynamicResource PtSansText}" Foreground="White" TextWrapping="Wrap" Width="380" Margin="0 15" FontSize="16"/>
-                                                                <ListView ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
-                                                                    <ListView.Template>
+                                                                <ListBox ItemsSource="{Binding PerkEffect}" Visibility="{Binding ShowEffect}">
+                                                                    <ListBox.Template>
                                                                         <ControlTemplate TargetType="ItemsControl">
                                                                             <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                                                         </ControlTemplate>
-                                                                    </ListView.Template>
-                                                                    <ListView.ItemTemplate>
+                                                                    </ListBox.Template>
+                                                                    <ListBox.ItemTemplate>
                                                                         <DataTemplate>
                                                                             <TextBlock Margin="0 5" Text="{Binding Effect.Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFF0D999" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
                                                                         </DataTemplate>
-                                                                    </ListView.ItemTemplate>
-                                                                </ListView>
+                                                                    </ListBox.ItemTemplate>
+                                                                </ListBox>
                                                                 <TextBlock Margin="0 10" Visibility="{Binding ShowQuote}" Text="{Binding Quote}" Style="{DynamicResource PtSansText}" Foreground="#FFBCB7A3" TextWrapping="Wrap" Width="380" FontSize="16" FontStyle="Italic"/>
                                                             </StackPanel>
                                                         </StackPanel>
@@ -664,20 +664,20 @@
                                                 </Viewbox>
                                                 <TextBlock Style="{DynamicResource Header}" Text="Список персонажей" Foreground="White" FontSize="26" HorizontalAlignment="Right" Margin="0 0 30 0"/>
                                             </Grid>
-                                            <ListView x:Name="LvCharacters" Focusable="False" BorderThickness="0" Width="570" Height="535" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
-                                                <ListView.ItemsPanel>
+                                            <ListBox x:Name="LvCharacters" Focusable="False" BorderThickness="0" Width="570" Height="535" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}">
+                                                <ListBox.ItemsPanel>
                                                     <ItemsPanelTemplate>
                                                         <WrapPanel Width="540" Orientation="Horizontal"/>
                                                     </ItemsPanelTemplate>
-                                                </ListView.ItemsPanel>
-                                                <ListView.Template>
+                                                </ListBox.ItemsPanel>
+                                                <ListBox.Template>
                                                     <ControlTemplate TargetType="ItemsControl">
                                                         <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top">
                                                             <ItemsPresenter VerticalAlignment="Top" HorizontalAlignment="Center"/>
                                                         </ScrollViewer>
                                                     </ControlTemplate>
-                                                </ListView.Template>
-                                                <ListView.ItemTemplate>
+                                                </ListBox.Template>
+                                                <ListBox.ItemTemplate>
                                                     <DataTemplate>
                                                         <ToggleButton x:Name="CharacterBtn" Margin="3 0 3 13" BorderThickness="0" Opacity="0.6" Cursor="Hand" Checked="CharacterBtn_Checked" Unchecked="CharacterBtn_Unchecked">
                                                             <ToggleButton.Style>
@@ -726,8 +726,8 @@
                                                             </ToggleButton.Style>
                                                         </ToggleButton>
                                                     </DataTemplate>
-                                                </ListView.ItemTemplate>
-                                            </ListView>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
                                         </StackPanel>
                                         <Grid Width="500">
                                             <Border Height="535" Width="420" VerticalAlignment="Center" BorderBrush="#FFAA1A18" BorderThickness="1">
@@ -748,7 +748,7 @@
                                                             <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
                                                         </Grid.Background>
                                                     </Grid>
-                                                    <Image x:Name="KillerImage" VerticalAlignment="Bottom" Source="{Binding MainImage}" Width="420" Height="280" Stretch="UniformToFill" Opacity="0"/>
+                                                    <Image x:Name="KillerImage" VerticalAlignment="Bottom" Source="{Binding MainImage}" Width="418" Height="250" Stretch="Uniform" Opacity="0"/>
                                                     <Grid x:Name="ParametersGrid" Opacity="0" Height="150" Width="420" Background="#FFAA1A18" VerticalAlignment="Bottom" Grid.Row="1">
                                                         <Polygon Points="-40 0 -150 150 60 150 60 0" HorizontalAlignment="Right">
                                                             <Polygon.Fill>
@@ -837,23 +837,23 @@
                             <StackPanel Margin="0 0 0 0">
                                 <TextBlock Style="{DynamicResource Header}" Foreground="White" Text="История результатов" HorizontalAlignment="Center" FontSize="40" />
                                 <Grid Margin="0 0 0 40">
-                                    <ListView x:Name="LvResultHistory" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="0 10 0 0" Width="1120" HorizontalAlignment="Center" Height="340" BorderBrush="#FF3881EF" BorderThickness="1">
-                                        <ListView.Background>
+                                    <ListBox x:Name="LvResultHistory" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="0 10 0 0" Width="1120" HorizontalAlignment="Center" Height="340" BorderBrush="#FF3881EF" BorderThickness="1">
+                                        <ListBox.Background>
                                             <SolidColorBrush Color="#FF121212" Opacity="0.4"/>
-                                        </ListView.Background>
-                                        <ListView.Template>
+                                        </ListBox.Background>
+                                        <ListBox.Template>
                                             <ControlTemplate TargetType="ItemsControl">
                                                 <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}">
                                                     <ItemsPresenter VerticalAlignment="Top" HorizontalAlignment="Center"/>
                                                 </ScrollViewer>
                                             </ControlTemplate>
-                                        </ListView.Template>
-                                        <ListView.ItemTemplate>
+                                        </ListBox.Template>
+                                        <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <addons:RouletteResultRowControl DataContext="{Binding}"/>
                                             </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
                                 </Grid>
                             </StackPanel>
                         </StackPanel>

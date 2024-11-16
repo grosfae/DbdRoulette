@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using DbdRoulette.Pages;
 using DbdRoulette.Addons;
 using System.Media;
+using DbdRoulette.Windows;
+using System.IO;
 
 namespace DbdRoulette
 {
@@ -64,7 +66,6 @@ namespace DbdRoulette
                 TryksEyeGrid.Visibility = Visibility.Visible;
                 StartEyeGlow();
             }
-
         }
         public void StartPumpkinAnimation()
         {
@@ -108,6 +109,10 @@ namespace DbdRoulette
             }
             else
             {
+                if(ContentLoader.Visibility == Visibility.Visible)
+                {
+                    return;
+                }
                 MainFrame.Navigate(new SettingsPage());
             }
 
@@ -269,5 +274,10 @@ namespace DbdRoulette
             }
         }
 
+        private void InfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.Show();
+        }
     }
 }

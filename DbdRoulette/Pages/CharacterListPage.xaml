@@ -8,8 +8,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="1500" d:DesignWidth="1400"
       Title="CharacterListPage">
-
-    <Grid >
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
+    <Grid>
         <ScrollViewer CanContentScroll="False">
             <Grid>
                 <Grid.RowDefinitions>
@@ -68,27 +70,27 @@
                         </Border>
                     </Grid>
 
-                    <ListView x:Name="LvCharacters" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding CharacterList,IsAsync=True,NotifyOnTargetUpdated=True}" TargetUpdated="LvCharacters_TargetUpdated">
-                        <ListView.ItemsPanel>
+                    <ListBox x:Name="LvCharacters" Focusable="False" BorderThickness="0" Width="1270" Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding CharacterList, IsAsync=True,NotifyOnTargetUpdated=True}" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=False}" IsVisibleChanged="LvCharacters_IsVisibleChanged" TargetUpdated="LvCharacters_TargetUpdated">
+                        <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Width="1270" Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                        <ListView.Template>
+                        </ListBox.ItemsPanel>
+                        <ListBox.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <ItemsPresenter/>
                             </ControlTemplate>
-                        </ListView.Template>
-                        <ListView.ItemTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="12 0 12 20">
                                     <Border>
                                         <Border.Effect>
                                             <DropShadowEffect Color="{Binding ShadowColor, FallbackValue=#FFFFFFFF}" ShadowDepth="0" BlurRadius="16"/>
                                         </Border.Effect>
-                                        <Image Source="{Binding MainIcon}" Height="220" Width="220"/>
+                                        <Image Source="{Binding MainIcon, IsAsync=True}" Height="220" Width="220"/>
                                     </Border>
-                                    <TextBlock Text="{Binding Name}" Width="220" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{DynamicResource Header}" Foreground="White">
+                                    <TextBlock Text="{Binding Name, IsAsync=True}" Width="220" FontSize="16" VerticalAlignment="Bottom" Margin="0 10 0 0" TextAlignment="Center" TextWrapping="Wrap" Style="{DynamicResource Header}" Foreground="White">
                                         <TextBlock.Background>
                                             <SolidColorBrush Color="Black" Opacity="0.5"/>
                                         </TextBlock.Background>
@@ -104,11 +106,11 @@
                                             <TextBlock Text="{Binding Chapter.ChapterType.Name}" FontSize="16" FontWeight="Medium" TextAlignment="Center" Style="{DynamicResource MiniText}" Foreground="White" Margin="10 0 0 0"/>
                                         </StackPanel>
                                     </Grid>
-                                    <Button x:Name="TbSelectedCharacterBtn" Width="220"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="{Binding Name}" Content="{Binding ShortLetter, Mode=OneWay}" Cursor="Hand"  Click="TbSelectedCharacterBtn_Click"/>
+                                    <Button x:Name="TbSelectedCharacterBtn" Width="220"  Panel.ZIndex="2" Style="{DynamicResource ListCardTextButton}" Tag="{Binding Name, IsAsync=True}" Content="{Binding ShortLetter, Mode=OneWay, IsAsync=True}" Cursor="Hand"  Click="TbSelectedCharacterBtn_Click"/>
                                 </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
                     <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
                 </StackPanel>

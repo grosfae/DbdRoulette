@@ -26,7 +26,6 @@ namespace DbdRoulette.Pages
     public partial class ChapterListPage : Page
     {
         LoadingControl contextContentLoader;
-        public bool FirstTry;
         public ChapterListPage(LoadingControl loadingControl)
         {
             InitializeComponent();
@@ -52,15 +51,6 @@ namespace DbdRoulette.Pages
 
         private void LvChapters_TargetUpdated(object sender, DataTransferEventArgs e)
         {
-            if (FirstTry == true)
-            {
-                contextContentLoader.StopAnimation();
-            }
-            else
-            {
-                FirstTry = true;
-            }
-
             if (LvChapters.Items.Count == 0)
             {
                 NothingFoundElement.Visibility = Visibility.Visible;
@@ -69,6 +59,14 @@ namespace DbdRoulette.Pages
             {
                 NothingFoundElement.Visibility = Visibility.Collapsed;
                 LvChapters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            }
+        }
+
+        private void LvChapters_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (LvChapters.Visibility == Visibility.Visible)
+            {
+                contextContentLoader.StopAnimation();
             }
         }
     }

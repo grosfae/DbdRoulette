@@ -12,7 +12,6 @@ namespace DbdRoulette.Components
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int PieValue { get; set; }
         public string Lore { get; set; }
         public byte[] MainIcon { get; set; }
         public byte[] MainImage { get; set; }
@@ -51,7 +50,7 @@ namespace DbdRoulette.Components
                 }
                 if (Chapter.ChapterType.Id == 3)
                 {
-                    return "#FFC50000";
+                    return "#FF3881EF";
                 }
                 else
                 {
@@ -74,7 +73,7 @@ namespace DbdRoulette.Components
                 }
                 if (Chapter.ChapterType.Id == 3)
                 {
-                    return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/RedMetal.jpg";
+                    return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/BlueMetal.jpg";
                 }
                 else
                 {

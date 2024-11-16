@@ -59,5 +59,25 @@ namespace DbdRoulette.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon AnniversaryThemeIcon {
+            get {
+                object obj = ResourceManager.GetObject("AnniversaryThemeIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon HauntedThemeIcon {
+            get {
+                object obj = ResourceManager.GetObject("HauntedThemeIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

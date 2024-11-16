@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DbdRoulette.Addons"
-             mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="620" Loaded="UserControl_Loaded" Unloaded="UcGlobal_Unloaded" MouseEnter="UcGlobal_MouseEnter" MouseLeave="UcGlobal_MouseLeave">
+             mc:Ignorable="d" Height="450"
+              d:DesignWidth="620" Loaded="UserControl_Loaded" Unloaded="UcGlobal_Unloaded" MouseEnter="UcGlobal_MouseEnter" MouseLeave="UcGlobal_MouseLeave">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Panel.ZIndex="3" Grid.RowSpan="3">
             <Border x:Name="VerticalBorder" BorderThickness="4 0" BorderBrush="#FFAA1A18" RenderTransformOrigin="0 0.5" >
@@ -25,23 +25,23 @@
             </Border>
         </Grid>
 
-        <ListView d:ItemsSource="{d:SampleData ItemCount=1}" x:Name="LvSlider" Height="260" Margin="0 -1">
-            <ListView.ItemsPanel>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=1}" x:Name="LvSlider" Height="260" Margin="0 -1">
+            <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.Template>
+            </ListBox.ItemsPanel>
+            <ListBox.Template>
                 <ControlTemplate TargetType="ItemsControl">
                     <ItemsPresenter HorizontalAlignment="Center" Grid.ColumnSpan="3"/>
                 </ControlTemplate>
-            </ListView.Template>
-            <ListView.ItemTemplate>
+            </ListBox.Template>
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Image x:Name="image" Margin="-5 0" Source="{Binding Screenshot}" Width="{Binding ActualWidth, ElementName=LvSlider, Mode=OneWay}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill" Height="258"/>
+                    <Image x:Name="image" Margin="-5 0" Source="{Binding}" Width="620"  Stretch="UniformToFill" Height="258"/>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button x:Name="LeftListBtn" HorizontalAlignment="Left" Style="{DynamicResource ListviewArrowBtn}" Width="25" Height="25" FontSize="18" VerticalAlignment="Center" Panel.ZIndex="1" Cursor="Hand" Click="LeftListBtn_Click" Margin="20 0 0 0">
             <Path Data="M 410.312 454.729 151.767 244.996 410.312 35.271 381.693 0 79.688 244.996 381.693 490 Z" Fill="{Binding Foreground, ElementName=LeftListBtn}" Stretch="Fill" Height="10" Width="6" Margin="0 0 2 0"/>
         </Button>

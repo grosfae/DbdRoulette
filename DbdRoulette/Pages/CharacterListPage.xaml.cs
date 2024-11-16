@@ -29,14 +29,13 @@ namespace DbdRoulette.Pages
     public partial class CharacterListPage : Page
     {
         LoadingControl contextContentLoader;
-        public bool FirstTry;
 
         public CharacterListPage(LoadingControl loadingControl)
         {
             InitializeComponent();
+            
             contextContentLoader = loadingControl;
             DataContext = new CharacterListViewModel();
-            RadioKiller.IsChecked = true;
         }
 
         private void RadioKiller_Checked(object sender, RoutedEventArgs e)
@@ -71,6 +70,8 @@ namespace DbdRoulette.Pages
             CbSort.Items.Add("Сложность - Умеренно");
             CbSort.Items.Add("Сложность - Тяжело");
             CbSort.Items.Add("Сложность - Очень тяжело");
+
+            CbSort.SelectedIndex = 0;
         }
 
         private void RadioSurvivor_Checked(object sender, RoutedEventArgs e)
@@ -128,17 +129,16 @@ namespace DbdRoulette.Pages
             }
         }
 
-
-        private void LvCharacters_TargetUpdated(object sender, DataTransferEventArgs e)
+        private void LvCharacters_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (FirstTry == true)
+            if (LvCharacters.Visibility == Visibility.Visible)
             {
                 contextContentLoader.StopAnimation();
             }
-            else
-            {
-                FirstTry = true;
-            }
+        }
+
+        private void LvCharacters_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
             if (LvCharacters.Items.Count == 0)
             {
                 NothingFoundElement.Visibility = Visibility.Visible;
@@ -148,6 +148,7 @@ namespace DbdRoulette.Pages
                 NothingFoundElement.Visibility = Visibility.Collapsed;
                 LvCharacters.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
             }
+
         }
     }
 }

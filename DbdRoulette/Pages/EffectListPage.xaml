@@ -53,13 +53,13 @@
                             </Grid>
                         </Border>
                     </StackPanel>
-                    <ListView x:Name="LvEffects" Focusable="False" BorderThickness="0" Width="1270" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding EffectList,IsAsync=True,NotifyOnTargetUpdated=True}"  Margin="0 20 0 0" TargetUpdated="LvEffects_TargetUpdated">
-                        <ListView.Template>
+                    <ListBox x:Name="LvEffects" Focusable="False" BorderThickness="0" Width="1270" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding EffectList,IsAsync=True,NotifyOnTargetUpdated=True}"  Margin="0 20 0 0" TargetUpdated="LvEffects_TargetUpdated">
+                        <ListBox.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </ControlTemplate>
-                        </ListView.Template>
-                        <ListView.ItemTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0 -3" Width="1250" Orientation="Horizontal">
                                     <StackPanel.Background>
@@ -86,8 +86,8 @@
                                     <Rectangle Fill="#FF1F1F1F" Width="1"/>
                                 </StackPanel>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     
                     <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
 

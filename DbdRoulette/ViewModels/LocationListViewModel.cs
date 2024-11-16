@@ -6,15 +6,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.TextFormatting;
 
 namespace DbdRoulette.ViewModels
 {
-    public class LocationListViewModel : INotifyPropertyChanged
+    public class LocationListViewModel : ViewModelBase
     {
-        public IEnumerable<Map> StaticLocationList = new List<Map>();
-        public IEnumerable<Map> EditableLocationList = new List<Map>();
-
-        public bool FirstCheck;
+        public List<Map> StaticLocationList { get; private set; }
+        public bool IsLoading { get; private set; }
 
         public string searchText = "";
         public string SearchText
@@ -43,56 +42,63 @@ namespace DbdRoulette.ViewModels
                 OnPropertyChanged("LocationList");
             }
         }
+        
+        public LocationListViewModel()
+        {
+            StaticLocationList = new List<Map>();
+            LoadDataAsync();
+        }
+        private async void LoadDataAsync()
+        {
+            IsLoading = false;
+            OnPropertyChanged(nameof(IsLoading));
+
+            await Task.Run(() => AddDataInList());
+
+            IsLoading = true;
+            OnPropertyChanged(nameof(IsLoading));
+
+            OnPropertyChanged(nameof(LocationList));
+        }
+        private void AddDataInList()
+        {
+            var MapData = App.DB.Map;
+            foreach (var item in MapData)
+            {
+                App.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    StaticLocationList.Add(item);
+                });
+            }
+        }
         public IEnumerable<Map> LocationList
         {
             get
             {
-                if (FirstCheck == false)
-                {
-                    FirstCheck = true;
-
-                    StaticLocationList = App.DB.Map.OrderByDescending(x => x.Chapter.DateRelease).ToList();
-
-                    return StaticLocationList;
-                }
-                else
-                {
-                    RefreshLocations();
-                    return EditableLocationList;
-                }
+                IEnumerable<Map> filteredLocationList = RefreshLocations();
+                return filteredLocationList;
             }
             set
             {
 
             }
         }
-        public LocationListViewModel()
+        IEnumerable<Map> RefreshLocations()
         {
-
-        }
-        private void RefreshLocations()
-        {
-            EditableLocationList = StaticLocationList;
+            IEnumerable<Map> filteredMaps = StaticLocationList;
             if (comboBoxIndex == 0)
             {
-                EditableLocationList = EditableLocationList.OrderByDescending(x => x.Chapter.DateRelease);
+                filteredMaps = filteredMaps.OrderByDescending(x => x.Chapter.CorrectDateRelease);
             }
             if (comboBoxIndex == 1)
             {
-                EditableLocationList = EditableLocationList.OrderBy(x => x.Chapter.DateRelease);
+                filteredMaps = filteredMaps.OrderBy(x => x.Chapter.CorrectDateRelease);
             }
             if (SearchText.Length > 0)
             {
-                EditableLocationList = EditableLocationList.Where(x => x.Name.ToLower().Contains(SearchText.ToLower()));
+                filteredMaps = filteredMaps.Where(x => x.Name.ToLower().Contains(SearchText.ToLower()));
             }
-
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            return filteredMaps;
         }
     }
 }

@@ -62,13 +62,13 @@
                                 <SolidColorBrush Color="#FF121212" Opacity="0.5"/>
                             </StackPanel.Background>
                             <TextBlock Style="{DynamicResource MiniText}" Text="Редкости Предметов" HorizontalAlignment="Center" FontWeight="Regular" Foreground="White" FontSize="26" Margin="10"/>
-                            <ListView x:Name="LvRarities" d:ItemsSource="{d:SampleData ItemCount=7}" Width="300" Margin="0 0 0 15">
-                                <ListView.Template>
+                            <ListBox x:Name="LvRarities" d:ItemsSource="{d:SampleData ItemCount=7}" Width="300" Margin="0 0 0 15">
+                                <ListBox.Template>
                                     <ControlTemplate TargetType="ItemsControl">
                                         <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </ControlTemplate>
-                                </ListView.Template>
-                                <ListView.ItemTemplate>
+                                </ListBox.Template>
+                                <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Margin="0 5">
 
@@ -89,25 +89,25 @@
                                             </TextBlock>
                                         </Grid>
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </StackPanel>
                     </Grid>
 
-                    <ListView x:Name="LvItems" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding ItemList,IsAsync=True,NotifyOnTargetUpdated=True}" TargetUpdated="LvItems_TargetUpdated">
-                        <ListView.ItemsPanel>
+                    <ListBox x:Name="LvItems" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding ItemList,IsAsync=True,NotifyOnTargetUpdated=True}" TargetUpdated="LvItems_TargetUpdated">
+                        <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Width="1270" Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                        <ListView.Template>
+                        </ListBox.ItemsPanel>
+                        <ListBox.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </ControlTemplate>
-                        </ListView.Template>
-                        <ListView.ItemTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="0" x:Name="ItemBtn" MouseLeftButtonDown="ItemBtn_MouseLeftButtonDown" Cursor="Hand">
+                                <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="0" x:Name="ItemBtn" Cursor="Hand">
                                     <Grid.ToolTip>
                                         <StackPanel Width="410">
                                             <StackPanel.Background>
@@ -148,8 +148,8 @@
                                     </TextBlock>
                                 </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     
                     <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
                                     

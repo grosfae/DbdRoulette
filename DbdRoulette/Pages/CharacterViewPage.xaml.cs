@@ -44,6 +44,11 @@ namespace DbdRoulette.Pages
 
             if (contextCharacter is Survivor)
             {
+                if((contextCharacter as Survivor).ChapterId == 3)
+                {
+                    ChapterGrid.Visibility = Visibility.Collapsed;
+                    ChapterSt.Visibility = Visibility.Hidden;
+                }
                 LvPerks.ItemsSource = (contextCharacter as Survivor).SurvivorPerk.ToList();
                 
                 ColorTitleGrid.Background = MiscUtilities.SurvivorBrush;
@@ -75,6 +80,11 @@ namespace DbdRoulette.Pages
             }
             else
             {
+                if ((contextCharacter as Killer).ChapterId == 3)
+                {
+                    ChapterGrid.Visibility = Visibility.Collapsed;
+                    ChapterSt.Visibility = Visibility.Hidden;
+                }
                 RadioPower.IsChecked = true;
                 LvPerks.ItemsSource = (contextCharacter as Killer).KillerPerk.ToList();
             }
@@ -102,14 +112,28 @@ namespace DbdRoulette.Pages
             if (contextCharacter is Survivor)
             {
                 var selectedItem = (sender as RadioButton).DataContext as SurvivorPerk;
-                PerksDemoImage.ImageSource = MiscUtilities.ImageConvert(selectedItem.Perk.DemoImage);
+                if (selectedItem.Perk.DemoImage != null)
+                {
+                    PerksDemoImage.ImageSource = MiscUtilities.ImageConvert(selectedItem.Perk.DemoImage);
+                }
+                else
+                {
+                    PerksDemoImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/Misc/EmptyImage.jpg"));
+                }
                 TbTitlePerk.Text = selectedItem.Perk.Name;
                 TbPerkDescription.Text = selectedItem.Perk.Description;
             }
             else
             {
                 var selectedItem = (sender as RadioButton).DataContext as KillerPerk;
-                PerksDemoImage.ImageSource = MiscUtilities.ImageConvert(selectedItem.Perk.DemoImage);
+                if (selectedItem.Perk.DemoImage != null)
+                {
+                    PerksDemoImage.ImageSource = MiscUtilities.ImageConvert(selectedItem.Perk.DemoImage);
+                }
+                else
+                {
+                    PerksDemoImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/Misc/EmptyImage.jpg"));
+                }
                 TbTitlePerk.Text = selectedItem.Perk.Name;
                 TbPerkDescription.Text = selectedItem.Perk.Description;
             }
@@ -131,7 +155,14 @@ namespace DbdRoulette.Pages
             };
             var character = contextCharacter as Killer;
             TbTypeHeader.Text = "Сила";
-            PerksDemoImage.ImageSource = MiscUtilities.ImageConvert(character.Power.DemoImage);
+            if (character.Power.DemoImage != null)
+            {
+                PerksDemoImage.ImageSource = MiscUtilities.ImageConvert(character.Power.DemoImage);
+            }
+            else
+            {
+                PerksDemoImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/DbdRoulette;component/Resources/Misc/EmptyImage.jpg"));
+            }
             TbTitlePerk.Text = character.Power.Name;
             TbPerkDescription.Text = character.Power.Description;
             PerksDemoImage.BeginAnimation(ImageBrush.OpacityProperty, animationOpacity);

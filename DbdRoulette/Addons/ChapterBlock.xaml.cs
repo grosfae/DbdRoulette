@@ -25,15 +25,21 @@ namespace DbdRoulette.Addons
     /// </summary>
     public partial class ChapterBlock : UserControl
     {
-        object contextChapter;
+        Chapter contextChapter;
 
         int maxPage = 0;
         int numberPage = 0;
         int count = 1;
         int fakePage = 1;
 
-        ObservableCollection<byte[]> Images = new ObservableCollection<byte[]>();
+        private List<byte[]> Images = new List<byte[]>();
+        private List<Killer> KillerList = new List<Killer> ();
+        private List<Survivor> SurvivorList = new List<Survivor>();
 
+        private string ChapterKillers = string.Empty;
+        private string ChapterSurvivors = string.Empty;
+        private string ChapterMap = string.Empty;
+        private string ChapterCharm = string.Empty;
         public ChapterBlock()
         {
             InitializeComponent();
@@ -50,46 +56,159 @@ namespace DbdRoulette.Addons
                 HorizontalBorder.BorderBrush = MiscUtilities.AnniversaryThemeGoldenBrush;
             }
         }
+        private void FillLists()
+        {
+            if(contextChapter.Killer.Count > 0)
+            {
+                foreach (var killer in contextChapter.Killer)
+                {
+                    KillerList.Add(killer);
+                }
+            }
+            if(contextChapter.Survivor.Count > 0)
+            {
+                foreach (var survivor in contextChapter.Survivor)
+                {
+                    SurvivorList.Add(survivor);
+                }
+            }
+        }
+        private void FindChapterData()
+        {
+            FillLists();
+            if (KillerList.Count == 1)
+            {
+                ChapterKillers = string.Format("Новый Убийца: {0}", KillerList.FirstOrDefault().Name);
+            }
+            else
+            {
+                ChapterKillers = string.Empty;
+            }
 
+            if (SurvivorList.Count == 1)
+            {
+                ChapterSurvivors = string.Format("Новый Выживший: {0}", SurvivorList.FirstOrDefault().Name);
+            }
+            else if (SurvivorList.Count > 1)
+            {
+                List<string> survivorNames = new List<string>();
+                foreach (var survivor in SurvivorList)
+                {
+                    survivorNames.Add(survivor.Name);
+                }
+                ChapterSurvivors = $"Новые Выжившие: {string.Join(" и ", survivorNames)}";
+            }
+            else
+            {
+                ChapterSurvivors = string.Empty;
+            }
+
+            var Maps = contextChapter.Map;
+            if (Maps.Count == 1)
+            {
+                ChapterMap = string.Format("Новая Локация: {0}", Maps.FirstOrDefault().Name);
+            }
+            else
+            {
+                ChapterMap = string.Empty;
+            }
+
+            var Charm = contextChapter.ChapterCharm;
+            if (Charm.Count == 1)
+            {
+                ChapterCharm = string.Format("Новый Амулет: {0}", Charm.FirstOrDefault().Charm.Name);
+            }
+            else
+            {
+                ChapterCharm = string.Empty;
+            }
+        }
+        private void ShowChapterData()
+        {
+            if (ChapterKillers.Length > 0)
+            {
+                TbKiller.Text = ChapterKillers;
+                DecKiller.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DecKiller.Visibility = Visibility.Collapsed;
+            }
+
+            if (ChapterSurvivors.Length > 0)
+            {
+                TbSurvivor.Text = ChapterSurvivors;
+                DecSurvivor.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DecSurvivor.Visibility = Visibility.Collapsed;
+            }
+
+            if (ChapterMap.Length > 0)
+            {
+                TbMap.Text = ChapterMap;
+                DecMap.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DecMap.Visibility = Visibility.Collapsed;
+            }
+
+            if (ChapterCharm.Length > 0)
+            {
+                TbCharm.Text = ChapterCharm;
+                DecCharm.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DecCharm.Visibility = Visibility.Collapsed;
+            }
+        }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             contextChapter = DataContext as Chapter;
-            var chapter = contextChapter as Chapter;
 
-            if (chapter.MainImage != null)
+            FindChapterData();
+            ShowChapterData();
+
+            if (contextChapter.MainImage != null)
             {
-                Images.Add(chapter.MainImage);
+                Images.Add(contextChapter.MainImage);
             }
-            if (chapter.Killer.Count > 0)
+            if (KillerList.Count > 0)
             {
-                foreach (var killer in chapter.Killer)
+                foreach (var killer in KillerList)
                 {
                     if (killer.KillerPerk.Count > 0)
                     {
                         foreach (var killerPerk in killer.KillerPerk)
                         {
-                            Images.Add(killerPerk.Perk.DemoImage);
-
+                            if (killerPerk.Perk.DemoImage != null)
+                            {
+                                Images.Add(killerPerk.Perk.DemoImage);
+                            }
                         }
                         break;
                     }
-
                 }
             }
-            if (chapter.Survivor.Count > 0)
+            if (SurvivorList.Count > 0)
             {
-                foreach (var survivor in chapter.Survivor)
+                foreach (var survivor in SurvivorList)
                 {
                     if (survivor.SurvivorPerk.Count > 0)
                     {
                         foreach (var survivorPerk in survivor.SurvivorPerk)
                         {
-                            Images.Add(survivorPerk.Perk.DemoImage);
+                            if(survivorPerk.Perk.DemoImage != null)
+                            {
+                                Images.Add(survivorPerk.Perk.DemoImage);
+                            }
                         }
                         break;
                     }
                 }
-
             }
 
             if (Images.Count > 0)
@@ -97,10 +216,10 @@ namespace DbdRoulette.Addons
                 maxPage = Images.Count;
             }
         }
-
+        
         private void Refresh()
         {
-            IEnumerable<byte[]> bytes = Images.ToList();
+            List<byte[]> bytes = Images.ToList();
             if (bytes.Count() > count)
             {
                 if (bytes.Count() % count > 0)
@@ -123,9 +242,6 @@ namespace DbdRoulette.Addons
 
             bytes = Images.Skip(count * numberPage).Take(count).ToList();
             LvSlider.ItemsSource = bytes.ToList();
-
-           
-
         }
 
         private void AnimListview()

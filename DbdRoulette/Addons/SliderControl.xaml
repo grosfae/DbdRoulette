@@ -7,23 +7,23 @@
              mc:Ignorable="d" Loaded="UserControl_Loaded"
             >
     <Grid>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=1}" x:Name="LvSlider" Height="{Binding ActualHeight, ElementName=userControl, Mode=OneWay}" Margin="0 -1">
-            <ListView.ItemsPanel>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=1}" x:Name="LvSlider" Height="{Binding ActualHeight, ElementName=userControl, Mode=OneWay}" Margin="0 -1">
+            <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.Template>
+            </ListBox.ItemsPanel>
+            <ListBox.Template>
                 <ControlTemplate TargetType="ItemsControl">
                     <ItemsPresenter HorizontalAlignment="Center" Grid.ColumnSpan="3"/>
                 </ControlTemplate>
-            </ListView.Template>
-            <ListView.ItemTemplate>
+            </ListBox.Template>
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Image x:Name="image" Margin="-5 0" Height="{Binding ActualHeight, ElementName=LvSlider, Mode=OneWay}" Source="{Binding}" Width="{Binding ActualWidth, ElementName=LvSlider, Mode=OneWay}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill" />
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Viewbox Margin="20 0 0 0" VerticalAlignment="Center" Width="50"  HorizontalAlignment="Left">
             <Button x:Name="LeftListBtn" Style="{DynamicResource ListviewArrowBtn}" Width="25" Height="25" FontSize="18" VerticalAlignment="Center" Panel.ZIndex="1" Cursor="Hand" Click="LeftListBtn_Click" >
                 <Path Data="M 410.312 454.729 151.767 244.996 410.312 35.271 381.693 0 79.688 244.996 381.693 490 Z" Fill="{Binding Foreground, ElementName=LeftListBtn}" Stretch="Fill" Height="10" Width="6" Margin="0 0 2 0"/>

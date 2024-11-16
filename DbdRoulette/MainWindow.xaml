@@ -34,9 +34,10 @@
                 <Image x:Name="LogoImage" Source="/Resources/GameLogo.png" Width="70" Height="70" Margin="15 0 0 0"/>
                 <Button x:Name="MainBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Главная" Click="MainBtn_Click"/>
                 <ToggleButton x:Name="CharactersBtn" Style="{DynamicResource MenuListBtn}" Width="150" Height="50" Content="Персонажи" Checked="CharactersBtn_Checked" Unchecked="CharactersBtn_Unchecked"/>
-                <Button x:Name="LocationViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Локации" Click="LocationViewBtn_Click"/>
-                <Button x:Name="DLCViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Дополнения" Click="DLCViewBtn_Click"/>
+                <!--<Button x:Name="LocationViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Локации" Click="LocationViewBtn_Click"/>-->
+                <!--<Button x:Name="DLCViewBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Дополнения" Click="DLCViewBtn_Click"/>-->
                 <Button x:Name="RoulettesBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="Рулетки" Click="RoulettesBtn_Click"/>
+                <Button x:Name="InfoBtn" Style="{DynamicResource MenuButton}" Width="150" Height="50" Content="О программе" Click="InfoBtn_Click"/>
             </StackPanel>
         </Grid>
         

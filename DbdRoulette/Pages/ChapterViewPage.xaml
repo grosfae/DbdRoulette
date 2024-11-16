@@ -39,13 +39,13 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
 
-                    <ListView x:Name="LvKillers" BorderThickness="0" Width="1390" d:ItemsSource="{d:SampleData ItemCount=1}">
-                        <ListView.Template>
+                    <ListBox x:Name="LvKillers" BorderThickness="0" Width="1390" d:ItemsSource="{d:SampleData ItemCount=1}">
+                        <ListBox.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <ItemsPresenter/>
                             </ControlTemplate>
-                        </ListView.Template>
-                        <ListView.ItemTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="0 0 0 100">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="30 0 0 0">
@@ -109,16 +109,16 @@
                                     <Image HorizontalAlignment="Right" Source="/Resources/Misc/KillerIcon.png" Height="200" Width="200" Margin="0 0 -170 20" Opacity="0.3" VerticalAlignment="Bottom" Panel.ZIndex="-1" RenderOptions.BitmapScalingMode="Fant"/>
                                 </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
-                    <ListView x:Name="LvSurvivors" BorderThickness="0" Width="1390" d:ItemsSource="{d:SampleData ItemCount=1}">
-                        <ListView.Template>
+                    <ListBox x:Name="LvSurvivors" BorderThickness="0" Width="1390" d:ItemsSource="{d:SampleData ItemCount=1}">
+                        <ListBox.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <ItemsPresenter/>
                             </ControlTemplate>
-                        </ListView.Template>
-                        <ListView.ItemTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="0 0 0 50" Width="1390">
                                     <Image HorizontalAlignment="Left" Source="/Resources/Misc/SurvIcon.png" Height="200" Width="200" Margin="20 0 0 20" Opacity="0.3" VerticalAlignment="Bottom" Panel.ZIndex="-1" RenderOptions.BitmapScalingMode="Fant"/>
@@ -169,8 +169,8 @@
                                 </Grid>
 
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
                     <Rectangle x:Name="RecGradient" Height="150" Fill="#FFAA1A18">
                         <Rectangle.OpacityMask>
@@ -180,7 +180,6 @@
                             </LinearGradientBrush>
                         </Rectangle.OpacityMask>
                     </Rectangle>
-
 
                     <Grid>
                         <Image x:Name="HauntedLine" Source="/Resources/HauntedTheme/Line1.png" VerticalAlignment="Top" Margin="0 -43 0 0" Panel.ZIndex="1" Visibility="Collapsed"/>
@@ -211,7 +210,10 @@
                                     <TextBlock x:Name="CharmDescription" Width="650" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 20 0 0"/>
                                 </StackPanel>
                             </Grid>
-                            <Grid x:Name="GridMap" Visibility="Collapsed">
+                            
+                            <!--ЛОКАЦИЯ ИЗ ДОПОЛНЕНИЯ-->
+                            
+                            <!--<Grid x:Name="GridMap" Visibility="Collapsed">
                                 <Grid.Background>
                                     <ImageBrush x:Name="GridMapImageSource" ImageSource="/Resources/Misc/RedBackground.png"/>
                                 </Grid.Background>
@@ -233,12 +235,13 @@
                                     </Rectangle>
                                     <TextBlock x:Name="MapDescription" Width="1040" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Left" Style="{DynamicResource PtSansText}" Foreground="White" Margin="0 20 0 0"/>
                                 </StackPanel>
-                            </Grid>
+                            </Grid>-->
                         </StackPanel>
                     </Grid>
 
-
-                    <Grid HorizontalAlignment="Stretch" Margin="175 0 0 20">
+                    <!--ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ-->
+                    
+                    <!--<Grid HorizontalAlignment="Stretch" Margin="175 0 0 20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
@@ -255,13 +258,13 @@
                                 <ImageBrush x:Name="MainImage"/>
                             </Button.Background>
                         </Button>
-                        <ListView x:Name="LvGallery" Grid.Column="1" Grid.RowSpan="2" Focusable="False" BorderThickness="0" Loaded="LvGallery_Loaded"  d:ItemsSource="{d:SampleData ItemCount=14}" Height="730" Margin="70,0,0,0" HorizontalAlignment="Left">
-                            <ListView.Template>
+                        <ListBox x:Name="LvGallery" Grid.Column="1" Grid.RowSpan="2" Focusable="False" BorderThickness="0" Loaded="LvGallery_Loaded"  d:ItemsSource="{d:SampleData ItemCount=14}" Height="730" Margin="70,0,0,0" HorizontalAlignment="Left">
+                            <ListBox.Template>
                                 <ControlTemplate TargetType="ItemsControl">
                                     <ItemsPresenter/>
                                 </ControlTemplate>
-                            </ListView.Template>
-                            <ListView.ItemTemplate>
+                            </ListBox.Template>
+                            <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <RadioButton Checked="RadioGalleryBtn_Checked" GroupName="Images" Style="{DynamicResource PictureSelectRadio}" Width="220" Height="130" Margin="0 5" Cursor="Hand">
                                         <RadioButton.Background>
@@ -272,9 +275,9 @@
                                         </RadioButton.RenderTransform>
                                     </RadioButton>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Grid>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>-->
 
                 </StackPanel>
             </Grid>

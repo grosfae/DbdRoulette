@@ -26,6 +26,8 @@ namespace DbdRoulette.Addons
     {
         Map contextMap;
 
+        List<byte[]> MapGalleryImages = new List<byte[]>();
+
         int maxPage = 0;
         int numberPage = 0;
         int count = 1;
@@ -33,7 +35,7 @@ namespace DbdRoulette.Addons
         public MapSlider()
         {
             InitializeComponent();
-            if(Settings.Default.ThemeCode == 2)
+            if (Settings.Default.ThemeCode == 2)
             {
                 LineSep.Fill = MiscUtilities.HauntedThemeCyanBrush;
                 VerticalBorder.BorderBrush = MiscUtilities.HauntedThemeCyanBrush;
@@ -50,24 +52,31 @@ namespace DbdRoulette.Addons
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             contextMap = DataContext as Map;
-
-            if (contextMap.MapGallery.Count > 0)
+            FillList();
+            if (MapGalleryImages.Count > 0)
             {
-                maxPage = contextMap.MapGallery.Count;
+                maxPage = MapGalleryImages.Count;
+            }
+        }
+        private void FillList()
+        {
+            foreach (var item in App.DB.MapGallery.Where(x => x.MapId == contextMap.Id))
+            {
+                MapGalleryImages.Add(item.Screenshot);
             }
         }
         private void Refresh()
         {
-            IEnumerable<MapGallery> mapGallery = App.DB.MapGallery.Where(x => x.MapId == contextMap.Id).ToList();
-            if (mapGallery.Count() > count)
+            List<byte[]> bytes = MapGalleryImages.ToList();
+            if (bytes.Count() > count)
             {
-                if (mapGallery.Count() % count > 0)
+                if (bytes.Count() % count > 0)
                 {
-                    maxPage = (mapGallery.Count() / count) + 1;
+                    maxPage = (MapGalleryImages.Count / count) + 1;
                 }
                 else
                 {
-                    maxPage = mapGallery.Count() / count;
+                    maxPage = MapGalleryImages.Count / count;
                 }
             }
             else
@@ -79,11 +88,8 @@ namespace DbdRoulette.Addons
                 fakePage = maxPage;
             }
 
-            mapGallery = mapGallery.Skip(count * numberPage).Take(count).ToList();
-            LvSlider.ItemsSource = mapGallery.ToList();
-
-
-
+            bytes = MapGalleryImages.Skip(count * numberPage).Take(count).ToList();
+            LvSlider.ItemsSource = bytes.ToList();
         }
 
         private void AnimListview()

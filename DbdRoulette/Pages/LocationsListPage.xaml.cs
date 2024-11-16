@@ -25,7 +25,6 @@ namespace DbdRoulette.Pages
     public partial class LocationsListPage : Page
     {
         LoadingControl contextContentLoader;
-        public bool FirstTry;
         public LocationsListPage(LoadingControl loadingControl)
         {
             InitializeComponent();
@@ -54,15 +53,6 @@ namespace DbdRoulette.Pages
 
         private void LvLocations_TargetUpdated(object sender, DataTransferEventArgs e)
         {
-            if (FirstTry == true)
-            {
-                contextContentLoader.StopAnimation();
-            }
-            else
-            {
-                FirstTry = true;
-            }
-
             if (LvLocations.Items.Count == 0)
             {
                 NothingFoundElement.Visibility = Visibility.Visible;
@@ -71,6 +61,15 @@ namespace DbdRoulette.Pages
             {
                 NothingFoundElement.Visibility = Visibility.Collapsed;
                 LvLocations.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);
+            }
+            LvLocations.BeginAnimation(ListView.OpacityProperty, MiscUtilities.AppearOpacityAnimation);  
+        }
+
+        private void LvLocations_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (LvLocations.Visibility == Visibility.Visible)
+            {
+                contextContentLoader.StopAnimation();
             }
         }
     }

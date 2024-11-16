@@ -16,7 +16,6 @@ namespace DbdRoulette.Components
         public int Id { get; set; }
         public string Name { get; set; }
         public string EngName { get; set; }
-        public int PieValue { get; set; }
         public string Description { get; set; }
         public string Quote { get; set; }
         public byte[] MainIcon { get; set; }
@@ -66,7 +65,14 @@ namespace DbdRoulette.Components
         {
             get
             {
-                return Name.ToUpper();
+                if (string.IsNullOrWhiteSpace(Name))
+                {
+                    return "";
+                }
+                else
+                {
+                    return Name.ToUpper();
+                }
             }
         }
 

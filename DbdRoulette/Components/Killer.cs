@@ -16,7 +16,6 @@ namespace DbdRoulette.Components
     {
         public int Id { get; set; }
         public string Name {get; set; }
-        public int PieValue { get; set; }
         public int DifficultyId { get; set; }
         public string Lore { get; set; }
         public string MoveSpeed { get; set; }
@@ -52,15 +51,15 @@ namespace DbdRoulette.Components
         {
             get
             {
-                if (Chapter.ChapterType.Id == 1)
+                if (Chapter.ChapterTypeId == 1)
                 {
                     return "#FFB5873C";
                 }
-                if (Chapter.ChapterType.Id == 2)
+                if (Chapter.ChapterTypeId == 2)
                 {
-                    return "#FF6C6358";
+                    return "#FFD4D4D4";
                 }
-                if (Chapter.ChapterType.Id == 3)
+                if (Chapter.ChapterTypeId == 3)
                 {
                     return "#FFC50000";
                 }
@@ -75,15 +74,15 @@ namespace DbdRoulette.Components
         {
             get
             {
-                if (Chapter.ChapterType.Id == 1)
+                if (Chapter.ChapterTypeId == 1)
                 {
                     return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/Gold.jpg";
                 }
-                if (Chapter.ChapterType.Id == 2)
+                if (Chapter.ChapterTypeId == 2)
                 {
                     return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/Metal.jpg";
                 }
-                if (Chapter.ChapterType.Id == 3)
+                if (Chapter.ChapterTypeId == 3)
                 {
                     return "pack://application:,,,/DbdRoulette;component/Resources/MetalCuts/RedMetal.jpg";
                 }
@@ -98,15 +97,15 @@ namespace DbdRoulette.Components
         {
             get
             {
-                if (Chapter.ChapterType.Id == 1)
+                if (Chapter.ChapterTypeId == 1)
                 {
                     return "";
                 }
-                if (Chapter.ChapterType.Id == 2)
+                if (Chapter.ChapterTypeId == 2)
                 {
                     return "";
                 }
-                if (Chapter.ChapterType.Id == 3)
+                if (Chapter.ChapterTypeId == 3)
                 {
                     return "";
                 }

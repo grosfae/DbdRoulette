@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DbdRoulette.Windows"
         mc:Ignorable="d"
-        Title="CustomMessageBox" MinHeight="170" Width="300" SizeToContent="WidthAndHeight"
+        Title="CustomMessageBox" MinHeight="170" Width="300" SizeToContent="WidthAndHeight" MaxWidth="700"
         BorderThickness="1"
         BorderBrush="{DynamicResource ThemePrimaryBrush}"
 
@@ -21,23 +21,26 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" x:Name="Header" Grid.Row="0" Background="#FF161D23">
+        <Grid x:Name="Header" Grid.Row="0" Background="#FF161D23">
             <TextBlock x:Name="txtTitle" Text="Сообщение" Style="{DynamicResource Header}" FontSize="20" FontWeight="Medium" Margin="10 0 0 0" VerticalAlignment="Center" Foreground="White"/>
-        </StackPanel>
-        <Separator Background="{DynamicResource ThemePrimaryBrush}" Margin="0 34 0 0"/>
-        <Viewbox  Margin="0 0 4 0"  Height="25" HorizontalAlignment="Right">
-            <Button x:Name="CloseButton" Style="{DynamicResource CloseWindowButton}" Width="35" Height="35" Click="CloseButton_Click"/>
-        </Viewbox>
-        <Grid Grid.Row="1">
-            <TextBlock Style="{DynamicResource PtSansText}" x:Name="txtMessage" Grid.Column="1" Text="Внимание! Ошибка в приложении" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14" Margin="15 0 15 0" Foreground="White"/>
+
+            <Separator Background="{DynamicResource ThemePrimaryBrush}" Margin="0 34 0 0"/>
+            <Viewbox  Margin="0 0 5 0"  Height="25" HorizontalAlignment="Right">
+                <Button x:Name="CloseButton" Style="{DynamicResource CloseWindowButton}" Width="35" Height="35" Click="CloseButton_Click"/>
+            </Viewbox>
         </Grid>
-        <Grid Grid.Row="2" HorizontalAlignment="Center" >
+        <ScrollViewer CanContentScroll="False" Grid.Row="1" MaxHeight="900">
+            <Grid>
+                <TextBlock Style="{DynamicResource PtSansText}" x:Name="txtMessage" Grid.Column="1" Text="Внимание! Ошибка в приложении" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="18" Margin="15 0 15 0" Foreground="White"/>
+            </Grid>
+        </ScrollViewer>
+        <Grid Grid.Row="2" HorizontalAlignment="Center" Margin="0 0 0 10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="OkBtn" Style="{StaticResource CardBtnWhite}" Content="Ok" FontSize="20" Width="80" Height="30" Click="OkBtn_Click" Grid.Column="0" Margin="5"/>
-            <Button x:Name="CancelBtn" Style="{StaticResource CardBtnWhite}" Content="Отмена" FontSize="20" Width="80" Height="30" Click="CancelBtn_Click" Grid.Column="1" Margin="5"/>
+            <Button x:Name="OkBtn" Style="{StaticResource CardBtnWhite}" Content="Ok" FontSize="20" Width="80" Height="30" Click="OkBtn_Click" Grid.Column="0" Margin="5 0"/>
+            <Button x:Name="CancelBtn" Style="{StaticResource CardBtnWhite}" Content="Отмена" FontSize="20" Width="80" Height="30" Click="CancelBtn_Click" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Window>

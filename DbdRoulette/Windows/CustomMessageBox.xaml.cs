@@ -82,6 +82,7 @@ namespace DbdRoulette.Windows
             customMessageBox.OkBtn.Content = customMessageBox.GetMessageButton(btnOk);
             customMessageBox.CancelBtn.Content = customMessageBox.GetMessageButton(btnNo);
             customMessageBox.txtTitle.Text = customMessageBox.GetTitle(title);
+            customMessageBox.Title = customMessageBox.GetTitle(title);
 
             switch (title)
             {

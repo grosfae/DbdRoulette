@@ -1,0 +1,55 @@
+﻿<Page x:Class="DbdRoulette.Pages.PerkAddPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DbdRoulette.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1700" d:DesignWidth="1400"
+      Title="PerkAddPage">
+
+    <Grid>
+        <ScrollViewer CanContentScroll="False">
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="Название" FontSize="20"/>
+                    <TextBox Text="{Binding Name}" Width="200" FontSize="20" HorizontalAlignment="Left"/>
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="Название English" FontSize="20"/>
+                    <TextBox Text="{Binding EngName}" Width="200" FontSize="20" HorizontalAlignment="Left"/>
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="Описание" FontSize="20"/>
+                    <TextBox Text="{Binding Description}" Width="500" FontSize="20" HorizontalAlignment="Left" TextWrapping="Wrap" Height="300" AcceptsReturn="True" AcceptsTab="True"/>
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="Цитата" FontSize="20"/>
+                    <TextBox Text="{Binding Quote}" FontSize="20" HorizontalAlignment="Left" AcceptsReturn="True" TextWrapping="Wrap" Width="500" Height="150"/>
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="Тип навыка" FontSize="20"/>
+                    <ComboBox Name="CbPerkType" DisplayMemberPath="Name" Width="200" FontSize="20" HorizontalAlignment="Left" SelectionChanged="CbPerkType_SelectionChanged"/>
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="Владелец" FontSize="20"/>
+                    <ComboBox Name="CbCharacter" DisplayMemberPath="Name" Width="300" FontSize="20" HorizontalAlignment="Left"/>
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="Эффект навыка" FontSize="20"/>
+                    <ComboBox Name="CbFirstEffect" DisplayMemberPath="Name" Width="300" FontSize="20" HorizontalAlignment="Left"/>
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="2 Эффект навыка" FontSize="20" Margin="0 10 0 0"/>
+                    <ComboBox Name="CbSecondEffect" DisplayMemberPath="Name" Width="300" FontSize="20" HorizontalAlignment="Left" />
+                    <Button Name="ResetEffectBtn" Style="{DynamicResource HalfOpacityButton}" Content="Сбросить эффекты" FontSize="20" Width="300" HorizontalAlignment="Left" Margin="0 20 0 0" Click="ResetEffectBtn_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="10 0 0 0">
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="Иконка навыка" FontSize="20"/>
+                    <Border BorderBrush="DarkSlateGray" BorderThickness="2" Margin="0 10 0 0" Width="256" Height="256" HorizontalAlignment="Center">
+                        <Image Width="256" Height="256" Source="{Binding MainIcon}"/>
+                    </Border>
+                    <Button Name="DownloadIconBtn" Content="Загрузить иконку" Style="{DynamicResource HalfOpacityButton}" Margin="0 10 0 0" Click="DownloadIconBtn_Click"/>
+
+                    <TextBlock Foreground="White" Style="{DynamicResource Header}" Text="Демонстрация навыка" FontSize="20" Margin="0 10 0 0"/>
+                    <Border BorderBrush="DarkSlateGray" BorderThickness="2" Margin="0 10 0 0">
+                        <Image Source="{Binding DemoImage}" Width="600" Height="348"/>
+                    </Border>
+                    <Button Name="DownloadDemoImageBtn" Content="Загрузить демонстрационную картинку" Style="{DynamicResource HalfOpacityButton}" Margin="0 10 0 0" Click="DownloadDemoImageBtn_Click"/>
+                    <Button Name="SaveBtn" Content="Сохранить" Style="{DynamicResource HalfOpacityButton}" Margin="0 20 0 0" FontSize="30" Click="SaveBtn_Click"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

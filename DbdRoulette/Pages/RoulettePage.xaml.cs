@@ -794,7 +794,8 @@ namespace DbdRoulette.Pages
             ModsRouletteSt.Visibility = Visibility.Collapsed;
             KillerRouletteSt.Visibility = Visibility.Visible;
             LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Случайный убийца").OrderByDescending(x => x.RollDate).ToList();
-            LvCharacters.ItemsSource = App.DB.Killer.OrderByDescending(x => x.Chapter.DateRelease).ToList();
+            var KillerList = App.DB.Killer.ToList();
+            LvCharacters.ItemsSource = KillerList.OrderByDescending(x => x.Chapter.CorrectDateRelease);
             SelectedKillersList.Clear();
             SelectAllKillersBtn.IsChecked = false;
             IsFirstKillerRollTry = true;
@@ -939,13 +940,12 @@ namespace DbdRoulette.Pages
             }
         }
 
-        private void LocationRollBtn_Click(object sender, RoutedEventArgs e)
+        private async void LocationRollBtn_Click(object sender, RoutedEventArgs e)
         {
 
             var ResultLocation = App.DB.Map.Find(new Random().Next(1, App.DB.Map.Count() + 1));
             if(ResultLocation != null)
             {
-                LocationGrid.DataContext = ResultLocation.MapGallery.FirstOrDefault();
                 string TextResult = $"Локация - {ResultLocation.Name}";
                 App.DB.RouletteResult.Add(new RouletteResult()
                 {
@@ -957,6 +957,8 @@ namespace DbdRoulette.Pages
                 LvResultHistory.ItemsSource = App.DB.RouletteResult.Where(x => x.RouletteName == "Случайная локация").OrderByDescending(x => x.RollDate).ToList();
                 if (IsFirstLocationTry == true)
                 {
+                    LocationGrid.DataContext = ResultLocation.MapGallery.FirstOrDefault();
+                    MapData.DataContext = ResultLocation;
                     TbQuestion.BeginAnimation(OpacityProperty, new DoubleAnimation()
                     {
                         From = 1,
@@ -979,6 +981,7 @@ namespace DbdRoulette.Pages
                         Duration = TimeSpan.FromSeconds(1),
                         EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseOut }
                     });
+
                     IsFirstLocationTry = false;
                 }
                 else
@@ -1023,6 +1026,9 @@ namespace DbdRoulette.Pages
                     };
                     MapImageStoryboard.BeginTime = TimeSpan.FromSeconds(1);
                     MapImage.BeginStoryboard(MapImageStoryboard);
+                    await Task.Delay(2000);
+                    LocationGrid.DataContext = ResultLocation.MapGallery.FirstOrDefault();
+                    MapData.DataContext = ResultLocation;
                 }
             }
             

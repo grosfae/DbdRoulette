@@ -7,30 +7,15 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.TextFormatting;
 
 namespace DbdRoulette.ViewModels
 {
-    public class ChapterListViewModel : INotifyPropertyChanged
+    public class ChapterListViewModel : ViewModelBase
     {
-        public IEnumerable<Chapter> StaticChapterList = new List<Chapter>();
-        public IEnumerable<Chapter> EditableChapterList = new List<Chapter>();
-
-        public bool FirstCheck;
-
-        public string searchText = "";
-        public string SearchText
-        {
-            get
-            {
-                return searchText;
-            }
-            set
-            {
-                searchText = value;
-                OnPropertyChanged("ChapterList");
-            }
-        }
-        public int comboBoxIndex;
+        public bool IsLoading { get; private set; }
+        public List<Chapter> StaticChapterList { get; private set; }
+        public int comboBoxIndex { get; set; }
 
         public int ComboBoxIndex
         {
@@ -44,56 +29,80 @@ namespace DbdRoulette.ViewModels
                 OnPropertyChanged("ChapterList");
             }
         }
+
+        public string searchText = string.Empty;
+
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+            set
+            {
+                searchText = value;
+                OnPropertyChanged("ChapterList");
+            }
+        }
+
+        public ChapterListViewModel()
+        {
+            StaticChapterList = new List<Chapter>();
+            LoadDataAsync();
+        }
+        private async void LoadDataAsync()
+        {
+            IsLoading = false;
+            OnPropertyChanged(nameof(IsLoading));
+
+            await Task.Run(() => AddDataInList());
+
+            IsLoading = true;
+            OnPropertyChanged(nameof(IsLoading));
+
+            OnPropertyChanged(nameof(ChapterList));
+        }
+        private void AddDataInList()
+        {
+            var ChapterData = App.DB.Chapter;
+            foreach (var item in ChapterData)
+            {
+                App.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    StaticChapterList.Add(item);
+                });
+            }
+        }
         public IEnumerable<Chapter> ChapterList
         {
             get
             {
-                if (FirstCheck == false)
-                {
-                    FirstCheck = true;
-
-                    StaticChapterList = App.DB.Chapter.OrderByDescending(x => x.DateRelease).ToList();
-
-                    return StaticChapterList.Where(x => x.Id != 3);
-                }
-                else
-                {
-                    RefreshChapters();
-                    return EditableChapterList;
-                }
+                IEnumerable<Chapter> filteredChapterList = RefreshChapters();
+                return filteredChapterList;
             }
             set
             {
 
             }
         }
-        public ChapterListViewModel()
+        IEnumerable<Chapter> RefreshChapters()
         {
-
-        }
-        private void RefreshChapters()
-        {
-            EditableChapterList = StaticChapterList;
+            IEnumerable<Chapter> filteredChapters = StaticChapterList;
             if (comboBoxIndex == 0)
             {
-                EditableChapterList = EditableChapterList.OrderByDescending(x => x.DateRelease);
+                filteredChapters = filteredChapters.OrderByDescending(x => x.CorrectDateRelease);
             }
             if (comboBoxIndex == 1)
             {
-                EditableChapterList = EditableChapterList.OrderBy(x => x.DateRelease);
+                filteredChapters = filteredChapters.OrderBy(x => x.CorrectDateRelease);
             }
             if (SearchText.Length > 0)
             {
-                EditableChapterList = EditableChapterList.Where(x => x.Name.ToLower().Contains(SearchText.ToLower()));
+                filteredChapters = filteredChapters.Where(x => x.Name.ToLower().Contains(SearchText.ToLower()));
             }
+            return filteredChapters.Where(x => x.Id != 3);
 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
     }
 }

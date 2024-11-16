@@ -238,24 +238,24 @@
                                     </StackPanel>
                                 </StackPanel>
                                 <TextBlock Style="{DynamicResource Header}" HorizontalAlignment="Center" FontWeight="Regular" Foreground="White" FontSize="23" Margin="0 10">
-                                    <Run Text="Обновиться через"/> <Run x:Name="TbRefreshShrine" Foreground="#FF9121CA"/>
+                                    <Run Text="Обновиться через"/> <Run x:Name="TbRefreshShrine" Foreground="{DynamicResource ThemePrimaryBrush}"/>
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
 
-                    <ListView x:Name="LvPerks" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding PerkList,IsAsync=True,NotifyOnTargetUpdated=True}" TargetUpdated="LvPerks_TargetUpdated">
-                        <ListView.ItemsPanel>
+                    <ListBox x:Name="LvPerks" Focusable="False" BorderThickness="0" Width="1270"  Margin="0 40 0 0" Background="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=15}" ItemsSource="{Binding PerkList,IsAsync=True,NotifyOnTargetUpdated=True}" TargetUpdated="LvPerks_TargetUpdated">
+                        <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Width="1270" Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                        <ListView.Template>
+                        </ListBox.ItemsPanel>
+                        <ListBox.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </ControlTemplate>
-                        </ListView.Template>
-                        <ListView.ItemTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="12 0 12 20" ToolTipService.InitialShowDelay="0">
                                     <Grid.ToolTip>
@@ -301,8 +301,8 @@
                                     </TextBlock>
                                 </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
                     <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
                     

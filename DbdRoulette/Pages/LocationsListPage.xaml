@@ -8,7 +8,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="1700" d:DesignWidth="1400"
       Title="LocationsListPage">
-
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
     <Grid>
         <ScrollViewer CanContentScroll="False">
             <Grid>
@@ -52,23 +54,23 @@
                         </Border>
                     </StackPanel>
 
-                    <ListView x:Name="LvLocations" d:ItemsSource="{d:SampleData ItemCount=37}" Margin="0 20 0 0" ItemsSource="{Binding LocationList,IsAsync=True,NotifyOnTargetUpdated=True}" TargetUpdated="LvLocations_TargetUpdated">
-                        <ListView.ItemsPanel>
+                    <ListBox x:Name="LvLocations" d:ItemsSource="{d:SampleData ItemCount=37}" Margin="0 20 0 0" ItemsSource="{Binding LocationList,IsAsync=True,NotifyOnTargetUpdated=True}" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=False}" IsVisibleChanged="LvLocations_IsVisibleChanged" TargetUpdated="LvLocations_TargetUpdated">
+                        <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Width="1270"/>
                             </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                        <ListView.Template>
+                        </ListBox.ItemsPanel>
+                        <ListBox.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <ItemsPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </ControlTemplate>
-                        </ListView.Template>
-                        <ListView.ItemTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <addons:MapSlider Width="620" DataContext="{Binding}"/>
+                                <addons:MapSlider Width="620" Height="450" Margin="0 0 0 10"/>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     
                     <addons:NothingFoundControl x:Name="NothingFoundElement" Visibility="Collapsed"/>
 
