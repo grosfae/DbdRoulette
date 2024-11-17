@@ -1805,7 +1805,7 @@
     </Style>
 
 
-    <!--None HighLight ListViewItem-->
+    <!--None HighLight ListBoxItem-->
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -1821,7 +1821,7 @@
     <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="Transparent"/>
     <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="Transparent"/>
     <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="Transparent"/>
-    <Style TargetType="{x:Type ListViewItem}">
+    <Style TargetType="{x:Type ListBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="4,1"/>
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
@@ -1834,7 +1834,7 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>

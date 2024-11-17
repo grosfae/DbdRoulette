@@ -1287,7 +1287,7 @@ namespace DbdRoulette.Pages
             {
                 foreach (var ChildItem in LvCharacters.Items)
                 {
-                    ListViewItem item = LvCharacters.ItemContainerGenerator.ContainerFromItem(ChildItem) as ListViewItem;
+                    ListBoxItem item = LvCharacters.ItemContainerGenerator.ContainerFromItem(ChildItem) as ListBoxItem;
                     if (item != null)
                     {
                         var ToggleButton = MiscUtilities.FindVisualChild<ToggleButton>(item);
@@ -1310,7 +1310,7 @@ namespace DbdRoulette.Pages
             {
                 foreach (var ChildItem in LvCharacters.Items)
                 {
-                    ListViewItem item = LvCharacters.ItemContainerGenerator.ContainerFromItem(ChildItem) as ListViewItem;
+                    ListBoxItem item = LvCharacters.ItemContainerGenerator.ContainerFromItem(ChildItem) as ListBoxItem;
                     if (item != null)
                     {
                         var ToggleButton = MiscUtilities.FindVisualChild<ToggleButton>(item);

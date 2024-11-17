@@ -212,7 +212,7 @@ namespace DbdRoulette.Pages
         //{
         //    if (LvGallery.Items.Count > 0)
         //    {
-        //        ListViewItem item = LvGallery.ItemContainerGenerator.ContainerFromIndex(2) as ListViewItem;
+        //        ListBoxItem item = LvGallery.ItemContainerGenerator.ContainerFromIndex(2) as ListBoxItem;
         //        if (item != null)
         //        {
         //            var radioButton = MiscUtilities.FindVisualChild<RadioButton>(item);
